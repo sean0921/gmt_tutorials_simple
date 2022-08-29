@@ -1,0 +1,1004 @@
+
+<!doctype html>
+<html lang="zh-Hant" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="GMT5 教程 | 編者: Po-Chin Tseng">
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.3.1, mkdocs-material-8.4.2">
+    
+    
+      
+        <title>第六章: 向量與速度場 - Simplified GMT Tutorial</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.69437709.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.cbb835fc.min.css">
+        
+      
+      
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          跳轉到
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Simplified GMT Tutorial" class="md-header__button md-logo" aria-label="Simplified GMT Tutorial" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Simplified GMT Tutorial
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              第六章: 向量與速度場
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜尋" placeholder="搜尋" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜尋引擎
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Simplified GMT Tutorial" class="md-nav__button md-logo" aria-label="Simplified GMT Tutorial" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Simplified GMT Tutorial
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        總覽
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../intro_install/" class="md-nav__link">
+        GMT介紹及安裝
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../net_software/" class="md-nav__link">
+        網路資源及配套軟體
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../basic_defaults/" class="md-nav__link">
+        第零章: 基本概念及默認值
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../projection/" class="md-nav__link">
+        第一章: 製作地圖: 地理投影法
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../xy_figure/" class="md-nav__link">
+        第二章: XY散佈圖: 其他投影法
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contour_profile/" class="md-nav__link">
+        第三章: 等高線圖及剖面
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../topography_cpt/" class="md-nav__link">
+        第四章: 地形圖與色階
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../seismicity_meca/" class="md-nav__link">
+        第五章: 地震活動性與機制解
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          第六章: 向量與速度場
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        第六章: 向量與速度場
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目錄">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目錄
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#10" class="md-nav__link">
+    10. 向量與速度場
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#101" class="md-nav__link">
+    10.1 目的
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#102" class="md-nav__link">
+    10.2 學習的指令與概念
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#103" class="md-nav__link">
+    10.3 向量
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#104" class="md-nav__link">
+    10.4 速度場
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#105" class="md-nav__link">
+    10.5 網格速度場
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#106" class="md-nav__link">
+    10.6 習題
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#107" class="md-nav__link">
+    10.7 參考批次檔
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../taiwan_geography/" class="md-nav__link">
+        第七章: 台灣地理資訊
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../histo_pie_ternary/" class="md-nav__link">
+        第八章: 直方、圓餅、三元圖
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../three_dimension/" class="md-nav__link">
+        第九章: 三維空間視圖
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../geology_map/" class="md-nav__link">
+        第十章: 地質圖
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目錄">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目錄
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#10" class="md-nav__link">
+    10. 向量與速度場
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#101" class="md-nav__link">
+    10.1 目的
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#102" class="md-nav__link">
+    10.2 學習的指令與概念
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#103" class="md-nav__link">
+    10.3 向量
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#104" class="md-nav__link">
+    10.4 速度場
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#105" class="md-nav__link">
+    10.5 網格速度場
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#106" class="md-nav__link">
+    10.6 習題
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#107" class="md-nav__link">
+    10.7 參考批次檔
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+
+
+<h1 id="_1">向量與速度場</h1>
+<h2 id="10">10. 向量與速度場</h2>
+<p>向量(vector)是用來同時表達大小與方向的幾何圖形，在6-6極軸中，
+介紹了利用極軸來表示四個氣象站夏季與冬季的風量(大小)及風向(方向)，
+明顯地，這種資料符合向量所描述的對象，當想把這些帶有大小及方向性的資料繪製在地圖時，
+要如何利用GMT來繪製向量，將在本章介紹。</p>
+<h2 id="101">10.1 目的</h2>
+<p>本章將學習如何繪製</p>
+<ol>
+<li>向量(Vector)</li>
+<li>速度場(Velocity Field)</li>
+<li>網格速度場(Grid Velocity Field)</li>
+</ol>
+<h2 id="102">10.2 學習的指令與概念</h2>
+<ul>
+<li><code>surface</code>: 利用可調整張力的連續彎曲曲線(adjustable tension continuous curvature splines)來網格化表格式資料</li>
+<li><code>grdvector</code>: 繪製網格向量場</li>
+<li><code>psvelo</code>: 在地圖上繪製向量場</li>
+<li><code>psxy</code>: 繪製線、多邊形、符號</li>
+</ul>
+<h2 id="103">10.3 向量</h2>
+<p>在開始學習將向量繪製在地圖上之前，首先先熟習GMT在繪製箭頭上的語法，使用的模組是<code>psxy</code>，
+但是選項是之前沒介紹的笛卡爾向量<code>-Sv(V)</code>及弧形向量<code>-Sm</code>，而地理向量<code>-S=</code>將在不本章介紹，
+就來看看向量有哪些變化吧！</p>
+<p>成果圖</p>
+<p align="center">
+  <img src="/fig/10_3_vector_1.png"/>
+</p>
+
+<p>批次檔</p>
+<pre><code class="language-bat">set ps=10_3_vector.ps
+
+gmt psbasemap -R0/19/0/15 -JX19/15 -BWESN -Bag1 -K &gt; %ps%
+
+# 1. -Sv
+echo 2 1 0 1.5 | gmt psxy -R -JX -Sv.5+e -W1.5 -Gred -K -O &gt;&gt; %ps%
+echo 1.8 1 0\260 | gmt pstext -R -JX -F+f14p,1+jMR -G255 -K -O &gt;&gt; %ps%
+echo 2 1.5 90 1.5 | gmt psxy -R -JX -Sv.5+e -W1.5 -Gred -K -O &gt;&gt; %ps%
+echo 1.8 2 90\260 | gmt pstext -R -JX -F+f14p,1+jMR -G255 -K -O &gt;&gt; %ps%
+echo 2 3.5 180 1.5 | gmt psxy -R -JX -Sv.5+e -W1.5 -Gred -K -O &gt;&gt; %ps%
+echo 2.2 3.5 180\260 | gmt pstext -R -JX -F+f14p,1+jML -G255 -K -O &gt;&gt; %ps%
+echo 2 5.5 270 1.5 | gmt psxy -R -JX -Sv.5+e -W1.5 -Gred -K -O &gt;&gt; %ps%
+echo 2.2 5 270\260 | gmt pstext -R -JX -F+f14p,1+jML -G255 -K -O &gt;&gt; %ps%
+echo 1.25 6.25 -Sv | gmt pstext -R -JX -F+f18p,1+jML -G255 -K -O &gt;&gt; %ps%
+
+# 2. -SV
+echo 6 1 0 1.5 | gmt psxy -R -JX -SV.5+e -W1.5 -Gred -K -O &gt;&gt; %ps%
+echo 5.8 1.5 0\260 | gmt pstext -R -JX -F+f14p,1+jMR -G255 -K -O &gt;&gt; %ps%
+echo 6 3.0 90 1.5 | gmt psxy -R -JX -SV.5+e -W1.5 -Gred -K -O &gt;&gt; %ps%
+echo 5.8 3.0 90\260 | gmt pstext -R -JX -F+f14p,1+jMR -G255 -K -O &gt;&gt; %ps%
+echo 6 5.0 180 1.5 | gmt psxy -R -JX -SV.5+e -W1.5 -Gred -K -O &gt;&gt; %ps%
+echo 6.2 4.5 180\260 | gmt pstext -R -JX -F+f14p,1+jML -G255 -K -O &gt;&gt; %ps%
+echo 6 5.5 270 1.5 | gmt psxy -R -JX -SV.5+e -W1.5 -Gred -K -O &gt;&gt; %ps%
+echo 6.2 5.5 270\260 | gmt pstext -R -JX -F+f14p,1+jML -G255 -K -O &gt;&gt; %ps%
+echo 5.25 6.25 -SV | gmt pstext -R -JX -F+f18p,1+jML -G255 -K -O &gt;&gt; %ps%
+
+# 3. -Sm
+echo 1 7 2 0 90 | gmt psxy -R -JX -Sm0.2i+e -W1.5 -Gred -K -O &gt;&gt; %ps%
+echo 1 7.5 0~90\260 | gmt pstext -R -JX -F+f14p,1+jML -G255 -K -O &gt;&gt; %ps%
+echo 5 9 2 270 450 | gmt psxy -R -JX -Sm0.2i+e -W1.5 -Gred -K -O &gt;&gt; %ps%
+echo 4 8 270~450\260 | gmt pstext -R -JX -F+f14p,1+jML -G255 -K -O &gt;&gt; %ps%
+echo 3 12 2 0 270 | gmt psxy -R -JX -Sm0.2i+e -W1.5 -Gred -K -O &gt;&gt; %ps%
+echo 3 12 0~270\260 | gmt pstext -R -JX -F+f14p,1+jMC -G255 -K -O &gt;&gt; %ps%
+echo 3.5 9.5 -Sm | gmt pstext -R -JX -F+f18p,1+jML -G255 -K -O &gt;&gt; %ps%
+
+# 4. vector type
+echo 9 14 0 3 | gmt psxy -R -JX -Sv.5+ba+ea -W1.5 -Gred -K -O &gt;&gt; %ps%
+echo 13 14 -Sv.5+ba+ea | gmt pstext -R -JX -F+f14p,1+jML -G255 -K -O &gt;&gt; %ps%
+echo 9 13 0 3 | gmt psxy -R -JX -Sv.5+ba+ea -W1.5 -Gred -K -O --MAP_VECTOR_SHAPE=-2 &gt;&gt; %ps%
+echo 13 13 MAP_VECTOR_SHAPE=-2 | gmt pstext -R -JX -F+f12p,1+jML -G255 -K -O &gt;&gt; %ps%
+echo 9 12 0 3 | gmt psxy -R -JX -Sv.5+ba+ea -W1.5 -Gred -K -O --MAP_VECTOR_SHAPE=-1 &gt;&gt; %ps%
+echo 13 12 MAP_VECTOR_SHAPE=-1 | gmt pstext -R -JX -F+f12p,1+jML -G255 -K -O &gt;&gt; %ps%
+echo 9 11 0 3 | gmt psxy -R -JX -Sv.5+ba+ea -W1.5 -Gred -K -O --MAP_VECTOR_SHAPE=1 &gt;&gt; %ps%
+echo 13 11 MAP_VECTOR_SHAPE=1 | gmt pstext -R -JX -F+f12p,1+jML -G255 -K -O &gt;&gt; %ps%
+echo 9 10 0 3 | gmt psxy -R -JX -Sv.5+ba+ea -W1.5 -Gred -K -O --MAP_VECTOR_SHAPE=2 &gt;&gt; %ps%
+echo 13 10 MAP_VECTOR_SHAPE=2 | gmt pstext -R -JX -F+f12p,1+jML -G255 -K -O &gt;&gt; %ps%
+echo 9 9 0 3 | gmt psxy -R -JX -Sv.5+bt+e -W1.5 -Gred -K -O &gt;&gt; %ps%
+echo 13 9 -Sv.5+bt+e | gmt pstext -R -JX -F+f14p,1+jML -G255 -K -O &gt;&gt; %ps%
+echo 9 8 0 3 | gmt psxy -R -JX -Sv.5+b+ec -W1.5 -Gred -K -O &gt;&gt; %ps%
+echo 13 8 -Sv.5+b+ec | gmt pstext -R -JX -F+f14p,1+jML -G255 -K -O &gt;&gt; %ps%
+echo 9 7 0 3 | gmt psxy -R -JX -Sv.5+bi+eA -W1.5 -Gred -K -O &gt;&gt; %ps%
+echo 13 7 -Sv.5+bi+eA | gmt pstext -R -JX -F+f14p,1+jML -G255 -K -O &gt;&gt; %ps%
+echo 9 6 0 3 | gmt psxy -R -JX -Sv.5+b+eI -W1.5 -Gred -K -O &gt;&gt; %ps%
+echo 13 6 -Sv.5+b+eI | gmt pstext -R -JX -F+f14p,1+jML -G255 -K -O &gt;&gt; %ps%
+echo 9 5 0 3 | gmt psxy -R -JX -Sv.5+b+e+r -W1.5 -Gred -K -O &gt;&gt; %ps%
+echo 13 5 -Sv.5+b+e+r | gmt pstext -R -JX -F+f14p,1+jML -G255 -K -O &gt;&gt; %ps%
+echo 9 4 0 3 | gmt psxy -R -JX -Sv.5+b+e+l -W1.5 -Gred -K -O &gt;&gt; %ps%
+echo 13 4 -Sv.5+b+e+l | gmt pstext -R -JX -F+f14p,1+jML -G255 -K -O &gt;&gt; %ps%
+echo 9 3 0 3 | gmt psxy -R -JX -Sv.5+b+e+a90 -W1.5 -Gred -K -O &gt;&gt; %ps%
+echo 13 3 -Sv.5+b+e+a90 | gmt pstext -R -JX -F+f14p,1+jML -G255 -K -O &gt;&gt; %ps%
+echo 9 2 0 3 | gmt psxy -R -JX -Sv.5+mf -W1.5 -Gred -K -O &gt;&gt; %ps%
+echo 13 2 -Sv.5+mf | gmt pstext -R -JX -F+f14p,1+jML -G255 -K -O &gt;&gt; %ps%
+echo 9 1 0 3 | gmt psxy -R -JX -Sv.5+mr -W1.5 -Gred -K -O &gt;&gt; %ps%
+echo 13 1 -Sv.5+mr | gmt pstext -R -JX -F+f14p,1+jML -G255 -K -O &gt;&gt; %ps%
+
+gmt psxy -R -J -T -O &gt;&gt; %ps%
+gmt psconvert %ps% -Tg -A -P
+del tmp*
+</code></pre>
+<p>學習到的指令:</p>
+<ul>
+<li><code>-Sv</code>笛卡爾向量(直線向量)，對應的資料格式<mark>x軸位置 y軸位置 角度 長度 (大小)</mark>，
+角度是從水平逆時針旋轉算起，如果沒有在<code>-Sv</code>指定大小，將會讀取第五欄的大小。</li>
+<li><strong>+a</strong>設定向量頭(vector head)的角度大小，默認值是30。</li>
+<li><strong>+b</strong>在起使位置繪製向量。<ul>
+<li><strong>t</strong>向量改用終端線(terminal line)表示</li>
+<li><strong>c</strong>向量改用圓形表示</li>
+<li><strong>a</strong>向量改用箭頭表示，默認值</li>
+<li><strong>i</strong>向量改用箭尾表示</li>
+<li><strong>A</strong>向量改用簡單箭頭表示</li>
+<li><strong>I</strong>向量改用簡單箭尾表示</li>
+</ul>
+</li>
+<li><strong>+e</strong>在結束位置繪製向量，其餘設置同<strong>+b</strong>。</li>
+<li><strong>+l</strong>只繪製左半邊的箭頭。</li>
+<li><strong>+m</strong>將向量頭繪製在中間，其餘設置同<strong>+b</strong>。<ul>
+<li><strong>f</strong>箭頭朝終點方向</li>
+<li><strong>r</strong>箭頭朝起點方向</li>
+</ul>
+</li>
+<li><strong>+r</strong>只繪製右半邊的箭頭。</li>
+<li><strong>+t</strong>偏移起始點與終點位置。</li>
+<li><strong>+s</strong>資料格式改成<mark>起始x軸位置 起始y軸位置 結束x軸位置 結束y軸位置</mark></li>
+<li><strong>--MAP_VECTOR_SHAPE</strong>設定向量頭的種類，數值從-2到2。</li>
+<li><code>-SV</code>的語法和<code>-Sv</code>一樣，除了角度是從北邊開始順時鐘算起。</li>
+<li><code>-Sm</code>弧形向量，對應的資料格式<mark>圓心x軸位置 圓心y軸位置 半徑 起始角度 結束角度</mark>。</li>
+<li><code>-G</code>向量頭的顏色。</li>
+<li><code>-W</code>設定線段的寬度。</li>
+</ul>
+<p>從上圖中可以清楚地從各圖片配合旁邊的文字解說，了解各種向量頭的繪製方式，
+下一節將利用這些知識，加上實際的資料，來看看把向量繪製在地圖上的效果。</p>
+<h2 id="104">10.4 速度場</h2>
+<p>從大氣水文資料庫得到莫拉克颱風期間的氣象測站資料(局屬和自動測站)，
+統計各測站在2009/08/08這天0點~12點的氣壓(PS01)、平均風風速(WD01)及平均風風向(WD02)，
+利用Python計算12小時內東西及南北方向的平均風速及一倍標準差(1 sigma)，
+還有12小時內的平均氣壓，最後整理成GMT畫圖所對應的格式。莫拉克颱風的路徑，
+透過氣象局<a href="http://rdc28.cwb.gov.tw/">颱風資料庫</a>下載取得。</p>
+<p>使用的資料檔:</p>
+<ul>
+<li><a href="../dat/morakot_wind.gmt">莫拉克颱風風速</a></li>
+<li><a href="../dat/morakot_presure.gmt">莫拉克颱風氣壓</a></li>
+<li><a href="../dat/morakot_track.dat">莫拉克颱風路徑</a></li>
+</ul>
+<p>成果圖</p>
+<p align="center">
+  <img src="/fig/10_4_morakot_wind_1.png"/>
+</p>
+
+<p>批次檔</p>
+<pre><code class="language-bat">set ps=10_4_morakot_wind.ps
+set data=D:\GMT_data\
+set cpt=gebco.cpt
+
+gmt surface morakot_presure.gmt -R119/123/21/26 -I.01  -Gmorakot_presure.grd
+
+# 1. topography &amp; presure contour
+gmt psbasemap -R119/123/21/26 -JM15 -BWeSn -Bxa -Bya -P -K &gt; %ps%
+gmt grdimage %data%ETOPO1_Bed_g_gmt5.grd -R -JM -C%cpt% ^
+-I%data%ETOPO1_Bed_g_gmt5_shad.grd -M -K -O &gt;&gt; %ps%
+gmt pscoast -R -JM -Df -Gc -K -O &gt;&gt; %ps%
+gmt grdimage %data%tw_40.grd -R -JM -C%cpt% ^
+-I%data%tw_40shad.grd -M -K -O &gt;&gt; %ps%
+gmt pscoast -R -JM -Q -K -O &gt;&gt; %ps%
+gmt pscoast -R -JM -Df -W1 -K -O &gt;&gt; %ps%
+gmt grdcontour morakot_presure.grd -R -JM -A100 -C50 -K -O &gt;&gt; %ps%
+
+# 2. typhoon track &amp; wind
+gmt psvelo morakot_wind.gmt -R -JM -Se.3/.01/0 -G36/64/254 -A+ea+a45 -W1,36/64/254 -K -O &gt;&gt; %ps%
+awk &quot;{print $3,$2}&quot; morakot_track.dat | gmt psxy -R -JM -W2,255/205/0,- -K -O &gt;&gt; %ps%
+awk &quot;$1 != 082009080800 {print $3,$2}&quot; morakot_track.dat | ^
+gmt psxy -R -JM -SkHURRICANE/.5 -G232/178/14 -W.5 -K -O &gt;&gt; %ps%
+awk &quot;$1 == 082009080800 {print $3,$2}&quot; morakot_track.dat | ^
+gmt psxy -R -JM -SkHURRICANE/.7 -G218/41/28 -W.5 -K -O &gt;&gt; %ps%
+
+# 3. legend set
+echo H 18 1 Legend &gt; tmp
+echo D 0.4 1p &gt;&gt; tmp
+echo G .2 &gt;&gt; tmp
+echo M 122 21.5 100+u +f &gt;&gt; tmp
+echo G .2 &gt;&gt; tmp
+echo S .5 kHURRICANE .5 232/178/14 .5 1 Typhoon Track &gt;&gt; tmp
+echo P &gt;&gt; tmp
+echo G .2 &gt;&gt; tmp
+echo S .5 kHURRICANE .7 218/41/28 .5 1 Eye at 2009/08/08 0:00:00 &gt;&gt; tmp
+echo G .2 &gt;&gt; tmp
+echo S .8 v.3+ea+a45 1 36/64/254 1,36/64/254 1.5 Wind 1 m/s &gt;&gt; tmp
+gmt pslegend tmp -R -JM -C.1/.1 -Dx9.4/.1+w5.5 -F+g245+p1+s4p/-4p/gray50 ^
+--FONT_ANNOT_PRIMARY=10p --FONT_LABEL=14p -K -O &gt;&gt; %ps%
+
+gmt psxy -R -J -T -O &gt;&gt; %ps%
+gmt psconvert %ps% -Tg -A -P
+del tmp*
+</code></pre>
+<p>學習到的指令:</p>
+<ul>
+<li><code>Surface</code>將xyz三欄的表格資料，
+透過<code>(1-T)*L(L(z))+T*L(z)</code>運算式，轉換成網格檔，
+其中T代表張量參數(Tension Factor)，L是拉普拉斯運算子(Laplacian Operator)。</li>
+<li><code>-G</code>輸出檔名。</li>
+<li><code>-I</code>x軸網格間距[單位]/y軸間距[單位]。</li>
+<li><code>-R</code>x軸最小範圍/x軸最大範圍/y軸最小範圍/y軸最大範圍。</li>
+<li><code>-C</code>收斂限制百分比，和z軸資料同單位。</li>
+<li><code>-T</code>張量參數，0~1之間，0表示最小曲率解(minimum curvature solution)，
+  容易造成不希望的振盪，形成假的局部最大值或最小值，1則是給一個諧和曲面(harmonic surface)，
+  不會有最大最小值出現，除了在原始控制點上，一般建議T設定為0.25，如果資料變化較為劇烈，
+  可以設定為0.35。</li>
+</ul>
+<p><mark>1</mark>繪製地形及氣壓等值線</p>
+<p><mark>2</mark>繪製向量(風速和方向)及颱風路徑</p>
+<ul>
+<li><code>psvelo</code>在地圖上繪製向量場</li>
+<li><code>-Se</code>向量尺寸/誤差橢圓尺寸/標題字大小，對應的輸入資料格式為<mark>經度 緯度
+  東西向數值 南北向數值 東西向誤差 南北向誤差 東西向與南北向的相關性 標題名</mark>。</li>
+<li><code>-Sr</code>與<code>-Se</code>一致，差別在輸入的資料格式<mark>經度 緯度
+  東西向數值 南北向數值 橢圓的半長軸 橢圓的半短軸 長軸從水平向逆時針旋轉的角度
+  標題名</mark>。</li>
+<li><code>-Sn</code>尺寸，異向性的向量(Anisotropy bars)，輸入資料格式為<mark>經度 緯度 東西向數值
+  南北向數值</mark>。</li>
+<li><code>-Sw</code>扇形尺寸/規模，輸入資料格式為<mark>經度 緯度 旋轉的角度(radians為單位)
+  旋轉的誤差角度</mark>。</li>
+<li><code>-Sx</code>十字線尺吋，常用於繪製應變軸，輸入資料格式為<mark>經度 緯度 應變擴張軸數值
+  應變壓縮軸數值 旋轉角度(從北順時鐘，degree為單位)</mark>。</li>
+<li><code>-A</code>修改向量頭的屬性，同上一節介紹。</li>
+<li><code>-F</code>邊框和標題字的顏色。</li>
+<li><code>-G</code>向量頭及誤差橢圓的顏色。</li>
+<li><code>-W</code>向量頭、誤差橢圓及線段的筆觸。</li>
+<li><code>psxy</code>繪製線、多邊形、符號。</li>
+<li><code>-Sk</code>自訂義符號名稱/大小，可參考<a href="../basic_defaults/#m4.4sk">4-4自訂符號對照表</a>。</li>
+</ul>
+<p><mark>3</mark>製作圖例說明</p>
+<ul>
+<li>同樣地，在製作自訂符號的圖例說明，也是用到<code>S 圖間隔 k自訂符號名稱 大小 顏色 外框筆觸
+字間隔 文字</code>的模式來完成。</li>
+</ul>
+<p>上述的公式來自<mark>Smith and Wessel, 1990</mark>[^1]，有興趣的話，
+可以到註腳找到該文章題目，自行下載研讀。</p>
+<p>從圖中顯示，颱風中心在8月8號0時位在宜蘭附近山區，處在低氣壓區，可以明顯地在北部測站觀察到，
+逆時鐘的外旋氣旋，南部的測站也有此現象，惟多數測站以故障，測站數明顯少於北部。</p>
+<p>[^1]: Gridding with continuous curvature splines in tension (W.H.F. Smith and P. Wessel, 1990)</p>
+<h2 id="105">10.5 網格速度場</h2>
+<p>延續上一節所使用的資料檔，來示範將表格資料透過<code>surface</code>轉成網格資料後，
+如何呈現網格速度場。另外製作風速的純量檔，利用色階來呈現。</p>
+<p>使用的資料檔:</p>
+<ul>
+<li><a href="../dat/morakot_wind_scalar.gmt">莫拉克颱風風速純量</a></li>
+</ul>
+<p>成果圖</p>
+<p align="center">
+  <img src="/fig/10_5_grid_vector_1.png"/>
+</p>
+
+<p>批次檔</p>
+<pre><code class="language-bat">set ps=10_5_grid_vector.ps
+set data=D:\GMT_data\
+set cpt=sealand.cpt
+
+# 1. surface .xyz to .grd &amp; makecpt
+awk &quot;{print $1,$2,$3}&quot; morakot_wind.gmt | ^
+gmt surface -R119.9/122.1/21.8/25.4 -I.1 -Gmorakot_wind_e.grd
+awk &quot;{print $1,$2,$4}&quot; morakot_wind.gmt | ^
+gmt surface -R -I.1 -Gmorakot_wind_n.grd
+gmt surface morakot_wind_scalar.gmt -R -I.1 -T.25 -Gmorakot_wind_scalar.grd
+gmt makecpt -C%cpt% -T0/10/.5 -D &gt; tmp.cpt
+
+# 2. bathymetry &amp; grdvector
+gmt psbasemap -R119.8/122.1/21.8/25.4 -JM15 -BWeSn -Bxa ^
+-Bya -P -K --MAP_FRAME_TYPE=PLAIN &gt; %ps%
+gmt grdimage %data%tw_500_119.grd -R -JM -C%cpt% ^
+-I%data%tw_500shad_119.grd -M -K -O &gt;&gt; %ps%
+gmt pscoast -R -JM -Df -Gc -K -O &gt;&gt; %ps%
+gmt grdimage morakot_wind_scalar.grd -R -JM -Ctmp.cpt -K -O &gt;&gt; %ps%
+gmt grdvector morakot_wind_e.grd morakot_wind_n.grd -R -JM -Q+ea -W1 ^
+-G0 -S.4 -I.1 -K -O &gt;&gt; %ps%
+gmt pscoast -R -JM -Q -K -O &gt;&gt; %ps%
+gmt pscoast -R -JM -Df -W1 -K -O &gt;&gt; %ps%
+
+# 3. typhoon track &amp; psscale
+awk &quot;{print $3,$2}&quot; morakot_track.dat | gmt psxy -R -JM -W2,255/205/0,- -K -O &gt;&gt; %ps%
+awk &quot;$1 != 082009080800 {print $3,$2}&quot; morakot_track.dat | ^
+gmt psxy -R -JM -SkHURRICANE/.5 -G232/178/14 -W.5 -K -O &gt;&gt; %ps%
+awk &quot;$1 == 082009080800 {print $3,$2}&quot; morakot_track.dat | ^
+gmt psxy -R -JM -SkHURRICANE/.7 -G218/41/28 -W.5 -K -O &gt;&gt; %ps%
+gmt psscale -Ctmp.cpt -Dx2/19.2+w5/.5+e+ml -Bxa2+l&quot;Wind (m/s)&quot; ^
+-F+g240+r.4+c.3 -K -O &gt;&gt; %ps%
+
+gmt psxy -R -J -T -O &gt;&gt; %ps%
+gmt psconvert %ps% -Tg -A -P
+del tmp*
+</code></pre>
+<p>學習到的指令:</p>
+<ul>
+<li><mark>1</mark>將風速檔透過<code>surface</code>轉成網格資料</li>
+<li>配合<code>grdvector</code>要的輸入檔案格式，分別將風速檔轉換東西向及南北向的網格檔。</li>
+<li>
+<p>為了<code>grdimage</code>繪圖所需，將風速的純量檔轉成網格檔。</p>
+</li>
+<li>
+<p><mark>2</mark>海底地形與網格速度場</p>
+</li>
+<li>
+<p><code>grdvector</code>繪製網格向量場，輸入的資料格式為<mark>x軸方向的網格檔 y軸方向的網格檔</mark></p>
+<ul>
+<li><code>-A</code>將輸入的格式轉成<mark>長度 角度</mark>。</li>
+<li><code>-C</code>根據向量長度決定顏色。</li>
+<li><code>-G</code>向量顏色。</li>
+<li><code>-I</code>x間隔/y間隔，必需是原始網格的整數倍。</li>
+<li><code>-N</code>不剪裁地圖外的向量。</li>
+<li><code>-S</code>向量長度的縮放比例。</li>
+<li><code>-W</code>向量外框的筆觸。</li>
+</ul>
+</li>
+<li>
+<p><mark>3</mark>繪製海底路徑及色彩條。</p>
+</li>
+</ul>
+<p>本節示範了與上一節不同的方式來呈現向量檔，透過將表格向量資料轉換網格資料，並繪製在地圖上，
+可以看到和上節得到差不多的結論，惟在使用<code>surface</code>需要多注意，要確認原始資料點的分佈情形及
+<code>-T</code>張量參數的使用，才不致於出現不尋常的極大極小區域，另外，善用色階來突顯想表達的重點。</p>
+<h2 id="106">10.6 習題</h2>
+<p>美國國家海洋與大氣管理局(National Oceanic and Atmospheric Administration, NOAA)
+關注全球海洋與大氣的變化，也提供許多開放的資源供大家使用，本次習題將會利用其下的
+<a href="https://www.esrl.noaa.gov/psd/data/gridded/data.godas.html#detail">全球海洋資料同化系統</a>
+(Global Ocean Data Assimilation System, GODAS)，此系統提供海水面高、鹽含量、洋流等等資料，
+將使用洋流資料來繪製出全球尺度的洋流系統。</p>
+<p>該系統所使用的檔案格式為<mark>netCDF</mark>，為一種資料壓縮的格式，慣用的副檔名為<mark>.nc</mark>，
+常用於地球科學相關領域，GMT內訂海岸線的檔案格式也為此格式。接下來，簡單介紹該檔案格式，
+它是一種self-described data format，意思是所有與資料有關的訊息都會被記錄在檔頭資訊裡，
+其中檔頭資訊中分成兩個，第一，Attributes，用來描述該<mark>.nc</mark>檔的標題、
+製作日期等等的文字敘述；第二，Dimension，是做為資料點對應的維度。接著資料點會被歸類在Variable中，
+而Variable可透過Dimension來描述。</p>
+<p>打個比方，Dimension中有4個維度，分別是時間、高程、經度、緯度，有一個Variable叫溫度，
+它可以用這4個維度來描述，如2009-01-01在東經120度、北緯20度、高程2000公尺時，溫度為15度。
+同理，有可能這個<mark>.nc</mark>檔中還有大氣壓這個Variable，但大氣壓只有提供地面的資料，
+所以只需時間、經度、緯度這三個維度來描述。</p>
+<p>了解檔案格式後，就交給Python來處理，從<mark>.nc</mark>檔提取需要的資訊，整理成GMT使用的格式。
+本次習題希望利用下方兩筆資料，來繪製全球洋流的地圖。</p>
+<p>使用的資料檔:</p>
+<ul>
+<li><a href="dat/ucur_201701.xyz">201701全球洋流東西向</a></li>
+<li><a href="dat/vcur_201701.xyz">201701全球洋流南北向</a></li>
+</ul>
+<p>完成圖如下:</p>
+<p align="center">
+  <img src="/fig/10_6_ocean_current_1.png"/>
+</p>
+
+<h2 id="107">10.7 參考批次檔</h2>
+<p>列出本章節使用的批次檔，供讀者參考使用，檔案路經可能會有些許不同，再自行修改。</p>
+<ul>
+<li><a href="../bat/10_3_vector.bat">10_3_vector</a></li>
+<li><a href="../bat/10_4_morakot_wind.bat">10_4_morakot_wind</a></li>
+<li><a href="../bat/10_5_grid_vector.bat">10_5_grid_vector</a></li>
+<li><a href="../bat/10_6_ocean_current.bat">10_6_ocean_current</a></li>
+</ul>
+
+
+
+
+              
+            </article>
+            
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="../seismicity_meca/" class="md-footer__link md-footer__link--prev" aria-label="上一頁: 第五章: 地震活動性與機制解" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                上一頁
+              </span>
+              第五章: 地震活動性與機制解
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../taiwan_geography/" class="md-footer__link md-footer__link--next" aria-label="下一頁: 第七章: 台灣地理資訊" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                下一頁
+              </span>
+              第七章: 台灣地理資訊
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.ecf98df9.min.js", "translations": {"clipboard.copied": "\u5df2\u8907\u88fd", "clipboard.copy": "\u8907\u88fd", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\u3000\u3001\u3002\uff0c\uff0e\uff1f\uff1b]+", "search.placeholder": "\u641c\u5c0b", "search.result.more.one": "\u6b64\u9801\u5c1a\u6709 1 \u500b\u7b26\u5408\u7684\u9805\u76ee", "search.result.more.other": "\u6b64\u9801\u5c1a\u6709 # \u500b\u7b26\u5408\u7684\u9805\u76ee", "search.result.none": "\u6c92\u6709\u7b26\u5408\u7684\u9805\u76ee", "search.result.one": "\u627e\u5230 1 \u500b\u7b26\u5408\u7684\u9805\u76ee", "search.result.other": "\u627e\u5230 # \u500b\u7b26\u5408\u7684\u9805\u76ee", "search.result.placeholder": "\u6253\u5b57\u9032\u884c\u641c\u5c0b", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.9c69f0bc.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,1098 @@
+
+<!doctype html>
+<html lang="zh-Hant" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="GMT5 教程 | 編者: Po-Chin Tseng">
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.3.1, mkdocs-material-8.4.2">
+    
+    
+      
+        <title>第二章: XY散佈圖: 其他投影法 - Simplified GMT Tutorial</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.69437709.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.cbb835fc.min.css">
+        
+      
+      
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#xy" class="md-skip">
+          跳轉到
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Simplified GMT Tutorial" class="md-header__button md-logo" aria-label="Simplified GMT Tutorial" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Simplified GMT Tutorial
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              第二章: XY散佈圖: 其他投影法
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜尋" placeholder="搜尋" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜尋引擎
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Simplified GMT Tutorial" class="md-nav__button md-logo" aria-label="Simplified GMT Tutorial" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Simplified GMT Tutorial
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        總覽
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../intro_install/" class="md-nav__link">
+        GMT介紹及安裝
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../net_software/" class="md-nav__link">
+        網路資源及配套軟體
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../basic_defaults/" class="md-nav__link">
+        第零章: 基本概念及默認值
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../projection/" class="md-nav__link">
+        第一章: 製作地圖: 地理投影法
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          第二章: XY散佈圖: 其他投影法
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        第二章: XY散佈圖: 其他投影法
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目錄">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目錄
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#6-xy" class="md-nav__link">
+    6. XY散佈圖
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#61" class="md-nav__link">
+    6.1 目的
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#62" class="md-nav__link">
+    6.2 學習的指令與概念
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#63-jx-jx" class="md-nav__link">
+    6.3 線性軸(-Jx -JX)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#64" class="md-nav__link">
+    6.4 指數、對數軸
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#65" class="md-nav__link">
+    6.5 時間序列
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#66" class="md-nav__link">
+    6.6 極軸
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#67" class="md-nav__link">
+    6.7 習題
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#68" class="md-nav__link">
+    6.8 參考批次檔
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contour_profile/" class="md-nav__link">
+        第三章: 等高線圖及剖面
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../topography_cpt/" class="md-nav__link">
+        第四章: 地形圖與色階
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../seismicity_meca/" class="md-nav__link">
+        第五章: 地震活動性與機制解
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vector_velocity/" class="md-nav__link">
+        第六章: 向量與速度場
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../taiwan_geography/" class="md-nav__link">
+        第七章: 台灣地理資訊
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../histo_pie_ternary/" class="md-nav__link">
+        第八章: 直方、圓餅、三元圖
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../three_dimension/" class="md-nav__link">
+        第九章: 三維空間視圖
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../geology_map/" class="md-nav__link">
+        第十章: 地質圖
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目錄">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目錄
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#6-xy" class="md-nav__link">
+    6. XY散佈圖
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#61" class="md-nav__link">
+    6.1 目的
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#62" class="md-nav__link">
+    6.2 學習的指令與概念
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#63-jx-jx" class="md-nav__link">
+    6.3 線性軸(-Jx -JX)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#64" class="md-nav__link">
+    6.4 指數、對數軸
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#65" class="md-nav__link">
+    6.5 時間序列
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#66" class="md-nav__link">
+    6.6 極軸
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#67" class="md-nav__link">
+    6.7 習題
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#68" class="md-nav__link">
+    6.8 參考批次檔
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+
+
+<h1 id="xy">XY散佈圖(其他投影法)</h1>
+<h2 id="6-xy">6. XY散佈圖</h2>
+<p>除了將資料展示在地圖上，另一個數據分析很重要的圖表格式就是XY散佈圖，本章將分成4個小節介紹如何將資料呈現在線性、對數、時間軸上，
+以及極座標上。</p>
+<h2 id="61">6.1 目的</h2>
+<p>本章將學習如何繪製
+  1. 線性軸(Linear)
+  2. 指數、對數軸(Power, Logarithmic)
+  3. 時間序列(Time)
+  4. 極軸(Polar)</p>
+<h2 id="62">6.2 學習的指令與概念</h2>
+<ul>
+<li><code>gmtset</code>: GMT地圖參數</li>
+<li><code>psbasemap</code>: 繪製圖框(Frame)、刻度(Tick)、標籤(Label)等等</li>
+<li><code>pstext</code>: 在圖上進行排版文字</li>
+<li><code>psxy</code>: 繪製線、多邊形、符號</li>
+<li><code>pslegend</code>: 繪製圖例、說明</li>
+<li>Winodws中批次檔<code>batch</code>常用指令</li>
+</ul>
+<h2 id="63-jx-jx">6.3 線性軸(-Jx -JX)</h2>
+<p>當我們想知道兩個變數之間的關係，常會用到XY散佈圖來表示，看兩者之間是正相關還是負相關。
+此節利用<a href="https://data.gov.tw/dataset/5965">死因統計</a>，想知道意外事故死亡人數，在各年齡層之間的變化，
+以及與性別的關係，首先先來看成果圖及批次檔。</p>
+<p>使用的資料檔:
+- <a href="../dat/dead105.dat">2016年意外死亡人數</a></p>
+<p>成果圖</p>
+<p align="center">
+  <img src="/fig/6_3_accidentalDeath_1.png"/>
+</p>
+
+<p>批次檔</p>
+<pre><code class="language-bat">set ps=6_3_accidentalDeath.ps
+
+# 製作底圖框架
+gmt psbasemap -R0/100/0/450 -JX20/15 -Bxa5+l&quot;Age&quot; -Bya50+l&quot;Deaths (count)&quot; ^
+-BWeSn+t&quot;2016 Taiwan Accidental Deaths&quot; -K &gt; %ps%
+
+# 繪製垂直虛線
+echo 15 0 &gt; area
+echo 15 450 &gt;&gt; area
+gmt psxy area -R -JX -W1.5,180/180/255,- -K -O &gt;&gt; %ps%
+echo 75 0 &gt; area
+echo 75 450 &gt;&gt; area
+gmt psxy area -R -JX -W1.5,255/180/180,- -K -O &gt;&gt; %ps%
+
+# 繪製死亡人數資料點
+awk &quot;$3==1 {print $1, $2}&quot; dead105.dat | gmt psxy -R -JX -Sd.4 ^
+-G30/34/170 -W1 -K -O &gt;&gt; %ps%
+awk &quot;$3==2 {print $1, $2}&quot; dead105.dat | gmt psxy -R -JX -Sc.4 ^
+-G208/0/111 -W1 -K -O &gt;&gt; %ps%
+
+# 圖例框與圖例說明
+echo 1 385 &gt; area
+echo 15.5 385 &gt;&gt; area
+echo 15.5 445 &gt;&gt; area
+echo 1 445 &gt;&gt; area
+gmt psxy area -R -JX -W1 -G255 -L -K -O &gt;&gt; %ps%
+echo 3 430 | gmt psxy -R -JX -Sd.4 -G30/34/170 -W1 -K -O &gt;&gt; %ps%
+echo 6 430 Male | gmt pstext -R -JX -F+f14+jML -K -O &gt;&gt; %ps%
+echo 3 400 | gmt psxy -R -JX -Sc.4 -G208/0/111 -W1 -K -O &gt;&gt; %ps%
+echo 6 400 Female | gmt pstext -R -JX -F+f14+jML -O &gt;&gt; %ps%
+
+# 轉成.png檔，刪除暫存資料
+gmt psconvert %ps% -Tg -A -P
+del area
+</code></pre>
+<p>本節學習到的新指令:
+* 第3行: <code>#</code>符號代表這行後面的字為註記，執行時會略過這行，不同的環境下所使用的符號不太一樣，
+像是Linux、MAC是使用<mark>#</mark>(bash shell)，在Windows則是用<mark>rem</mark>。
+<strong>特別說明：因為本網頁語法無支援batch檔的hightlight，所以才用<mark>#</mark>代替<mark>rem</mark>，
+如果複製後在Windows上執行會出錯，請自行修改，或是下載最後提供的參考批次檔。</strong>
+* 第4行: <code>psbasemap</code>製作圖形外框，其中:
+  * <code>-R</code>x軸最小值/x軸最大值/y軸最小值/y軸最大值。
+  * <code>-JX</code>寬度/高度。
+  * <code>-B</code>之中，<code>+l</code>給予標籤；<code>+t</code>給予標題。
+* 第8,9行: 例用<code>echo</code>輸出一個暫存檔area。
+* 第10行: 上一章有介紹<code>-W</code>寬度,顏色,樣色，這邊提供一些參考資訊。</p>
+<p><strong>寬度單字對照表</strong></p>
+<table>
+<thead>
+<tr>
+<th>Word</th>
+<th>Width</th>
+<th>Word</th>
+<th>Width</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>faint</td>
+<td>0</td>
+<td>thicker</td>
+<td>1.5p</td>
+</tr>
+<tr>
+<td>default</td>
+<td>0.25p</td>
+<td>thickest</td>
+<td>2p</td>
+</tr>
+<tr>
+<td>thinnest</td>
+<td>0.25p</td>
+<td>fat</td>
+<td>3p</td>
+</tr>
+<tr>
+<td>thinner</td>
+<td>0.50p</td>
+<td>fatter</td>
+<td>6p</td>
+</tr>
+<tr>
+<td>thin</td>
+<td>0.75p</td>
+<td>fattest</td>
+<td>12p</td>
+</tr>
+<tr>
+<td>thick</td>
+<td>1.0p</td>
+<td>obese</td>
+<td>18p</td>
+</tr>
+</tbody>
+</table>
+<p><strong>線樣式表</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">Style</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">-</td>
+<td>dash</td>
+</tr>
+<tr>
+<td align="center">.</td>
+<td>dot</td>
+</tr>
+<tr>
+<td align="center">-.</td>
+<td>dash-dot</td>
+</tr>
+<tr>
+<td align="center">..-</td>
+<td>dot-dot-dash</td>
+</tr>
+<tr>
+<td align="center"><strong>可自行搭配</strong></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>第21~26行: 繪製圖例框，<code>echo</code>四個點時，編者習慣逆時針編輯點位置。
+在<code>psxy</code>之中，<code>-L</code>強制關閉多邊形</li>
+<li>第28行: <code>pstext</code>書寫圖例說明，吃的輸入檔格式為<mark>x軸位置 y軸位置 書寫的字</mark>。細部選項有:</li>
+<li><code>-F</code>:<ul>
+<li><strong>+a</strong>改變字的角度</li>
+<li><strong>+f</strong>字大小,字體,顏色</li>
+<li><strong>+j</strong>對齊模式，可參考<a href="../basic_defaults/#m4.4j">4-4字的對齊模式</a></li>
+<li><strong>+t</strong>寫字，可把想寫的字串放在後面，這樣資料檔中的第三欄就會被忽略</li>
+</ul>
+</li>
+<li><code>-G</code>顏色，包含文字的方形圖框顏色</li>
+<li><code>-W</code>設定圖框邊線</li>
+<li>第34行: <code>del</code>刪除檔案，語法為<code>del [檔名1 檔名2 ...]</code>，<strong>強制刪除，請小心使用</strong>。</li>
+</ul>
+<p>從2016台灣意外死亡人數的xy散佈圖來看，在15~20區間之後(藍色虛線之後)，男性意外死亡人數急遽增加，相對地，
+女性並沒有大幅度地增加，另一方面在75~80區間之後(粉紅色虛線之後)，意外死亡的人數開始下滑，
+從上述兩點，推測可能的原因是...(省略)。</p>
+<p>上一段的文字，示範如何利用資料作圖，並嘗試觀察出現象，來解釋其成因。當然，單單從一年份的意外死亡人數來推斷成因，
+是不夠週全的，還需要像是其他年份的死亡資料、男女比例、其他死因等等的證據，才能寫出一份全面地論述。</p>
+<h2 id="64">6.4 指數、對數軸</h2>
+<p>每當地震來時，大家都會提到這次地震的規模多少，規模2或3你就會聯想到這次地震不大(~~可以去PTT發地震文~~)，
+規模6或7你就會反應這次地震很大，查一下各地區的震度(<strong>記住保命優先</strong>)！而你想過，地震規模到底是怎麼得到的嗎？</p>
+<p>1935年發生了南加州地震，Charles Richter教授為了量化地震本身的大小，提出了芮氏地震規模<strong>M<font size="-2">L</font></strong>(Richter magnitude)，
+或稱作近震規模(Local magnitude)。他以南加州地震為例，提出的公式<mark>M<font size="-2">L</font>=logA+2.76logD-2.48</mark>，
+其中<strong>A</strong>代表地震儀紀錄最大振幅(微米)；<strong>D</strong>代表震央距(度)；<strong>2.76</strong>及<strong>2.48</strong>是區域修正常數。
+還有其他像是<strong>M<font size="-2">b</font></strong>體波規模、<strong>M<font size="-2">s</font></strong>表面波規模、
+<strong>M<font size="-2">w</font></strong>地震矩規模，來估算地震大小。讓我們來假設震央距為10度，不同大小的振幅所對應的芮氏規模吧！</p>
+<p>使用的資料檔:
+- <a href="../dat/richter_magnitude.dat">芮氏規模資料</a>
+- <a href="../dat/richter_magnitude_log.dat">取log後芮氏規模資料</a></p>
+<p>成果圖</p>
+<p align="center">
+  <img src="/fig/6_4_richter_magnitude_1.png"/>
+</p>
+
+<p>批次檔</p>
+<pre><code class="language-bat">set ps=6_4_richter_magnitude.ps
+
+# 製作左側圖
+gmt psbasemap -R0/9.99/1e0/9.99e9 -JX9/15l -BWeSn -Bxa1+l&quot;Richter Mag.&quot; ^
+-Bya1pf3+l&quot;Maximum Amp. (Microns)&quot; -K &gt; %ps%
+gmt psxy richter_magnitude.dat -R -JX -W1 -K -O &gt;&gt; %ps%
+echo 7.3 7.3e6 1999 Chi-Chi &gt; tmp
+echo 6.6 6.6e5 2016 Meinong &gt;&gt; tmp
+gmt psxy tmp -R -JX -Sc.6 -G0 -K -O &gt;&gt; %ps%
+gmt pstext tmp -R -JX -F+f14p+jMR -D-.6/0 -K -O &gt;&gt; %ps%
+
+# 製作右側圖
+gmt psbasemap -R0/9.99/1e-2/9.99 -JX9/15p2 -BWeSn -Bxa1+l&quot;Magnitude&quot; ^
+-Bya1f.2g1+l&quot;Log of Maximum Amp. (Microns)&quot; -X12 -K -O &gt;&gt; %ps%
+gmt psxy richter_magnitude_log.dat -R -JX -W1 -K -O &gt;&gt; %ps%
+for /l %%x in (1, 1, 9) do (
+awk &quot;$2==%%x {print $1, $2}&quot; richter_magnitude_log.dat | ^
+gmt psxy -R -JX -Sc.5 -G255 -K -O &gt;&gt; %ps%)
+for /l %%x in (1, 1, 9) do (
+awk &quot;$2==%%x {print $1, $2, %%x}&quot; richter_magnitude_log.dat | ^
+gmt pstext -R -JX -F+f14p -K -O &gt;&gt; %ps%)
+echo 2.7 1.7 NOT FELT &gt; tmp
+echo 4.2 3.4 MINOR &gt;&gt; tmp
+echo 5.2 4.5 SMALL &gt;&gt; tmp
+echo 6 5.5 MODERATE &gt;&gt; tmp
+echo 7 6.5 STRONG &gt;&gt; tmp
+echo 8 7.5 MAJOR &gt;&gt; tmp
+echo 8.2 8.5 GREAT &gt;&gt; tmp
+gmt pstext tmp -R -JX -F+f12p+jML -K -O &gt;&gt; %ps%
+echo 7.7 9.2 RICHTER SCALE | gmt pstext -R -JX -F+f22p,1+jMR -K -O &gt;&gt; %ps%
+echo 7.5 8.9 A | gmt pstext -R -JX -F+f18p,2+jMR -K -O &gt;&gt; %ps%
+echo 7.4 8.7 GRAPHIC | gmt pstext -R -JX -F+f18p,2+jMR -K -O &gt;&gt; %ps%
+echo 7.3 8.5 REPRESENTATION | gmt pstext -R -JX -F+f18p,2+jMR -K -O &gt;&gt; %ps%
+
+gmt psxy -R -JX -T -O &gt;&gt; %ps%
+gmt psconvert %ps% -Tg -A -P
+del tmp
+</code></pre>
+<p>成果圖右側參考<mark>Ansfield_1992</mark>[^1]。本節學習的新指令:
+* 第4~5行: <code>-JX9/15l</code>會將y軸設定以10次方倍為一個區間的線性軸，
+<code>-By</code>之中<mark>a1p</mark>是將y軸的註解(tick markes or annotation)變成10次方表示；
+<mark>f3</mark>當-JX設定為l時，次要刻度有兩種選項，2以線性畫刻度，3以次方倍畫刻度。
+* 第13~14行: <code>-JX9/15p2</code>會將y軸設定為資料點平方的指數軸，p後面的數字代表多少次方倍。
+* 第16~21行: <code>for /l</code>設定一個數字範圍迴圈，語法為<code>for /l %%參數 in (起始,間隔,結束) do (指令)</code>，
+利用1~9間隔為1的迴圈，找出芮氏規模為1~9時，對應的振幅，
+* 第31,32行: <code>-F+f22p,1</code> or <code>-F+f18p,2</code>，改變字型，請參考<a href="../basic_defaults/#m4.4f">4-4字體對照表</a>。
+* 第35行: <code>-T</code>忽略所有輸入檔，往往在寫GMT畫圖時，常常需要更改或換指令的前後順序，
+導致圖層沒有確實關閉(-O沒在最後一個畫圖指令)，利用<code>psxy -T</code>忽略輸入檔的方式，來確保圖層關閉。</p>
+<p>在芮氏規模的公式中，振福與規模存在一個10次方倍的關係，如果用線性軸來表示，會因為x,y軸量值差距過大，
+而無法正常表示，所以左側的圖，將y軸設定為以10次方倍為一個區間，才能將這關係轉換至線性，便於表現在圖上。
+右側的圖，為了示意振幅及規模兩者之間非線性關係，先將振幅資料取log，再透過指數軸來示意兩者非線性之間的關係。</p>
+<p>[^1]: A Graphic Representation of the Richter Scale (V.J. Ansfield, 1992)</p>
+<h2 id="65">6.5 時間序列</h2>
+<p>時間序列這類型的圖，主要用來表示資料與時間之間的關係，普偏地出現在平常的生活當中，股票及匯率的走勢、
+國內生產毛額(GDP)、公司各季的財務報表等等，都被稱作時間序列。本節將利用<a href="https://dbahr.narlabs.org.tw">大氣水文資料庫</a>，
+中央氣象局自動測站C0V250(甲仙)在莫拉克颱風期間的雨量資料，來學習如何繪製時間序列圖。</p>
+<p>使用的資料檔:
+- <a href="../dat/C0V250_rain.dat">甲仙站雨量資料</a></p>
+<p>成果圖</p>
+<p align="center">
+  <img src="/fig/6_5_C0V250_morakot_1.png"/>
+</p>
+
+<p>批次檔</p>
+<pre><code class="language-bat">set ps=6_5_C0V250_morakot.ps
+
+# 設定圖框、刻度、標題等等
+gmt gmtset ^
+FORMAT_DATE_MAP = yyyy/mm/dd ^
+MAP_FRAME_PEN = 3p ^
+MAP_TICK_PEN_PRIMARY = 3p ^
+FONT_ANNOT_PRIMARY = 16p,4,black ^
+FONT_LABEL = 20p,4,black ^
+FONT_TITLE = 26p,4,black
+
+# 繪製雨量長條圖
+gmt psbasemap -R2009-08-06T/2009-08-15T/0/150 -JX20/12 ^
+-BW+t&quot;Station: C0V250&quot;+g225 -Bxa2D -Bya30+l&quot;Rainfall (mm)&quot; -K &gt; %ps%
+awk &quot;{print $1,$2}&quot; C0V250_rain.dat | gmt psxy -R -JX -Sb.1 -G0/14/203 -K -O &gt;&gt; %ps%
+
+# 繪製累積雨量折線圖
+awk &quot;{print $1,$3}&quot; C0V250_rain.dat | gmt psxy -R2009-08-06T/2009-08-15T/0/2200 ^
+-JX -W3.5,242/51/51 -K -O &gt;&gt; %ps%
+gmt psbasemap -R -JX -BESn -Bxa2D+l&quot;Time (Year/Mon/Day)&quot; ^
+-Bya400f200+l&quot;Accumulated Rainfall (mm)&quot; -K -O &gt;&gt; %ps%
+
+gmt psxy -R -JX -T -O &gt;&gt; %ps%
+gmt psconvert %ps% -Tg -A -P
+del gmt.conf
+</code></pre>
+<p>本節學習的新指令:
+* 第4~10行: <code>gmtset</code>默認值設定，在章節4-3有提到如何修改默認值，這裡採用第二種方式，
+透過查詢<a href="../basic_defaults/#m4.4m">4-4地圖框的設定</a>，修改了
+  * <code>FORMAT_DATE_MAP</code>地圖的時間格式，<strong>yyyy</strong>四碼年份、<strong>mm</strong>兩碼月份、<strong>dd</strong>兩碼日子。
+  * <code>MAP_FRAME_PEN</code>地圖框畫筆。
+  * <code>MAP_TICK_PEN_PRIMARY</code>刻度畫筆。
+  * <code>FONT_ANNOT_PRIMARY</code>註解的字型。
+  * <code>FONT_LABEL</code>標籤的字型。
+  * <code>FONT_TITLE</code>標題的字型。
+* 第13,14行: 示範psbasemap如何設定為標準時間格式。
+  * <code>-R[date]T[clock]</code>，年月日的寫法是yyyy-mm-dd，時分秒[毫秒]的寫法是hh:mm:ss[.xxx]，
+  中間用T隔開，GMT就可以了解到資料為標準時間格式。
+  * <code>-B+g顏色</code>，設定圖框內的底色。
+  * <code>-Bxa2D</code>，x軸間隔設定為2天，詳細的間隔設定，可參考<a href="../basic_defaults/#4.4t">4-4時間的單位</a>。
+* 第15行: <code>-Sb</code>尺寸，繪製垂直長條，如果是<code>-SB</code>則是水平長條。
+* 第18行: 將y軸範圍改成0/2200，配合累積雨量。
+* 第20行: <code>-BEsn</code>配合第14行<code>-BW</code>，達到繪製雙y軸的效果，此處psbasemap與psxy指令的順序交換，
+是為了不讓累積雨量的折線，覆蓋到圖框。
+* 第25行: 為了避免<mark>gmt.conf</mark>影響到其他GMT畫圖的批次檔，將此檔刪除。</p>
+<p>為了表達在同一段時間內，不同資料的變化趨勢，雙軸圖(twin axis figure)被廣泛地應用在時間序列中，
+透過簡單的<code>-B</code>參數設定來達到此效果。從圖中可以看到甲仙地區，在2009/08/06晚上開始下雨(藍色長條)，
+約以每小時20~40mm的降水量持續到8號下午，8號晚間帶來80~100mm/hr的雨量，在此之後開始緩慢下降，
+從6號到15號，莫拉克颱風共帶來約2200mm的總降雨量(紅線)。透過此圖，將這災難性的颱風所帶來的雨量紀錄，
+清楚地顯示雨量集中的時間段，以及短時間內的雨量總量。</p>
+<h2 id="66"><a name="m6.6"></a>6.6 極軸</h2>
+<p>極座標軸是由角度和相對原點距離來組成，常應用在數學、物理、工程等等領域，像是岩層走向、航海雷達等。
+本節將利用<a href="https://dbahr.narlabs.org.tw">大氣水文資料庫</a>中台北、台中、台南、台東，共四個氣象站的風速及方向資料，
+來展示台灣夏季及冬季的風向與風速的差異，並示範<code>pslegend</code>的用法。</p>
+<p>使用的資料檔:
+- <a href="../dat/summer_wind.dat">夏季風資料</a>
+- <a href="../dat/winter_wind.dat">冬季風資料</a></p>
+<p>成果圖</p>
+<p align="center">
+  <img src="/fig/6_6_season_wind_1.png"/>
+</p>
+
+<p>批次檔</p>
+<pre><code class="language-bat">set ps=6_6_season_wind.ps
+
+gmt psbasemap -R0/360/0/5 -JPa17 -BN+g230 -Bxa20 -Byg1 -K &gt; %ps%
+# 466920, Taipei
+awk &quot;$4==466920 {print $3, $2}&quot; summer_wind.dat | gmt psxy -R -JP -Sc.3 -G161/216/132 -K -O &gt;&gt; %ps%
+awk &quot;$4==466920 {print $3, $2}&quot; winter_wind.dat | gmt psxy -R -JP -Sc.3 -G42/99/246 -K -O &gt;&gt; %ps%
+# 467490, Taichung
+awk &quot;$4==467490 {print $3, $2}&quot; summer_wind.dat | gmt psxy -R -JP -Ss.3 -G161/216/132 -K -O &gt;&gt; %ps%
+awk &quot;$4==467490 {print $3, $2}&quot; winter_wind.dat | gmt psxy -R -JP -Ss.3 -G42/99/246 -K -O &gt;&gt; %ps%
+# 467410, Tainan
+awk &quot;$4==467410 {print $3, $2}&quot; summer_wind.dat | gmt psxy -R -JP -St.3 -G161/216/132 -K -O &gt;&gt; %ps%
+awk &quot;$4==467410 {print $3, $2}&quot; winter_wind.dat | gmt psxy -R -JP -St.3 -G42/99/246 -K -O &gt;&gt; %ps%
+# 467660, Taitung
+awk &quot;$4==467660 {print $3, $2}&quot; summer_wind.dat | gmt psxy -R -JP -Sn.3 -G161/216/132 -K -O &gt;&gt; %ps%
+awk &quot;$4==467660 {print $3, $2}&quot; winter_wind.dat | gmt psxy -R -JP -Sn.3 -G42/99/246 -K -O &gt;&gt; %ps%
+# wind speed label
+echo -90 1 1 m/s &gt; tmp
+echo -90 2 2 m/s &gt;&gt; tmp
+echo -90 3 3 m/s &gt;&gt; tmp
+echo -90 4 4 m/s &gt;&gt; tmp
+gmt pstext tmp -R -JP -F+f14p -G230 -K -O &gt;&gt; %ps%
+
+# legend set
+echo H 24 Times-Roman Legend &gt; tmp
+echo D 0.4 1p &gt;&gt; tmp
+echo G .2 &gt;&gt; tmp
+echo N 2 &gt;&gt; tmp
+echo S .5 c .5 0 0 1 Taipei &gt;&gt; tmp
+echo S .5 s .5 0 0 1 Taichung &gt;&gt; tmp
+echo G .1 &gt;&gt; tmp
+echo S .5 t .5 0 0 1 Tainan &gt;&gt; tmp
+echo S .5 n .5 0 0 1 Taitung &gt;&gt; tmp
+echo D 0.8 1p,0,- &gt;&gt; tmp
+echo P &gt;&gt; tmp
+echo G .1 &gt;&gt; tmp
+echo T Each symbols indicate the different city. &gt;&gt; tmp
+echo T The green data are in the summer (Jun., Jul., Aug.), &gt;&gt; tmp
+echo T and the blue points are in the winter (Dec., Jan., Feb.). &gt;&gt; tmp
+gmt pslegend tmp -R -JP -C.1/.1 -Dx18.5/5+w8 -F+g240+p1+s4p/-4p/gray50 ^
+--FONT_ANNOT_PRIMARY=16p -K -O &gt;&gt; %ps%
+
+gmt psxy -R -JX -T -O &gt;&gt; %ps%
+gmt psconvert %ps% -Tg -A -P
+del tmp
+</code></pre>
+<p>本節學習的新指令:
+* 第3行: <code>-JPa17</code>其中<strong>a</strong>表示由北開始，如果沒有則是從東開始；<strong>17</strong>設定圖寬度。
+<code>-R0/360/0/5</code>前兩個數字設定圓的角度範圍，也可以用-180/180表示，只能給整圓和半圓(0/180)；
+後面則是距離範圍。<code>-BN</code>只用給定N，大寫顯示註解、小寫則無。
+* 第5~15行: 利用<code>awk</code>讀取各城市的資料，用不同的符號來表示，季節則用不同顏色顯示。
+* 第17~21行: 寫風速的註解。
+* 第24~38行: 示範如何編寫配合<code>pslegend</code>的文檔，按順序介紹:
+  * <strong>H</strong>設定標題，字大小 字體 標題文字
+  * <strong>D</strong>繪製水平線，兩測的空白間距 線屬性
+  * <strong>G</strong>給一個垂直空白
+  * <strong>N</strong>修改圖例中的欄數，給予數量(等寬)或是數量 [欄寬1 欄寬2 ...]
+  * <strong>S</strong>繪製圖例符號，格式為符號左邊界距離 符號代碼 符號大小 符號顏色 符號筆觸 文字左邊界距離 文字內容
+  * <strong>P</strong>開啟段落模式
+  * <strong>T</strong>寫一段文字
+  * 其他還有滿多的用法，可自行參考GMT官網。
+* 第39,40行: 示範<code>pslegend</code>的用法:
+  * <code>-C</code>: 設定圖例邊框與內部圖例之間的空白，默認是4p/4p。
+  * <code>-D</code>: 設定圖例框的位置及大小。
+    * <strong>x</strong>是參考點方式接上位移單位，共有<strong>g</strong>, <strong>j</strong>, <strong>J</strong>, <strong>n</strong>, <strong>x</strong>
+      * <strong>g</strong>用數據的座標系
+      * <strong>j</strong>指定底圖的9個錨點(BL, BC, BR ...)
+      * <strong>J</strong>指定底圖錨點並同時給定圖例錨點。假設底圖錨點為BR、圖例錨點TL，則圖例會出現在底圖的右下角
+      * <strong>n</strong>正規化座標系(0~1之間)
+      * <strong>x</strong>用底圖的座標，類似<code>-X</code>、<code>-Y</code>的用法
+    * <strong>+w</strong>圖例框的寬度，可給長/高，如寬不設定或為0，則GMT會自動估算高度
+  * <code>-F</code>: 圖例框的屬性。
+    * <strong>+g</strong>圖例框內的底色
+    * <strong>+p</strong>圖例框的筆觸
+    * <strong>+s</strong>設定陰影
+  * <code>--FONT_ANNOT_...</code>: 改變<mark>gmtset</mark>，只對這行有效。</p>
+<p>台灣為在副熱帶季風區，在夏季的時後吹西南風；冬季則是吹東北風，從這四個站的資料顯示，大致符合這個現象，
+夏季風向約從140至240度，而冬季從320度至80度(順時鐘數)，另一方面，冬季季風的風速大於夏季季風。</p>
+<p>圖例是一張圖中重要的元素之一，要能清楚地表達各符號、顏色等等分別代表什麼意思，GMT提供了方便的指令，
+來製作結果圖，但如何構圖、配色，來凸顯資料的特徵，則需要大量的經驗，這又是另一門學問了。</p>
+<h2 id="67">6.7 習題</h2>
+<p>本次習題將使用政府資料開放平台中的<a href="https://data.gov.tw/dataset/8013">高鐵運量統計表</a>，
+來看自2007年1月5號高鐵開始通車，到2017年8月底為止，官方統計的車次數量及乘客量在時間上的變化，
+以及這兩個變數之間有什麼關係。</p>
+<p>使用的資料檔:
+- <a href="../dat/THSRC_NUMBER.dat">高鐵乘客客數據</a></p>
+<ul>
+<li>1.繪製從2007-01-01至2017-08-31的折線圖，顯示<strong>列車次數</strong>及<strong>旅客人數</strong>在時間上的變化。
+請用雙軸的方式呈現，並嘗試更改其外框顏色，另外練習在2008-01-01畫一條垂直虛線，
+以及如何製作圖例<code>pslegend</code>，完成圖如下:</li>
+</ul>
+<p align="center">
+  <img src="/fig/6_7_THSRC_timeseries_1.png"/>
+</p>
+<ul>
+<li>2.繪製<strong>旅客人數</strong>及<strong>列車次數</strong>的XY點散佈圖，從上題完成圖中可以看到2007年(第一年)，
+較之後有很大的不同，試著將2007年的點用不同的顏色表示出來。另外GMT有提供一些資料運算的功能，
+在將來將會依序用到，此題將會使用到<code>gmt regress</code>，將<strong>旅客人數</strong>及<strong>列車次數</strong>做線性回歸，
+並繪製回歸線及方程式，請試著去<a href="http://gmt.soest.hawaii.edu/doc/5.4.2/index.html">GMT官網</a>找到該模組，並練習如何使用。</li>
+</ul>
+<p align="center">
+  <img src="/fig/6_7_THSRC_xyFigure_1.png"/>
+</p>
+
+<h2 id="68">6.8 參考批次檔</h2>
+<p>列出本章節使用的批次檔，供讀者參考使用，檔案路經可能會有些許不同，再自行修改。</p>
+<ul>
+<li><a href="../bat/6_3_accidentalDeath.bat">6_3_accidentalDeath</a></li>
+<li><a href="../bat/6_4_richter_magnitude.bat">6_4_richter_magnitude</a></li>
+<li><a href="../bat/6_5_C0V250_morakot.bat">6_5_C0V250_morakot</a></li>
+<li><a href="../bat/6_6_season_wind.bat">6_6_season_wind</a></li>
+<li><a href="../bat/6_7_THSRC_timeseries.bat">6_7_THSRC_timeseries</a></li>
+<li><a href="../bat/6_7_THSRC_xyFigure.bat">6_7_THSRC_xyFigure</a></li>
+</ul>
+
+
+
+
+              
+            </article>
+            
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="../projection/" class="md-footer__link md-footer__link--prev" aria-label="上一頁: 第一章: 製作地圖: 地理投影法" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                上一頁
+              </span>
+              第一章: 製作地圖: 地理投影法
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../contour_profile/" class="md-footer__link md-footer__link--next" aria-label="下一頁: 第三章: 等高線圖及剖面" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                下一頁
+              </span>
+              第三章: 等高線圖及剖面
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.ecf98df9.min.js", "translations": {"clipboard.copied": "\u5df2\u8907\u88fd", "clipboard.copy": "\u8907\u88fd", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\u3000\u3001\u3002\uff0c\uff0e\uff1f\uff1b]+", "search.placeholder": "\u641c\u5c0b", "search.result.more.one": "\u6b64\u9801\u5c1a\u6709 1 \u500b\u7b26\u5408\u7684\u9805\u76ee", "search.result.more.other": "\u6b64\u9801\u5c1a\u6709 # \u500b\u7b26\u5408\u7684\u9805\u76ee", "search.result.none": "\u6c92\u6709\u7b26\u5408\u7684\u9805\u76ee", "search.result.one": "\u627e\u5230 1 \u500b\u7b26\u5408\u7684\u9805\u76ee", "search.result.other": "\u627e\u5230 # \u500b\u7b26\u5408\u7684\u9805\u76ee", "search.result.placeholder": "\u6253\u5b57\u9032\u884c\u641c\u5c0b", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.9c69f0bc.min.js"></script>
+      
+    
+  </body>
+</html>

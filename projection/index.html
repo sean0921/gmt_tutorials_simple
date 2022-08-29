@@ -1,0 +1,986 @@
+
+<!doctype html>
+<html lang="zh-Hant" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="GMT5 教程 | 編者: Po-Chin Tseng">
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.3.1, mkdocs-material-8.4.2">
+    
+    
+      
+        <title>第一章: 製作地圖: 地理投影法 - Simplified GMT Tutorial</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.69437709.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.cbb835fc.min.css">
+        
+      
+      
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          跳轉到
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Simplified GMT Tutorial" class="md-header__button md-logo" aria-label="Simplified GMT Tutorial" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Simplified GMT Tutorial
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              第一章: 製作地圖: 地理投影法
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜尋" placeholder="搜尋" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜尋引擎
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Simplified GMT Tutorial" class="md-nav__button md-logo" aria-label="Simplified GMT Tutorial" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Simplified GMT Tutorial
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        總覽
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../intro_install/" class="md-nav__link">
+        GMT介紹及安裝
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../net_software/" class="md-nav__link">
+        網路資源及配套軟體
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../basic_defaults/" class="md-nav__link">
+        第零章: 基本概念及默認值
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          第一章: 製作地圖: 地理投影法
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        第一章: 製作地圖: 地理投影法
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目錄">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目錄
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    5. 投影法
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#51" class="md-nav__link">
+    5.1 目的
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#52" class="md-nav__link">
+    5.2 學習的指令與概念
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#53-jm-jm" class="md-nav__link">
+    5.3 麥卡托投影(-Jm -JM)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#54-jl-jl" class="md-nav__link">
+    5.4 蘭伯特投影(-Jl -JL)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#55-je-je" class="md-nav__link">
+    5.5 等距方位投影(-Je -JE)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#56-jn-jn" class="md-nav__link">
+    5.6 羅賓森投影法(-Jn -JN)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#57" class="md-nav__link">
+    5.7 習題
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#58" class="md-nav__link">
+    5.8 參考批次檔
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../xy_figure/" class="md-nav__link">
+        第二章: XY散佈圖: 其他投影法
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contour_profile/" class="md-nav__link">
+        第三章: 等高線圖及剖面
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../topography_cpt/" class="md-nav__link">
+        第四章: 地形圖與色階
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../seismicity_meca/" class="md-nav__link">
+        第五章: 地震活動性與機制解
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vector_velocity/" class="md-nav__link">
+        第六章: 向量與速度場
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../taiwan_geography/" class="md-nav__link">
+        第七章: 台灣地理資訊
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../histo_pie_ternary/" class="md-nav__link">
+        第八章: 直方、圓餅、三元圖
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../three_dimension/" class="md-nav__link">
+        第九章: 三維空間視圖
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../geology_map/" class="md-nav__link">
+        第十章: 地質圖
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目錄">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目錄
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    5. 投影法
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#51" class="md-nav__link">
+    5.1 目的
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#52" class="md-nav__link">
+    5.2 學習的指令與概念
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#53-jm-jm" class="md-nav__link">
+    5.3 麥卡托投影(-Jm -JM)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#54-jl-jl" class="md-nav__link">
+    5.4 蘭伯特投影(-Jl -JL)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#55-je-je" class="md-nav__link">
+    5.5 等距方位投影(-Je -JE)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#56-jn-jn" class="md-nav__link">
+    5.6 羅賓森投影法(-Jn -JN)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#57" class="md-nav__link">
+    5.7 習題
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#58" class="md-nav__link">
+    5.8 參考批次檔
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+
+
+<h1 id="_1">製作地圖(地理投影法)</h1>
+<h2 id="5">5. 投影法</h2>
+<p>GMT在投影法方面，分成兩部份，如下圖，一部份是地理投影法，另一部分是其他投影法，</p>
+<p align="center">
+  <img src="/fig/5_GMT_-J.png"/>
+</p>
+
+<p>本章節將主要介紹地理投影法，其中又分成四個子部份，分別是:</p>
+<ul>
+<li>圓柱形投影(Cylindrical Projection): 因其圓柱體與地球弧面相切在赤道，相切處較為真實，
+<strong>多用於繪製低緯度或是赤道附近的國家</strong>。</li>
+<li>圓錐形投影(Conical Projection): 因標準緯度線相切在中緯度，<strong>適合繪製中緯度的國家</strong>，像是中國、美國。</li>
+<li>方位投影(Azimuthal Projection): 將球投影到假設的中心點上，可以<strong>正確顯示中心點與世界各地的實際距離</strong>。</li>
+<li>主題式投影(Thematic Projection): 為一些目的而設計的投影方式，例如莫爾威等積投影法(Mollweide Projection)，
+因其等面積，常用於畫世界人口分佈圖，又例如羅賓森投影法(Robinson Projection)，綜合等角、等積投影的特性，
+使投影結果不會變形太嚴重，常用於繪製世界地圖。</li>
+</ul>
+<h2 id="51">5.1 目的</h2>
+<p>本章將學習如何繪製</p>
+<ol>
+<li>麥卡托投影法(Mercator Projection)</li>
+<li>蘭伯特正形圓錐投影(Lambert Conic conformal Projection)</li>
+<li>等距方位投影(Azimuthal Equidistant Projection)</li>
+<li>羅賓森投影法(Robinson Projection)</li>
+</ol>
+<p>將依序利用這四種繪製台灣、美國、桃園機場的航線圖以及世界行政分區地圖。</p>
+<h2 id="52">5.2 學習的指令與概念</h2>
+<ul>
+<li><code>pscoast</code>: 繪製海岸線</li>
+<li><code>psxy</code>: 繪製線、多邊形、符號</li>
+<li><code>psconvert</code>: 圖檔的輸出</li>
+<li>GMT共用選項: <code>-B</code>、<code>-J</code>、<code>-K</code>、<code>-O</code>、<code>-P</code>、<code>-R</code></li>
+<li>GMT各模組細部選項的介紹</li>
+<li>不同投影法的應用</li>
+<li>Winodws中批次檔<code>batch</code>常用指令</li>
+<li><code>awk</code>語法的示範</li>
+</ul>
+<h2 id="53-jm-jm">5.3 麥卡托投影(<code>-Jm</code> <code>-JM</code>)</h2>
+<p>首先可以從Google Map或是Google Earth抓出台灣的經緯度範圍，</p>
+<ul>
+<li>Google Map:在選定的點上按右鍵，點選「這是哪裡?」(What's here?)，底下就會出現該點的經緯度。</li>
+<li>Google Earth: 滑鼠移至目標點，即可從下方讀取到該點的經緯度。使用Google Earth的時後，
+請注意下方經緯度的表示方式，請至上方功能列中，點選工具-&gt;選項，在顯示經緯度的選項中，
+勾選十進制度小數(decimal)。</li>
+</ul>
+<p>使用十進制度小數的格式是由於數學計算上的方便以及GMT預設採用的座標表示法，關於經緯度表示格式之間的轉換關係，
+可以參考<a href="https://en.wikipedia.org/wiki/Geographic_coordinate_conversion">WIKI百科</a>。
+請開啟命令提式字元(cmd.exe)或是終端機(terminal)，開啟方式可<a href="../basic_defaults/#m4.1">參考4-1</a>，
+接著輸入下方指令:</p>
+<pre><code class="language-bat">gmt pscoast
+</code></pre>
+<p>會看到一連串關於<code>pscoast</code>的說明，如果你對各選項的意思已經了解，可以透過:</p>
+<pre><code class="language-bat">gmt pscoast -
+</code></pre>
+<p>你將只看到選項用法出現在影幕上。通常GMT指令的語法如下:</p>
+<pre><code class="language-bat">gmt 模組 (輸入檔) [-選項1 -選項2 -選項3 ...] &gt; 輸出檔名.ps
+</code></pre>
+<p>簡單來說，先選定你要用的模組，給定輸入的資料，配合該模組底下的選項，來達到你要繪製的圖形，
+而<mark>-</mark>開頭會被GMT視作選項，沒有<mark>-</mark>開頭則被當做資料，所以其先後順序沒差，
+不過為養成好習慣，建議按照下面的範例來輸入每一行指令。</p>
+<pre><code class="language-bat"># 第1行
+gmt psxy (輸入檔) -J -R [-選項1 -選項2 ...] -K  &gt; 輸出檔名.ps
+# 中間各行
+gmt psxy (輸入檔) -J -R [-選項1 -選項2 ...] -K -O &gt;&gt; 輸出檔名.ps
+                          .  
+                          .  
+                          .
+# 最後1行
+gmt psxy (輸入檔) -J -R [-選項1 -選項2 ...] -O &gt;&gt; 輸出檔名.ps
+</code></pre>
+<p>這樣的好處是，在debug時候，可以快速發現自己遺漏了哪個部份，而<mark>&gt;</mark>及<mark>&gt;&gt;</mark>
+符號為輸出導向的符號，分別是「取代」與「累加」。</p>
+<p><code>pscoast</code>屬於比較特殊的模組，它可以用來畫海岸線、國界、河流等等的資訊，如果你在安裝GMT時有特別注意的話
+你會發現在安裝GMT時，一同安裝的<mark>GSHHG</mark>資料庫，裡面包含上述的資訊，而<code>pscoast</code>會去調用此資料庫的資料，
+因此不需要給定輸入檔，只需透過選項來調用需要的資訊。接下來，我們來看會用到的選項有哪些，中括號[]表示可選選項，
+剩下的是必選選項。</p>
+<ul>
+<li><code>-R</code>西邊界經度/東邊界經度/南邊界緯度/北邊界緯度。</li>
+<li><code>-J</code>投影法(一個英文字母代碼)[中心點經度]/[中心點緯度]/規模(或是寬度)。</li>
+<li>當英文字母為小寫時，其大小設定為規模，表示每一度的寬度，或是用1:5000表示；</li>
+<li>字母為大寫時，表示整張圖的寬度。</li>
+<li>GMT5的寬度預設值是公分(c)，如果要換單位，方式如<code>-JM6i</code>，變成圖的寬度設定為6英吋(inch)。</li>
+<li><code>-S</code>海洋的顏色。在GMT中顏色的輸入有很多種，常見的有三種，以藍色為例，</li>
+<li>Hex Color，十六進位色碼(#0000FF)</li>
+<li>RGB Color，十進位制色碼(0/0/255)</li>
+<li>英文單字(blue)</li>
+<li>英文單字與RGB色碼之間的對照表，請<a href="../basic_defaults/#m4.4c">參考4-4顏色RGB對照表</a>。</li>
+<li><code>-W</code>寬度,顏色,樣式。</li>
+</ul>
+<p>選定好的範圍是119.0/123.0/21.5/26.0，預定地圖的寬度為15公分，海洋顏色為藍色，海岸線的寬度是1公分，
+顏色及樣式則採用預設值黑色及實線，指令如下:</p>
+<pre><code class="language-bat">gmt pscoast -R119.0/122.5/21.5/26.0 -JM18 -S0/0/255 -W1 &gt; 5_3_taiwan.ps
+</code></pre>
+<p>來看看結果的圖長什麼樣。</p>
+<p align="center">
+  <img src="/fig/5_3_taiwan_1.png" width="702" height="496"/>
+</p>
+<p>在預設紙張大小為A4的情況下，看到台灣北部並沒有被涵蓋在A4的紙張上，是什麼原因呢？
+原來是因為GMT預設紙張方向是橫向(Landscape)，如果要改成縱向(Portrait)，需要加上<code>-P</code>這個選項。
+再來是這海岸線的解析度也太粗糙了吧！我們可以透過<code>-D</code>這個選項來改善這問題，其解析成度分別是
+詳細(<mark>f</mark>ull)、高度(<mark>h</mark>igh)、中度(<mark>i</mark>ntermediate)、
+低度(<mark>l</mark>ow)、粗糙(<mark>c</mark>rude)，海岸線的解析度預設值是低度(l)，
+也可以透過自動(<mark>a</mark>uto)，依照地圖尺寸來決定海岸線的解析度。
+接著陸地是白色，似乎有點單調，來試看看用<code>-G</code>英文單字，來更改陸地的顏色，
+於是乎將指令改寫如下:</p>
+<pre><code class="language-bat">gmt pscoast -R119.0/122.5/21.5/26.0 -JM18 -S0/0/255 -Gspringgreen2 -W1 -Df -P &gt; 5_3_taiwan.ps
+</code></pre>
+<p align="center">
+  <img src="/fig/5_3_taiwan_2.png" width="496" height="702"/>
+</p>
+
+<p>看起來，這圖已經有點起色了，但好像還缺少點什麼，例如地圖比例尺(map scale)、
+地圖方向標(map directional rose)、座標框架(map boundary frame and axes attributes)等等，
+這些我們將在下一節提到。</p>
+<h2 id="54-jl-jl">5.4 蘭伯特投影(<code>-Jl</code> <code>-JL</code>)</h2>
+<p>美國幅員遼闊，經度橫跨約55度，且主要在中緯度，不適合使用麥卡托投影(<code>-JM</code>)，因此這邊介紹蘭伯特投影法(<code>-JL</code>)。
+與前一節一樣，先初步畫出美國的國土，給定範圍在-130/-66/24/52，但<code>-JL</code>的用法較不一樣，
+它需要的格式是<code>-JL</code>中心點經度/中心點緯度/固定緯度線1/固定緯度線2/寬度，指令如下:</p>
+<pre><code class="language-bat">gmt pscoast -R-130/-66/24/52 -JL-98/35/33/45/25 -S0/0/255 -Gspringgreen2 -W1 -Df &gt; 5_4_unitedstate.ps
+</code></pre>
+<p>其結果為</p>
+<p align="center">
+  <img src="/fig/5_4_unitedstate_1.png" width="702" height="496"/>
+</p>
+
+<p>中心點的經度，表示該經度線為垂直線，而中心點緯度則不影響，兩條固定緯度線則請想像用圓錐去罩住一顆球，
+當你罩的緯度範圍越大，越接近平面。接下來看看有什麼地方需要改善，</p>
+<ul>
+<li><code>-A</code>最小區域(km^2)。</li>
+<li><code>-B</code>設定地圖框架及軸的參數。</li>
+<li><code>-BWESN</code>用來設定東西南北的框架(frame)及註解(annotation)，大寫表示同時畫框架及寫註解，
+  小寫則為只畫框架，沒寫則無框架及註解。</li>
+<li><code>-B</code>軸a[數字][f數字][g數字]，軸用x、y來代表水平及垂直，a給定主要註解及刻度(ticks)，f給定次要刻度，
+  而g則是格線(gridline)，後面的數字代表間隔。</li>
+<li><code>-C</code>湖的顏色。</li>
+<li><code>-E</code>國碼+g顏色。</li>
+<li><code>-F</code>設定比例尺或是方向標的邊框。</li>
+<li><code>-I</code>河的種類/畫筆設定。種類數字或英文對應河的種類(主流、支流)，請自行參考官網說明。</li>
+<li><code>-L</code>比例尺對應的中心點方式/中心點經度/中心點緯度+c參考緯度+w比例尺長度(默認單位km)+f黑白相間的比例尺+l標籤。</li>
+<li><code>-N</code>行政邊界(種類)/畫筆設定。</li>
+<li>種類對應，1表示國家邊界；2表示州邊界(美國);3表示領海邊界;a表示全部邊界。</li>
+<li><code>-T</code>指針方向標(d)[羅盤方向標(m)]對應的中心點方式/中心點經度/中心點緯度+w寬度+l標籤</li>
+</ul>
+<p>透過上述的選項，將這張美國地圖做了一些改善，包括省略面積500km^2以下的湖泊，加上經緯度外框、網格線、
+比例尺、方向標，更改湖泊、河川的顏色，把墨西哥(MX)及加拿大(CA)國土變成灰色，以下是指令及成果圖。</p>
+<pre><code class="language-bat">gmt pscoast -R-130/-66/24/52 -JL-98/35/33/45/25 -A500 -BWESN ^
+-Bxa10g10 -Bya10f5g10 -C104/210/223 -Df -EMX,CA+g210 ^
+-Gspringgreen2 -N1/2,red -S0/0/255 -Lg-125/27+c27+w500+f+l&quot;km&quot; ^
+-I1.5/1,41/143/194,solid -Tdg-70/27+w1.5+f2 -W1 -F+g255+r &gt; ^
+5_4_unitedstate.ps
+</code></pre>
+<p align="center">
+  <img src="/fig/5_4_unitedstate_2.png" width="702" height="496"/>
+</p>
+
+<p>應該注意到上面的指令，多出現了一種符號<mark>^</mark>。因為使用的選項很多，造成指令過長，
+這時候就需要換行符號來告訴電腦，這指令編寫長度到這要進行換行，在Windows環境中使用<mark>^</mark>，
+Linux及MAC則使用<mark>\</mark>。</p>
+<h2 id="55-je-je">5.5 <a name="m5.5"></a>等距方位投影(<code>-Je</code> <code>-JE</code>)</h2>
+<p>在這節開始之前，先介紹在Windows的環境下什麼是批次檔(.bat)，或是在Linux或MAC環境下的shell scripts(.sh)。
+主要的原因是:</p>
+<ul>
+<li>連續的指令單一化: 要把一行行指令打在指令環境底下，要排序或是更改都會變得十分麻煩，
+這時後就需要有個檔案(.bat)可以彙整這些指令，透過執行批次檔來達到一行行指令的輸入。</li>
+<li>簡易的資料處理: 在GMT的資料輸入檔，常常會需要特定欄位的資料，而往往拿到的資料檔，是有非常多欄位是用不到的，
+不可能每次都改寫資料檔，這時後就可以調用<code>awk</code>，來達到簡單的數據資料處理。</li>
+</ul>
+<p>編者在編譯此教程是預設在Windows環境底下，但為了處理資料方便，另外安裝了<a href="http://gnuwin32.sourceforge.net/packages/gawk.htm">Gawk for Windows</a>，
+並把執行檔(bin)路徑加入系統環境變數下，設定方式可<a href="https://openhome.cc/Gossip/JavaEssence/WhatPath.html">參考此網頁</a>，
+如果你熟悉使用Linux其他指令，也可以安裝<a href="https://www.cygwin.com/">Cygwin</a>。</p>
+<p>回到本節重點，要利用等距方位投影法來繪製桃園機場的航線圖，首先要收集的是桃園機場的航班資訊，
+利用在<a href="../net_software/#m3.1">3.1提到</a>的政府資料開放平台，
+找到了<a href="https://data.gov.tw/dataset/7869">桃園國際機場定期航班</a>的資料檔(.csv)，依照網頁上的欄位說明，
+了解到第一欄為班機性質，本範例只選用客機起飛(PD)的資料，但這份資料缺少了各機場的經緯度資訊，
+利用Google大神，找到了提供<a href="https://openflights.org/data.html">機場經緯度的資料</a>，下載好airports.dat後，
+透過Python(一種程式語言)，將兩筆資料整理合併，完成後的檔案有5欄，
+分別是流水碼、班機性質、目的地、緯度、經度，也整理了一份航線的資料檔給GMT用。
+先來看成果圖及批次檔，再逐行說明。</p>
+<p>使用的資料檔:
+- <a href="../dat/TPE_airline.dat">桃園航班資訊</a>
+- <a href="../dat/TPE_airline.gmt">桃園航線</a></p>
+<p>成果圖</p>
+<p align="center">
+  <img src="/fig/5_5_TPEairline_1.png"/>
+</p>
+
+<p>批次檔</p>
+<pre><code class="language-bat">set ps=5_5_TPEairline.ps
+
+gmt pscoast -Rg -JE121.2342/25.0797/12 -S0 -G50 -W.2,white -A1000 -K &gt; %ps%
+echo 40 -45 | gmt psxy -R -JE -Sa.8 -Gred -K -O &gt;&gt; %ps%
+echo -80 20 | gmt psxy -R -JE -Sa.8 -Gred -K -O &gt;&gt; %ps%
+awk &quot;{print $5, $4}&quot; TPE_airline.dat | gmt psxy -R -JE -Sc.15 -G159/174/229 -K -O &gt;&gt; %ps%
+gmt psxy TPE_airline.gmt -R -JE -W.3,yellow -K -O &gt;&gt; %ps%
+
+gmt pscoast -R40/-45/-80/20r -JE121.2342/15.0/12 -S0 -G50 -W.2,white -A1000 -X13.5 -K -O &gt;&gt; %ps%
+awk &quot;{print $5, $4}&quot; TPE_airline.dat | gmt psxy -R -JE -Sc.2 -G159/174/229 -K -O &gt;&gt; %ps%
+gmt psxy TPE_airline.gmt -R -JE -W.3,yellow -O &gt;&gt; %ps%
+
+gmt psconvert %ps% -Tg -A -P
+</code></pre>
+<p>透過範例，學習到的新用法:</p>
+<ul>
+<li>第1行: <code>set 變數名=字串</code>這個指令，可以設定變數供其他指令來使用，而呼叫的方式是<code>%變數名%</code>，範例中，
+將變數名ps設定成要輸出的ps檔檔名，方便之後改輸出檔名時，不需要一個個改或是利用取代的方式(有可能出錯)。</li>
+<li>第3行:</li>
+<li><code>-Rg</code>代表全球尺度</li>
+<li><code>-JE</code>中心點經度/中心點緯度/寬度</li>
+<li>第4行:</li>
+<li><code>echo [資料1 資料2 ...] | gmt 模組 [選項1 選項2 ...]</code>，透過<code>echo</code>呼叫自訂的資料來符合模組所需要的格式。</li>
+<li><code>psxy -Sa.8 -Gred</code>，-S表示畫符號(Symbol)；a表示星星符號，英文字母及符號對應可<a href="../basic_defaults/#m4.4s">參考4-4</a>；
+  .8表示尺寸；-Gred表示填滿紅色。</li>
+<li>所以這行表示在東經40度/南緯45度及西經80度/北緯20度，畫紅色的星星符號。</li>
+<li>第6行: <code>awk</code>會自動將以空格區分的檔案資料辨識成以行跟列排序的表格，<code>"{print $5, $4}"</code>表示列出第五及第四欄的資料，
+即經度及緯度，最後則接上要擷取的檔案檔名，更多的用法，可參考<a href="http://linux.vbird.org/linux_basic/0330regularex.php">鳥哥的Linux私房菜</a>。</li>
+<li>第7行: 要繪製兩機場之間的連線，需要兩點的經緯度，透過讀取<mark>TPE_airline.gmt</mark>來實現，而檔案的格式是:</li>
+</ul>
+<pre><code class="language-bat">&gt;
+ 121.2342  25.0797
+ 103.9940   1.3502
+&gt;
+ 121.2342  25.0797
+ 139.7800  35.5523
+&gt;
+ .
+ .
+ .
+</code></pre>
+<p>可以看到兩點的經緯度透過<mark>&gt;</mark>分開，原來GMT會自動將<mark>&gt;</mark>內的資料視為同一組，藉由此方式，
+就輕鬆地完成兩機場之間的連線。<code>psxy</code>除了能畫符號，也能透過-W來繪製線。
+* 第9行: 將-R範圍改成之前星號的經緯度並在後面加上字母r，來放大想看的區域(GMT現無支援圓形的放大)，
+-X是用來移動圖形的水平位置(正號往右；負號往左)，同理-Y則是移動垂直位置，而這指令將延續影響到後面的圖形位置。
+* 第13行: <code>psconvert</code>是將ps檔轉換成其他圖檔格式，-T圖檔格式，常用的有.pdf(<strong>f</strong>)、.png(<strong>g</strong>)、.jpeg(<strong>j</strong>)，
+-A調整紙張邊界至最貼齊圖形，-P強制縱向模式，透過此橫向的圖將再縱向模式顯示未被旋轉。</p>
+<p>透過繪製桃園機場的航線圖，學習如何利用批次檔來完成一張圖，往後都會以此模式來介紹不同的圖形繪製。</p>
+<h2 id="56-jn-jn">5.6 羅賓森投影法(-Jn -JN)</h2>
+<p>由羅賓森(Arthur H. Robinson)博士在1963年提出，此方法不等積、不等角，使用筆直的緯線及空間均勻分佈的經線，
+加上對經緯度線乘上一個插值表，來實現視覺上平衡。本節將製作全球行政分區地圖，
+透過<code>pscoast -E+l &gt; CountryCode.txt</code>可以將各國的國碼及國名輸出成一個檔案，透過Python做了隨機排序及整檔，
+輸出這次範例所需要的資料檔，但要如何利用這個檔案，幫不同國家上色呢？
+本節將會使用到<code>setlocal</code>讓批次檔現可以接受一個選項引數，
+<code>ENABLEDELAYEDEXPANSION</code>啟用延遲環境變數擴充功能，來批次設定國家的顏色。讓我們來看成果及批次檔吧！</p>
+<p>使用的資料檔:
+- <a href="../dat/CountryCode.dat">顏色對應國碼檔</a></p>
+<p>成果圖</p>
+<p align="center">
+  <img src="/fig/5_6_globalNationalBoundary_1.png"/>
+</p>
+
+<p>批次檔</p>
+<pre><code class="language-bat">set ps=5_6_globalNationalBoundary.ps
+
+setlocal ENABLEDELAYEDEXPANSION
+set vidx=0
+for /F &quot;tokens=2&quot; %%A in (CountryCode.dat) do (
+    set /A vidx=!vidx! + 1
+    set var!vidx!=%%A
+)
+set var
+
+set vidx=0
+for /F &quot;tokens=1&quot; %%A in (CountryCode.dat) do (
+    set /A vidx=!vidx! + 1
+    set color!vidx!=%%A
+)
+set color
+
+gmt pscoast -R-180/180/-79/90 -JN0/25 -W1 -Ba -K &gt; %ps%
+gmt pscoast -R -JN -E%var1%+g%color1% -K -O &gt;&gt; %ps%
+gmt pscoast -R -JN -E%var2%+g%color2% -K -O &gt;&gt; %ps%
+gmt pscoast -R -JN -E%var3%+g%color3% -K -O &gt;&gt; %ps%
+gmt pscoast -R -JN -E%var4%+g%color4% -K -O &gt;&gt; %ps%
+gmt pscoast -R -JN -E%var5%+g%color5% -K -O &gt;&gt; %ps%
+gmt pscoast -R -JN -E%var6%+g%color6% -K -O &gt;&gt; %ps%
+gmt pscoast -R -JN -E%var7%+g%color7% -K -O &gt;&gt; %ps%
+gmt pscoast -R -JN -E%var8%+g%color8% -K -O &gt;&gt; %ps%
+gmt pscoast -R -JN -E%var9%+g%color9% -K -O &gt;&gt; %ps%
+gmt pscoast -R -JN -E%var10%+g%color10% -K -O &gt;&gt; %ps%
+gmt pscoast -R -JN -A10000 -N1 -W.2 -S255 -O &gt;&gt; %ps%
+
+gmt psconvert %ps% -Tg -A -P
+</code></pre>
+<p>透過範例，學習到的新用法:</p>
+<ul>
+<li>第4行: 首先設定變數<code>vidx=0</code>，因為在後面的迴圈中會每次累加1，
+讓每次的變數名從<strong>var1</strong>變<strong>var2</strong>一直到<strong>var10</strong>。</li>
+<li>第5行: 利用<code>for</code>迴圈將檔案中一行行讀取資料，
+用法<code>for /f ["選項"] %%參數名 in (檔名或字串) do 指令</code>，tokens=2表示讀取每行中第二欄的資料。</li>
+<li>第6行: 默認的set變數值為字串，透過/A轉換成整數，其中<code>!vidx!</code>為延遲表達變數(delayed expansion variable)，
+用以實現每次迴圈中，<strong>vidx</strong>就加1。</li>
+<li>第7行: <strong>var1</strong>、<strong>var2</strong>等等，對應到檔案中的第一行第二欄、第二行第二欄等等。</li>
+<li>第9行: 這時候才將剛剛延遲表達的變數一次設定好。</li>
+</ul>
+<p>顏色變數的設定用法與國碼相同，當這些變數都設置好後，就交給GMT來把圖畫出來吧！<code>-JN</code>中心經度/寬度，
+將投影法設定為羅賓森投影法，剩下的指令或選項都以在前面各節描述。</p>
+<h2 id="57">5.7 習題</h2>
+<p>已經學過了四種不同應用方向的投影法，接下來，將有兩個習題，來熟習GMT的用法吧！
+* 1.利用政府資料開放平台，提供的<a href="https://data.gov.tw/dataset/28318">新北市公共自行車租賃系統(YouBike)資料</a>，
+為.csv檔，如何利用<code>awk -F "," "指令"</code>來將經緯度資料擷取出來，用<code>psxy</code>畫出哪裡有YouBike的站點，
+經緯度範圍可用<mark>121.263/122.077/24.671/25.343</mark>，
+另外提供<a href="../dat/city_twd97.gmt">縣市邊界的資料</a>(未來會教導如何製作)，試著畫一張新北市YouBike的點位圖。</p>
+<p align="center">
+  <img src="/fig/5_7_youBike_1.png"/>
+</p>
+<ul>
+<li>2.透過羅賓森投影法，繪製全球地圖，將你最喜歡的國家，設為中心點經度，並用一個特別的顏色標示出來。
+編者使用紐西蘭當作範例。</li>
+</ul>
+<p align="center">
+  <img src="/fig/5_7_favoriteCountry_1.png"/>
+</p>
+
+<h2 id="58">5.8 參考批次檔</h2>
+<p>列出本章節使用的批次檔，供讀者參考使用，檔案路經可能會有些許不同，再自行修改。</p>
+<ul>
+<li><a href="../bat/5_3_taiwan.bat">5_3_taiwan</a></li>
+<li><a href="../bat/5_4_unitedstate.bat">5_4_unitedstate</a></li>
+<li><a href="../bat/5_5_TPEairline.bat">5_5_TPEairline</a></li>
+<li><a href="../bat/5_6_globalNationalBoundary.bat">5_6_globalNationalBoundary</a></li>
+<li><a href="../bat/5_7_youBike.bat">5_7_youBike</a></li>
+<li><a href="../bat/5_7_favoriteCountry.bat">5_7_favoriteCountry</a></li>
+</ul>
+
+
+
+
+              
+            </article>
+            
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="../basic_defaults/" class="md-footer__link md-footer__link--prev" aria-label="上一頁: 第零章: 基本概念及默認值" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                上一頁
+              </span>
+              第零章: 基本概念及默認值
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../xy_figure/" class="md-footer__link md-footer__link--next" aria-label="下一頁: 第二章: XY散佈圖: 其他投影法" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                下一頁
+              </span>
+              第二章: XY散佈圖: 其他投影法
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.ecf98df9.min.js", "translations": {"clipboard.copied": "\u5df2\u8907\u88fd", "clipboard.copy": "\u8907\u88fd", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\u3000\u3001\u3002\uff0c\uff0e\uff1f\uff1b]+", "search.placeholder": "\u641c\u5c0b", "search.result.more.one": "\u6b64\u9801\u5c1a\u6709 1 \u500b\u7b26\u5408\u7684\u9805\u76ee", "search.result.more.other": "\u6b64\u9801\u5c1a\u6709 # \u500b\u7b26\u5408\u7684\u9805\u76ee", "search.result.none": "\u6c92\u6709\u7b26\u5408\u7684\u9805\u76ee", "search.result.one": "\u627e\u5230 1 \u500b\u7b26\u5408\u7684\u9805\u76ee", "search.result.other": "\u627e\u5230 # \u500b\u7b26\u5408\u7684\u9805\u76ee", "search.result.placeholder": "\u6253\u5b57\u9032\u884c\u641c\u5c0b", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.9c69f0bc.min.js"></script>
+      
+    
+  </body>
+</html>

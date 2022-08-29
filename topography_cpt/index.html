@@ -1,0 +1,957 @@
+
+<!doctype html>
+<html lang="zh-Hant" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="GMT5 教程 | 編者: Po-Chin Tseng">
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.3.1, mkdocs-material-8.4.2">
+    
+    
+      
+        <title>第四章: 地形圖與色階 - Simplified GMT Tutorial</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.69437709.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.cbb835fc.min.css">
+        
+      
+      
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          跳轉到
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Simplified GMT Tutorial" class="md-header__button md-logo" aria-label="Simplified GMT Tutorial" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Simplified GMT Tutorial
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              第四章: 地形圖與色階
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜尋" placeholder="搜尋" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜尋引擎
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Simplified GMT Tutorial" class="md-nav__button md-logo" aria-label="Simplified GMT Tutorial" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Simplified GMT Tutorial
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        總覽
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../intro_install/" class="md-nav__link">
+        GMT介紹及安裝
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../net_software/" class="md-nav__link">
+        網路資源及配套軟體
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../basic_defaults/" class="md-nav__link">
+        第零章: 基本概念及默認值
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../projection/" class="md-nav__link">
+        第一章: 製作地圖: 地理投影法
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../xy_figure/" class="md-nav__link">
+        第二章: XY散佈圖: 其他投影法
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contour_profile/" class="md-nav__link">
+        第三章: 等高線圖及剖面
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          第四章: 地形圖與色階
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        第四章: 地形圖與色階
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目錄">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目錄
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#8" class="md-nav__link">
+    8. 地形圖與色階
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#81" class="md-nav__link">
+    8.1 目的
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#82" class="md-nav__link">
+    8.2 學習的指令與概念
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#83" class="md-nav__link">
+    8.3 簡介色階檔
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#84" class="md-nav__link">
+    8.4 地形圖
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#85" class="md-nav__link">
+    8.5 地形暈渲面
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#86" class="md-nav__link">
+    8.6 習題
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#87" class="md-nav__link">
+    8.7 參考批次檔
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../seismicity_meca/" class="md-nav__link">
+        第五章: 地震活動性與機制解
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vector_velocity/" class="md-nav__link">
+        第六章: 向量與速度場
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../taiwan_geography/" class="md-nav__link">
+        第七章: 台灣地理資訊
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../histo_pie_ternary/" class="md-nav__link">
+        第八章: 直方、圓餅、三元圖
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../three_dimension/" class="md-nav__link">
+        第九章: 三維空間視圖
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../geology_map/" class="md-nav__link">
+        第十章: 地質圖
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目錄">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目錄
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#8" class="md-nav__link">
+    8. 地形圖與色階
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#81" class="md-nav__link">
+    8.1 目的
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#82" class="md-nav__link">
+    8.2 學習的指令與概念
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#83" class="md-nav__link">
+    8.3 簡介色階檔
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#84" class="md-nav__link">
+    8.4 地形圖
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#85" class="md-nav__link">
+    8.5 地形暈渲面
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#86" class="md-nav__link">
+    8.6 習題
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#87" class="md-nav__link">
+    8.7 參考批次檔
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+
+
+<h1 id="_1">地形圖與色階</h1>
+<h2 id="8">8. 地形圖與色階</h2>
+<p>當想要呈現三維的資料，可以利用xyz座標系畫出立體圖，但如果三維資料要呈現在二維平面上時，
+除了利用等高線之外，還可以利用顏色來做為第三維度的變化，因此衍生出了色階，
+在GMT裡稱作.cpt(color palette tables)。而這種方式被廣泛利用在各種成果展示上面，
+其中一個就是地形圖，本章將介紹如何繪製地形圖以及搭配的色階檔。</p>
+<h2 id="81">8.1 目的</h2>
+<p>本章將學習如何繪製
+  1. 簡介色階檔(cpt, color palette tables)
+  2. 地形圖(Topography)
+  3. 地形暈渲面(Hillshading)</p>
+<h2 id="82">8.2 學習的指令與概念</h2>
+<ul>
+<li><code>grdgradient</code>: 從網格檔計算方向導數或梯度</li>
+<li><code>grdimage</code>: 繪製色階地圖</li>
+<li><code>grdinfo</code>: 從網格檔中獲取資訊</li>
+<li><code>grd2cpt</code>: 利用網格檔資料建立色階檔</li>
+<li><code>makecpt</code>: 製作色階檔</li>
+<li><code>psscale</code>: 繪製色彩條</li>
+</ul>
+<h2 id="83">8.3 簡介色階檔</h2>
+<p>色階的概念是將某一區段的資料用一種顏色來表示，這種技巧被應用在很多方面，像是熱影像圖、地形圖等等。
+GMT在安裝的時後，同時有提供一些色階檔作為使用，這些檔案被安裝在<mark>GMT根目錄/share/cpt</mark>，
+打開<mark>abyss.cpt</mark>，裡面的內容:</p>
+<pre><code class="language-bat">#       $Id$
+#
+# Color table for bathymetry modeled after IBCSO
+# at depth but turning lighter towards sea level.
+# Designed by P. Wessel, SOEST
+# COLOR_MODEL = RGB
+-8000      black    -7000   20/30/53
+-7000   20/30/53    -6000   38/60/106
+-6000   38/60/106   -5000   46/80/133
+-5000   46/80/133   -4000   53/99/160
+-4000   53/99/160   -3000   72/151/211
+-3000   72/151/211  -2000   90/185/233
+-2000   90/185/233  -1000   141/210/239
+-1000   141/210/239 0   245/255/255
+B black
+F white
+N gray
+</code></pre>
+<p>一開始<code>#</code>之後的文字為註解，通常會紀錄設計者名稱、設計目的、使用的顏色模型，接著檔案的格式為四欄，
+第一欄是起始範圍；第二欄色碼；第三欄是結束範圍；第四欄色碼，所以在-8000至-7000就是以黑色來表示，
+在檔案的最下面<strong>B</strong>、<strong>F</strong>、<strong>N</strong>分別代表背景色(Background color)、前景色(Foreground color)及無值的顏色(NaN color)，
+簡單地說，就是小於範圍中最小值所用的顏色、大於範圍中最大值所用的顏色及無資料時所使用的顏色。
+來看GMT有提供的色階檔畫出來的樣子:</p>
+<p align="center">
+  <img src="/fig/8_3_cpt_1.png"/>
+</p>
+
+<p>圖中列出44個GMT默認提供的色階檔(GMT version 5.4.2)，將每個色階做正規化的步驟，上方色階代表顏色連續的色階檔，
+下方則是顏色離散的色階檔(間隔0.25)，如果原始的色階檔就不連續，那做出來就是不連續的色階檔。
+而兩者檔案中，有什麼差別呢？</p>
+<pre><code class="language-bat"># 不連續的色階
+0   166/206/227 1   166/206/227
+1   31/120/180  2   31/120/180
+
+# 連續的色階
+0   38/60/106   1 46/80/133
+1   46/80/133   2 53/99/160
+</code></pre>
+<p>有看出差別了嗎？在不連續的色階中，0~1都是用同一種顏色，而連續的色階中0~1是不同顏色，而接續下去1~2也是如此，
+GMT就是用這種方式，來區分二者的差異。接下來，示範如何用<code>makecpt</code>來製作色階檔。自己手動編輯色階檔也是可以，
+但需要對顏色的敏感度非常好，時常色階檔的製作，都是利用現成的檔案進行範圍的改寫。</p>
+<pre><code class="language-bat">makecpt -Ccool.cpt -T0/50/10 -D -Z &gt; tmp.cpt
+# 產生的tmp.cpt內容如下
+0   cyan    10  51/204/255
+10  51/204/255  20  102/153/255
+20  102/153/255 30  153/102/255
+30  153/102/255 40  204/51/255
+40  204/51/255  50  magenta
+B   cyan
+F   magenta
+N   127.5
+</code></pre>
+<p>學習到的指令:</p>
+<ul>
+<li><code>makecpt</code>:</li>
+<li><code>-C</code>輸入的色階檔。</li>
+<li><code>-I</code>倒轉(reverse)色碼檔</li>
+<li><code>-T</code>範圍的設定，有三種方式:<ol>
+<li><strong>最小值/最大值/間隔</strong></li>
+<li><strong>讀取一個檔案</strong></li>
+<li><strong>間隔點1,間隔點2,間隔點3,...</strong></li>
+</ol>
+</li>
+<li><code>-D</code>讓前景色與背景色對應最小及最大值的色碼</li>
+<li><code>-Z</code>製作連續的色階</li>
+</ul>
+<p>學會了如何改寫色階檔之後，就是如何調整範圍，來配合資料，達到良好呈獻效果。此外，推薦一個網站，
+<a href="http://soliton.vm.bytemark.co.uk/pub/cpt-city/">cpt-city</a>，裡面收集了大量的現成色階檔，供參考使用。</p>
+<h2 id="84">8.4 地形圖</h2>
+<p>陽明山國家公園是以大屯山火山群為主的火山地型，規劃了眾多的景點，供民眾認識火山地形、地貌。
+本節將利用陽明山區域的20公尺數值地形，配合GMT內建安裝的數值檔，來展示不同的色階檔，
+對繪製地形圖所帶來的影響。
+切割的範圍<code>121.27/121.85/25.05/25.35</code>，可以自行練習<code>grdcut</code>，或者直接下載下方載點，</p>
+<p>使用的資料檔:
+- <a href="../dat/yangmingShan.grd">陽明山數值高程</a></p>
+<p>成果圖</p>
+<p align="center">
+  <img src="/fig/8_4_yangmingShan_1.png"/>
+</p>
+
+<p>批次檔</p>
+<pre><code class="language-bat">set ps=8_4_yangmingShan.ps
+set cpt=dem1.cpt
+
+# 1. use default dem1.cpt
+gmt grdimage yangmingShan.grd -R121.27/121.85/25.05/25.35 -JM13 -BWeSn -Ba ^
+-C%cpt% -P -Y21 -K &gt; %ps%
+gmt pscoast -R -JM -Df -W1 -S34/201/237 -K -O &gt;&gt; %ps%
+gmt psscale -C%cpt% -Dx14/0+w7/.5+e -Ba100+l&quot;Elevation (m)&quot; -K -O &gt;&gt; %ps%
+echo 121.3 25.32 1. | gmt pstext -R -JM -F+f24p -G250 -K -O &gt;&gt; %ps%
+
+# 2. discrete 0~1200 dem1.cpt
+makecpt -C%cpt% -T0/1200/100 &gt; tmp.cpt
+gmt grdimage yangmingShan.grd -R -JM -BWeSn -Ba -Ctmp.cpt ^
+-M -Y-9 -K -O &gt;&gt; %ps%
+gmt pscoast -R -JM -Df -W1 -S34/201/237 -K -O &gt;&gt; %ps%
+gmt psscale -Ctmp.cpt -Dx14/0+w7/.5 -Ba200+l&quot;Elevation (m)&quot; -M -K -O &gt;&gt; %ps%
+echo 121.3 25.32 2. | gmt pstext -R -JM -F+f24p -G250 -K -O &gt;&gt; %ps%
+
+# 3. continuous 200~1200 dem1.cpt
+makecpt -C%cpt% -T0/1200/100 -Z &gt; tmp.cpt
+gmt grdclip yangmingShan.grd -R -Sb200/NaN -Gtmp.grd
+gmt grdimage tmp.grd -R -JM -BWeSn -Ba -Ctmp.cpt -Q -Y-9 -K -O &gt;&gt; %ps%
+gmt pscoast -R -JM -Df -W1 -S34/201/237 -K -O &gt;&gt; %ps%
+gmt psscale -Ctmp.cpt -Dx14/0+w7/.5 -Ba200+l&quot;Elevation (m)&quot; -I -K -O &gt;&gt; %ps%
+echo 121.3 25.32 3. | gmt pstext -R -JM -F+f24p -G250 -K -O &gt;&gt; %ps%
+
+gmt psxy -R -JM -T -O &gt;&gt; %ps%
+gmt psconvert %ps% -Tg -A -P
+del tmp*
+</code></pre>
+<p>本節學習到的新指令:</p>
+<p><mark>1</mark> 繪製地形圖</p>
+<ul>
+<li><code>grdimage</code>投影網格或是影像(images)至地圖上:</li>
+<li><code>-C</code>輸入色階檔。</li>
+<li><code>-M</code>黑白畫面!!</li>
+<li><code>-Q</code>當資料點為NaN(無值)時，變成透明色。</li>
+<li><code>psscale</code>繪製色彩條(color bar):</li>
+<li><code>-B</code>調整刻度間距。</li>
+<li><code>-C</code>輸入色階檔。</li>
+<li><code>-D</code>調整色彩條的位置。<ul>
+<li>參考點X位移/Y位移，其餘參考點設定可<a href="../xy_figure/#m6.6">參考6-6</a></li>
+<li><strong>+w</strong>長度/寬度</li>
+<li><strong>+e</strong>顯示前景色(<strong>f</strong>)、背景色(<strong>b</strong>)</li>
+<li><strong>+h</strong>改成水平色彩條；<strong>+v</strong>垂直色彩條(默認值)</li>
+<li><strong>+m</strong>將<strong>a</strong>(annotation, 註解), <strong>l</strong>(label, 標籤), <strong>u</strong>(unit 單位)，
+位置改放至對面，<strong>c</strong>(標籤轉成垂直)</li>
+<li><strong>+n</strong>在一開始加上無值的的矩形範圍</li>
+</ul>
+</li>
+<li><code>-F</code>加上邊框:<ul>
+<li><strong>+c</strong>外框與色彩條的間隔</li>
+<li><strong>+g</strong>填色</li>
+<li><strong>+i</strong>間距/筆觸，在加上一個內部的邊框</li>
+<li><strong>+p</strong>邊框筆觸</li>
+<li><strong>+r</strong>弧度，圓角矩形邊框</li>
+<li><strong>+s</strong>陰影</li>
+</ul>
+</li>
+<li><code>-I</code>開啟照明效果。</li>
+<li><code>-M</code>轉成黑白模式。</li>
+<li><code>-S</code>取消自動區分不同顏色的黑線。</li>
+</ul>
+<p><mark>2</mark> 將色階檔範圍改成0至1200，間距100，變成離散的色階檔，加上<code>-M</code>讓地圖與色彩條都變成黑白模式。</p>
+<p><mark>3</mark> 將色階檔範圍改成0至1200，間距100，<code>-Z</code>變成連續的色階檔，<code>-I</code>開啟色彩條照明效果。
+這裡使用<code>grdclip</code>將高度200以下的資料設定為NaN，配合<code>grdimage -Q</code>，讓高度200以下的地區，以透明著色。
+詳細的<code>grdclip</code>模組介紹。</p>
+<ul>
+<li><code>grdclip</code>剪切網格檔的範圍。</li>
+<li><code>-G</code>輸出檔名。</li>
+<li><code>-R</code>範圍。</li>
+<li><code>-Sa</code>上界值/取代數值，當數值超過上界時，用取代數值取代。</li>
+<li><code>-Sb</code>下界值/取代數值，用法如上。</li>
+<li><code>-Si</code>下界值/上界值/取代數值，用法如上，可以重覆使用，來設定特定數值範圍。</li>
+<li><code>-Sr</code>舊值/取代數值，當數值等於舊值時，用取代數值取代。</li>
+</ul>
+<p>第一張圖使用原始dem1.cpt的範圍只有到800公尺，而陽明山區域最高海拔可至約1110公尺，
+導致在高度上並沒有辦法完整呈現山頭的資訊。第二張圖，將dem1.cpt的範圍改至1200後，並改成離散化的色階，
+山頭的資訊有較明顯的呈現，但河川的訊息變得不太明顯，示範用黑白模式是由於地形圖往往是製圖的背景，
+而黑白模式可以有效表達地形差異，又不會又不會搶走之後想表達主題的光彩。第三張圖，
+則是針對200公尺以上的區域，較完整地呈現該地區的地形。</p>
+<h2 id="85"><a name="m8.5"></a>8.5 地形暈渲面</h2>
+<p>Hillshading暈渲法(或稱陰影法)，是一種地形圖的表示方式，應用光影的原裡，
+以色調的明暗對比來展現地形上的高低起伏，此法是假設一個光源從一特定角度照射照射強度不變的平行光線，
+地形的明暗取決於波面受光方向的夾角，迎光面會展線明亮的色調，反之背光面則陰暗，而坡度的變化，
+則會因坡陡受光少，顏色較為深色；坡度較緩則因受光多，顏色較淡。</p>
+<p>琉球海溝是菲律賓海板塊隱沒至歐亞大陸板塊所形成的版塊邊界，總長約2250公里，最大深度7507公尺。
+本節將示範如何製作暈渲地形網格檔(編者習慣稱作陰影檔)，以及繪製暈渲地形圖。</p>
+<p>使用的資料檔:
+- <a href="http://soliton.vm.bytemark.co.uk/pub/cpt-city/wkp/shadowxfox/tn/colombia.png.index.html">colomia色階檔</a>，
+手動將0以上與以下分成<strong>colomia_u.cpt</strong>和<strong>colomia_d.cpt</strong>。
+- 在開始之前，先說明資料準備，下載由<a href="https://www.ngdc.noaa.gov/mgg/global/">NOAA提供的全球一角分的數值地形</a>，
+可選擇北極與格陵蘭有冰層覆蓋，或是無覆蓋的版本，可直接下載netCDF檔，解壓縮後就可使用。</p>
+<p>先來看看未使用陰影檔的成果圖與批次檔。</p>
+<p>成果圖</p>
+<p align="center">
+  <img src="/fig/8_5_ryukyu_trench_n_1.png"/>
+</p>
+
+<p>批次檔</p>
+<pre><code class="language-bat">set ps=8_5_ryukyu_trench_n.ps
+set data=D:\GMT_data\
+set dcpt=colomia_d.cpt
+set ucpt=colomia_u.cpt
+
+# 1. Bathymetry
+gmt grdinfo %data%ETOPO1_Bed_g_gmt5.grd -R121.2/132.0/22.88/31.0 -C -I1 &gt; tmp
+for /f %%i in ('awk &quot;{print $6}&quot; tmp') do set minz=%%i
+gmt makecpt -C%dcpt% -T%minz%/0/1000 -D -Z &gt; tmp.cpt
+# grdinfo %data%ETOPO1_Bed_g_gmt5.grd -R -T500 &gt; tmp
+# set /p T=&lt;tmp
+# makecpt -C%cpt% %T% -Z &gt; tmp.cpt
+gmt grdimage %data%ETOPO1_Bed_g_gmt5.grd -R -JM17 -BWeSn -Ba ^
+-Ctmp.cpt -K &gt; %ps%
+gmt psscale -Ctmp.cpt -Dx19/1.5+w10/.5+e+ml -Bxa1000+l&quot;Bathymetry&quot; -By+l&quot;m&quot; -K -O &gt;&gt; %ps%
+
+# 2. Topography
+gmt pscoast -R -JM -Di -W1 -G189/204/150 -K -O &gt;&gt; %ps%
+gmt pscoast -R -JM -Df -Gc -K -O &gt;&gt; %ps%
+gmt grdinfo %data%tw_40.grd -R -C -I1 &gt; tmp
+for /f %%i in ('awk &quot;{print $7}&quot; tmp') do set maxz=%%i
+gmt makecpt -C%ucpt% -T0/%maxz%/500 -D -Z &gt; tmp.cpt
+# gmt grd2cpt %data%tw_40.grd -C%cpt% -R &gt; tmp.cpt
+gmt grdimage %data%tw_40.grd -R -JM -Ctmp.cpt -K -O &gt;&gt; %ps%
+gmt pscoast -R -JM -Df -Q -K -O &gt;&gt; %ps%
+gmt psscale -Ctmp.cpt -Dx22.5/1.5+w10/.5+e+ml -Bxa500+l&quot;Topography&quot; -By+l&quot;m&quot; -K -O &gt;&gt; %ps%
+
+gmt psxy -R -JM -T -O &gt;&gt; %ps%
+gmt psconvert %ps% -Tg -A -P
+del tmp*
+</code></pre>
+<p>本節學習的新指令:</p>
+<p><mark>1</mark>繪製海底地形</p>
+<ul>
+<li><code>grdinfo</code>: 獲取網格檔資訊，在前一節中，製作色階檔都仰賴手動設定最大最小值，
+這邊將介紹如何利用這指令，來找出網格檔的範圍。</li>
+<li><code>-C</code>輸出x軸最小(w) x軸最大(e) y軸最小(s) y軸最大(n) z軸最小(z0) z軸最大(z1) x軸間隔 y軸間隔 x軸點數 y軸點數。</li>
+<li><code>-F</code>改成通用格式顯示訊息。</li>
+<li><code>-I</code>四捨五入輸出，搭配<code>-C</code>使用。</li>
+<li><code>-L</code>輸出基本統計的數值。<ul>
+<li><strong>-L0</strong>重新掃描一次資料在輸出資訊，而非使用檔頭的資訊</li>
+<li><strong>-L1</strong>回傳z軸的中位數及 1.4826 * 中位數絕對偏差(Median Absolute Deviation)</li>
+<li><strong>-L2</strong>回傳z軸平均、標準差、方均根</li>
+<li><strong>-La</strong>回傳上述全部資訊</li>
+</ul>
+</li>
+<li><code>-M</code>回傳z軸最大最小值出現的xy座標。</li>
+<li><code>-R</code>給特定的範圍。</li>
+<li><code>-T</code>輸出z軸最小/最大/間隔，供<code>makecpt -T</code>使用。</li>
+</ul>
+<p><mark>2</mark>繪製陸地地形</p>
+<ul>
+<li><code>grd2cpt</code>: 從網格檔直接輸出色階檔。  </li>
+<li><code>-C</code>對應使用的色階檔。</li>
+<li><code>-D</code>讓前景色與背景色對應最小及最大值的色碼</li>
+<li><code>-I</code>倒轉色階檔</li>
+<li><code>-L</code>最小限制/最大限制，限制色階檔的範圍</li>
+<li><code>-Z</code>製作連續的色階檔</li>
+</ul>
+<p>這次的批次檔中，將<code>grdinfo -T</code>及<code>grd2cpt</code>變為註釋，是因為想利用高度0公尺來區分陸地及海洋使用不同的色階檔，
+如果單純使用一種，可以直接使用該指令。GMT提供了多種方式來獲取網格檔的訊息，以及提供方便的<code>grd2cpt</code>指令，
+列出這些的使用方法，供作參考。</p>
+<p>接下來，將介紹陰影檔的製作方式，使用的指令是<code>grdgradient</code>，範例如下:</p>
+<pre><code class="language-bat">grdgradient ETOPO1_Bed_g_gmt5.grd -Nt1 -A300 -GETOPO1_Bed_g_gmt5_shad.grd
+</code></pre>
+<p>本節學習的新指令:</p>
+<ul>
+<li><code>grdgradient</code>從網格檔計算方向導數或梯度</li>
+<li><code>-A</code>角度，光源照射的角度。</li>
+<li><code>-G</code>輸出檔名，輸出的檔案名稱。</li>
+<li><code>-N</code>正規化震幅。算式: gn=amp*(g-offset)/max(abs(g-offset))，g是平均値<ul>
+<li><code>-Ne</code>用cumulative Laplace distribution，算式: gn = amp * (1.0 - exp(sqrt(2) * (g - offset)/ sigma))</li>
+<li><code>-Nt</code>用 cumulative Cauchy distribution，算式: gn = (2 * amp / PI) * atan( (g - offset)/ sigma)</li>
+</ul>
+</li>
+<li><code>-R</code>給特定範圍</li>
+</ul>
+<p>接著只要將<code>grdimage</code>模組中加入<code>-IETOPO1_Bed_g_gmt5_shad.grd</code>，就可以將剛剛做好的陰影檔一併呈現出來，
+就來看看兩者的差別吧。</p>
+<p>成果圖</p>
+<p align="center">
+  <img src="/fig/8_5_ryukyu_trench_1.png"/>
+</p>
+
+<h2 id="86">8.6 習題</h2>
+<p>大西洋中洋脊從北緯87度延伸至南緯54度，在北大西洋的部份，分離了北美洲板塊與歐亞大陸板塊，屬張裂型板塊邊界，
+透過這章學到的技巧，來繪製一張北大西洋的中洋脊地形圖吧！</p>
+<p>範圍在<mark>-70/0/0/50</mark>，使用的色階檔<a href="http://soliton.vm.bytemark.co.uk/pub/cpt-city/ibcao/tn/ibcao.png.index.html">ibcao.cpt</a>，
+順便複習一下蘭伯特投影的用法<code>-JL</code>。</p>
+<p>完成圖如下:</p>
+<p align="center">
+  <img src="/fig/8_6_mid-atlantic_ridge_1.png"/>
+</p>
+
+<h2 id="87">8.7 參考批次檔</h2>
+<p>列出本章節使用的批次檔，供讀者參考使用，檔案路經可能會有些許不同，再自行修改。</p>
+<ul>
+<li><a href="../bat/8_3_cpt.bat">8_3_cpt</a></li>
+<li><a href="../bat/8_4_yangmingShan.bat">8_4_yangmingShan</a></li>
+<li><a href="../bat/8_5_ryukyu_trench.bat">8_5_ryukyu_trench</a></li>
+<li><a href="../bat/8_6_mid-atlantic_ridge.bat">8_6_mid-atlantic_ridge</a></li>
+</ul>
+
+
+
+
+              
+            </article>
+            
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="../contour_profile/" class="md-footer__link md-footer__link--prev" aria-label="上一頁: 第三章: 等高線圖及剖面" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                上一頁
+              </span>
+              第三章: 等高線圖及剖面
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../seismicity_meca/" class="md-footer__link md-footer__link--next" aria-label="下一頁: 第五章: 地震活動性與機制解" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                下一頁
+              </span>
+              第五章: 地震活動性與機制解
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.ecf98df9.min.js", "translations": {"clipboard.copied": "\u5df2\u8907\u88fd", "clipboard.copy": "\u8907\u88fd", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\u3000\u3001\u3002\uff0c\uff0e\uff1f\uff1b]+", "search.placeholder": "\u641c\u5c0b", "search.result.more.one": "\u6b64\u9801\u5c1a\u6709 1 \u500b\u7b26\u5408\u7684\u9805\u76ee", "search.result.more.other": "\u6b64\u9801\u5c1a\u6709 # \u500b\u7b26\u5408\u7684\u9805\u76ee", "search.result.none": "\u6c92\u6709\u7b26\u5408\u7684\u9805\u76ee", "search.result.one": "\u627e\u5230 1 \u500b\u7b26\u5408\u7684\u9805\u76ee", "search.result.other": "\u627e\u5230 # \u500b\u7b26\u5408\u7684\u9805\u76ee", "search.result.placeholder": "\u6253\u5b57\u9032\u884c\u641c\u5c0b", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.9c69f0bc.min.js"></script>
+      
+    
+  </body>
+</html>

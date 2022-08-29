@@ -1,0 +1,1006 @@
+
+<!doctype html>
+<html lang="zh-Hant" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="GMT5 教程 | 編者: Po-Chin Tseng">
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.3.1, mkdocs-material-8.4.2">
+    
+    
+      
+        <title>第三章: 等高線圖及剖面 - Simplified GMT Tutorial</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.69437709.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.cbb835fc.min.css">
+        
+      
+      
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          跳轉到
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Simplified GMT Tutorial" class="md-header__button md-logo" aria-label="Simplified GMT Tutorial" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Simplified GMT Tutorial
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              第三章: 等高線圖及剖面
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜尋" placeholder="搜尋" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜尋引擎
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Simplified GMT Tutorial" class="md-nav__button md-logo" aria-label="Simplified GMT Tutorial" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Simplified GMT Tutorial
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        總覽
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../intro_install/" class="md-nav__link">
+        GMT介紹及安裝
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../net_software/" class="md-nav__link">
+        網路資源及配套軟體
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../basic_defaults/" class="md-nav__link">
+        第零章: 基本概念及默認值
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../projection/" class="md-nav__link">
+        第一章: 製作地圖: 地理投影法
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../xy_figure/" class="md-nav__link">
+        第二章: XY散佈圖: 其他投影法
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          第三章: 等高線圖及剖面
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        第三章: 等高線圖及剖面
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目錄">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目錄
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#7" class="md-nav__link">
+    7. 等高線圖及剖面
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#71" class="md-nav__link">
+    7.1 目的
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#72" class="md-nav__link">
+    7.2 學習的指令與概念
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#73" class="md-nav__link">
+    7.3 簡介網格檔
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#74" class="md-nav__link">
+    7.4 等高線圖
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#75" class="md-nav__link">
+    7.5 地形剖面
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#76" class="md-nav__link">
+    7.6 習題
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#77" class="md-nav__link">
+    7.7 參考批次檔
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../topography_cpt/" class="md-nav__link">
+        第四章: 地形圖與色階
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../seismicity_meca/" class="md-nav__link">
+        第五章: 地震活動性與機制解
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vector_velocity/" class="md-nav__link">
+        第六章: 向量與速度場
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../taiwan_geography/" class="md-nav__link">
+        第七章: 台灣地理資訊
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../histo_pie_ternary/" class="md-nav__link">
+        第八章: 直方、圓餅、三元圖
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../three_dimension/" class="md-nav__link">
+        第九章: 三維空間視圖
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../geology_map/" class="md-nav__link">
+        第十章: 地質圖
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目錄">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目錄
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#7" class="md-nav__link">
+    7. 等高線圖及剖面
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#71" class="md-nav__link">
+    7.1 目的
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#72" class="md-nav__link">
+    7.2 學習的指令與概念
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#73" class="md-nav__link">
+    7.3 簡介網格檔
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#74" class="md-nav__link">
+    7.4 等高線圖
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#75" class="md-nav__link">
+    7.5 地形剖面
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#76" class="md-nav__link">
+    7.6 習題
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#77" class="md-nav__link">
+    7.7 參考批次檔
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+
+
+<h1 id="_1">等高線圖及剖面</h1>
+<h2 id="7">7. 等高線圖及剖面</h2>
+<p>本章將會先說明GMT所使用的網格檔是什麼、如何製作，接著如何將數值高程以等高線的方式呈現，
+最後，當要看一條特定線上的高程變化時，如何利用GMT來繪製該線段的高度變化剖面。</p>
+<h2 id="71">7.1 目的</h2>
+<p>本章將學習如何繪製</p>
+<ol>
+<li>簡介網格檔(Grid data)</li>
+<li>等高線圖(Contour)</li>
+<li>地形剖面(Profile)</li>
+</ol>
+<h2 id="72">7.2 學習的指令與概念</h2>
+<ul>
+<li><code>grdcontour</code>: 繪製等高線圖</li>
+<li><code>grdcut</code>: 切割網格檔</li>
+<li><code>grdinfo</code>: 從網格檔中獲取資訊</li>
+<li><code>grdpaste</code>: 合併兩個有共同邊界的網格檔</li>
+<li><code>grdtrack</code>: 對網格檔取樣</li>
+<li><code>grd2xyz</code>: 轉換網格檔至ascii檔案格式</li>
+<li><code>gmtinfo</code>: 從表格資料中讀取資訊</li>
+<li><code>project</code>: 將資料投影至線、大圓或轉換座標系</li>
+<li><code>psbasemap</code>: 繪製圖框、刻度、標籤等等</li>
+<li><code>pscoast</code>: 繪製海岸線</li>
+<li><code>xyz2grd</code>: 轉換ascii檔案格式至網格檔</li>
+<li><code>gdal_translate</code>轉檔程式</li>
+</ul>
+<h2 id="73"><a name="m7.3"></a>7.3 簡介網格檔</h2>
+<p>在開始學習繪製等高線圖之前，要先介紹GMT在繪製網格圖時所使用的檔案格式<mark>.grd</mark>，
+它是屬於<mark>netCDF</mark>檔案格式，全名被稱做網路通用數據格式(Net Common Data Form)，
+由於一般的10進位檔案格式(ascii)，相當地占用硬碟空間，因此常會將資料儲存成2進位的格式(binary)，
+這樣可以有效地壓縮檔案所占用的空間。</p>
+<p>用實際例子來說明檔案格式的差異，本章將會使用到政府資料開放平台中的<a href="https://data.gov.tw/dataset/35430">20公尺網格數值地形模組資料</a>，
+其中的不分幅_全台及澎湖的資料，下載下來的<mark>.tif</mark>檔，透過一般的編譯器打開，如下圖:</p>
+<p align="center">
+  <img src="/fig/7_3_binaryView.png"/>
+</p>
+
+<p>顯示出一推看不懂的亂碼，但如何想簡單的得知這個檔案理面的資料資訊，可以使用</p>
+<pre><code class="language-bat">gmt grdinfo 檔名
+</code></pre>
+<p>讀取<mark>Penghu_20m.tif</mark>，可得到資訊如下:</p>
+<pre><code class="language-bat">Penghu_20m.tif: Title: Grid imported via GDAL
+Penghu_20m.tif: Command:
+Penghu_20m.tif: Remark:
+Penghu_20m.tif: Pixel node registration used [Cartesian grid]
+Penghu_20m.tif: Grid file format: gd = Import/export through GDAL
+Penghu_20m.tif: x_min: 76661.4764748 x_max: 121061.476475 x_inc: 20 name: x nx: 2220
+Penghu_20m.tif: y_min: 2563952.79393 y_max: 2633852.79393 y_inc: 20 name: y ny: 3495
+Penghu_20m.tif: z_min: -999 z_max: 70.5 name: z
+Penghu_20m.tif: scale_factor: 1 add_offset: 0
++proj=tmerc +lat_0=0 +lon_0=121 +k=0.9999 +x_0=250000 +y_0=0 +ellps=GRS80 +units=m +no_defs
+</code></pre>
+<p>從這些資訊可以得知標題、X、Y、Z軸的範圍和間距，放大倍率(scale_factor)等等的訊息。
+但這檔案要提供給GMT使用，會遇到兩個問題，第一，檔案格式為<mark>Geotiff</mark>，
+利用<a href="http://www.gdal.org/index.html">GDAL</a>(地理空間資料抽象化文庫, Geospatial Data Abstraction Library)
+提供的轉檔程式<mark>gdal_translate</mark>，透過指令，</p>
+<pre><code class="language-bat">gdal_translate -of XYZ [input.tif] [output.xyz]
+</code></pre>
+<p>將<mark>.tif</mark>檔轉換成<mark>.xyz</mark>檔。第二，由於內政部提供的檔案其座標系是<mark>TWD97</mark>，
+而GMT繪製地圖慣用在<mark>WGS84座標系</mark>，因此需要做座標系轉換，透過Python，將檔案轉成WGS84座標系，
+完成後再將<mark>.xyz</mark>檔轉換成<mark>.grd檔</mark>。</p>
+<pre><code class="language-bat">gmt xyz2grd [input.xyz] -R119.0/119.9/21.8/25.4 -I0.6s/0.6s -G[output.grd]
+</code></pre>
+<p>其中</p>
+<ul>
+<li><code>-R</code>是給定檔案的X、Y軸範圍。</li>
+<li><code>-I</code>給與X、Y軸的間隔，後面的英文字代表單位，可參考<a href="../basic_defaults/#m4.4d">4-4距離的單位</a>。</li>
+<li><strong>m</strong>對應角分。</li>
+<li><strong>s</strong>對應角秒。</li>
+<li><strong>e</strong>對應公尺。</li>
+<li><strong>k</strong>對應公里。</li>
+<li><code>-G</code>給予輸出檔名稱。</li>
+<li>另外常用到的就是<code>-A</code>處理多數據重疊在某點時的方法:</li>
+<li><strong>-Af</strong>選第一個落在重複座標上的數值做為該座標值。</li>
+<li><strong>-As</strong>選最後一個落在重複座標上的數值做為該座標值。</li>
+<li><strong>-Al</strong>選最小...</li>
+<li><strong>-Au</strong>選最大...</li>
+<li><strong>-Ad</strong>選最大最小的差值...</li>
+<li><strong>-Am</strong>選平均...</li>
+<li><strong>-Ar</strong>選RMS(方均根)...</li>
+<li><strong>-As</strong>選標準差...</li>
+<li><strong>-An</strong>選出現次數...</li>
+<li><strong>-Az</strong>選總合...</li>
+<li>以及<code>-D</code>寫檔頭資訊:</li>
+<li><strong>+x</strong>x軸名稱，格式為名稱 [單位]，例如distance [km]。</li>
+<li><strong>+y</strong>、<strong>+z</strong>同上。</li>
+<li><strong>+s</strong>讀取網格數據後的放大倍率，默認值為1。</li>
+<li><strong>+o</strong>讀取網格數據後要加上的常數，默認值為0。</li>
+<li><strong>+n</strong>指定特定數值為無效值，默認為NaN。</li>
+<li><strong>+t</strong>網格檔的標題。</li>
+<li><strong>+r</strong>網格檔的註解。</li>
+</ul>
+<p>同樣的，也可以透過</p>
+<pre><code class="language-bat">gmt grd2xyz input.grd &gt; output.xyz
+</code></pre>
+<p>將網格檔轉回<mark>.xyz</mark>檔。</p>
+<p>透過上述方式，成功地將內政部提供的數值高程檔轉換成GMT繪圖使用的格式，在這個範例中，
+一般<mark>.xyz</mark>的檔案大小約為420MB，轉換成<mark>.grd</mark>的格式後，變成4.61MB，大大地節省硬碟空間。
+使用一樣的做法，把台灣本島的數值高程也轉換成功後，不希望之後畫圖都要分開讀取台灣本島以及澎湖，所以使用:</p>
+<pre><code class="language-bat">gmt grdpaste input1.grd input2.grd -Goutput.grd -fg
+</code></pre>
+<p>把兩個擁有共同邊界的網格檔給合併，<code>-f</code>是指定輸入及輸出資料的格式，
+* <strong>-ff</strong>給予浮點數格式
+* <strong>-fg</strong>地理座標系統
+* <strong>-fc</strong>卡式座標系統</p>
+<p>當然一次讀取這麼大的數值資料，會耗費很長的時間，因此可以利用GMT提供的網格切割指令:</p>
+<pre><code class="language-bat">gmt grdcut input.grd -Goutput.grd -R範圍
+</code></pre>
+<p>將網格檔切割成較小的區域來做使用，接下來，繪製等高線圖的部份，將會使用以花東縱谷做為範圍切割的網格檔。
+資料壓縮的方式非常多種，無法在此一一介紹，編者以使用過的經驗作為分享，請見諒。</p>
+<h2 id="74">7.4 等高線圖</h2>
+<p>等高線或稱等值線圖，是將資料中等值的資料點連接起來，借此了解地勢的高低起伏，其中每條線的疏密程度，
+則可用來判斷坡度的緩急，辨識河谷、山稜線、峭壁等等的地形。設定範圍在<mark>121.33/121.68/23.55/24.1</mark>，
+使用<code>grdcut</code>將網格檔切割成較小的區域。</p>
+<p>花東縱谷由菲律賓海板塊與歐亞板塊擠壓而形成，原本的谷地受到河川的侵蝕，形成廣闊的沖積扇平原，
+成為了花東一帶，最富庶的地區。在平原中，寬廣的視野，觀看東西兩側(中央山脈、海岸山脈)的高聳入雲，
+不由得讚嘆大自然的神奇，就讓我們來看看其高程的變化吧！</p>
+<p>使用的資料檔:
+- <a href="../dat/east_rift_valley.grd">花東縱谷數值地形檔</a></p>
+<p>成果圖</p>
+<p align="center">
+  <img src="/fig/7_4_east_rift_valley_1.png"/>
+</p>
+
+<p>批次檔</p>
+<pre><code class="language-bat">set ps=7_4_east_rift_valley.ps
+
+# left figure without clip
+gmt pscoast -R121.33/121.68/23.55/24.1 -JM10 -BWeSn -Bxa.2 -Bya.2 ^
+-Df -W1 -G194/250/216 -S175/243/255 -K &gt; %ps%
+gmt grdcontour east_rift_valley.grd -R -JM -C250 -A1000+f12p -K -O &gt;&gt; %ps%
+
+# right figure with clip
+gmt pscoast -R121.33/121.68/23.55/24.1 -JM10 -BWeSn -Bxa.2 -Bya.2 ^
+-Df -W1 -G194/250/216 -S175/243/255 -X13 -K -O &gt;&gt; %ps%
+gmt pscoast -R -JM -Df -Gc -K -O &gt;&gt; %ps%
+gmt grdcontour east_rift_valley.grd -R -JM -C250 -A1000+an+f12p+g255/153/199 ^
+-Gd15c -Wc.5,255/110/110 -Wa1,180/13/13 -Q180 -L0/2000 -K -O &gt;&gt; %ps%
+gmt pscoast -R -JM -Q -K -O &gt;&gt; %ps%
+
+gmt psxy -R -JM -T -O &gt;&gt; %ps%
+gmt psconvert %ps% -Tg -A -P
+</code></pre>
+<p>本節學習的新指令:</p>
+<ul>
+<li>第6,12行: <code>grdcontour</code>透過網格檔繪製等高線，語法是<code>grdcontour 網格檔 -C間隔值</code>，其中最常用到的選項:</li>
+<li><strong>-A</strong>繪製有註解的等高線:<ul>
+<li><strong>+a</strong>註解的角度，<strong>+an</strong>垂直等高線；<strong>+ap</strong>平行等高線(默認值)</li>
+<li><strong>+f</strong>註解字體的屬性</li>
+<li><strong>+g</strong>字體框的底色</li>
+<li><strong>+p</strong>字體框框線的屬性</li>
+</ul>
+</li>
+<li><strong>-C</strong>繪製無註解的等高線，有三種方式:<ul>
+<li>給一個數字，會以此繪製固定間隔的等高線</li>
+<li>使用.cpt檔，等高線會依照色階檔的設定來繪製，未來將介紹</li>
+<li>使用一個檔案，第一欄是高度，第二欄是C或A</li>
+</ul>
+</li>
+<li><strong>-G</strong>註解的間隔設定:<ul>
+<li>依照距離來取決間隔，<strong>d</strong>用圖紙的單位；<strong>D</strong>用地圖的單位</li>
+<li><strong>f</strong>給一個檔案ffile.d，依照檔案中的位置，繪製註解</li>
+<li>依照線段來取決，<strong>l</strong>起始/結束，用,來區分每條線，<strong>L</strong>使用大圓路徑</li>
+<li><strong>n</strong>給一條線中等距標籤的數量</li>
+</ul>
+</li>
+<li><strong>-L</strong>低值/高值，限制範圍。</li>
+<li><strong>-W</strong>等高線的屬性，<strong>-Wa</strong>設定有註解的等高線；<strong>-Wc</strong>設定無註解的等高線。</li>
+<li><strong>-Q</strong>省略資料點小於多少的等高線。</li>
+<li>第11行: <code>pscoast -Gc</code>開啟海岸線切割模式。</li>
+<li>第13行: <code>pscoast -Q</code>關閉海岸線切割模式。</li>
+</ul>
+<p>希望透過兩張圖的比較，能更加知道各指令變化後，繪製出來的差異。從左右兩張的差異來看，
+最明顯的莫過於海的部份，由於在數值地形在海的部份，並無資料，而當初在轉檔時，皆將此視作為零，
+導致了大量的等高線繪製於此，為了避免此現象發生，可以再畫一次海的顏色，也可以透過<code>pscoast -Gc</code>及<code>-Q</code>，
+來限制等高線繪製的範圍。</p>
+<p><code>-A</code>、<code>-C</code>、<code>-W</code>，其詳細的設定方式，像是<strong>+f</strong>、<strong>+p</strong>都和前兩章提到的方式一樣，透過上述的簡介
+配合指令檔，就可以理解左右兩圖的差異。唯<code>-Q</code>是較特別的選項，有時後等高線的資料點數不多，
+造成繪製在圖上是一點一點的，有礙觀瞻，透過限制最小資料點數，將可避免這現象的發生。</p>
+<h2 id="75">7.5 地形剖面</h2>
+<p>在上一節中，介紹了呈現在平面上的等高線圖(X、Y方向)，那如果想看特定某一條線段，其X、Z方向的變化，
+本節將介紹如何利用GMT來完成繪製地形剖面。</p>
+<p>成果圖</p>
+<p align="center">
+  <img src="/fig/7_5_elevation_profile_1.png"/>
+</p>
+
+<p>批次檔</p>
+<pre><code class="language-bat"># 1. set two profile start point and end point
+set ps=7_5_elevation_profile.ps
+set Alon1=121.38
+set Alat1=24.07
+set Alon2=121.5
+set Alat2=23.6
+set Blon1=121.54
+set Blat1=24.06
+set Blon2=121.47
+set Blat2=24.0
+
+# 2. contour basemap
+gmt pscoast -R121.33/121.68/23.55/24.1 -JM10 -BWeSn -Bxa.2 -Bya.2 ^
+-Df -W1 -G194/250/216 -S175/243/255 -K --MAP_FRAME_TYPE=plain &gt; %ps%
+gmt pscoast -R -JM -Df -Gc -K -O &gt;&gt; %ps%
+gmt grdcontour east_rift_valley.grd -R -JM -C250 -A1000+f10p ^
+-Wc.5,150 -Wa1,30 -Q180 -K -O &gt;&gt; %ps%
+gmt pscoast -R -JM -Q -K -O &gt;&gt; %ps%
+
+# 3. AA' line
+echo %Alon1% %Alat1% &gt; tmp
+echo %Alon2% %Alat2% &gt;&gt; tmp
+gmt psxy tmp -R -JM -W2,238/91/78 -K -O &gt;&gt; %ps%
+echo %Alon1% %Alat1% A &gt; tmp
+gmt psxy tmp -R -JM -Sc.8 -G238/91/78 -W1 -K -O &gt;&gt; %ps%
+gmt pstext tmp -R -JM -F+f16p,0,blue -K -O &gt;&gt; %ps%
+echo %Alon2% %Alat2% A' &gt; tmp
+gmt psxy tmp -R -JM -Sc.8 -G238/91/78 -W1 -K -O &gt;&gt; %ps%
+gmt pstext tmp -R -JM -F+f16p,0,blue -K -O &gt;&gt; %ps%
+
+# 4. BB' line
+echo %Blon1% %Blat1% &gt; tmp
+echo %Blon2% %Blat2% &gt;&gt; tmp
+gmt psxy tmp -R -JM -W2,234/235/128 -K -O &gt;&gt; %ps%
+echo %Blon1% %Blat1% B &gt; tmp
+gmt psxy tmp -R -JM -Sc.8 -G234/235/128 -W1 -K -O &gt;&gt; %ps%
+gmt pstext tmp -R -JM -F+f16p -K -O &gt;&gt; %ps%
+echo %Blon2% %Blat2% B' &gt; tmp
+gmt psxy tmp -R -JM -Sc.8 -G234/235/128 -W1 -K -O &gt;&gt; %ps%
+gmt pstext tmp -R -JM -F+f16p -K -O &gt;&gt; %ps%
+
+# 5. insert map
+gmt pscoast -R119.9/122.1/21.8/25.4 -JM3 -Bwesn -Ba -Df -W1 -S255 -G230 ^
+-X7 -K -O --MAP_FRAME_TYPE=inside &gt;&gt; %ps%
+gmt psbasemap -R -JM -D121.33/121.68/23.55/24.1 -F+p2 -K -O &gt;&gt; %ps%
+
+# 6. AA' profile
+gmt project -C%Alon1%/%Alat1% -E%Alon2%/%Alat2% -G0.1 -Q | ^
+gmt grdtrack -Geast_rift_valley.grd &gt; tmp
+gmtinfo tmp -i2,3 -I1/10 &gt; tmp1
+set /p pr=&lt;tmp1
+gmtinfo tmp -i2 -C -o1 &gt; tmp1
+set /p md=&lt;tmp1
+sed -i '1i %Alon1% %Alat1% 0 0' tmp
+sed -i '$a %Alon2% %Alat2% %md% 0' tmp
+awk &quot;{print $3, $4}&quot; tmp | gmt psxy %pr% -JX12/6 -W2 -G238/91/78 -X5 -Y.5 -K -O &gt;&gt; %ps%
+gmt psbasemap -R -JX -BwESn+t&quot;AA' Profile&quot; -Bxa+l&quot;Distance (km)&quot; ^
+-Bya+l&quot;Elevation (m)&quot; -K -O --FONT_TITLE=24p,0,blue &gt;&gt; %ps%
+
+# 7. BB' profile
+gmt project -C%Blon1%/%Blat1% -E%Blon2%/%Blat2% -G0.1 -Q | ^
+gmt grdtrack -Geast_rift_valley.grd &gt; tmp
+gmtinfo tmp -i2,3 -I1/10 &gt; tmp1
+set /p pr=&lt;tmp1
+gmtinfo tmp -i2 -C -o1 &gt; tmp1
+set /p md=&lt;tmp1
+sed -i '1i %Blon1% %Blat1% 0 0' tmp
+sed -i '$a %Blon2% %Blat2% %md% 0' tmp
+awk &quot;{print $3, $4}&quot; tmp | gmt psxy %pr% -JX -W2 -G234/235/128 -Y9 -K -O &gt;&gt; %ps%
+gmt psbasemap -R -JX -BwESn+t&quot;BB' Profile&quot; -Bxa -Bya+l&quot;Elevation (m)&quot; -K -O &gt;&gt; %ps%
+
+gmt psxy -R -JX -T -O &gt;&gt; %ps%
+gmt psconvert %ps% -Tg -A -P
+del tmp*
+</code></pre>
+<p>本次批次檔篇幅較長，將利用註解號碼來依序解說，本節學習的新指令:</p>
+<p><mark>1</mark> 設定兩條剖面線的經緯度，漸漸去習慣把一些常需要更改的值，設定為變數，並在批次檔的開頭，
+規劃一個區域去編輯這些變數。</p>
+<p><mark>2</mark> 透過上一節學到的技巧，製作一張等高線圖底圖。</p>
+<p><mark>3</mark> 呼叫AA'線段經緯度，畫出線及加上註解。</p>
+<p><mark>4</mark> 呼叫BB'線段經緯度，畫出線及加上註解。</p>
+<p><mark>5</mark> 當在製作小區域地圖時，往往需要利用全區域的小張地圖來框繪出小區域的範圍
+，有兩種方式。</p>
+<ul>
+<li><code>psbasemap</code></li>
+<li><code>-D</code>x軸最小/x軸最大/y軸最小/y軸最大。</li>
+<li><code>-D</code>參考點模式，可參考<a href="../xy_figure/#m6.6">6-6極軸</a>中<code>pslegend -D</code>。<ul>
+<li><strong>+w</strong>x軸寬度/y軸寬度，外框的寬度</li>
+<li><strong>+j</strong>指定insert map的參考點</li>
+<li><strong>+o</strong>x軸偏移量/y軸偏移量</li>
+<li><strong>+s</strong>檔名，輸出左下角點位及長寬</li>
+<li><strong>+t</strong>將繪圖原點改至insert map的左下角</li>
+</ul>
+</li>
+<li><code>-F</code><strong>d</strong>、<strong>l</strong>、<strong>t</strong>，對應地圖邊界(<code>-D</code>)、比例尺(<code>-L</code>)、方向標(<code>-T</code>)，
+  默認值是三者設定。<ul>
+<li><strong>+c</strong>小圖與外框間隔</li>
+<li><strong>+g</strong>填滿顏色</li>
+<li><strong>+p</strong>外框線屬性</li>
+<li><strong>+r</strong>圓角矩形外框</li>
+<li><strong>+s</strong>加陰影</li>
+</ul>
+</li>
+</ul>
+<p><mark>6</mark> 製作AA'剖面:</p>
+<ul>
+<li><code>project</code>將表格式資料投影到一條線上、大圓上、別的座標系上，此區只介紹投影至線上。</li>
+<li><code>-C</code>起始點座標</li>
+<li><code>-E</code>結束點座標</li>
+<li><code>-F</code>輸出的選量，輸出可選xyzpqrs(默認值)，代表X、Y、Z軸(以度為單位)；如果搭配使用-G，
+  輸出成rsp(以公里為單位)</li>
+<li><code>-G</code>取樣距離</li>
+<li><code>-Q</code>地圖的單位，轉換成KM</li>
+<li><code>grdtrack</code>對網格檔做指定位置的取樣</li>
+<li><code>-G</code>被取樣的網格檔</li>
+<li>透過<code>project</code>和<code>grdtrack</code>搭配使用，將資料(x軸 y軸 距離 高度)輸出成暫存檔(tmp)。</li>
+<li><code>gmtinfo</code>從表格資料中抓取訊息。</li>
+<li><code>-A</code>當有多個檔案的使用:<ul>
+<li><strong>-Aa</strong>輸出全檔案的範圍</li>
+<li><strong>-Af</strong>每個檔案分開輸出範圍</li>
+<li><strong>-As</strong>當檔案屬於多重區塊檔案時，輸出每個區塊的範圍</li>
+</ul>
+</li>
+<li><code>-C</code>輸出最大最小值，配合<code>-o</code>來指定輸出的欄位。</li>
+<li><code>-D</code>配合<code>-I</code>修改輸出的範圍</li>
+<li><code>-E</code>輸出最大或最小值:<ul>
+<li><strong>i</strong>最小值；<strong>I</strong>絕對值後的最小值</li>
+<li><strong>h</strong>最大值；<strong>H</strong>絕對值後的最大值</li>
+</ul>
+</li>
+<li><code>-I</code>類似四捨五入的方式取<code>-R</code>需要的範圍，給定x軸/y軸取捨的標準，1表示個位數，10表示10位數等等。</li>
+<li><code>-i</code>選擇輸入的欄位，0表示第一欄</li>
+<li><code>-o</code>選擇輸出的欄位，0表示第一欄</li>
+<li>透過<code>gmtinfo</code>輸出範圍訊息至暫存檔(tmp1)，接著使用<code>set /p pr=&lt;tmp1</code>將範圍訊息設為變數<strong>pr</strong>使用。</li>
+<li><code>sed</code>資料處理工具，詳細介紹請參考<a href="http://linux.vbird.org/linux_basic/0330regularex.php#sed">鳥哥的Linux私房菜</a>。</li>
+<li><strong>-i</strong>: 直接修改讀取的檔案內容</li>
+<li><strong>a</strong>: 插入字串在目前的下一行</li>
+<li><strong>i</strong>: 插入字串在目前的上一行<strong>$</strong>符號表示行尾，
+  以及最後一行中的*符號，用來表示任意一個字元與重覆字元，
+  都可以從鳥哥對正規表示法(Regular Expression)的介紹中學習。</li>
+<li><code>--FONT_TITLE</code>改變標題的文字屬性</li>
+</ul>
+<p><mark>7</mark> 同6，換成BB`剖面。</p>
+<p>首先AA'剖面切過中央山脈、花東縱谷、海岸山脈，從高層剖面可以清楚地看出三個不同的區域，你也可以嘗試在圖上，
+利用<code>pstext</code>加上文字做說明，在約8km處，有一個凹陷處，從等高線來判識，應該是一河谷地形(木瓜溪)。
+另一條BB`剖面線是做為對比，展示一般山區的地形。</p>
+<p>在一開始設立一個輸入區域，可以方便你做更改，以這範例來說，如果我想換切別條剖面線，
+只要在一開始更改經緯度數值，就可以展示出不同的高程剖面，可以自己玩看看。</p>
+<p><code>sed</code>的使用是為了讓剖面高程的多邊形關閉，以方便著色。關於<code>sed</code>以及linux其他指令在windows上如何使用，
+可<a href="../projection/#m5.5">參考5-5</a>，編者另有安裝<mark>Cygwin</mark>。</p>
+<h2 id="76">7.6 習題</h2>
+<p>玉山為東亞第一高峰，其海拔3952公尺，其景色優美、氣勢磅礡，吸引大量登山客前往。利用維基百科中玉山主峰以及
+其他四個至高點(北峰、東峰、南峰、西峰)，來繪製玉山區域的等高線圖，以及主峰到其餘四峰的高度剖面。</p>
+<p>使用的資料檔:
+- <a href="../dat/yuShan.grd">玉山區域網格檔</a>的製作可參考7-3的方式，或者直接使用前面連結下載。</p>
+<p>完成圖如下:</p>
+<p align="center">
+  <img src="/fig/7_6_yuShan_1.png"/>
+</p>
+
+<h2 id="77">7.7 參考批次檔</h2>
+<p>列出本章節使用的批次檔，供讀者參考使用，檔案路經可能會有些許不同，再自行修改。</p>
+<ul>
+<li><a href="/bat/7_3_grd_intro.bat">7_3_grd_intro</a></li>
+<li><a href="/bat/7_4_east_rift_valley.bat">7_4_east_rift_valley</a></li>
+<li><a href="/bat/7_5_elevation_profile.bat">7_5_elevation_profile</a></li>
+<li><a href="/bat/7_6_yuShan.bat">7_6_yuShan</a></li>
+</ul>
+
+
+
+
+              
+            </article>
+            
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="../xy_figure/" class="md-footer__link md-footer__link--prev" aria-label="上一頁: 第二章: XY散佈圖: 其他投影法" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                上一頁
+              </span>
+              第二章: XY散佈圖: 其他投影法
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../topography_cpt/" class="md-footer__link md-footer__link--next" aria-label="下一頁: 第四章: 地形圖與色階" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                下一頁
+              </span>
+              第四章: 地形圖與色階
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.ecf98df9.min.js", "translations": {"clipboard.copied": "\u5df2\u8907\u88fd", "clipboard.copy": "\u8907\u88fd", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\u3000\u3001\u3002\uff0c\uff0e\uff1f\uff1b]+", "search.placeholder": "\u641c\u5c0b", "search.result.more.one": "\u6b64\u9801\u5c1a\u6709 1 \u500b\u7b26\u5408\u7684\u9805\u76ee", "search.result.more.other": "\u6b64\u9801\u5c1a\u6709 # \u500b\u7b26\u5408\u7684\u9805\u76ee", "search.result.none": "\u6c92\u6709\u7b26\u5408\u7684\u9805\u76ee", "search.result.one": "\u627e\u5230 1 \u500b\u7b26\u5408\u7684\u9805\u76ee", "search.result.other": "\u627e\u5230 # \u500b\u7b26\u5408\u7684\u9805\u76ee", "search.result.placeholder": "\u6253\u5b57\u9032\u884c\u641c\u5c0b", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.9c69f0bc.min.js"></script>
+      
+    
+  </body>
+</html>

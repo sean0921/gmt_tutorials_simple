@@ -1,0 +1,1142 @@
+
+<!doctype html>
+<html lang="zh-Hant" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="GMT5 教程 | 編者: Po-Chin Tseng">
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.3.1, mkdocs-material-8.4.2">
+    
+    
+      
+        <title>第七章: 台灣地理資訊 - Simplified GMT Tutorial</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.69437709.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.cbb835fc.min.css">
+        
+      
+      
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          跳轉到
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Simplified GMT Tutorial" class="md-header__button md-logo" aria-label="Simplified GMT Tutorial" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Simplified GMT Tutorial
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              第七章: 台灣地理資訊
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜尋" placeholder="搜尋" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜尋引擎
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Simplified GMT Tutorial" class="md-nav__button md-logo" aria-label="Simplified GMT Tutorial" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Simplified GMT Tutorial
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        總覽
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../intro_install/" class="md-nav__link">
+        GMT介紹及安裝
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../net_software/" class="md-nav__link">
+        網路資源及配套軟體
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../basic_defaults/" class="md-nav__link">
+        第零章: 基本概念及默認值
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../projection/" class="md-nav__link">
+        第一章: 製作地圖: 地理投影法
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../xy_figure/" class="md-nav__link">
+        第二章: XY散佈圖: 其他投影法
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contour_profile/" class="md-nav__link">
+        第三章: 等高線圖及剖面
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../topography_cpt/" class="md-nav__link">
+        第四章: 地形圖與色階
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../seismicity_meca/" class="md-nav__link">
+        第五章: 地震活動性與機制解
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vector_velocity/" class="md-nav__link">
+        第六章: 向量與速度場
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          第七章: 台灣地理資訊
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        第七章: 台灣地理資訊
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目錄">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目錄
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    11. 台灣地理資訊
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#111" class="md-nav__link">
+    11.1 目的
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#112" class="md-nav__link">
+    11.2 學習的指令與概念
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#113" class="md-nav__link">
+    11.3 交通系統
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#114" class="md-nav__link">
+    11.4 行政邊界
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#115" class="md-nav__link">
+    11.5 河川流域
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#116" class="md-nav__link">
+    11.6 斷層分佈及型態
+  </a>
+  
+    <nav class="md-nav" aria-label="11.6 斷層分佈及型態">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    接下來是示範如何繪製不同的斷層型態。
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#117" class="md-nav__link">
+    11.7 人口密度
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#118" class="md-nav__link">
+    11.8 參考批次檔
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../histo_pie_ternary/" class="md-nav__link">
+        第八章: 直方、圓餅、三元圖
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../three_dimension/" class="md-nav__link">
+        第九章: 三維空間視圖
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../geology_map/" class="md-nav__link">
+        第十章: 地質圖
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目錄">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目錄
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    11. 台灣地理資訊
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#111" class="md-nav__link">
+    11.1 目的
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#112" class="md-nav__link">
+    11.2 學習的指令與概念
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#113" class="md-nav__link">
+    11.3 交通系統
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#114" class="md-nav__link">
+    11.4 行政邊界
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#115" class="md-nav__link">
+    11.5 河川流域
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#116" class="md-nav__link">
+    11.6 斷層分佈及型態
+  </a>
+  
+    <nav class="md-nav" aria-label="11.6 斷層分佈及型態">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    接下來是示範如何繪製不同的斷層型態。
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#117" class="md-nav__link">
+    11.7 人口密度
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#118" class="md-nav__link">
+    11.8 參考批次檔
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+
+
+<h1 id="_1">台灣地理資訊</h1>
+<h2 id="11">11. 台灣地理資訊</h2>
+<p>本章的目的較為特殊，其目的是提供讀者繪製台灣地區常用的地理資訊，
+並不針對特定模組做詳細的闡述，只針對處理這些資料會用到的指令做必要的說明，所使用的資料可以從
+<a href="https://gist.motc.gov.tw">交通網路資訊倉儲系統</a>及
+<a href="https://data.gov.tw/">政府資料開放平台</a>找到，下載後的檔案處理流程，包含轉換座標系統及
+排版將不墜述，如想了解，歡迎聯繫我。</p>
+<h2 id="111">11.1 目的</h2>
+<p>本章將學習如何繪製
+  1. 交通系統(Traffic Network)
+  2. 行政邊界(Region Border)
+  3. 河川流域(Drainage Area)
+  4. 斷層分佈及型態(Fault System)
+  5. 人口密度(Population Density)</p>
+<h2 id="112">11.2 學習的指令與概念</h2>
+<ul>
+<li><code>gmtconvert</code>: 處理多區塊式文件</li>
+<li><code>gmtspatial</code>: 地理空間中線和多邊形的操作</li>
+<li><code>makecpt</code>: 製作色階檔</li>
+<li><code>psscale</code>: 繪製色彩條</li>
+<li><code>pstext</code>: 在圖上進行排版文字</li>
+<li><code>psxy</code>: 繪製線、多邊形、符號</li>
+<li><code>awk</code>及<code>sed</code>語法的示範</li>
+</ul>
+<h2 id="113">11.3 交通系統</h2>
+<p>首先示範台灣地區重要的交通道路系統，分別是省道(綠色)、國道(藍色)、台鐵(黑白相間)及高鐵(黑紅相間)。</p>
+<p>使用的資料檔:
+- <a href="../dat/provincial_highway.gmt">省道路線</a>
+- <a href="../dat/national_freeway.gmt">國道路線</a>
+- <a href="../dat/TRA_rail.gmt">台鐵路縣</a>
+- <a href="../dat/THSRC_rail.gmt">高鐵路縣</a></p>
+<p>成果圖</p>
+<p align="center">
+  <img src="/fig/11_3_taiwan_road_1.png"/>
+</p>
+
+<p>批次檔</p>
+<pre><code class="language-bat">set ps=11_3_taiwan_road.ps
+set data=D:\GMT_data\road\
+
+# 1. road map
+gmt psbasemap -R119.8/122.1/21.8/25.4 -JM15 -BWeSn -Ba -P -K &gt; %ps%
+gmt pscoast -R -JM -Df -W1 -G80 -S159/229/255 -K -O &gt;&gt; %ps%
+gmt psxy %data%provincial_highway.gmt -R -JM -W.4,green -K -O &gt;&gt; %ps%
+gmt psxy %data%national_freeway.gmt -R -JM -W1.5,blue -K -O &gt;&gt; %ps%
+gmt psxy %data%national_freeway_attach.gmt -R -JM -W.7,purple -K -O &gt;&gt; %ps%
+gmt psxy %data%TRA_rail.gmt -R -JM -W2.5,white -K -O &gt;&gt; %ps%
+gmt psxy %data%TRA_rail.gmt -R -JM -W2.5,black,4_4:0p -K -O &gt;&gt; %ps%
+gmt psxy %data%THSRC_rail.gmt -R -JM -W3,red -K -O &gt;&gt; %ps%
+gmt psxy %data%THSRC_rail.gmt -R -JM -W3,black,8_8:0p -K -O &gt;&gt; %ps%
+gmt psxy %data%THSRC_station.gmt -R -JM -Ss.5 -W.5 -Gred -K -O &gt;&gt; %ps%
+
+# 2. legend set
+echo 119.83 25.37 &gt; tmp
+echo 119.83 24.75 &gt;&gt; tmp
+echo 120.60 24.75 &gt;&gt; tmp
+echo 120.60 25.37 &gt;&gt; tmp
+gmt psxy tmp -R -JM -W2 -L -G200 -K -O &gt;&gt; %ps%
+echo 119.86 25.27 Legend | gmt pstext -R -JM -F+f18,2+jML -K -O &gt;&gt; %ps%
+echo 119.86 25.15 &gt; tmp
+echo 119.96 25.15 &gt;&gt; tmp
+gmt psxy tmp -R -JM -W3,green -K -O &gt;&gt; %ps%
+echo 120.00 25.15 Provincial Highway | gmt pstext -R -JM -F+f12+jML -K -O &gt;&gt; %ps%
+echo 119.86 25.05 &gt; tmp
+echo 119.96 25.05 &gt;&gt; tmp
+gmt psxy tmp -R -JM -W3,blue -K -O &gt;&gt; %ps%
+echo 120.00 25.05 National Freeway | gmt pstext -R -JM -F+f12+jML -K -O &gt;&gt; %ps%
+echo 119.86 24.95 &gt; tmp
+echo 119.96 24.95 &gt;&gt; tmp
+gmt psxy tmp -R -JM -W3,white -K -O &gt;&gt; %ps%
+gmt psxy tmp -R -JM -W3,black,4_4:0p -K -O &gt;&gt; %ps%
+echo 120.00 24.95 TRA Rail | gmt pstext -R -JM -F+f12+jML -K -O &gt;&gt; %ps%
+echo 119.86 24.85 &gt; tmp
+echo 119.96 24.85 &gt;&gt; tmp
+gmt psxy tmp -R -JM -W3,red -K -O &gt;&gt; %ps%
+gmt psxy tmp -R -JM -W3,black,4_4:0p -K -O &gt;&gt; %ps%
+echo 120.00 24.85 THSRC Rail | gmt pstext -R -JM -F+f12+jML -K -O &gt;&gt; %ps%
+
+gmt psxy -R -J -T -O &gt;&gt; %ps%
+gmt psconvert %ps% -Tg -A -P
+del tmp*
+</code></pre>
+<p>學習到的指令:</p>
+<ul>
+<li><code>gmt psxy %data%TRA_rail.gmt -R -JM -W2.5,black,4_4:0p -K -O &gt;&gt; %ps%</code></li>
+<li>之前有提到<code>-W</code>寬度,顏色,樣式，其中樣式可以用<mark>-</mark>,<mark>.</mark>符號來繪製虛線，
+  這邊使用<mark>4_4:0p</mark>，數字分別對應虛線長度、虛線間隔長度、起始位置偏移，
+  來詳細控制虛線的屬性。</li>
+</ul>
+<h2 id="114">11.4 行政邊界</h2>
+<p>示範如何繪製鄉鎮市的行政邊界，並把各鄉鎮市的名字標記上去。</p>
+<p>使用的資料檔:
+- <a href="../dat/city_2016.gmt">都市邊界</a>
+- <a href="../dat/country_2016.gmt">鄉鎮邊界</a></p>
+<p>成果圖</p>
+<p align="center">
+  <img src="/fig/11_4_region_border_1.png"/>
+</p>
+
+<p>批次檔</p>
+<pre><code class="language-bat">set ps=11_4_region_border.ps
+set data=D:\GMT_data\
+set cpt=gebco.cpt
+
+# Taiwan
+gmt psbasemap -R119.2/122.1/21.8/25.4 -Jm6 -BWeSn -Ba -P -K &gt; %ps%
+gmt grdimage %data%tw_500_119.grd -R -Jm -C%cpt% -I%data%tw_500shad_119.grd -M -K -O &gt;&gt; %ps%
+gmt pscoast -R -Jm -Df -Gc -K -O &gt;&gt; %ps%
+gmt grdimage %data%tw_40.grd -R -Jm -C%cpt% -I%data%tw_40shad.grd -M -K -O &gt;&gt; %ps%
+gmt psxy %data%country_2016.gmt -R -Jm -W.5,237/98/98 -K -O &gt;&gt; %ps%
+gmt psxy %data%city_2016.gmt -R -Jm -W1,red -K -O &gt;&gt; %ps%
+gmt pscoast -R -Jm -Df -Q -K -O &gt;&gt; %ps%
+gmt pscoast -R -Jm -Df -W1 -K -O &gt;&gt; %ps%
+
+gmt gmtspatial %data%country_2016.gmt -Q+p -o0,1 &gt; tmp1
+gmt gmtconvert %data%country_2016.gmt -L &gt; tmp2
+awk &quot;NR==FNR{tmp1[NR]=$0; next} {print tmp1[FNR], $2,$3,$4}&quot; tmp1 tmp2 &gt; tmp
+awk &quot;{print $1,$2,$3}&quot; tmp | gmt pstext -R -Jm -F+f6p=1p,white -K -O &gt;&gt; %ps%
+awk &quot;{print $1,$2,$3}&quot; tmp | gmt pstext -R -Jm -F+f6p -K -O &gt;&gt; %ps%
+gmt gmtspatial %data%city_2016.gmt -Q+p -o0,1 &gt; tmp1
+gmt gmtconvert %data%city_2016.gmt -L &gt; tmp2
+awk &quot;NR==FNR{tmp1[NR]=$0; next} {print tmp1[FNR], $2,$3,$4}&quot; tmp1 tmp2 &gt; tmp
+gmt pstext tmp -R -Jm -F+f12p=2p,white -K -O &gt;&gt; %ps%
+gmt pstext tmp -R -Jm -F+f12p -K -O &gt;&gt; %ps%
+
+# Kinmen
+gmt psbasemap -R118.17/118.55/24.35/24.58 -Jm12 -Bwesn -B0 ^
+-X.2 -Y17 -K -O --MAP_FRAME_TYPE=plain &gt;&gt; %ps%
+gmt pscoast -R -Jm -Df -W1 -G220 -S250 -K -O &gt;&gt; %ps%
+gmt pscoast -R -Jm -Df -Gc -K -O &gt;&gt; %ps%
+gmt psxy %data%country_2016.gmt -R -Jm -W.5,237/98/98 -K -O &gt;&gt; %ps%
+gmt pscoast -R -Jm -Df -Q -K -O &gt;&gt; %ps%
+
+gmt gmtspatial %data%country_2016.gmt -Q+p -o0,1 &gt; tmp1
+gmt gmtconvert %data%country_2016.gmt -L &gt; tmp2
+awk &quot;NR==FNR{tmp1[NR]=$0; next} {print tmp1[FNR], $2,$3,$4}&quot; tmp1 tmp2 &gt; tmp
+awk &quot;{print $1,$2,$3}&quot; tmp | gmt pstext -R -Jm -F+f6p=1p,white -K -O &gt;&gt; %ps%
+awk &quot;{print $1,$2,$3}&quot; tmp | gmt pstext -R -Jm -F+f6p -K -O &gt;&gt; %ps%
+gmt gmtspatial %data%city_2016.gmt -Q+p -o0,1 &gt; tmp1
+gmt gmtconvert %data%city_2016.gmt -L &gt; tmp2
+awk &quot;NR==FNR{tmp1[NR]=$0; next} {print tmp1[FNR], $2,$3,$4}&quot; tmp1 tmp2 &gt; tmp
+gmt pstext tmp -R -Jm -F+f12p=2p,white -K -O &gt;&gt; %ps%
+gmt pstext tmp -R -Jm -F+f12p -K -O &gt;&gt; %ps%
+
+# Lienchiang
+gmt psbasemap -R119.86/120.11/25.91/26.30 -Jm -Bwesn -B0 ^
+-X5 -Y1 -K -O --MAP_FRAME_TYPE=plain &gt;&gt; %ps%
+gmt pscoast -R -Jm -Df -W1 -G220 -S250 -K -O &gt;&gt; %ps%
+
+gmt gmtspatial %data%country_2016.gmt -Q+p -o0,1 &gt; tmp1
+gmt gmtconvert %data%country_2016.gmt -L &gt; tmp2
+awk &quot;NR==FNR{tmp1[NR]=$0; next} {print tmp1[FNR], $2,$3,$4}&quot; tmp1 tmp2 &gt; tmp
+awk &quot;{print $1,$2,$3}&quot; tmp | gmt pstext -R -Jm -F+f6p=1p,white -K -O &gt;&gt; %ps%
+awk &quot;{print $1,$2,$3}&quot; tmp | gmt pstext -R -Jm -F+f6p -K -O &gt;&gt; %ps%
+gmt gmtspatial %data%city_2016.gmt -Q+p -o0,1 &gt; tmp1
+gmt gmtconvert %data%city_2016.gmt -L &gt; tmp2
+awk &quot;NR==FNR{tmp1[NR]=$0; next} {print tmp1[FNR], $2,$3,$4}&quot; tmp1 tmp2 &gt; tmp
+gmt pstext tmp -R -Jm -F+f10p=2p,white -D.7/-1 -K -O &gt;&gt; %ps%
+gmt pstext tmp -R -Jm -F+f10p -D.7/-1 -K -O &gt;&gt; %ps%
+
+gmt psxy -R -J -T -O &gt;&gt; %ps%
+gmt psconvert %ps% -Tg -A -P
+del tmp*
+</code></pre>
+<p>學習到的指令:</p>
+<ul>
+<li><code>gmtspatial -Q+p -o0,1</code>從多區塊文件中算出質心位置。</li>
+<li><code>-Q+p</code>假設每個區塊文件中的資料都是封閉多邊形，並計算出質心位置。</li>
+<li><code>-o0,1</code>指定輸出第一欄(經度)和第二欄(緯度)。</li>
+<li><code>gmt gmtconvert -L</code>從多區塊文件中提取檔頭資訊。</li>
+<li><code>-L</code>只輸出檔頭資訊。</li>
+<li><code>awk "NR==FNR{tmp1[NR]=$0; next} {print tmp1[FNR], $2,$3,$4}"</code>
+將經緯度及檔頭資訊中的縣市名稱合併成暫存檔，方便繪製。</li>
+<li><code>pstext -F+f6p=1p,white</code>繪製文字邊框。</li>
+<li><code>-F+f6p=1p,white</code>中<mark>=</mark>號後面是相對文字大小的邊框寬度及顏色。</li>
+</ul>
+<h2 id="115">11.5 河川流域</h2>
+<p>由於<code>pscoast</code>的河川資料庫中並無包含台灣河川的資料，所以需要另外下載製作，
+本節將分別繪製河川主流(Mainstream)流域圖及支流(Tributary)流域圖。</p>
+<p>使用的資料檔:
+- <a href="../dat/taiwan_river_mainstream.gmt">河川主流資料</a>
+- <a href="../dat/taiwan_river_tributary.gmt">河川支流資料</a></p>
+<p>成果圖</p>
+<p align="center">
+  <img src="/fig/11_5_drainage_area_1.png"/>
+</p>
+
+<p>批次檔</p>
+<pre><code class="language-bat">set ps=11_5_drainage_area.ps
+set data=D:\GMT_data\
+set cpt=gebco.cpt
+
+# mainstream
+gmt gmtset MAP_FRAME_TYPE=plain
+gmt psbasemap -R119.8/122.1/21.8/25.4 -JM10 -BWeSn -Ba -K &gt; %ps%
+gmt grdimage %data%tw_500_119.grd -R -JM -C%cpt% -I%data%tw_500shad_119.grd -M -K -O &gt;&gt; %ps%
+gmt pscoast -R -JM -Df -Gc -K -O &gt;&gt; %ps%
+gmt grdimage %data%tw_40.grd -R -JM -C%cpt% -I%data%tw_40shad.grd -M -K -O &gt;&gt; %ps%
+gmt pscoast -R -JM -Df -Q -K -O &gt;&gt; %ps%
+gmt pscoast -R -JM -Df -W1 -K -O &gt;&gt; %ps%
+gmt psxy %data%taiwan_river_mainstream.gmt -R -JM -W1,30/34/170 -K -O &gt;&gt; %ps%
+echo 119.87 25.2 Mainstream | gmt pstext -R -JM -F+f18p,2+jML -K -O &gt;&gt; %ps%
+gmt psbasemap -R -JM -D120.7/121.5/24.6/25.4 -F+p2,red -K -O &gt;&gt; %ps%
+
+# mainstream &amp; tributary
+gmt psbasemap -R120.7/121.5/24.6/25.4 -JM12 -BwESn -Ba -X12 -K -O &gt;&gt; %ps%
+gmt pscoast -R -JM -Df -W1 -S235 -K -O &gt;&gt; %ps%
+gmt psxy %data%taiwan_river_tributary.gmt -R -JM -W.5,72/92/199 -K -O &gt;&gt; %ps%
+gmt psxy %data%taiwan_river_mainstream.gmt -R -JM -W1,30/34/170 -K -O &gt;&gt; %ps%
+echo 120.75 25.35 Mainstream \046 | gmt pstext -R -JM -F+f16p,2+jML -K -O &gt;&gt; %ps%
+echo 120.75 25.30 Tributary | gmt pstext -R -JM -F+f16p,2+jML -K -O &gt;&gt; %ps%
+
+gmt psxy -R -J -T -O &gt;&gt; %ps%
+gmt psconvert %ps% -Tg -A -P
+del tmp* gmt.conf
+</code></pre>
+<p>學習到的指令:</p>
+<ul>
+<li><code>echo 120.75 25.35 Mainstream \046 | gmt pstext</code>寫出特殊字元(&amp;)。</li>
+<li><mark>\046</mark>可對應到<mark>&amp;</mark>符號，
+  詳細內容請參考<a href="basic_defaults#m4.4fs">4-4特殊字元或符號</a>。</li>
+</ul>
+<h2 id="116">11.6 斷層分佈及型態</h2>
+<p>繪製由中央地質調查所提供的33條斷層分佈，並分類成第一類活動斷層、
+第二類活動斷層及存疑、掩埋與否。</p>
+<p>使用的資料檔:
+- <a href="../dat/CGS_fault.gmt">斷層分佈資料</a>
+- <a href="../dat/fault_label_fix.dat">斷層編號</a></p>
+<p>完成圖如下:</p>
+<p align="center">
+  <img src="/fig/11_6_cgs_fault_1.png"/>
+</p>
+
+<p>批次檔</p>
+<pre><code class="language-bat">set ps=11_6_cgs_fault.ps
+set data=D:\GMT_data\
+set cpt=gebco.cpt
+
+# 1. topographic map
+gmt psbasemap -R119.7/122.1/21.8/25.4 -JM15 -BWeSn -Ba -P -K &gt; %ps%
+gmt pscoast -R -JM -Df -Gc -K -O &gt;&gt; %ps%
+gmt grdimage %data%tw_40.grd -R -JM -C%cpt% -I%data%tw_40shad.grd -M -K -O &gt;&gt; %ps%
+gmt pscoast -R -JM -Df -Q -K -O &gt;&gt; %ps%
+gmt pscoast -R -JM -Df -W1 -K -O &gt;&gt; %ps%
+
+# 2. fault type
+gmt psxy %data%CGS_fault.gmt -R -JM -Sqn1:+Lh+T&quot;fault_label.dat&quot; &gt; tmp
+gmt gmtconvert %data%CGS_fault.gmt -S&quot;1 1 |&quot; &gt; tmp
+gmt psxy tmp -R -JM -W2,red -K -O &gt;&gt; %ps%
+gmt gmtconvert %data%CGS_fault.gmt -S&quot;1 2 |&quot; &gt; tmp
+gmt psxy tmp -R -JM -W2,red,3_3:0p -K -O &gt;&gt; %ps%
+gmt gmtconvert %data%CGS_fault.gmt -S&quot;2 1 |&quot; &gt; tmp
+gmt psxy tmp -R -JM -W2,255/193/37 -K -O &gt;&gt; %ps%
+gmt gmtconvert %data%CGS_fault.gmt -S&quot;2 2 |&quot; &gt; tmp
+gmt psxy tmp -R -JM -W2,255/193/37,3_3:0p -K -O &gt;&gt; %ps%
+
+# 3. fault numbers in map
+awk &quot;$4&lt;=25 {print $0}&quot; fault_label_fix.dat | ^
+gmt pstext -R -JM -F+a -D.2/-.2 -K -O &gt;&gt; %ps%
+awk &quot;$4&gt;=26 {print $0}&quot; fault_label_fix.dat | ^
+gmt pstext -R -JM -F+a -D-.2/.2 -K -O &gt;&gt; %ps%
+
+# 4. fault numbers name
+gmt gmtconvert %data%CGS_fault.gmt -L &gt; tmp
+sed -i 's\\&quot;\\\\g' tmp
+awk &quot;{print $7, $8, $2}&quot; tmp &gt; tmp2
+awk &quot;NR !=1 {print 119.85, 25.35, $4}&quot; fault_label_fix.dat &gt; tmp1
+awk &quot;NR==FNR{tmp1[$3]=$0; next} {$3=tmp1[$3]; print}&quot; tmp2 tmp1 &gt; tmp3
+awk &quot;NR&lt;=20 {print $1, $2-($5-1)*.07, $5, $3, $4}&quot; tmp3 | ^
+gmt pstext -R -JM -F+f12p+jML -K -O &gt;&gt; %ps%
+awk &quot;NR&gt;=21 {print 122.05, $2-($5-1)*.07, $5, $3, $4}&quot; tmp3 | ^
+gmt pstext -R -JM -F+f12p+jMR -D0/-7 -K -O &gt;&gt; %ps%
+
+# 5. legend set
+echo H 18 1 Legend &gt; tmp
+echo D 0.2 1p &gt;&gt; tmp
+echo G .2 &gt;&gt; tmp
+echo S .6 - .8 0 3,red 1.3 Holocene active fault &gt;&gt; tmp
+echo S .6 - .8 0 3,255/193/37 1.3 Late Pleistoene active fault &gt;&gt; tmp
+echo S .6 - .8 0 3,black,3_3:0p 1.3 Fault concealed or inferred &gt;&gt; tmp
+gmt pslegend tmp -R -JM -C.1/.1 -Dx.1/.1+w5.8 -F+p1 ^
+--FONT_ANNOT_PRIMARY=10p --FONT_LABEL=14p -K -O &gt;&gt; %ps%
+
+gmt psxy -R -J -T -O &gt;&gt; %ps%
+gmt psconvert %ps% -Tg -A -P
+del tmp*
+</code></pre>
+<p>學習到的指令:</p>
+<p><mark>2</mark>斷層型態</p>
+<ul>
+<li><code>psxy ... -Sqn1:+Lh+T"fault_label.dat" ...</code>。</li>
+<li><code>-Sq</code>繪製引用線(quoted line)，語法為<mark>&lt;-Sq[[d|D|f|l|L|n|N|s|S|x|X]info[:labelinfo]]&gt;</mark>。<ul>
+<li><strong>n1</strong>該線段中標籤出現次數，這裡表示出現一次</li>
+<li><strong>+Lh</strong>提取每個區塊的檔頭資訊</li>
+<li><strong>+T</strong>輸出經度、緯度、角度、檔頭資訊共四欄至<mark>fault_label.dat</mark></li>
+</ul>
+</li>
+<li><code>gmtconvert ... -S"1 1 |" ...</code>。</li>
+<li><code>-S</code>從區塊文件中搜尋檔頭出現<mark>1 1 |</mark>字串的區塊。</li>
+</ul>
+<p><mark>3</mark>將斷層編號繪製在地圖上</p>
+<ul>
+<li>手動選取<mark>fault_label.dat</mark>中較適合的編號位置，轉存成<mark>fault_label_fix.dat</mark>。</li>
+<li><code>pstext ... -F+a ...</code>。</li>
+<li><strong>+a</strong>讀取輸入檔中第三欄的資訊，作為寫字的角度。</li>
+</ul>
+<p><mark>4</mark>編號及斷層名稱</p>
+<ul>
+<li><code>sed -i 's\\"\\\\g' tmp</code>，將<code>"</code>符號取代成無(刪除掉)。</li>
+<li><code>awk "NR==FNR{tmp1[$3]=$0; next} {$3=tmp1[$3]; print}" tmp2 tmp1 &gt; tmp3</code>，
+利用比對編號來合併tmp1(經緯度)及tmp2(編號及名稱)這兩個檔案。</li>
+</ul>
+<h4 id="_2">接下來是示範如何繪製不同的斷層型態。</h4>
+<p>完成圖如下:</p>
+<p align="center">
+  <img src="/fig/11_6_fault_type_1.png"/>
+</p>
+
+<p>批次檔</p>
+<pre><code class="language-bat">set ps=11_6_fault_type.ps
+set data=D:\GMT_data\
+set cpt=dem3.cpt
+
+gmt psbasemap -R120.0/120.6/22.6/23.2 -JM15 -BWeSn -Ba -P -K --MAP_FRAME_TYPE=plain &gt; %ps%
+gmt grdimage %data%tw_40.grd -R -JM -C%cpt% -I%data%tw_40shad.grd -K -O &gt;&gt; %ps%
+gmt pscoast -R -JM -Df -W1 -S200/200/255 -K -O &gt;&gt; %ps%
+
+# 新化 右移斷
+gmt gmtconvert %data%CGS_fault.gmt -S&quot;Hsinhua Fault&quot; &gt; tmp
+gmt psxy tmp -R -JM -W4,red -Sf.5/.2+r+s+p1,red -K -O &gt;&gt; %ps%
+# 後甲里 逆移斷 西傾
+gmt gmtconvert %data%CGS_fault.gmt -S&quot;Houchiali Fault&quot; &gt; tmp
+gmt psxy tmp -R -JM -W4,255/193/37 -Sf.4/.25+r+t+o.12+p1,255/193/37 -G255/193/37 -K -O &gt;&gt; %ps%
+# 左鎮 左移斷
+gmt gmtconvert %data%CGS_fault.gmt -S&quot;Tsochen Fault&quot; &gt; tmp
+gmt psxy tmp -R -JM -Sf.7/.2+l+s+p1,255/193/37 -K -O &gt;&gt; %ps%
+gmt gmtconvert %data%CGS_fault.gmt -S&quot;Tsochen Fault&quot; &gt; tmp
+gmt psxy tmp -R -JM -W4,255/193/37 -K -O &gt;&gt; %ps%
+# 小崗山 逆移斷 東傾
+gmt gmtconvert %data%CGS_fault.gmt -S&quot;Hsiaokangshan Fault&quot; &gt; tmp
+gmt psxy tmp -R -JM -W4,255/193/37 -Sf.7/.25+l+t+o.12+p1,255/193/37 -G255/193/37 -K -O &gt;&gt; %ps%
+# 旗山斷層 逆移兼 東傾
+gmt gmtconvert %data%CGS_fault.gmt -S&quot;Chishan Fault&quot; &gt; tmp
+gmt psxy tmp -R -JM -Sf.7/.25+l+t+o.12+p1,red -Gred -K -O &gt;&gt; %ps%
+gmt gmtconvert %data%CGS_fault.gmt -S&quot;Chishan Fault&quot; &gt; tmp
+gmt psxy tmp -R -JM -W4,red -K -O &gt;&gt; %ps%
+
+awk &quot;$4&lt;=25 {print $0}&quot; fault_label_fix.dat | ^
+gmt pstext -R -JM -F+f12+a -D.4/-.4 -K -O &gt;&gt; %ps%
+
+gmt gmtconvert -L %data%CGS_fault.gmt &gt; tmp
+sed -i 's\\&quot;\\\\g' tmp
+awk &quot;{print $7, $8, $2}&quot; tmp &gt; tmp2
+awk &quot;NR !=1 {print 120.01, 23.25, $4}&quot; fault_label_fix.dat &gt; tmp1
+awk &quot;NR==FNR{tmp1[$3]=$0; next} {$3=tmp1[$3]; print}&quot; tmp2 tmp1 &gt; tmp3
+awk &quot;NR&gt;=19 &amp;&amp; NR &lt;=23 {print $1, $2-($5-1)*.02, $5, $3, $4}&quot; tmp3 | ^
+gmt pstext -R -JM -F+f12p+jML -K -O &gt;&gt; %ps%
+
+gmt pscoast -R119.8/122.1/21.8/25.4 -JM3 -Df -W1 -B0 -S255 -G230 ^
+-X.1 -Y.1 -K -O --MAP_FRAME_TYPE=plain &gt;&gt; %ps%
+gmt psbasemap -R -JM -D120.0/120.6/22.5/23.2 -F+p2,red -K -O &gt;&gt; %ps%
+
+gmt psxy -R -J -T -O &gt;&gt; %ps%
+gmt psconvert %ps% -Tg -A -P
+del tmp*
+</code></pre>
+<p>學習到的指令:
+* <code>psxy -Sf.7/.25+l+t+o.12+p1,red</code>在線段中側邊繪製一個圖案，
+用法是<mark>-Sfgap[/size][+l|+r][+b+c+f+s+t][+ooffset][+p[pen]]</mark>
+  * <strong>+l</strong>圖案繪製在線段左側；<strong>+r</strong>圖案繪製在線段右側。
+  * <strong>+t</strong>圖案是三角形、<strong>+b</strong>矩形、<strong>+c</strong>圓形、<strong>+f</strong>斷層、<strong>+s</strong>滑移箭頭。
+  * <strong>+o</strong>圖案起始的偏移量。
+  * <strong>+p</strong>圖案的邊框筆觸。</p>
+<h2 id="117"><a name="m11.7"></a>11.7 人口密度</h2>
+<p>本章最後一小節，將利用人口密度資料，來示範區塊文件如何配合<code>psxy -C</code>指令，來完成人口密度分佈圖。</p>
+<p>使用的資料檔:
+- <a href="../dat/country_popuDen_2016f.gmt">鄉鎮人口密度</a>
+- <a href="../dat/range.txt">色階檔分隔條件</a>
+- <a href="../dat/population_density.cpt">人口密度色階檔</a></p>
+<p>完成圖如下:</p>
+<p align="center">
+  <img src="/fig/11_7_population_density_1.png"/>
+</p>
+
+<p>批次檔</p>
+<pre><code class="language-bat">set ps=11_7_population_density.ps
+set data=D:\GMT_data\
+set cpt=rainbow.cpt
+
+# population density map
+gmt psbasemap -R119.2/122.1/21.8/25.4 -JM15 -BWeSn -Ba -P -K --MAP_FRAME_TYPE=plain &gt; %ps%
+gmt grdimage %data%tw_500_119.grd -R -JM -C%cpt% -I%data%tw_500shad_119.grd -M -K -O &gt;&gt; %ps%
+gmt pscoast -R -JM -Df -Gc -K -O &gt;&gt; %ps%
+# gmt makecpt -C%cpt% -Trange.txt -D -Fr &gt; tmp.cpt
+# awk &quot;{print $0}&quot; range.txt | gmt makecpt -C%cpt% -E42 -D -Fr &gt; tmp.cpt2
+gmt psxy %data%country_popuDen_2016f.gmt -R -JM ^
+-Cpopulation_density.cpt -L -K -O &gt;&gt; %ps%
+gmt psxy %data%city_2016.gmt -R -JM -W.5 -K -O &gt;&gt; %ps%
+gmt pscoast -R -JM -Df -Q -K -O &gt;&gt; %ps%
+gmt pscoast -R -JM -Df -W1 -K -O &gt;&gt; %ps%
+
+# legend set
+echo 119.2 25.4 &gt; tmp
+echo 119.2 23.9 &gt;&gt; tmp
+echo 120.2 23.9 &gt;&gt; tmp
+echo 120.4 24.2 &gt;&gt; tmp
+echo 120.4 25.4 &gt;&gt; tmp
+gmt psxy tmp -R -JM -G255 -W1 -L -K -O &gt;&gt; %ps%
+awk &quot;$1&gt;=0 &amp;&amp; $1&lt; 1000 {print $0}&quot; population_density.cpt &gt; tmp.cpt
+gmt psscale -Ctmp.cpt -R -JM -Dx1.1/12.8+w7/.5 -A -S ^
+-K -O --FONT_ANNOT_PRIMARY=8p &gt;&gt; %ps%
+awk &quot;$1&gt;=1000 &amp;&amp; $1&lt; 8000 {print $0}&quot; population_density.cpt &gt; tmp.cpt
+gmt psscale -Ctmp.cpt -R -JM -Dx3.1/12.8+w7/.5 -A -S ^
+-K -O --FONT_ANNOT_PRIMARY=8p &gt;&gt; %ps%
+awk &quot;$1&gt;=8000 &amp;&amp; $1&lt; 40000 {print $0}&quot; population_density.cpt &gt; tmp.cpt
+gmt psscale -Ctmp.cpt -R -JM -Dx5.1/12.8+w7/.5 -A -S ^
+-K -O --FONT_ANNOT_PRIMARY=8p &gt;&gt; %ps%
+echo 119.22 24.00 Population Density (1\057km@+2@+) | ^
+gmt pstext -R -JM -F+f12,0+jML -K -O &gt;&gt; %ps%
+
+gmt psxy -R -J -T -O &gt;&gt; %ps%
+gmt psconvert %ps% -Tg -A -P
+del tmp*
+</code></pre>
+<p>學習到的指令:</p>
+<ul>
+<li><code>#</code>符號開頭的兩行<code>makecpt ... -Trange.txt -Fr+c ...及... -E42 ...</code>。</li>
+<li><code>-Trange.txt</code>用<mark>range.txt</mark>來指定色階檔分隔的依據。</li>
+<li><code>-Fr</code>指定輸出為RGB格式。</li>
+<li><code>-E42</code>讀取資料最後一欄，找出最大最小值，42表示色階分隔數量。</li>
+<li>會分兩次製作色階檔是因為，想製作非線性的間隔，先製作非線性排序的色階檔(tmp.cpt)，
+接著製作同範圍的線性色階檔(tmp.cpt2)，再手動將非線性排序的間隔取代線性色階檔的間隔，
+用此方式來達到非線性的色階檔。</li>
+<li>打開<mark>country_popuDen_2016f.gmt</mark>會發現，在區塊檔頭的地方，出現<code>-Z100</code>之類的訊息，
+原來GMT在讀取區塊檔頭資訊時，透過<code>-Z</code>會自動將這區塊內的資料賦予Z軸值為100，
+借此<code>-C</code>就會依照Z軸的值來填色，<code>-L</code>是確保區塊中資料是封閉多邊形。</li>
+<li><code>psscale ... -A -S ...</code>。</li>
+<li><code>-A</code>讀取色階檔裡面的間隔當作刻度。</li>
+<li><code>-S</code>不繪製色階中黑色的區隔線。</li>
+<li><code>echo 119.22 24.00 Population Density (1\057km@+2@+)</code>，
+<mark>\057</mark>對應特殊字元<mark>\</mark>，<mark>@+2@+</mark>則是寫出上標數字2。</li>
+</ul>
+<h2 id="118">11.8 參考批次檔</h2>
+<p>列出本章節使用的批次檔，供讀者參考使用，檔案路經可能會有些許不同，再自行修改。</p>
+<ul>
+<li><a href="../bat/11_3_taiwan_road.bat">11_3_taiwan_road</a></li>
+<li><a href="../bat/11_4_region_border.bat">11_4_region_border</a></li>
+<li><a href="../bat/11_5_drainage_area.bat">11_5_drainage_area</a></li>
+<li><a href="../bat/11_6_cgs_fault.bat">11_6_cgs_fault</a></li>
+<li><a href="../bat/11_6_fault_type.bat">11_6_fault_type</a></li>
+<li><a href="../bat/11_7_population_density.bat">11_7_population_density</a></li>
+</ul>
+
+
+
+
+              
+            </article>
+            
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="../vector_velocity/" class="md-footer__link md-footer__link--prev" aria-label="上一頁: 第六章: 向量與速度場" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                上一頁
+              </span>
+              第六章: 向量與速度場
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../histo_pie_ternary/" class="md-footer__link md-footer__link--next" aria-label="下一頁: 第八章: 直方、圓餅、三元圖" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                下一頁
+              </span>
+              第八章: 直方、圓餅、三元圖
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.ecf98df9.min.js", "translations": {"clipboard.copied": "\u5df2\u8907\u88fd", "clipboard.copy": "\u8907\u88fd", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\u3000\u3001\u3002\uff0c\uff0e\uff1f\uff1b]+", "search.placeholder": "\u641c\u5c0b", "search.result.more.one": "\u6b64\u9801\u5c1a\u6709 1 \u500b\u7b26\u5408\u7684\u9805\u76ee", "search.result.more.other": "\u6b64\u9801\u5c1a\u6709 # \u500b\u7b26\u5408\u7684\u9805\u76ee", "search.result.none": "\u6c92\u6709\u7b26\u5408\u7684\u9805\u76ee", "search.result.one": "\u627e\u5230 1 \u500b\u7b26\u5408\u7684\u9805\u76ee", "search.result.other": "\u627e\u5230 # \u500b\u7b26\u5408\u7684\u9805\u76ee", "search.result.placeholder": "\u6253\u5b57\u9032\u884c\u641c\u5c0b", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.9c69f0bc.min.js"></script>
+      
+    
+  </body>
+</html>

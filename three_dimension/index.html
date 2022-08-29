@@ -1,0 +1,1036 @@
+
+<!doctype html>
+<html lang="zh-Hant" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="GMT5 教程 | 編者: Po-Chin Tseng">
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.3.1, mkdocs-material-8.4.2">
+    
+    
+      
+        <title>第九章: 三維空間視圖 - Simplified GMT Tutorial</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.69437709.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.cbb835fc.min.css">
+        
+      
+      
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          跳轉到
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Simplified GMT Tutorial" class="md-header__button md-logo" aria-label="Simplified GMT Tutorial" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Simplified GMT Tutorial
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              第九章: 三維空間視圖
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜尋" placeholder="搜尋" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜尋引擎
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Simplified GMT Tutorial" class="md-nav__button md-logo" aria-label="Simplified GMT Tutorial" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Simplified GMT Tutorial
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        總覽
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../intro_install/" class="md-nav__link">
+        GMT介紹及安裝
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../net_software/" class="md-nav__link">
+        網路資源及配套軟體
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../basic_defaults/" class="md-nav__link">
+        第零章: 基本概念及默認值
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../projection/" class="md-nav__link">
+        第一章: 製作地圖: 地理投影法
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../xy_figure/" class="md-nav__link">
+        第二章: XY散佈圖: 其他投影法
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contour_profile/" class="md-nav__link">
+        第三章: 等高線圖及剖面
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../topography_cpt/" class="md-nav__link">
+        第四章: 地形圖與色階
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../seismicity_meca/" class="md-nav__link">
+        第五章: 地震活動性與機制解
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vector_velocity/" class="md-nav__link">
+        第六章: 向量與速度場
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../taiwan_geography/" class="md-nav__link">
+        第七章: 台灣地理資訊
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../histo_pie_ternary/" class="md-nav__link">
+        第八章: 直方、圓餅、三元圖
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          第九章: 三維空間視圖
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        第九章: 三維空間視圖
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目錄">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目錄
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#13" class="md-nav__link">
+    13. 三維空間視圖
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#131" class="md-nav__link">
+    13.1 目的
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#132" class="md-nav__link">
+    13.2 學習的指令與概念
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#133" class="md-nav__link">
+    13.3 多面體圖
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#134" class="md-nav__link">
+    13.4 柱狀圖
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#135" class="md-nav__link">
+    13.5 三維透視圖
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#136" class="md-nav__link">
+    13.6 習題
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#137" class="md-nav__link">
+    13.7 參考批次檔
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../geology_map/" class="md-nav__link">
+        第十章: 地質圖
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目錄">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目錄
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#13" class="md-nav__link">
+    13. 三維空間視圖
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#131" class="md-nav__link">
+    13.1 目的
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#132" class="md-nav__link">
+    13.2 學習的指令與概念
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#133" class="md-nav__link">
+    13.3 多面體圖
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#134" class="md-nav__link">
+    13.4 柱狀圖
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#135" class="md-nav__link">
+    13.5 三維透視圖
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#136" class="md-nav__link">
+    13.6 習題
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#137" class="md-nav__link">
+    13.7 參考批次檔
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+
+
+<h1 id="_1">三維空間視圖</h1>
+<h2 id="13">13. 三維空間視圖</h2>
+<p>本章將展示如何在GMT中繪製三維空間的圖，其中包含利用<code>psxyz</code>來繪製多面體圖形及三維柱狀圖，
+<code>grdview</code>來繪製三維透視圖。當製作立體圖的時候，透過觀看視角的調整，
+將能給讀者更全面的資訊及更好的視覺享受。</p>
+<h2 id="131">13.1 目的</h2>
+<p>本章將學習如何繪製</p>
+<ol>
+<li>多面體圖(Polyhedron)</li>
+<li>柱狀圖(3D Bar Graph)</li>
+<li>三維透視圖(3D Perspective Map)</li>
+</ol>
+<h2 id="132">13.2 學習的指令與概念</h2>
+<ul>
+<li><code>gmtconvert</code>: 處理多區塊式文件</li>
+<li><code>grdview</code>: 繪製三維透視圖</li>
+<li><code>grdsample</code>: 對網格檔重新取樣</li>
+<li><code>psbasemap</code>: 繪製圖框、刻度、標籤等等</li>
+<li><code>pstext</code>: 三維空間中寫字</li>
+<li><code>psxyz</code>: 繪製三維空間中的點、線、面</li>
+<li><code>awk</code>語法的示範</li>
+</ul>
+<h2 id="133">13.3 多面體圖</h2>
+<p>本節將在三維的座標系統中，去繪製幾種不同的多面體，讓讀者能熟習三維的語法。其中<code>psxyz</code>與
+<code>psxy</code>最大的差別，在輸入的表格中，多了要輸入z軸的位置，而透過<a href="http://www.rwgrayprojects.com/Lynn/Coordinates/coord01.html">多面體的各端點座標</a>，
+將此網站的資料整理成GMT的區塊文件(segment file)，利用點與點連接，來完成多種多面體。</p>
+<p>使用的資料檔:
+- <a href="../dat/polyhedron_vertex.gmt">多面體_點</a>
+- <a href="../dat/polyhedron_edge.gmt">多面體_線</a>
+- <a href="../dat/polyhedron_face.gmt">多面體_面</a></p>
+<p>成果圖</p>
+<p align="center">
+  <img src="/fig/13_3_3d_polyhedron_1.png"/>
+</p>
+
+<p>批次檔</p>
+<pre><code class="language-bat">set ps=13_3_3d_polyhedron.ps
+
+gmt psbasemap -R-15/15/-15/15/-12/12 -JX15 -JZ12 -p220/25 ^
+-BWeSnZ -Bxa5f2.5 -By5f2.5 -Bz2 -K &gt; %ps%
+
+# Tetrahedron 8
+gmt gmtconvert polyhedron_face.gmt -S&quot;Tetrahedron 8 |&quot; &gt; tmp
+awk &quot;NR %%4 != 1 {print $1-10, $2-10, $3-7.5}&quot; tmp &gt; tmp1
+awk &quot;{print $0} NR %%3 == 0 {print &quot;&quot;&gt;&quot;&quot;&quot;&quot;}&quot; tmp1 &gt; tmp2
+gmt psxyz tmp2 -R -J -JZ -p -G244/77/137 -K -O &gt;&gt; %ps%
+gmt gmtconvert polyhedron_edge.gmt -S&quot;Tetrahedron 8 |&quot; &gt; tmp
+awk &quot;NR %%3 != 1 {print $1-10, $2-10, $3-7.5}&quot; tmp &gt; tmp1
+awk &quot;{print $0} NR %%2 == 0 {print &quot;&quot;&gt;&quot;&quot;&quot;&quot;}&quot; tmp1 &gt; tmp2
+gmt psxyz tmp2 -R -J -JZ -p -W1,187/55/55 -K -O &gt;&gt; %ps%
+gmt gmtconvert polyhedron_vertex.gmt -S&quot;Tetrahedron 8 |&quot; &gt; tmp
+awk &quot;NR != 1 {print $1-10, $2-10, $3-7.5}&quot; tmp &gt; tmp1
+gmt psxyz tmp1 -R -J -JZ -p -Sc.3 -G173/0/0 -K -O &gt;&gt; %ps%
+
+# Cube 3
+gmt gmtconvert polyhedron_face.gmt -S&quot;Cube 3 |&quot; &gt; tmp
+awk &quot;NR %%4 != 1 {print $1+5, $2-10, $3-7.5}&quot; tmp &gt; tmp1
+awk &quot;{print $0} NR %%3 == 0 {print &quot;&quot;&gt;&quot;&quot;&quot;&quot;}&quot; tmp1 &gt; tmp2
+gmt psxyz tmp2 -R -J -JZ -p -G0/216/230 -K -O &gt;&gt; %ps%
+gmt gmtconvert polyhedron_edge.gmt -S&quot;Cube 3 |&quot; &gt; tmp
+awk &quot;NR %%3 != 1 {print $1+5, $2-10, $3-7.5}&quot; tmp &gt; tmp1
+awk &quot;{print $0} NR %%2 == 0 {print &quot;&quot;&gt;&quot;&quot;&quot;&quot;}&quot; tmp1 &gt; tmp2
+gmt psxyz tmp2 -R -J -JZ -p -W1,14/145/218 -K -O &gt;&gt; %ps%
+gmt gmtconvert polyhedron_vertex.gmt -S&quot;Cube 3 |&quot; &gt; tmp
+awk &quot;NR != 1 {print $1+5, $2-10, $3-7.5}&quot; tmp &gt; tmp1
+gmt psxyz tmp1 -R -J -JZ -p -Sc.3 -G0/1/138 -K -O &gt;&gt; %ps%
+
+# Octahedron 3
+gmt gmtconvert polyhedron_face.gmt -S&quot;Octahedron 3 |&quot; &gt; tmp
+awk &quot;NR %%4 != 1 {print $1-10, $2+5, $3-5}&quot; tmp &gt; tmp1
+awk &quot;{print $0} NR %%3 == 0 {print &quot;&quot;&gt;&quot;&quot;&quot;&quot;}&quot; tmp1 &gt; tmp2
+gmt psxyz tmp2 -R -J -JZ -p -G48/203/184 -K -O &gt;&gt; %ps%
+gmt gmtconvert polyhedron_edge.gmt -S&quot;Octahedron 3 |&quot; &gt; tmp
+awk &quot;NR %%3 != 1 {print $1-10, $2+5, $3-5}&quot; tmp &gt; tmp1
+awk &quot;{print $0} NR %%2 == 0 {print &quot;&quot;&gt;&quot;&quot;&quot;&quot;}&quot; tmp1 &gt; tmp2
+gmt psxyz tmp2 -R -J -JZ -p -W1,30/153/157 -K -O &gt;&gt; %ps%
+gmt gmtconvert polyhedron_vertex.gmt -S&quot;Octahedron 3 |&quot; &gt; tmp
+awk &quot;NR != 1 {print $1-10, $2+5, $3-5}&quot; tmp &gt; tmp1
+gmt psxyz tmp1 -R -J -JZ -p -Sc.3 -G0/93/79 -K -O &gt;&gt; %ps%
+
+# Rhombic Dodecahedron 3
+gmt gmtconvert polyhedron_face.gmt -S&quot;Rhombic Dodecahedron 3 |&quot; &gt; tmp
+awk &quot;NR %%4 != 1 {print $1+4, $2+5, $3-5}&quot; tmp &gt; tmp1
+awk &quot;{print $0} NR %%3 == 0 {print &quot;&quot;&gt;&quot;&quot;&quot;&quot;}&quot; tmp1 &gt; tmp2
+gmt psxyz tmp2 -R -J -JZ -p -G222/241/105 -K -O &gt;&gt; %ps%
+gmt gmtconvert polyhedron_edge.gmt -S&quot;Rhombic Dodecahedron 3 |&quot; &gt; tmp
+awk &quot;NR %%3 != 1 {print $1+4, $2+5, $3-5}&quot; tmp &gt; tmp1
+awk &quot;{print $0} NR %%2 == 0 {print &quot;&quot;&gt;&quot;&quot;&quot;&quot;}&quot; tmp1 &gt; tmp2
+gmt psxyz tmp2 -R -J -JZ -p -W1,184/227/10 -K -O &gt;&gt; %ps%
+gmt gmtconvert polyhedron_vertex.gmt -S&quot;Rhombic Dodecahedron 3 |&quot; &gt; tmp
+awk &quot;NR != 1 {print $1+4, $2+5, $3-5}&quot; tmp &gt; tmp1
+gmt psxyz tmp1 -R -J -JZ -p -Sc.3 -G173/201/0 -K -O &gt;&gt; %ps%
+
+# Icosahedron
+gmt gmtconvert polyhedron_face.gmt -S&quot;Icosahedron |&quot; &gt; tmp
+awk &quot;NR %%4 != 1 {print $1-10, $2+10, $3+5}&quot; tmp &gt; tmp1
+awk &quot;{print $0} NR %%3 == 0 {print &quot;&quot;&gt;&quot;&quot;&quot;&quot;}&quot; tmp1 &gt; tmp2
+gmt psxyz tmp2 -R -J -JZ -p -G226/133/211 -K -O &gt;&gt; %ps%
+gmt gmtconvert polyhedron_edge.gmt -S&quot;Icosahedron |&quot; &gt; tmp
+awk &quot;NR %%3 != 1 {print $1-10, $2+10, $3+5}&quot; tmp &gt; tmp1
+awk &quot;{print $0} NR %%2 == 0 {print &quot;&quot;&gt;&quot;&quot;&quot;&quot;}&quot; tmp1 &gt; tmp2
+gmt psxyz tmp2 -R -J -JZ -p -W1,205/70/217 -K -O &gt;&gt; %ps%
+gmt gmtconvert polyhedron_vertex.gmt -S&quot;Icosahedron |&quot; &gt; tmp
+awk &quot;NR != 1 {print $1-10, $2+10, $3+5}&quot; tmp &gt; tmp1
+gmt psxyz tmp1 -R -J -JZ -p -Sc.3 -G189/0/219 -K -O &gt;&gt; %ps%
+
+# Rhombic Triacontahedron
+gmt gmtconvert polyhedron_face.gmt -S&quot;Rhombic Triacontahedron |&quot; &gt; tmp
+awk &quot;NR %%4 != 1 {print $1+6, $2+10, $3+5}&quot; tmp &gt; tmp1
+awk &quot;{print $0} NR %%3 == 0 {print &quot;&quot;&gt;&quot;&quot;&quot;&quot;}&quot; tmp1 &gt; tmp2
+gmt psxyz tmp2 -R -J -JZ -p -G70/250/142 -K -O &gt;&gt; %ps%
+gmt gmtconvert polyhedron_edge.gmt -S&quot;Rhombic Triacontahedron |&quot; &gt; tmp
+awk &quot;NR %%3 != 1 {print $1+6, $2+10, $3+5}&quot; tmp &gt; tmp1
+awk &quot;{print $0} NR %%2 == 0 {print &quot;&quot;&gt;&quot;&quot;&quot;&quot;}&quot; tmp1 &gt; tmp2
+gmt psxyz tmp2 -R -J -JZ -p -W1,17/186/120 -K -O &gt;&gt; %ps%
+gmt gmtconvert polyhedron_vertex.gmt -S&quot;Rhombic Triacontahedron |&quot; &gt; tmp
+awk &quot;NR != 1 {print $1+6, $2+10, $3+5}&quot; tmp &gt; tmp1
+gmt psxyz tmp1 -R -J -JZ -p -Sc.3 -G0/147/72 -K -O &gt;&gt; %ps%
+
+# 120 Polyhedron
+gmt gmtconvert polyhedron_face.gmt -S&quot;120 Polyhedron |&quot; &gt; tmp
+awk &quot;NR %%4 != 1 {print $1+20, $2+8, $3-4}&quot; tmp &gt; tmp1
+awk &quot;{print $0} NR %%3 == 0 {print &quot;&quot;&gt;&quot;&quot;&quot;&quot;}&quot; tmp1 &gt; tmp2
+gmt psxyz tmp2 -R -J -JZ -p -G205 -N -K -O &gt;&gt; %ps%
+gmt gmtconvert polyhedron_edge.gmt -S&quot;120 Polyhedron |&quot; &gt; tmp
+awk &quot;NR %%3 != 1 {print $1+20, $2+8, $3-4}&quot; tmp &gt; tmp1
+awk &quot;{print $0} NR %%2 == 0 {print &quot;&quot;&gt;&quot;&quot;&quot;&quot;}&quot; tmp1 &gt; tmp2
+gmt psxyz tmp2 -R -J -JZ -p -W1,105 -N -K -O &gt;&gt; %ps%
+gmt gmtconvert polyhedron_vertex.gmt -S&quot;120 Polyhedron |&quot; &gt; tmp
+awk &quot;NR != 1 {print $1+20, $2+8, $3-4}&quot; tmp &gt; tmp1
+gmt psxyz tmp1 -R -J -JZ -p -Sc.3 -G5 -N -K -O &gt;&gt; %ps%
+
+# text
+echo 7 -11 Tetrahedron | gmt pstext -R -J -JZ -p180/90 -F+f14p+a28 -K -O &gt;&gt; %ps%
+echo 18 -7.5 Cube | gmt pstext -R -J -JZ -p -F+f14p+a10 -N -K -O &gt;&gt; %ps%
+echo -1.5 -3.5 Octahedron | gmt pstext -R -J -JZ -p -F+f14p+a55 -N -K -O &gt;&gt; %ps%
+echo 9.5 -1 Rhombic Dodecahedron | gmt pstext -R -J -JZ -p -F+f12p+a39 -N -K -O &gt;&gt; %ps%
+echo -7.5 5 Icosahedron | gmt pstext -R -J -JZ -p -F+f14p+a10 -N -K -O &gt;&gt; %ps%
+echo 4.5 9 Rhombic Triacontahedron | gmt pstext -R -J -JZ -p -F+f12p+a4 -N -K -O &gt;&gt; %ps%
+echo 18 3.5 120 Polyhedron | gmt pstext -R -J -JZ -p -F+f14p+a10 -N -K -O &gt;&gt; %ps%
+
+gmt psxy -R -J -JZ -T -O &gt;&gt; %ps%
+gmt psconvert %ps% -Tg -A -P
+del tmp*
+</code></pre>
+<p>學習到的指令:</p>
+<ul>
+<li><code>psbasemap</code>繪製座標系的軸。</li>
+<li><code>-Jz|Z</code>設定z軸的尺寸，語法如同<code>-Jx</code>。</li>
+<li><code>-p</code>設定觀看圖片的角度，對應的輸入格式<mark>平面角度 俯視角度</mark>。</li>
+<li><code>gmtconvert -S</code>搜尋區塊文件中，符合特定字串的區塊。</li>
+<li><code>psxyz</code>繪製三維空間中的點線面。語法與<code>psxy</code>一樣，唯一差別在從2維座標點變成輸入3維的座標點。</li>
+<li><code>pstext</code>透過<code>-p180/90</code>讓文字變成在xz平面書寫(原本是在xy平面)，
+以及用<code>-F+a</code>來調整文字的角度。</li>
+</ul>
+<p><a href="http://www.rwgrayprojects.com/Lynn/Coordinates/coord01.html">多面體的各端點座標</a>
+網站中提到的字母p為黃金比例(Golden Ratio)，一般而言為1.618，編者以這個數值來製作
+多面體的端點座標，接著分別繪製多面體的點(vertice)、線(edges)、平面(faces)。
+透過<code>awk</code>可以改變邊長來造成圖形的縮放，或是加減數值來移動多面體的位置，
+除了上面示範中的多面體，也可以自行改變<code>gmtconvert -S</code>後面的字串，
+來繪製其他種類的多面體，透過該網站，共整理了28種。</p>
+<h2 id="134">13.4 柱狀圖</h2>
+<p>此節將透過政府資料開放平臺所提供的<a href="https://data.gov.tw/dataset/32584">104年水文地質鑽探岩心紀錄</a>，
+將示範如何把五個鑽井的岩性資料，透過立體柱狀的方式，展現在地圖上，這種方式，
+將能同時間展現出井口位置以及岩性隨深度的變化。</p>
+<p>使用的資料檔:
+- <a href="../dat/core.gmt">鑽井岩心資料</a></p>
+<p>成果圖</p>
+<p align="center">
+  <img src="/fig/13_4_3d_bar_1.png"/>
+</p>
+
+<p>批次檔</p>
+<pre><code class="language-bat">set ps=13_4_3d_bar.ps
+set data=D:\GMT_data\
+set C=gray
+set FS=green
+set CS=cyan
+set G=red
+
+gmt grdimage %data%tw_20.grd -R120.62/120.69/24.03/24.13/0/100 -JM12 -JZ10 -p205/35 ^
+-BWeSnZ -Bxa.03 -Bya.04 -Bz10+l&quot;Depth (m)&quot; -Cdem1.cpt -I%data%tw_20shad.grd -K &gt; %ps%
+gmt psxy %data%taiwan_river_tributary.gmt -R -JM -JZ -p -W1,72/92/199 -K -O &gt;&gt; %ps%
+gmt psxy %data%taiwan_river_mainstream.gmt -R -JM -JZ -p -W1,30/34/170 -K -O &gt;&gt; %ps%
+
+# 061851G1
+awk &quot;{if ($3==&quot;&quot;061851G1&quot;&quot;&quot;&quot;) print $0}&quot; core.gmt &gt; tmp
+awk &quot;{print $1,$2,$4,0}&quot; tmp | gmt psxyz -R -JM -JZ -p -So.3 -G%C% -W.5 -K -O &gt;&gt; %ps%
+awk &quot;{print $1,$2,$4+$6,$4}&quot; tmp | gmt psxyz -R -JM -JZ -p -So.3b -G%CS% -W.5 -K -O &gt;&gt; %ps%
+awk &quot;{print $1,$2,$4+$6+$8,$4+$6}&quot; tmp | gmt psxyz -R -JM -JZ -p -So.3b -G%C% -W.5 -K -O &gt;&gt; %ps%
+awk &quot;{print $1,$2,$4+$6+$8+$10,$4+$6+$8}&quot; tmp | ^
+gmt psxyz -R -JM -JZ -p -So.3b -G%CS% -W.5 -K -O &gt;&gt; %ps%
+awk &quot;{print $1,$2,$4+$6+$8+$10+$12,$4+$6+$8+$10}&quot; tmp | ^
+gmt psxyz -R -JM -JZ -p -So.3b -G%C% -W.5 -K -O &gt;&gt; %ps%
+awk &quot;{print $1,$2,$4+$6+$8+$10+$12+$14,$4+$6+$8+$10+$12}&quot; tmp | ^
+gmt psxyz -R -JM -JZ -p -So.3b -G%G% -W.5 -K -O &gt;&gt; %ps%
+awk &quot;{print $1,$2,$4+$6+$8+$10+$12+$14+$16,$4+$6+$8+$10+$12+$14}&quot; tmp | ^
+gmt psxyz -R -JM -JZ -p -So.3b -G%CS% -W.5 -K -O &gt;&gt; %ps%
+awk &quot;{print $1,$2,$3}&quot; tmp | gmt pstext -R -JM -JZ -p -F+f12p=2p,white -D0/-.5 -K -O &gt;&gt; %ps%
+awk &quot;{print $1,$2,$3}&quot; tmp | gmt pstext -R -JM -JZ -p -F+f12p -D0/-.5 -K -O &gt;&gt; %ps%
+
+# 062051G1
+awk &quot;{if ($3==&quot;&quot;062051G1&quot;&quot;&quot;&quot;) print $0}&quot; core.gmt &gt; tmp
+awk &quot;{print $1,$2,$4,0}&quot; tmp | gmt psxyz -R -JM -JZ -p -So.3 -G%G% -W.5 -K -O &gt;&gt; %ps%
+awk &quot;{print $1,$2,$4+$6,$4}&quot; tmp | gmt psxyz -R -JM -JZ -p -So.3b -G%FS% -W.5 -K -O &gt;&gt; %ps%
+awk &quot;{print $1,$2,$4+$6+$8,$4+$6}&quot; tmp | gmt psxyz -R -JM -JZ -p -So.3b -G%C% -W.5 -K -O &gt;&gt; %ps%
+awk &quot;{print $1,$2,$4+$6+$8+$10,$4+$6+$8}&quot; tmp | ^
+gmt psxyz -R -JM -JZ -p -So.3b -G%G% -W.5 -K -O &gt;&gt; %ps%
+awk &quot;{print $1,$2,$4+$6+$8+$10+$12,$4+$6+$8+$10}&quot; tmp | ^
+gmt psxyz -R -JM -JZ -p -So.3b -G%C% -W.5 -K -O &gt;&gt; %ps%
+awk &quot;{print $1,$2,$3}&quot; tmp | gmt pstext -R -JM -JZ -p -F+f12p=2p,white -D0/-.5 -K -O &gt;&gt; %ps%
+awk &quot;{print $1,$2,$3}&quot; tmp | gmt pstext -R -JM -JZ -p -F+f12p -D0/-.5 -K -O &gt;&gt; %ps%
+
+# 061552G1
+awk &quot;{if ($3==&quot;&quot;061552G1&quot;&quot;&quot;&quot;) print $0}&quot; core.gmt &gt; tmp
+awk &quot;{print $1,$2,$4,0}&quot; tmp | gmt psxyz -R -JM -JZ -p -So.3 -G%CS% -W.5 -K -O &gt;&gt; %ps%
+awk &quot;{print $1,$2,$4+$6,$4}&quot; tmp | gmt psxyz -R -JM -JZ -p -So.3b -G%C% -W.5 -K -O &gt;&gt; %ps%
+awk &quot;{print $1,$2,$4+$6+$8,$4+$6}&quot; tmp | gmt psxyz -R -JM -JZ -p -So.3b -G%G% -W.5 -K -O &gt;&gt; %ps%
+awk &quot;{print $1,$2,$4+$6+$8+$10,$4+$6+$8}&quot; tmp | ^
+gmt psxyz -R -JM -JZ -p -So.3b -G%CS% -W.5 -K -O &gt;&gt; %ps%
+awk &quot;{print $1,$2,$4+$6+$8+$10+$12,$4+$6+$8+$10}&quot; tmp | ^
+gmt psxyz -R -JM -JZ -p -So.3b -G%G% -W.5 -K -O &gt;&gt; %ps%
+awk &quot;{print $1,$2,$4+$6+$8+$10+$12+$14,$4+$6+$8+$10+$12}&quot; tmp | ^
+gmt psxyz -R -JM -JZ -p -So.3b -G%CS% -W.5 -K -O &gt;&gt; %ps%
+awk &quot;{print $1,$2,$4+$6+$8+$10+$12+$14+$16,$4+$6+$8+$10+$12+$14}&quot; tmp | ^
+gmt psxyz -R -JM -JZ -p -So.3b -G%G% -W.5 -K -O &gt;&gt; %ps%
+awk &quot;{print $1,$2,$4+$6+$8+$10+$12+$14+$16+$18,$4+$6+$8+$10+$12+$14+$16}&quot; tmp | ^
+gmt psxyz -R -JM -JZ -p -So.3b -G%FS% -W.5 -K -O &gt;&gt; %ps%
+awk &quot;{print $1,$2,$3}&quot; tmp | gmt pstext -R -JM -JZ -p -F+f12p=2p,white -D0/-.5 -K -O &gt;&gt; %ps%
+awk &quot;{print $1,$2,$3}&quot; tmp | gmt pstext -R -JM -JZ -p -F+f12p -D0/-.5 -K -O &gt;&gt; %ps%
+
+# 061553G1
+awk &quot;{if ($3==&quot;&quot;061553G1&quot;&quot;&quot;&quot;) print $0}&quot; core.gmt &gt; tmp
+awk &quot;{print $1,$2,$4,0}&quot; tmp | gmt psxyz -R -JM -JZ -p -So.3 -G%G% -W.5 -K -O &gt;&gt; %ps%
+awk &quot;{print $1,$2,$4+$6,$4}&quot; tmp | gmt psxyz -R -JM -JZ -p -So.3b -G%CS% -W.5 -K -O &gt;&gt; %ps%
+awk &quot;{print $1,$2,$4+$6+$8,$4+$6}&quot; tmp | gmt psxyz -R -JM -JZ -p -So.3b -G%G% -W.5 -K -O &gt;&gt; %ps%
+awk &quot;{print $1,$2,$4+$6+$8+$10,$4+$6+$8}&quot; tmp | ^
+gmt psxyz -R -JM -JZ -p -So.3b -G%FS% -W.5 -K -O &gt;&gt; %ps%
+awk &quot;{print $1,$2,$4+$6+$8+$10+$12,$4+$6+$8+$10}&quot; tmp | ^
+gmt psxyz -R -JM -JZ -p -So.3b -G%G% -W.5 -K -O &gt;&gt; %ps%
+awk &quot;{print $1,$2,$4+$6+$8+$10+$12+$14,$4+$6+$8+$10+$12}&quot; tmp | ^
+gmt psxyz -R -JM -JZ -p -So.3b -G%C% -W.5 -K -O &gt;&gt; %ps%
+awk &quot;{print $1,$2,$4+$6+$8+$10+$12+$14+$16,$4+$6+$8+$10+$12+$14}&quot; tmp | ^
+gmt psxyz -R -JM -JZ -p -So.3b -G%CS% -W.5 -K -O &gt;&gt; %ps%
+awk &quot;{print $1,$2,$4+$6+$8+$10+$12+$14+$16+$18,$4+$6+$8+$10+$12+$14+$16}&quot; tmp | ^
+gmt psxyz -R -JM -JZ -p -So.3b -G%G% -W.5 -K -O &gt;&gt; %ps%
+awk &quot;{print $1,$2,$4+$6+$8+$10+$12+$14+$16+$18+$20,$4+$6+$8+$10+$12+$14+$16+$18}&quot; tmp | ^
+gmt psxyz -R -JM -JZ -p -So.3b -G%FS% -W.5 -K -O &gt;&gt; %ps%
+awk &quot;{print $1,$2,$3}&quot; tmp | gmt pstext -R -JM -JZ -p -F+f12p=2p,white -D0/-.5 -K -O &gt;&gt; %ps%
+awk &quot;{print $1,$2,$3}&quot; tmp | gmt pstext -R -JM -JZ -p -F+f12p -D0/-.5 -K -O &gt;&gt; %ps%
+
+# 061551G1
+awk &quot;{if ($3==&quot;&quot;061551G1&quot;&quot;&quot;&quot;) print $0}&quot; core.gmt &gt; tmp
+awk &quot;{print $1,$2,$4,0}&quot; tmp | gmt psxyz -R -JM -JZ -p -So.3 -G%G% -W.5 -K -O &gt;&gt; %ps%
+awk &quot;{print $1,$2,$4+$6,$4}&quot; tmp | gmt psxyz -R -JM -JZ -p -So.3b -G%C% -W.5 -K -O &gt;&gt; %ps%
+awk &quot;{print $1,$2,$4+$6+$8,$4+$6}&quot; tmp | gmt psxyz -R -JM -JZ -p -So.3b -G%FS% -W.5 -K -O &gt;&gt; %ps%
+awk &quot;{print $1,$2,$4+$6+$8+$10,$4+$6+$8}&quot; tmp | ^
+gmt psxyz -R -JM -JZ -p -So.3b -G%C% -W.5 -K -O &gt;&gt; %ps%
+awk &quot;{print $1,$2,$4+$6+$8+$10+$12,$4+$6+$8+$10}&quot; tmp | ^
+gmt psxyz -R -JM -JZ -p -So.3b -G%CS% -W.5 -K -O &gt;&gt; %ps%
+awk &quot;{print $1,$2,$4+$6+$8+$10+$12+$14,$4+$6+$8+$10+$12}&quot; tmp | ^
+gmt psxyz -R -JM -JZ -p -So.3b -G%G% -W.5 -K -O &gt;&gt; %ps%
+awk &quot;{print $1,$2,$4+$6+$8+$10+$12+$14+$16,$4+$6+$8+$10+$12+$14}&quot; tmp | ^
+gmt psxyz -R -JM -JZ -p -So.3b -G%FS% -W.5 -K -O &gt;&gt; %ps%
+awk &quot;{print $1,$2,$3}&quot; tmp | gmt pstext -R -JM -JZ -p -F+f12p=2p,white -D0/-.5 -K -O &gt;&gt; %ps%
+awk &quot;{print $1,$2,$3}&quot; tmp | gmt pstext -R -JM -JZ -p -F+f12p -D0/-.5 -K -O &gt;&gt; %ps%
+
+# legend
+echo C %C% &gt; tmp
+echo L - - L Clay &gt;&gt; tmp
+echo C %FS% &gt;&gt; tmp
+echo L - - L Fine Sand &gt;&gt; tmp
+echo C %CS% &gt;&gt; tmp
+echo L - - L Coarse Sand &gt;&gt; tmp
+echo C %G% &gt;&gt; tmp
+echo L - - L Gravel &gt;&gt; tmp
+gmt pslegend tmp -R -JM -JZ -p -Dx7.7/.5+w4 -F+g0+p1+s-6p/-4p/gray20@40 -K -O &gt;&gt; %ps%
+
+gmt psxy -R -J -JZ -T -O &gt;&gt; %ps%
+gmt psconvert %ps% -Tg -A -P
+del tmp*
+</code></pre>
+<p>學習到的指令:</p>
+<ul>
+<li><code>psxyz</code>繪製三維空間中的點線面。</li>
+<li><code>-So</code>以z軸為基底，繪製三維柱狀圖。讀取的資料格式為<mark>經度 緯度 高度1 高度2</mark>，指令本身後面接上<mark>尺寸[b]</mark>，如果有加上b的話，則更改以高度2為基底高度，反之則用0為基底高度，如果用<code>-SO</code>則取消三維照明的效果。</li>
+<li><code>pslegend</code>繪製圖例。</li>
+<li><code>C</code>文字顏色。</li>
+<li><code>L</code>寫文字。格式為<mark>字體大小 字體種類 對齊方式 文字內容</mark>，
+  <mark>-</mark>表示使用默認值。</li>
+</ul>
+<p>此次所使用的鑽井資料，其地點位在沉積平原，取出的岩心，按粒徑大小排列，主要是由黏土礦物、
+細砂岩、粗砂岩至礫石。由三維的柱狀圖，可以非常清楚地觀察地底下地層的變化，
+如果再配合化石等其他資料，就可以清楚地勾勒出這地區的地層分佈。</p>
+<h2 id="135">13.5 三維透視圖</h2>
+<p>之前有展示如何透過顏色及陰影在平面上繪製地形圖，而本節則示範使用同樣的全球數值地形網格檔，
+來繪製三維的地形圖。百內國家公園(Parque Nacional Torres del Paine)，
+為智利南部的一座國家公園，以湛藍的冰河峽灣及湖泊景觀聞名，而透過三維透視圖，
+將可以把高聳的山脈依傍在海洋的景色，完美地展現出來。</p>
+<p>使用的資料檔:
+- 請參考<a href="../topography_cpt/#m8.5">8-5地形暈眩圖</a>，下載全球一角分的數值地形圖。
+- <a href="../dat/ibcao.cpt">ibcao色階檔</a></p>
+<p>成果圖</p>
+<p align="center">
+  <img src="/fig/13_5_3d_perspective_1.png"/>
+</p>
+
+<p>批次檔</p>
+<pre><code class="language-bat">set data=D:\GMT_data\
+set ps=13_5_3d_perspective.ps
+set R=-80/-70/-56/-48
+
+gmt gmtset MAP_FRAME_TYPE plain FONT_ANNOT_PRIMARY 8p FONT_LABEL 10p PS_MEDIA A3
+
+gmt grdcut %data%ETOPO1_Bed_g_gmt5.grd -R%R% -Gtmp.grd
+gmt grdcut %data%ETOPO1_Bed_g_gmt5_shad.grd -R%R% -Gtmp_shad.grd
+
+# -Qi -N
+gmt grdview tmp.grd -Itmp_shad.grd -R%R%/-6000/2000 -JL-75/-52.5/-59/-45/7.5 -JZ2 -p210/40 ^
+-Cibcao.cpt -N-6000+glightgray -Qi500 -Ba -Bza4000f2000+l&quot;Topo (m)&quot; -BWeSnZ+t&quot;-Qi -N&quot; -K &gt; %ps%
+
+# -Qi &amp; grdcontour
+gmt grdcontour tmp.grd -R -J -JZ -p -C500 -A1000 -Ba -BWeSn -K -O -Y11 &gt;&gt; %ps%
+gmt grdview tmp.grd -Itmp_shad.grd -R%R%/-6000/2000 -J -JZ -p -Cibcao.cpt ^
+-Qi500+m -Ba -Bza4000f2000+l&quot;Topo (m)&quot; -BwesnZ+t&quot;-Qi &amp; grdcontour&quot; -K -O -Y3 &gt;&gt; %ps%
+
+# -Qs -Wc
+gmt grdview tmp.grd -Itmp_shad.grd -R%R%/-6000/2000 -J -JZ -p -Cibcao.cpt ^
+-Qs -Ba -Bza4000f2000+l&quot;Topo (m)&quot; -BWeSnZ+t&quot;-Qs -Wc&quot; -Wc.5 -K -O -X13 -Y-3 &gt;&gt; %ps%
+
+# -Qm -N -Wm -Wf
+gmt grdsample tmp.grd -I10k -Gtmp10.grd
+gmt grdsample tmp_shad.grd -I10k -Gtmp10_shad.grd
+gmt grdview tmp10.grd -Itmp10_shad.grd -R%R%/-6000/2000 -JL -JZ -p -Cibcao.cpt ^
+-N-6000+glightgray -Qm -Ba -Bza4000f2000+l&quot;Topo (m)&quot; -BWeSnZ+t&quot;-Qm -N -Wm -Wf&quot; ^
+-Wm.5 -Wf.75,red -K -O -Y-11 &gt;&gt; %ps%
+
+gmt psxy -R -J -Jz -T -O &gt;&gt; %ps%
+gmt psconvert %ps% -Tg -A -P
+del tmp*
+</code></pre>
+<p>學習到的指令:</p>
+<ul>
+<li><code>grdview</code>繪製三維透視圖或是網格表面。</li>
+<li><code>-Q</code>模式選擇。<ul>
+<li><strong>i</strong>影像圖。後面接上dpi值，來調整解析程度，默認是100 dpi。</li>
+<li><strong>c</strong>影像圖。用法與<strong>i</strong>一樣，但當節點值為NaN時，則用透明色表示。</li>
+<li><strong>m</strong>網格圖。可在後面加上顏色，將取代原有的白色底色。</li>
+<li><strong>s</strong>表面圖。如果後面加上<strong>m</strong>，則繪繪製網格線。</li>
+</ul>
+</li>
+<li><code>-N</code>在z方向繪製平面。後面接上高程值，<strong>+g</strong>可指定平面的顏色。</li>
+<li><code>-W</code>格線的設定。格式為<strong>-W種類</strong>筆觸。<ul>
+<li><strong>-Wc</strong>設定網格或表面圖的等高線。</li>
+<li><strong>-Wm</strong>設定網格的格線，搭配<strong>-Qm</strong>或<strong>-Qsm</strong>。</li>
+<li><strong>-Wf</strong>設定z平面的外框線，搭配<strong>-N</strong>。</li>
+</ul>
+</li>
+</ul>
+<p>先透過<code>gmtcut</code>將原本全球的網格檔切割成較小的目標區域檔，再來透過4種圖片來展示<code>grdview -Q</code>的模式差異，
+在右下角的網格圖中，由於本身全球一角分的解析度太高，所以透過<code>grdsample</code>將網格檔進行從新採樣，
+一般的用法是<code>grdsample 輸入網格檔 -I解析度 -G輸出檔</code>。</p>
+<p>三維透視圖是很好的影像呈現方式，可以一目了然地將地形的差異性表現出來，
+也可將<strong>GMT</strong>繪製的結果圖當做底圖，透過如<strong>CorelDraw</strong>等繪圖軟體進行修圖，來繪製地質模型，
+將可事半功倍。</p>
+<h2 id="136">13.6 習題</h2>
+<p>從上一節中，看到了峽灣地形，實際上，全球有各式各樣的海岸，華倫亭在他的著作《世界海岸》中
+(<strong>Valentin's Classification of Coastal Contexts</strong>)，
+將世界上的海岸分為八種類型中，其中峽灣屬於沉水侵蝕退夷，而這次練習繪製的區域是台灣東部海岸，
+屬於斷層海岸，在海岸分類中為離水堆積進夷，將3D的地形繪製出來，與前一節的峽灣比較，
+來看看兩種海岸的差異吧!</p>
+<p>使用的資料檔:
+- 請參考<a href="../topography_cpt/#m8.5">8-5地形暈眩圖</a>，下載全球一角分的數值地形圖。</p>
+<p>完成圖如下:</p>
+<p align="center">
+  <img src="/fig/13_6_3d_east_coast_1.png"/>
+</p>
+
+<h2 id="137">13.7 參考批次檔</h2>
+<p>列出本章節使用的批次檔，供讀者參考使用，檔案路經可能會有些許不同，再自行修改。</p>
+<ul>
+<li><a href="../bat/13_3_3d_polyhedron.bat">13_3_3d_polyhedron</a></li>
+<li><a href="../bat/13_4_3d_bar.bat">13_4_3d_bar</a></li>
+<li><a href="../bat/13_5_3d_perspective.bat">13_5_3d_perspective</a></li>
+<li><a href="../bat/13_6_3d_east_coast.bat">13_6_3d_east_coast</a></li>
+</ul>
+
+
+
+
+              
+            </article>
+            
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="../histo_pie_ternary/" class="md-footer__link md-footer__link--prev" aria-label="上一頁: 第八章: 直方、圓餅、三元圖" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                上一頁
+              </span>
+              第八章: 直方、圓餅、三元圖
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../geology_map/" class="md-footer__link md-footer__link--next" aria-label="下一頁: 第十章: 地質圖" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                下一頁
+              </span>
+              第十章: 地質圖
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.ecf98df9.min.js", "translations": {"clipboard.copied": "\u5df2\u8907\u88fd", "clipboard.copy": "\u8907\u88fd", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\u3000\u3001\u3002\uff0c\uff0e\uff1f\uff1b]+", "search.placeholder": "\u641c\u5c0b", "search.result.more.one": "\u6b64\u9801\u5c1a\u6709 1 \u500b\u7b26\u5408\u7684\u9805\u76ee", "search.result.more.other": "\u6b64\u9801\u5c1a\u6709 # \u500b\u7b26\u5408\u7684\u9805\u76ee", "search.result.none": "\u6c92\u6709\u7b26\u5408\u7684\u9805\u76ee", "search.result.one": "\u627e\u5230 1 \u500b\u7b26\u5408\u7684\u9805\u76ee", "search.result.other": "\u627e\u5230 # \u500b\u7b26\u5408\u7684\u9805\u76ee", "search.result.placeholder": "\u6253\u5b57\u9032\u884c\u641c\u5c0b", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.9c69f0bc.min.js"></script>
+      
+    
+  </body>
+</html>

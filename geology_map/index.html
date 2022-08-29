@@ -1,0 +1,940 @@
+
+<!doctype html>
+<html lang="zh-Hant" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="GMT5 教程 | 編者: Po-Chin Tseng">
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.3.1, mkdocs-material-8.4.2">
+    
+    
+      
+        <title>第十章: 地質圖 - Simplified GMT Tutorial</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.69437709.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.cbb835fc.min.css">
+        
+      
+      
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          跳轉到
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Simplified GMT Tutorial" class="md-header__button md-logo" aria-label="Simplified GMT Tutorial" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Simplified GMT Tutorial
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              第十章: 地質圖
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜尋" placeholder="搜尋" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜尋引擎
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Simplified GMT Tutorial" class="md-nav__button md-logo" aria-label="Simplified GMT Tutorial" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Simplified GMT Tutorial
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        總覽
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../intro_install/" class="md-nav__link">
+        GMT介紹及安裝
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../net_software/" class="md-nav__link">
+        網路資源及配套軟體
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../basic_defaults/" class="md-nav__link">
+        第零章: 基本概念及默認值
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../projection/" class="md-nav__link">
+        第一章: 製作地圖: 地理投影法
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../xy_figure/" class="md-nav__link">
+        第二章: XY散佈圖: 其他投影法
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contour_profile/" class="md-nav__link">
+        第三章: 等高線圖及剖面
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../topography_cpt/" class="md-nav__link">
+        第四章: 地形圖與色階
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../seismicity_meca/" class="md-nav__link">
+        第五章: 地震活動性與機制解
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vector_velocity/" class="md-nav__link">
+        第六章: 向量與速度場
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../taiwan_geography/" class="md-nav__link">
+        第七章: 台灣地理資訊
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../histo_pie_ternary/" class="md-nav__link">
+        第八章: 直方、圓餅、三元圖
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../three_dimension/" class="md-nav__link">
+        第九章: 三維空間視圖
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          第十章: 地質圖
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        第十章: 地質圖
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目錄">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目錄
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#14" class="md-nav__link">
+    14. 地質圖
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#141" class="md-nav__link">
+    14.1 目的
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#142" class="md-nav__link">
+    14.2 學習的指令與概念
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#143" class="md-nav__link">
+    14.3 點和刻線圖案
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#144" class="md-nav__link">
+    14.4 東南亞地質年代圖
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#145" class="md-nav__link">
+    14.5 地質年代結合地形
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#146" class="md-nav__link">
+    14.6 習題
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#147" class="md-nav__link">
+    14.7 參考批次檔
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目錄">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目錄
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#14" class="md-nav__link">
+    14. 地質圖
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#141" class="md-nav__link">
+    14.1 目的
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#142" class="md-nav__link">
+    14.2 學習的指令與概念
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#143" class="md-nav__link">
+    14.3 點和刻線圖案
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#144" class="md-nav__link">
+    14.4 東南亞地質年代圖
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#145" class="md-nav__link">
+    14.5 地質年代結合地形
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#146" class="md-nav__link">
+    14.6 習題
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#147" class="md-nav__link">
+    14.7 參考批次檔
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+
+
+<h1 id="_1">地質圖</h1>
+<h2 id="14">14. 地質圖</h2>
+<p>在地球科學研究領域中，編者偏向做地球物理的研究，通過將大量儀器收集來的數據，
+經由電腦進行各種的運算處理，觀察計算後的結果，試圖找出地球告訴我們的事情。
+有趣的是，這些結果往往與地質有密不可分的關係，更常常會有一種感慨，
+地質學家早早透過野外觀察，見微知著，提出理論，而自己只是利用數據去驗證理論。
+本章就來學會怎樣繪製地質圖，來輔助自己的研究吧!</p>
+<h2 id="141">14.1 目的</h2>
+<p>本章將學習如何繪製</p>
+<ol>
+<li>點和刻線圖案(Bit and Hachure Patterns)</li>
+<li>地質年代地圖(Geological Time Map)</li>
+<li>地質年代結合地形(Geological Time Map with Terrain)</li>
+</ol>
+<h2 id="142">14.2 學習的指令與概念</h2>
+<ul>
+<li><code>gmtconvert</code>: 處理多區塊式文件</li>
+<li><code>grdmask</code>: 透過點或多邊形來製作網格檔</li>
+<li><code>psxy</code>: 繪製線、多邊形、符號</li>
+<li><code>ogr2ogr</code>: GDAL中處理向量的轉檔程式</li>
+<li><code>python pyproj</code>: python中用以處理座標系投影的模組</li>
+</ul>
+<h2 id="143">14.3 點和刻線圖案</h2>
+<p>在繪製地質圖中，會利用簡單的點或是線來代表各種不同的岩性，通常被稱做地質圖元符號。
+<strong>GMT 5.4.2</strong> 提供90種的符號，可參考<a href="basic_defaults#m4.4g">4-4點和刻線圖案</a>，
+本節將利用美國聯邦地理資料委員會(FGDC, Federal Geographic Data Committee)
+其下的地質資料子委員會(Geologic Data Committee)所製訂的
+<a href="https://ngmdb.usgs.gov/fgdc_gds/geolsymstd.php">數位地質圖符號標準</a>
+(Digital Cartographic Standard for Geologic Map Symbolization)，
+來示範幾種GMT中的地質圖元符號，通常代表哪種岩性。</p>
+<p>成果圖</p>
+<p align="center">
+  <img src="/fig/14_3_bit_harchure_patterns_1.png"/>
+</p>
+
+<p>批次檔</p>
+<pre><code class="language-bat">set ps=14_3_bit_harchure_patterns.ps
+
+# -Gpdpi/pattern[:Bcolor[Fcolor]]
+echo .2 23.3 Demonstration of -Gp | gmt pstext -R0/16/0/24 -JX16/24 -F+f18p,1+jML -P -K &gt; %ps%
+echo 2 21 3 1.5 | gmt psxy -R -JX -Sr -Gp100/24 -W.5 -K -O &gt;&gt; %ps%
+echo 6 21 3 1.5 | gmt psxy -R -JX -Sr -Gp300/24 -W.5 -K -O &gt;&gt; %ps%
+echo 10 21 3 1.5 | gmt psxy -R -JX -Sr -Gp500/24:Fblue -W.5 -K -O &gt;&gt; %ps%
+echo 14 21 3 1.5 | gmt psxy -R -JX -Sr -Gp300/24:BblackFyellow -W.5 -K -O &gt;&gt; %ps%
+echo .5 22.1 -Gp100/24 &gt; tmp
+echo 4.5 22.1 -Gp300/24 &gt;&gt; tmp
+echo 8.5 22.1 -Gp500/24:Fblue &gt;&gt; tmp
+echo 11.8 22.1 -Gp300/24:BblackFyellow &gt;&gt; tmp
+gmt pstext tmp -R -JX -F+f10p+jML -K -O &gt;&gt; %ps%
+
+# Sedimentary Rock
+echo .3 19 Sedimentary Lithology Patterns | gmt pstext -R -JX -F+f14p,1+jML -K -O &gt;&gt; %ps%
+echo 2 17.5 3 1.5 | gmt psxy -R -JX -Sr -Gp200/24:B230 -W.5 -K -O &gt;&gt; %ps%
+echo 6 17.5 3 1.5 | gmt psxy -R -JX -Sr -Gp200/43:B230 -W.5 -K -O &gt;&gt; %ps%
+echo 10 17.5 3 1.5 | gmt psxy -R -JX -Sr -Gp200/31:B230 -W.5 -K -O &gt;&gt; %ps%
+echo 14 17.5 3 1.5 | gmt psxy -R -JX -Sr -Gp200/62:B227/249/124 -W.5 -K -O &gt;&gt; %ps%
+echo .6 18 24 &gt; tmp
+echo 4.6 18 43 &gt;&gt; tmp
+echo 8.6 18 31 &gt;&gt; tmp
+echo 12.6 18 62 &gt;&gt; tmp
+gmt pstext tmp -R -JX -F+f10p+jML -W.2 -G255 -K -O &gt;&gt; %ps%
+echo 2 16.4 Clay or clay shale &gt; tmp
+echo 6 16.4 Sandy or silty shale &gt;&gt; tmp
+echo 10 16.4 Massive sand or sandstone &gt;&gt; tmp
+echo 14 16.4 Gravel or conglomerate &gt;&gt; tmp
+gmt pstext tmp -R -JX -F+f9p+jMC -K -O &gt;&gt; %ps%
+
+echo 2 15.1 3 1.5 | gmt psxy -R -JX -Sr -Gp200/33 -W.5 -K -O &gt;&gt; %ps%
+echo 6 15.1 3 1.5 | gmt psxy -R -JX -Sr -Gp200/20 -W.5 -K -O &gt;&gt; %ps%
+echo 10 15.1 3 1.5 | gmt psxy -R -JX -Sr -Gp200/21 -W.5 -K -O &gt;&gt; %ps%
+echo 14 15.1 3 1.5 | gmt psxy -R -JX -Sr -Gp200/61:B136/251/144 -W.5 -K -O &gt;&gt; %ps%
+echo .6 15.6 33 &gt; tmp
+echo 4.6 15.6 20 &gt;&gt; tmp
+echo 8.6 15.6 21 &gt;&gt; tmp
+echo 12.6 15.6 61 &gt;&gt; tmp
+gmt pstext tmp -R -JX -F+f10p+jML -W.2 -G255 -K -O &gt;&gt; %ps%
+echo 2 14.0 Sandy limestone &gt; tmp
+echo 6 14.0 Limestone &gt;&gt; tmp
+echo 10 14.0 Dolostone or dolomite &gt;&gt; tmp
+echo 14 14.0 Breccia &gt;&gt; tmp
+gmt pstext tmp -R -JX -F+f9p+jMC -K -O &gt;&gt; %ps%
+
+# Igneous rock
+echo .3 12.4 Igneous and Vein-matter Lithology Patterns | gmt pstext -R -JX -F+f14p,1+jML -K -O &gt;&gt; %ps%
+echo 2 10.9 3 1.5 | gmt psxy -R -JX -Sr -Gp200/29:B245/99/165 -W.5 -K -O &gt;&gt; %ps%
+echo 6 10.9 3 1.5 | gmt psxy -R -JX -Sr -Gp200/47:B245/99/165 -W.5 -K -O &gt;&gt; %ps%
+echo 10 10.9 3 1.5 | gmt psxy -R -JX -Sr -Gp200/28:B245/99/165 -W.5 -K -O &gt;&gt; %ps%
+echo .6 11.4 29 &gt; tmp
+echo 4.6 11.4 47 &gt;&gt; tmp
+echo 8.6 11.4 28 &gt;&gt; tmp
+gmt pstext tmp -R -JX -F+f10p+jML -W.2 -G255 -K -O &gt;&gt; %ps%
+echo 2 9.8 Igneous &gt; tmp
+echo 6 9.8 Granite &gt;&gt; tmp
+echo 10 9.8 Vitrophyre &gt;&gt; tmp
+gmt pstext tmp -R -JX -F+f9p+jMC -K -O &gt;&gt; %ps%
+
+gmt psxy -R -J -T -O &gt;&gt; %ps%
+gmt psconvert %ps% -Tg -A -P
+del tmp*
+</code></pre>
+<p>學習到的指令:
+* <code>psxy -Gp</code>填上地質圖元符號。格式為<mark>-Gp解析度/種類代碼:B背景色F前景色</mark>。</p>
+<p>GMT提供了非常簡單的方式來繪製地質圖案，透過解析度可以調整點或是線的疏密程度，
+顏色上可利用<strong>B</strong>及<strong>F</strong>來調整背景色及前景色。而上面的成果圖中，
+圖案象徵的岩性採用對照數位地質圖符號標準，實際上還有更多的種類可供選擇，讀者可自行參考。</p>
+<h2 id="144">14.4 東南亞地質年代圖</h2>
+<p>本節使用由美國地質調查所(USGS)所公佈，放在美國政府公開資訊網站上的<a href="https://catalog.data.gov/dataset/generalized-geology-of-southeast-asia-geo3bl">東南亞概略地質</a>
+(Generalized Geology of Southeast Asia)，來將上節所學到的地質圖元符號，
+實際應用在繪製地圖上。</p>
+<p>該網上提供的檔案格式為.shp (Shapefile)，
+該格式為GIS軟體所使用的地理空間向量格式(geospatial vector format)，要讓GMT能使用，
+還需要透過一些轉檔步驟，讀者可以使用下方轉檔好的東南亞地質檔，
+也可以實際更跟編者來完成整個轉檔的流程。
+在<a href="../contour_profile/#m7.3">7.3 簡介網格檔</a>中學到，
+透過<a href="http://www.gdal.org/index.html">GDAL</a>提供的轉檔程式<mark>gdal_translate</mark>，
+可將.tiff檔轉換成GMT使用的網格檔。
+而這邊將介紹該組織所提供的另一個轉檔程式<mark>ogr2ogr</mark>，
+它可將.shp檔案轉換成GMT可使用的格式，指令如下:</p>
+<pre><code class="language-bat"># ogr2ogr -f &quot;輸出格式種類&quot; 輸出檔名 輸入檔名
+ogr2ogr -f &quot;GMT&quot; geo3bl.gmt geo3bl.shp
+ogr2ogr -f &quot;CSV&quot; geo3bl.csv geo3bl.shp
+</code></pre>
+<p>實際將geo3bl.shp透過上述指令轉換成.gmt及.csv檔，在此需要注意的是，除了.shp檔外，
+其他像是.bdf, .kst, .shx 等等的檔案都需要放在同一個資料夾，否則會發生轉檔錯誤。
+打開轉好的geo3bl.gmt，會發現轉出的格式為GMT區塊文件，
+而檔頭則給了一些該資料的編排模式及座標系資訊等等，下面展示前11列的資訊。</p>
+<pre><code class="language-bat"># @VGMT1.0 @GPOLYGON
+# @R-2843593.21876/4218174.81256/-1324372.95632/2600390.64774             
+# @Jp&quot;+proj=lcc +lat_1=31 +lat_2=-29 +lat_0=0 +lon_0=120 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs &quot;
+# @Jw&quot;PROJCS[\&quot;WGS_1984_Lambert_Conformal_Conic\&quot;,GEOGCS[\&quot;GCS_WGS_1984\&quot;,DATUM[\&quot;WGS_1984\&quot;,SPHEROID[\&quot;WGS_84\&quot;,6378137.0,298.257223563]],PRIMEM[\&quot;Greenwich\&quot;,0.0],UNIT[\&quot;Degree\&quot;,0.0174532925199433]],PROJECTION[\&quot;Lambert_Conformal_Conic_2SP\&quot;],PARAMETER[\&quot;False_Easting\&quot;,0.0],PARAMETER[\&quot;False_Northing\&quot;,0.0],PARAMETER[\&quot;Central_Meridian\&quot;,120.0],PARAMETER[\&quot;Standard_Parallel_1\&quot;,31.0],PARAMETER[\&quot;Standard_Parallel_2\&quot;,-29.0],PARAMETER[\&quot;Latitude_Of_Origin\&quot;,0.0],UNIT[\&quot;Meter\&quot;,1.0]]&quot;
+# @NAREA|PERIMETER|TYPE|GLG|GEN_GLG
+# @Tdouble|double|string|string|string
+# FEATURE_DATA
+&gt;
+# @D12326932870131.613|139356345.717||H2O|H2O
+# @P
+-24973.412025285801 2597878.6243802495
+</code></pre>
+<p>其中最後一列顯示出x及y的位置，但不是我們熟悉的WGS84座標系統，
+而第三列顯示該檔案的座標系統被投影在東經120度，南緯29度至北緯31度間，
+所以還需要做座標系的轉換，轉換成WGS84，才能方便地供GMT使用。
+編者這裡透過Python中的<strong>pyproj</strong>模組來完成座標系轉換，僅列出關鍵的指令部份:</p>
+<pre><code class="language-python">import pyproj
+p = pyproj.Proj(
+    &quot;+proj=lcc +lat_1=31 +lat_2=-29 +lat_0=0 +lon_0=120 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs&quot;)
+lon, lat = p(float(x), float(y), inverse=True)
+</code></pre>
+<p>接著透過讀取檔案、迴圈處理、條件判斷，將轉好的資料輸出，就是下方所提供的東南亞地質檔。</p>
+<p>使用的資料檔:</p>
+<ul>
+<li><a href="../dat/geo3bl_lonlat.gmt">東南亞地質檔</a></li>
+<li><a href="../dat/rock_unit.cpt">地質年代色階檔</a></li>
+<li><a href="../dat/legend.rar">圖例壓縮檔</a></li>
+</ul>
+<p>成果圖</p>
+<p align="center">
+  <img src="/fig/14_4_se_geo_1.png"/>
+</p>
+
+<p>批次檔</p>
+<pre><code class="language-bat">set ps=14_4_se_geo.ps
+
+# basemap and geology color
+gmt pscoast -R88/165/-16/28 -JL140.0/0.0/-10.0/15.0/25 -Ba10g2.5 -Df ^
+-A5000 -W.5 -G245/246/246 -S234/246/253 -K &gt; %ps%
+gmt psxy geo3bl_lonlat.gmt -R -JL -W.1,red -Crock_unit.cpt -L -K -O &gt;&gt; %ps%
+
+# 3 specified rock type
+gmt gmtconvert geo3bl_lonlat.gmt -S&quot;|v|&quot; &gt; tmp
+awk &quot;{print $1,&quot;&quot;p400/28:F50B&quot;&quot;&quot;&quot;$2,$3,&quot;&quot;p400/28:F50B&quot;&quot;&quot;&quot;$4}&quot; rock_unit.cpt &gt; tmp.cpt
+gmt psxy tmp -R -JL -Ctmp.cpt -W.1,red -L -K -O &gt;&gt; %ps%
+
+gmt gmtconvert geo3bl_lonlat.gmt -S&quot;|i|&quot; &gt; tmp
+awk &quot;{print $1,&quot;&quot;p400/29:F50B&quot;&quot;&quot;&quot;$2,$3,&quot;&quot;p400/29:F50B&quot;&quot;&quot;&quot;$4}&quot; rock_unit.cpt &gt; tmp.cpt
+gmt psxy tmp -R -JL -Ctmp.cpt -W.1,red -L -K -O &gt;&gt; %ps%
+
+gmt gmtconvert geo3bl_lonlat.gmt -S&quot;|w|&quot; &gt; tmp
+awk &quot;{print $1,&quot;&quot;p400/44:F50B&quot;&quot;&quot;&quot;$2,$3,&quot;&quot;p400/44:F50B&quot;&quot;&quot;&quot;$4}&quot; rock_unit.cpt &gt; tmp.cpt
+gmt psxy tmp -R -JL -Ctmp.cpt -W.1,red -L -K -O &gt;&gt; %ps%
+
+# legend part
+echo 0 0 &gt; tmp
+echo 10 0 &gt;&gt; tmp
+echo 10 10 &gt;&gt; tmp
+echo 0 10 &gt;&gt; tmp
+gmt psxy tmp -JX13/10 -R0/10/0/10 -G255/255/255 -W1 -L -K -O -X13 -Y7 &gt;&gt; %ps%
+echo 0.3 9.6 Age of rock units &gt; tmp
+echo 2.2 2.3 Specified rock type &gt;&gt; tmp
+echo 6.5 2.3 Other units &gt;&gt; tmp
+gmt pstext tmp -R -JX -F+f12p,3+jML -K -O &gt;&gt; %ps%
+echo 2.4 1.7 0.5 0.30 | gmt psxy -R -JX -Sr -W.5 -Gp400/28:B255 -K -O &gt;&gt; %ps%
+echo 2.4 1.2 0.5 0.30 | gmt psxy -R -JX -Sr -W.5 -Gp400/29:B255 -K -O &gt;&gt; %ps%
+echo 2.4 0.7 0.5 0.30 | gmt psxy -R -JX -Sr -W.5 -Gp400/44:B255 -K -O &gt;&gt; %ps%
+echo 2.7 1.7 Volcanic rocks &gt; tmp
+echo 2.7 1.2 Intrusive rocks &gt;&gt; tmp
+echo 2.7 0.7 Ophiolites \046 ultrabasic rocks &gt;&gt; tmp
+gmt pstext tmp -R -JX -F+f10p+jML -K -O &gt;&gt; %ps%
+gmt psxy legend.dat -R -JX -Sr -W.5 -Crock_unit.cpt -K -O &gt;&gt; %ps%
+gmt pstext legend.cod -R -JX -F+f4p+jMC -K -O &gt;&gt; %ps%
+gmt pstext legend.tex -R -JX -F+f10p+jML -K -O &gt;&gt; %ps%
+
+gmt psxy -R -J -T -O &gt;&gt; %ps%
+gmt psconvert %ps% -Tg -A -P
+del tmp*
+</code></pre>
+<p>學習到的指令:</p>
+<p>首先可從輸出的.csv檔中，找出共有幾種地質年代及岩性，並將其手動製作成圖例說明的資料。
+在<a href="../taiwan_geography/#m11.7">11.7人口密度</a>中，示範了如何利用<code>psxy -C -L</code>配合區塊文件
+中檔頭<code>-Z</code>的值，來完成封閉多邊形的著色，此處也利用同樣的方式。</p>
+<p>由於東南亞地質檔中，
+部份的區域有提供岩石種類的資訊，用<code>gmtconvert -S</code>來搜尋相對應的關鍵字母，並輸出成暫存檔，
+並將原有色階檔的顏色前面加上<code>-p400/28F50B</code>字串，
+讓這些特定的區域能加上地質圖元符號進行著色，來達到顯示不同岩性的效果。
+最後轉成在xy座標系統上，把之前整理好圖例說明檔，調整位置繪製出來，就大功告成了。</p>
+<h2 id="145">14.5 地質年代結合地形</h2>
+<p>地形與地質往往是密不可分的關係，本節雖使用的是地質年代的底圖，
+但也還是可以從山區及平原看出地層年代的差異。但在將地質資料結合地形時，
+需要將上節所使用的區塊文件做網格化處理，在此將透過繪製婆羅洲(或稱加里曼丹島)，
+來示範如何將此二者結合在一起。</p>
+<p>使用的資料檔:</p>
+<ul>
+<li><a href="../dat/geo3bl_lonlat.grd">東南亞地質網格檔</a></li>
+<li><a href="../dat/rock_unit.cpt">地質年代色階檔</a></li>
+</ul>
+<p>成果圖</p>
+<p align="center">
+  <img src="/fig/14_5_se_geo_grd_1.png"/>
+</p>
+
+<p>批次檔</p>
+<pre><code class="language-bat">set ps=14_5_se_geo_grd.ps
+set data=D:\GMT_data\
+
+# gmt grdmask geo3bl_lonlat.gmt -R88/165/-16/28 -I1m -Nz -Ggeo3bl_lonlat.grd -V
+
+gmt gmtset MAP_FRAME_TYPE plain
+
+# base grid image
+gmt grdimage geo3bl_lonlat.grd -R108/120/-5/7.7 -JM14 -Ba -BwESn ^
+-Crock_unit.cpt -I%data%ETOPO1_Bed_g_gmt5_shad.grd -K &gt; %ps%
+gmt pscoast -R -JM -Df -A500 -W.5 -K -O &gt;&gt; %ps%
+
+# legend set
+echo H 20 Times-Roman Legend &gt; tmp
+echo G .2 &gt;&gt; tmp
+echo N 2 &gt;&gt; tmp
+echo S .5 r .5 255/251/198 .3 .9 Quaternary &gt;&gt; tmp
+echo S .5 r .5 255/245/127 .3 .9 Cenozoic &gt;&gt; tmp
+echo S .5 r .5 255/233/123 .3 .9 Neogene &gt;&gt; tmp
+echo S .5 r .5 139/186/164 .3 .9 Mesozoic &gt;&gt; tmp
+echo S .5 r .5 250/190/0 .3 .9 Undivided Tertiary &gt;&gt; tmp
+echo S .5 r .5 224/189/188 .3 .9 Mesozoic/Paleozoic &gt;&gt; tmp
+echo N 1 &gt;&gt; tmp
+echo S .5 r .5 213/201/161 .3 .9 Paleogene &gt;&gt; tmp
+echo N 2 &gt;&gt; tmp
+echo S .5 r .5 240/244/197 .3 .9 Tertiary/Cretaceous &gt;&gt; tmp
+echo S .5 r .5 234/246/253 .3 .9 Surface water &gt;&gt; tmp
+echo S .5 r .5 144/195/31 .3 .9 Cretaceous &gt;&gt; tmp
+echo S .5 r .5 245/246/246 .3 .9 Geology not shown &gt;&gt; tmp
+echo S .5 r .5 92/194/207 .3 .9 Triassic &gt;&gt; tmp
+echo S .5 r .5 181/0/129 .3 .9 Undetermined age &gt;&gt; tmp
+gmt pslegend tmp -R -JM -C.1/.1 -Dx.2/13+w9 -F+g240+p1+r.2 ^
+--FONT_ANNOT_PRIMARY=10p -K -O &gt;&gt; %ps%
+
+gmt psxy -R -J -T -O &gt;&gt; %ps%
+gmt psconvert %ps% -Tg -A -P
+del tmp*
+</code></pre>
+<p>學習到的指令:</p>
+<ul>
+<li><code>grdmask</code>透過點或多邊形來製作網格檔。</li>
+<li>輸入檔案可以是區塊文件，或是多個文件，像是coastline_*.xy。</li>
+<li><code>-G</code>輸出網格檔名。</li>
+<li><code>-I</code>解析度。</li>
+<li><code>-R</code>設定範圍。</li>
+<li><code>-A</code>修改兩數據點中的連接方式。<ul>
+<li><strong>-A</strong>忽略現有的連接方式，採用直線連接。</li>
+<li><strong>-Am</strong>先沿著經線，再沿著緯線。</li>
+<li><strong>-Ap</strong>先沿著緯線，再沿著經線。</li>
+<li><strong>-Ax</strong>先沿著x軸，再沿著y軸。</li>
+<li><strong>-Ay</strong>先沿著y軸，再沿著x軸。</li>
+</ul>
+</li>
+<li><code>-N</code>設定多邊形外部、邊緣、內部的值。格式為<mark>-N[模式代碼]外部數值/邊緣數值/內部數值</mark>，數值除了給任意數值外，也可以給<strong>NaN</strong>。<ul>
+<li><strong>-Nz</strong>讀取區塊文件中的<strong>-Z</strong>賦予的值，將其値視為多邊形內部的值。</li>
+<li><strong>-NZ</strong>與<strong>-Nz</strong>一樣，除了多邊形內部外，邊緣也被視為內部的一部份。</li>
+<li><strong>-Np</strong>使用從0開始遞增的數字作為多邊形的編號，也可在後面加上一個數值，作為起始値。</li>
+<li><strong>-NP</strong>與<strong>-Np</strong>一樣，除了多邊形內部外，邊緣也被視為內部的一部份。</li>
+</ul>
+</li>
+<li><code>-S</code>利用節點來設定搜尋半徑，決定園內、邊緣、園外的值。格式為<mark>-S搜尋半徑[單位]</mark></li>
+<li><code>-N[z|Z|p|P]</code>與<code>-S</code>不能共用。</li>
+</ul>
+<p>透過<code>grdmask</code>就可以將區塊文件轉換成數値檔，需要注意的是，要讓地質與地形繪製在一起，
+地質網格與地形陰影這兩個網格檔，需要同樣的解析度，所以設定<code>-I1m</code>來對應全球一角分的
+地形陰影檔，借此，就可以一次地將這兩種資訊表現在圖上了。</p>
+<h2 id="146">14.6 習題</h2>
+<p>TODO</p>
+<h2 id="147">14.7 參考批次檔</h2>
+<p>列出本章節使用的批次檔，供讀者參考使用，檔案路經可能會有些許不同，再自行修改。</p>
+<ul>
+<li><a href="../bat/14_3_bit_harchure_patterns.bat">14_3_bit_harchure_patterns</a></li>
+<li><a href="../bat/14_4_se_geo.bat">14_4_se_geo</a></li>
+<li><a href="../bat/14_5_se_geo_grd.bat">14_5_se_geo_grd</a></li>
+</ul>
+
+
+
+
+              
+            </article>
+            
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="../three_dimension/" class="md-footer__link md-footer__link--prev" aria-label="上一頁: 第九章: 三維空間視圖" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                上一頁
+              </span>
+              第九章: 三維空間視圖
+            </div>
+          </div>
+        </a>
+      
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.ecf98df9.min.js", "translations": {"clipboard.copied": "\u5df2\u8907\u88fd", "clipboard.copy": "\u8907\u88fd", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\u3000\u3001\u3002\uff0c\uff0e\uff1f\uff1b]+", "search.placeholder": "\u641c\u5c0b", "search.result.more.one": "\u6b64\u9801\u5c1a\u6709 1 \u500b\u7b26\u5408\u7684\u9805\u76ee", "search.result.more.other": "\u6b64\u9801\u5c1a\u6709 # \u500b\u7b26\u5408\u7684\u9805\u76ee", "search.result.none": "\u6c92\u6709\u7b26\u5408\u7684\u9805\u76ee", "search.result.one": "\u627e\u5230 1 \u500b\u7b26\u5408\u7684\u9805\u76ee", "search.result.other": "\u627e\u5230 # \u500b\u7b26\u5408\u7684\u9805\u76ee", "search.result.placeholder": "\u6253\u5b57\u9032\u884c\u641c\u5c0b", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.9c69f0bc.min.js"></script>
+      
+    
+  </body>
+</html>

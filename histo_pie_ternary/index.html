@@ -1,0 +1,902 @@
+
+<!doctype html>
+<html lang="zh-Hant" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="GMT5 教程 | 編者: Po-Chin Tseng">
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.3.1, mkdocs-material-8.4.2">
+    
+    
+      
+        <title>第八章: 直方、圓餅、三元圖 - Simplified GMT Tutorial</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.69437709.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.cbb835fc.min.css">
+        
+      
+      
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          跳轉到
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Simplified GMT Tutorial" class="md-header__button md-logo" aria-label="Simplified GMT Tutorial" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Simplified GMT Tutorial
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              第八章: 直方、圓餅、三元圖
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜尋" placeholder="搜尋" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜尋引擎
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Simplified GMT Tutorial" class="md-nav__button md-logo" aria-label="Simplified GMT Tutorial" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Simplified GMT Tutorial
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        總覽
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../intro_install/" class="md-nav__link">
+        GMT介紹及安裝
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../net_software/" class="md-nav__link">
+        網路資源及配套軟體
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../basic_defaults/" class="md-nav__link">
+        第零章: 基本概念及默認值
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../projection/" class="md-nav__link">
+        第一章: 製作地圖: 地理投影法
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../xy_figure/" class="md-nav__link">
+        第二章: XY散佈圖: 其他投影法
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contour_profile/" class="md-nav__link">
+        第三章: 等高線圖及剖面
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../topography_cpt/" class="md-nav__link">
+        第四章: 地形圖與色階
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../seismicity_meca/" class="md-nav__link">
+        第五章: 地震活動性與機制解
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vector_velocity/" class="md-nav__link">
+        第六章: 向量與速度場
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../taiwan_geography/" class="md-nav__link">
+        第七章: 台灣地理資訊
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          第八章: 直方、圓餅、三元圖
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        第八章: 直方、圓餅、三元圖
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目錄">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目錄
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#12" class="md-nav__link">
+    12. 直方、圓餅、三元圖
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#121" class="md-nav__link">
+    12.1 目的
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#122" class="md-nav__link">
+    12.2 學習的指令與概念
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#123" class="md-nav__link">
+    12.3 直方圖
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#124" class="md-nav__link">
+    12.4 圓餅圖
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#125" class="md-nav__link">
+    12.5 三元圖
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#126" class="md-nav__link">
+    12.6 習題
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#127" class="md-nav__link">
+    12.7 參考批次檔
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../three_dimension/" class="md-nav__link">
+        第九章: 三維空間視圖
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../geology_map/" class="md-nav__link">
+        第十章: 地質圖
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目錄">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目錄
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#12" class="md-nav__link">
+    12. 直方、圓餅、三元圖
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#121" class="md-nav__link">
+    12.1 目的
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#122" class="md-nav__link">
+    12.2 學習的指令與概念
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#123" class="md-nav__link">
+    12.3 直方圖
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#124" class="md-nav__link">
+    12.4 圓餅圖
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#125" class="md-nav__link">
+    12.5 三元圖
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#126" class="md-nav__link">
+    12.6 習題
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#127" class="md-nav__link">
+    12.7 參考批次檔
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+
+
+<h1 id="_1">直方、圓餅、三元圖</h1>
+<h2 id="12">12. 直方、圓餅、三元圖</h2>
+<p>在統計圖表中，除了之前介紹的折線圖、點散佈圖等，還有一些是平常生活中也常會使用到的，
+本章將依序介紹GMT是如何繪製直方圖、圓餅圖及三元圖。</p>
+<h2 id="121">12.1 目的</h2>
+<p>本章將學習如何繪製</p>
+<ol>
+<li>直方圖(Histogram)</li>
+<li>圓餅圖(Pie Chart)</li>
+<li>三元圖(Ternary)</li>
+</ol>
+<h2 id="122">12.2 學習的指令與概念</h2>
+<ul>
+<li><code>makecpt</code>: 製作色階檔</li>
+<li><code>pshistogram</code>: 繪製直方圖</li>
+<li><code>psternary</code>: 繪製三元圖</li>
+<li><code>psxy</code>: 繪製線、多邊形、符號</li>
+<li><code>awk</code>語法的示範</li>
+</ul>
+<h2 id="123">12.3 直方圖</h2>
+<p>當拿到散亂的大筆一維資料時，通常第一時間想到的分類方式是透過設定區間，將資料分類，
+譬如期中考成績，透過固定分數級距，將分數轉變成A+、A、A-依序下去，
+將不同級距的數量統計並繪製成圖，通常稱這種圖為直方圖。本節將利用2016台灣人口的年齡資料，
+以每五歲為一個級距，來繪製人口金字塔圖。本次檔案有點大，故做壓縮處理。</p>
+<p>使用的資料檔:
+- <a href="../dat/population_2016.rar">2016台灣人口年齡</a></p>
+<p>成果圖</p>
+<p align="center">
+  <img src="/fig/12_3_population_histo_1.png"/>
+</p>
+
+<p>批次檔</p>
+<pre><code class="language-bat">set ps=12_3_population_histo.ps
+set cpt=haxby.cpt
+
+gmt makecpt -C%cpt% -T0/100/5 -D &gt; tmp.cpt
+
+# histogram
+gmt pshistogram population_2016_b.dat -R0/102.5/0/1.3e6 -JX-12/15 ^
+-BWeS+t&quot;2016 Taiwan Age Distribution&quot; -Bxa20f10+l&quot;Age&quot; -Bya+l&quot;Male&quot; ^
+-A -Ctmp.cpt -D+o-1.7 -W5 -L0.5 -K &gt; %ps%
+gmt pshistogram population_2016_g.dat -R -JX12/15 ^
+-BS -Bxa -Bya+l&quot;Female&quot; -A -Ctmp.cpt -D -W5 -L0.5 -X12 -K -O &gt;&gt; %ps%
+
+gmt psxy -R -J -T -O &gt;&gt; %ps%
+gmt psconvert %ps% -Tg -A -P
+del tmp*
+</code></pre>
+<p>學習到的指令:</p>
+<ul>
+<li><code>pshistogram</code>繪製直方圖。</li>
+<li><code>-W</code>間隔寬度。<ul>
+<li>控制落在範圍外點的處理方式，<strong>+b</strong>範圍外的數據包含在第一個或最後一個級距中；
+<strong>+l</strong>只將小於範圍的放入第一個級距中；<strong>+h</strong>只將大於範圍的放入最後一個級距中。</li>
+</ul>
+</li>
+<li><code>-A</code>改為繪製水平直方圖。</li>
+<li><code>-C</code>色階檔，依照每個間隔的中間值繪製對應顏色。</li>
+<li><code>-D</code>在每個Bar加上標注，內容為統計數目。<ul>
+<li><strong>+b</strong>標注放在Bar底部，默認是頂部</li>
+<li><strong>+f</strong>字體</li>
+<li><strong>+o</strong>偏移量</li>
+<li><strong>+r</strong>標注從水平轉垂直</li>
+</ul>
+</li>
+<li><code>-F</code>更改取邊界範圍的方式。以0到100為例，一般以10為一個級距，是算0~10為一間隔，
+  使用<code>-F</code>將變成0~5、5~15為間隔。</li>
+<li><code>-G</code>填滿Bar的顏色。</li>
+<li><code>-I</code>輸出計算結果不繪圖，輸出<mark>x最小值 x最大值 y最小值 y最大值</mark>。</li>
+<li><code>-L</code>設定Bar的邊框屬性。</li>
+<li><code>-N</code>模式+p筆觸，繪製常態分佈曲線。<ul>
+<li><strong>mode=0</strong>: mean and standard deviation</li>
+<li><strong>mode=1</strong>: median and L1 scale</li>
+<li><strong>mode=2</strong>: LMS mode and scale</li>
+</ul>
+</li>
+<li><code>-Q</code>繪製累積直方圖。</li>
+<li><code>-S</code>繪製階梯直方圖。</li>
+<li><code>-Z</code>種類+w間隔，繪製其他種類直方圖。<ul>
+<li><strong>type=0</strong>: count(默認值)</li>
+<li><strong>type=1</strong>: frequency_percent</li>
+<li><strong>type=2</strong>: log(1.0+count)</li>
+<li><strong>type=3</strong>: log(1.0+frequency_percent)</li>
+<li><strong>type=4</strong>: log10(1.0+count)</li>
+<li><strong>type=5</strong>: log10(1.0+frequency_percent)</li>
+</ul>
+</li>
+</ul>
+<p>從圖中了解到台灣已經度過人口紅利的時期，慢慢要進入高扶養比、高齡化的時代，
+老人產業將會是下一個重要的課題，提早做好準備，或許能搶得一些先機。</p>
+<h2 id="124">12.4 圓餅圖</h2>
+<p>當想呈現資料中各種種類中的數量佔總體數量多少時，常用到的就是圓餅圖，本節將利用
+交通部觀光局<a href="http://stat.taiwan.net.tw/system/sheet_download.html">觀光統計資料庫</a>
+中歷年來臺旅客按居住地分的資料，來看看2016年來台旅客的國家分佈情形吧！</p>
+<p>透過Python，將資料按人數多至少排序且轉換成適合<code>gmt psxy -SW</code>的格式。</p>
+<p>使用的資料檔:
+- <a href="dat/visitor_2016.gmt">2016來台觀光人數</a>
+- <a href="dat/visitor.cpt">觀光人數色階檔</a></p>
+<p>成果圖</p>
+<p align="center">
+  <img src="/fig/12_4_visitor_residence_1.png"/>
+</p>
+
+<p>批次檔</p>
+<pre><code class="language-bat">set ps=12_4_visitor_residence.ps
+set cpt=categorical.cpt
+
+# gmt makecpt -C%cpt% -T0/39/1 -Fr &gt; tmp.cpt
+
+# pie chart
+echo 10 10 0 360 | gmt psxy -R0/20/0/20 -JX15 -SW14 -W3 -K &gt; %ps%
+gmt psxy visitor_2016.gmt -R -JX -Cvisitor.cpt -SW14 -K -O &gt;&gt; %ps%
+awk &quot;NR==1 {print 14,13,$6}&quot; visitor_2016.gmt | ^
+gmt pstext -R -JX -F+f14p,1 -N -K -O &gt;&gt; %ps%
+awk &quot;NR==2 {print 13,5,$6}&quot; visitor_2016.gmt | ^
+gmt pstext -R -JX -F+f14p,1 -N -K -O &gt;&gt; %ps%
+awk &quot;NR==3 {print 7,5,$6}&quot; visitor_2016.gmt | ^
+gmt pstext -R -JX -F+f14p,1 -N -K -O &gt;&gt; %ps%
+awk &quot;{sum += $6} END {print 15,1,&quot;&quot;Total:&quot;&quot;&quot;&quot;,sum}&quot; visitor_2016.gmt | ^
+gmt pstext -R -JX -F+f16p,1+jML -N -K -O &gt;&gt; %ps%
+gmt psscale -R -JX -Cvisitor.cpt -D22/0+w15/1.2 -K -O &gt;&gt; %ps%
+
+gmt psxy -R -J -T -O &gt;&gt; %ps%
+gmt psconvert %ps% -Tg -A -P
+del tmp*
+</code></pre>
+<p>學習到的指令:</p>
+<ul>
+<li><code>makecpt</code>製作色階檔，最常用於分類的色階檔為<mark>categorical.cpt</mark>，
+在給定色階的範圍，製作好色階檔後，手動開啟色階檔在每個分類後面加上<code>; 國家名稱</code>，
+這樣<code>psscale</code>的註解將會用國家名稱來取代編號。</li>
+<li><code>psxy -SW</code>繪製扇形，對應的輸入格式<mark>x座標 y座標 [顏色編號] 起始角度 結束角度</mark>。</li>
+<li><code>-Sw</code>及<code>-SW</code>差別在於，前者起始是在x軸正向，逆時針旋轉；後者起始是在y軸正向，順時針旋轉。</li>
+<li>在有<code>-C</code>的情況下，會讀取第三欄顏色編號的訊息。</li>
+<li><code>awk "{sum ...}"</code>計算特定欄的加總值，這邊是累加第六欄(旅客人數)的資料，在最後的時候(<code>END</code>)，
+才將訊息<code>print</code>出來。</li>
+</ul>
+<p>從官網統計的數據來看，2016各國觀光客來台人數最多的國家，是中國(約350萬)，
+依次下去是日本(約190萬)、香港(約160萬)，而來台觀光總人數已經來到約1070萬人次，
+圓餅圖也清楚地表示，光中國及日本的觀光客就已經超過總體人數的一半。
+GMT在圓餅圖上的功能甚少，但還是製作示範供大家參考。</p>
+<h2 id="125">12.5 三元圖</h2>
+<p>三元圖是於表示三個資料元素之間的觀係，其座標單位並沒有限制，可以是元素含量、溫度等等不同的尺寸。
+本節將使用<a href="http://georoc.mpch-mainz.gwdg.de/georoc/Start.asp">海洋與大陸岩石的地球化學</a>
+(Geochemistry of Rocks of the Oceans and Continents, GEOROC)中由各地火山採集的岩石樣本資料，
+理面包含了各種化合物或是元素的比例或重量，來看看不同地區火山的成分差異。</p>
+<p>使用的資料檔:
+- <a href="dat/volcano_composition.dat">火山組成資料</a></p>
+<p>成果圖</p>
+<p align="center">
+  <img src="/fig/12_5_volcano_compo_1.png"/>
+</p>
+
+<p>批次檔</p>
+<pre><code class="language-bat">set ps=12_5_volcano_compo.ps
+
+# ternary diagram
+gmt gmtconvert volcano_composition.dat -S&quot;ctranew_york_kimberlites&quot; | ^
+awk &quot;NR!=1{print $2,$3,$4}&quot; | ^
+gmt psternary -R0/35/0/50/0/50 -JX15 -Baag+l&quot;Weight Percent (\045)&quot; ^
+-Bbag -Bcag -B+g20 -LAl@-2@-O@-3@-/CaO/MgO -Sa.3 -G102/121.13/255 ^
+-P -Xc -Y5 -K --MAP_GRID_PEN_PRIMARY=.25p,230 &gt; %ps%
+
+gmt gmtconvert volcano_composition.dat -S&quot;ETNA_SICILY&quot; | ^
+awk &quot;NR!=1 {print $2,$3,$4}&quot; | ^
+gmt psternary -R -JX -Ba -Sc.3 -G102/235.88/255 -K -O &gt;&gt; %ps%
+
+gmt gmtconvert volcano_composition.dat -S&quot;HYBLEAN_OR_IBLEAN_PLATEAU&quot; | ^
+awk &quot;NR!=1 {print $2,$3,$4}&quot; | ^
+gmt psternary -R -JX -Ba -St.3 -G102/255/159.38 -K -O &gt;&gt; %ps%
+
+gmt gmtconvert volcano_composition.dat -S&quot;NUEVO_LEON&quot; | ^
+awk &quot;NR!=1 {print $2,$3,$4}&quot; | ^
+gmt psternary -R -JX -Ba -Ss.3 -G159.38/255/102 -K -O &gt;&gt; %ps%
+
+gmt gmtconvert volcano_composition.dat -S&quot;OAXACA&quot; | ^
+awk &quot;NR!=1 {print $2,$3,$4}&quot; | ^
+gmt psternary -R -JX -Ba -Sd.3 -G255/232.69/165.75 -K -O &gt;&gt; %ps%
+
+gmt gmtconvert volcano_composition.dat -S&quot;POTIGUAR_BASIN&quot; | ^
+awk &quot;NR!=1 {print $2,$3,$4}&quot; | ^
+gmt psternary -R -JX -Ba -Sn.3 -G255/188.06/165.75 -K -O &gt;&gt; %ps%
+
+gmt gmtconvert volcano_composition.dat -S&quot;TAMAULIPAS&quot; | ^
+awk &quot;NR!=1 {print $2,$3,$4}&quot; | ^
+gmt psternary -R -JX -Ba -Sh.3 -G255/175.31/190.25 -K -O &gt;&gt; %ps%
+
+gmt gmtconvert volcano_composition.dat -S&quot;USTICA_ISLAND&quot; | ^
+awk &quot;NR!=1 {print $2,$3,$4}&quot; | ^
+gmt psternary -R -JX -Ba -Sg.3 -G255/194.44/228.5 -K -O &gt;&gt; %ps%
+
+# legend set
+echo H 16 1 Legend &gt; tmp
+echo D 0.4 1p &gt;&gt; tmp
+echo G .2 &gt;&gt; tmp
+echo S .4 a .4 102/121.13/255 0 .8 ctranew_york_kimberlites &gt;&gt; tmp
+echo S .4 c .4 102/235.88/255 0 .8 ETNA_SICILY &gt;&gt; tmp
+echo S .4 t .4 102/255/159.38 0 .8 HYBLEAN_OR_IBLEAN_PLATEAU &gt;&gt; tmp
+echo S .4 s .4 159.38/255/102 0 .8 NUEVO_LEON &gt;&gt; tmp
+echo S .4 d .4 255/232.69/165.75 0 .8 OAXACA &gt;&gt; tmp
+echo S .4 n .4 255/188.06/165.75 0 .8 POTIGUAR_BASIN &gt;&gt; tmp
+echo S .4 h .4 255/175.31/190.25 0 .8 TAMAULIPAS &gt;&gt; tmp
+echo S .4 g .4 255/194.44/228.5 0 .8 USTICA_ISLAND &gt;&gt; tmp
+gmt pslegend tmp -R0/1/0/1 -JX -C.1/.1 -Dx-2/9+w7.8 -F+g240+p1+s4p/-4p/gray50 ^
+--FONT_ANNOT_PRIMARY=12p -K -O &gt;&gt; %ps%
+
+gmt psxy -R -J -T -O &gt;&gt; %ps%
+gmt psconvert %ps% -Tg -A -P
+del tmp*
+</code></pre>
+<p>學習到的指令:</p>
+<ul>
+<li><code>psternary</code>繪製三元圖。對應的輸入格式是<mark>資料一 資料二 資料三 量值</mark></li>
+<li><code>-B</code>設定三邊邊框。用<mark>-Ba -Bb -Bc</mark>分別來設定。</li>
+<li><code>-C</code>色階檔。配合<code>-S</code>有設定時，會自動讀取第四欄來繪製對應顏色。</li>
+<li><code>-G</code>顏色。</li>
+<li><code>-JX</code>只能給定一個寬度。</li>
+<li><code>-L</code>設定三個角的標籤。用法是<mark>a角標籤/b角標籤/c角標籤</mark>。</li>
+<li><code>-M</code>將資料轉到卡式座標系統中，並正規化。</li>
+<li><code>-R</code>範圍。用法是<mark>a軸最小/a軸最大/b軸最小/b軸最大/c軸最小/c軸最大</mark>。</li>
+<li><code>-S</code>符號，可參考之前<a href="basic_defaults#m4.4s">4-4符號對照表</a></li>
+<li><code>-W</code>符號外框筆觸。</li>
+</ul>
+<p>選用三氧化二鋁、氧化鈣、氧化鎂作為資料的三個面向，搭配不同顏色及符號，
+利用火山組成成份的重量百分比，來知道不同地區的火山，其成分上的差異程度。</p>
+<h2 id="126">12.6 習題</h2>
+<p>常態分佈(Normal distribution)又稱高斯分佈(Gaussian distribution)，
+在數理、工程等領域都時常用到的機率分佈，其機率密度函數(Probability Density Function, PDF)為</p>
+<p align="center">
+  <img src="/fig/eq_ProbabilityDensityFunction.png"/>
+</p>
+
+<p>分佈的情形由平均數及標準差來決定，通常標準常態分佈是指平均數為0，標準差為1。
+本次習題希望透過隨機變量x，及替換平均數和標準差，代入上述公式，得到資料點後，
+利用<code>pshistogram</code>來繪製四種不同型態的常態分佈。</p>
+<p>資料點數為100，四種平均數及標準差分別為0, 0.1 | 2, 0.3 | 0, 0.7 | -2, 0.5，
+可嘗試自行代入公式製作資料，也可以使用下方提供的資料。</p>
+<p>使用的資料檔:
+- <a href="../dat/normal_distribution.dat">常態分佈數據</a></p>
+<p>完成圖如下:</p>
+<p align="center">
+  <img src="/fig/12_6_normal_distribution_1.png"/>
+</p>
+
+<h2 id="127">12.7 參考批次檔</h2>
+<p>列出本章節使用的批次檔，供讀者參考使用，檔案路經可能會有些許不同，再自行修改。</p>
+<ul>
+<li><a href="../bat/12_3_population_histo.bat">12_3_population_histo</a></li>
+<li><a href="../bat/12_4_visitor_residence.bat">12_4_visitor_residence</a></li>
+<li><a href="../bat/12_5_volcano_compo.bat">12_5_volcano_compo</a></li>
+<li><a href="../bat/12_6_normal_distribution.bat">12_6_normal_distribution</a></li>
+</ul>
+
+
+
+
+              
+            </article>
+            
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="../taiwan_geography/" class="md-footer__link md-footer__link--prev" aria-label="上一頁: 第七章: 台灣地理資訊" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                上一頁
+              </span>
+              第七章: 台灣地理資訊
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../three_dimension/" class="md-footer__link md-footer__link--next" aria-label="下一頁: 第九章: 三維空間視圖" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                下一頁
+              </span>
+              第九章: 三維空間視圖
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.ecf98df9.min.js", "translations": {"clipboard.copied": "\u5df2\u8907\u88fd", "clipboard.copy": "\u8907\u88fd", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\u3000\u3001\u3002\uff0c\uff0e\uff1f\uff1b]+", "search.placeholder": "\u641c\u5c0b", "search.result.more.one": "\u6b64\u9801\u5c1a\u6709 1 \u500b\u7b26\u5408\u7684\u9805\u76ee", "search.result.more.other": "\u6b64\u9801\u5c1a\u6709 # \u500b\u7b26\u5408\u7684\u9805\u76ee", "search.result.none": "\u6c92\u6709\u7b26\u5408\u7684\u9805\u76ee", "search.result.one": "\u627e\u5230 1 \u500b\u7b26\u5408\u7684\u9805\u76ee", "search.result.other": "\u627e\u5230 # \u500b\u7b26\u5408\u7684\u9805\u76ee", "search.result.placeholder": "\u6253\u5b57\u9032\u884c\u641c\u5c0b", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.9c69f0bc.min.js"></script>
+      
+    
+  </body>
+</html>

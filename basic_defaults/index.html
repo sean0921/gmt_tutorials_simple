@@ -1,0 +1,729 @@
+
+<!doctype html>
+<html lang="zh-Hant" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="GMT5 教程 | 編者: Po-Chin Tseng">
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.3.1, mkdocs-material-8.4.2">
+    
+    
+      
+        <title>第零章: 基本概念及默認值 - Simplified GMT Tutorial</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.69437709.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.cbb835fc.min.css">
+        
+      
+      
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          跳轉到
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Simplified GMT Tutorial" class="md-header__button md-logo" aria-label="Simplified GMT Tutorial" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Simplified GMT Tutorial
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              第零章: 基本概念及默認值
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜尋" placeholder="搜尋" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜尋引擎
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Simplified GMT Tutorial" class="md-nav__button md-logo" aria-label="Simplified GMT Tutorial" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Simplified GMT Tutorial
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        總覽
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../intro_install/" class="md-nav__link">
+        GMT介紹及安裝
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../net_software/" class="md-nav__link">
+        網路資源及配套軟體
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          第零章: 基本概念及默認值
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        第零章: 基本概念及默認值
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目錄">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目錄
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#41" class="md-nav__link">
+    4.1 基本概念
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#42" class="md-nav__link">
+    4.2 圖層概念
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#43" class="md-nav__link">
+    4.3 默認值
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#44" class="md-nav__link">
+    4.4 參考資訊
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../projection/" class="md-nav__link">
+        第一章: 製作地圖: 地理投影法
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../xy_figure/" class="md-nav__link">
+        第二章: XY散佈圖: 其他投影法
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contour_profile/" class="md-nav__link">
+        第三章: 等高線圖及剖面
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../topography_cpt/" class="md-nav__link">
+        第四章: 地形圖與色階
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../seismicity_meca/" class="md-nav__link">
+        第五章: 地震活動性與機制解
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vector_velocity/" class="md-nav__link">
+        第六章: 向量與速度場
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../taiwan_geography/" class="md-nav__link">
+        第七章: 台灣地理資訊
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../histo_pie_ternary/" class="md-nav__link">
+        第八章: 直方、圓餅、三元圖
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../three_dimension/" class="md-nav__link">
+        第九章: 三維空間視圖
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../geology_map/" class="md-nav__link">
+        第十章: 地質圖
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目錄">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目錄
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#41" class="md-nav__link">
+    4.1 基本概念
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#42" class="md-nav__link">
+    4.2 圖層概念
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#43" class="md-nav__link">
+    4.3 默認值
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#44" class="md-nav__link">
+    4.4 參考資訊
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+
+
+<h1 id="_1">基本概念及默認值</h1>
+<h2 id="41"><a name="m4.1"></a>4.1 基本概念</h2>
+<p>GMT是由指令輸入來製圖，那如何開啟指令輸入的環境</p>
+<ul>
+<li>Windows: 點擊開始按鈕，搜尋<mark>cmd.exe</mark>或是命令提示字元，點擊後將出現命令提示字元的畫面。</li>
+<li>Linux: 按<code>Ctrl+Alt+T</code>，或是在搜尋打<mark>terminal</mark>，就可叫出終端機。</li>
+<li>MAC: 可在Applications/Utilities/下找到<mark>Terminal.app</mark>。</li>
+</ul>
+<p>為了避免與其他指令混用，自GMT5之後，GMT的指令輸入格式如下:</p>
+<pre><code class="language-bat">GMT [options]
+GMT &lt;module name&gt; [&lt;module-options&gt;]
+</code></pre>
+<p><mark>options</mark>代表GMT的基本設定，例如<code>gmt --show-bindir</code>顯示執行檔的資料夾，
+或是<code>gmt --version</code>告訴你當前執行環境下GMT的版本。
+<mark>module name</mark>表示你用來製圖的模組，像是<strong>psxy</strong>(畫圖形)、<strong>pstext</strong>(寫字)等等，
+而<mark>module-options</mark>則對應像是<strong>-R</strong>(設定範圍)、<strong>-J</strong>(投影法)等等。</p>
+<p>試一下輸入<code>gmt --help</code>，你將可以看到一串關於模組目的(module purpose)的資訊，
+或是輸入<code>gmt psxy</code>，你可以看到關於psxy模組的資訊。
+當然別忘記，當有指令不熟的時後，多加查詢<a href="http://gmt.soest.hawaii.edu/doc/5.4.2/index.html">GMT官網</a>的資訊，
+像是剛剛<a href="http://gmt.soest.hawaii.edu/doc/5.4.2/quick_ref.html">module purpose</a>及
+<a href="http://gmt.soest.hawaii.edu/doc/5.4.2/psxy.html">psxy</a>，都可以在官網中找到。</p>
+<h2 id="42">4.2 圖層概念</h2>
+<p>GMT的作圖是利用一張張PS檔疊加在一起，示意圖如下:</p>
+<p align="center">
+  <img src="/fig/4_layers.png"/>
+</p>
+
+<p>在示意圖的左側，可以看到4張圖層，編號分別是0(底色為灰色)、1(紅色圓形)、
+2(藍色三角形)、3(黃色正方形)，當這些圖層按照順序疊在一起後，就變成右側的圖，
+可以看到較後面圖層(3)中的黃色正方形，蓋在圖層(2)的藍色三角形上，
+各幾何圖形的圖層(1, 2, 3)都蓋在灰色底圖(0)上，GMT利用指令的先後順序，來達到圖層疊加的概念。</p>
+<p>而這邊還有一個重要的指令概念，是在模組選項(module-options)下的<strong>-K</strong>及<strong>-O</strong>，
+當要畫多層圖(multi-layer)時，<strong>-K</strong>表示後面還有圖層，<strong>-O</strong>表示覆蓋作圖模式，
+如下圖所示，簡單來說，第一行圖層指令只加<strong>-K</strong>，中間的圖層指令加<strong>-K</strong>及<strong>-O</strong>，
+最後一行圖層指令只加<strong>-O</strong>。</p>
+<p align="center">
+  <img src="/fig/4_plot_overlays.jpg"/>
+</p>
+
+<h2 id="43">4.3 默認值</h2>
+<p>GMT在畫圖上有一些默認的設定，像是圖框種類、時間單位、長度單位等等，可以透過輸入<code>gmt gmtset</code>，
+會產生<mark>gmt.conf</mark>檔案，將檔案用編輯器打開後，可以看各種參數的默認值，如果要修改有四種方式:</p>
+<ol>
+<li>在下 GMT 指令時，使用<mark>--長參數</mark>的語法，參數的名稱就是這裡出現的大寫字串，例如：</li>
+</ol>
+<pre><code class="language-bat">gmt psxy -T -JX1/1 -R0/1/0/1 -K --PS_PAGE_ORIENTATION=portrait &gt; out.ps
+</code></pre>
+<ol>
+<li>開啟一個畫圖腳本檔，寫入</li>
+</ol>
+<pre><code class="language-bat">gmt gmtset 參數名1 參數值1 [參數名2 參數值2 參數名3 參數值3...]
+# 或是
+gmtset 參數名1=參數值1 [參數名2=參數值2 參數名3=參數值3...]
+</code></pre>
+<ol>
+<li>利用<code>gmt gmtset</code>叫出<mark>gmt.conf</mark>，開啟當前資料夾底下的<mark>gmt.conf</mark>，更改裡面的參數。</li>
+<li>更改位於<mark>GMT根目錄/share/conf/gmt.conf</mark>的參數檔，但請小心，這是GMT原始的設定，
+修改前請記得備份。</li>
+</ol>
+<p>GMT在讀取<mark>gmt.conf</mark>檔時，會優先讀取當前資料夾底下的檔案，如果沒有，
+才會讀取<mark>GMT根目錄</mark>下的檔案。第一種方式的話，<strong>改變的參數只對這行指令有效</strong>，
+而後三者，<strong>改變的參數則會對接下來的指令都有影響</strong>。</p>
+<h2 id="44">4.4 參考資訊</h2>
+<p>這邊整理一些GMT常用的參數的表格或是圖檔。</p>
+<ul>
+<li><a name="m4.4m"></a><mark><mark>地圖框的設定</mark></li>
+</ul>
+<p align="center">
+  <img src="/fig/4_map_setting.jpg"/>
+</p>
+
+<ul>
+<li><a name="m4.4d"></a><mark>距離的單位</mark></li>
+</ul>
+<p align="center">
+  <img src="/fig/4_dist_unit.jpg"/>
+</p>
+
+<ul>
+<li><a name="m4.4t"></a><mark>時間的單位</mark></li>
+</ul>
+<p align="center">
+  <img src="/fig/4_time_unit.jpg"/>
+</p>
+
+<ul>
+<li><a name="m4.4j"></a><mark>字的對齊方式</mark></li>
+</ul>
+<p align="center">
+  <img src="/fig/4_text_placement.jpg"/>
+</p>
+
+<ul>
+<li><a name="m4.4g"></a><mark>點和刻線圖案</mark>(bit and hachure patterns)</li>
+</ul>
+<p align="center">
+  <img src="/fig/4_hachure_patterns.jpg"/>
+</p>
+
+<ul>
+<li><a name="m4.4fs"></a><mark><mark>特殊字元或符號</mark></li>
+</ul>
+<p align="center">
+  <img src="/fig/4_octal_code1.jpg"/>
+</p>
+
+<ul>
+<li><a name="m4.4f"></a><mark>字體對照表</mark></li>
+</ul>
+<p align="center">
+  <img src="/fig/4_font_type.jpg"/>
+</p>
+
+<ul>
+<li><a name="m4.4c"></a><mark>顏色RGB對照表</mark></li>
+</ul>
+<p align="center">
+  <img src="/fig/4_GMT_RGBchart_a4.png"/>
+</p>
+
+<ul>
+<li><a name="m4.4s"></a><mark>-S符號對照表</mark></li>
+</ul>
+<p align="center">
+  <img src="/fig/4_symbol_gmt.jpg" width="489" height="600"/>
+</p>
+
+<ul>
+<li><a name="m4.4sk"></a><mark>-Sk自訂符號對照表</mark></li>
+</ul>
+<p align="center">
+  <img src="/fig/4_custom_symbol.jpg"/>
+</p>
+
+<p>部份的圖檔，可以在 <mark>GMT根目錄/share/doc/html/_images</mark> 找到。</p>
+
+
+
+
+              
+            </article>
+            
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="../net_software/" class="md-footer__link md-footer__link--prev" aria-label="上一頁: 網路資源及配套軟體" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                上一頁
+              </span>
+              網路資源及配套軟體
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../projection/" class="md-footer__link md-footer__link--next" aria-label="下一頁: 第一章: 製作地圖: 地理投影法" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                下一頁
+              </span>
+              第一章: 製作地圖: 地理投影法
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.ecf98df9.min.js", "translations": {"clipboard.copied": "\u5df2\u8907\u88fd", "clipboard.copy": "\u8907\u88fd", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\s\\-\u3000\u3001\u3002\uff0c\uff0e\uff1f\uff1b]+", "search.placeholder": "\u641c\u5c0b", "search.result.more.one": "\u6b64\u9801\u5c1a\u6709 1 \u500b\u7b26\u5408\u7684\u9805\u76ee", "search.result.more.other": "\u6b64\u9801\u5c1a\u6709 # \u500b\u7b26\u5408\u7684\u9805\u76ee", "search.result.none": "\u6c92\u6709\u7b26\u5408\u7684\u9805\u76ee", "search.result.one": "\u627e\u5230 1 \u500b\u7b26\u5408\u7684\u9805\u76ee", "search.result.other": "\u627e\u5230 # \u500b\u7b26\u5408\u7684\u9805\u76ee", "search.result.placeholder": "\u6253\u5b57\u9032\u884c\u641c\u5c0b", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.9c69f0bc.min.js"></script>
+      
+    
+  </body>
+</html>
