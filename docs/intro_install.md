@@ -62,11 +62,11 @@ GMT 的安裝已經非常人性化了，官網也提供各平台的安裝教學�
 sudo apt install gmt gmt-dcw gmt-gshhg
 
 # build from source
-set (CMAKE_INSTALL_PREFIX $ENV{HOME}/software/gmt)
-set (GSHHG_ROOT <path to gshhg>)
-set (DCW_ROOT <path to dcw>)
+#set (CMAKE_INSTALL_PREFIX $ENV{HOME}/software/gmt)
+#set (GSHHG_ROOT <path to gshhg>)
+#set (DCW_ROOT <path to dcw>)
 
-cd <path to>/gmt-dev
+cd /path/to/gmt-dev
 mkdir build
 cd build
 cmake ..

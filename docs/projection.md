@@ -52,30 +52,34 @@ GMT在投影法方面，分成兩部份，如下圖，一部份是地理投影�
 可以參考[WIKI百科](https://en.wikipedia.org/wiki/Geographic_coordinate_conversion)。
 請開啟命令提式字元(cmd.exe)或是終端機(terminal)，開啟方式可[參考4-1](basic_defaults.md#m4.1)，
 接著輸入下方指令:
-```bat
+
+```bash
 gmt pscoast
 ```
 
 會看到一連串關於`pscoast`的說明，如果你對各選項的意思已經了解，可以透過:
-```bat
+
+```bash
 gmt pscoast -
 ```
 
 你將只看到選項用法出現在影幕上。通常GMT指令的語法如下:
-```bat
+
+```bash
 gmt 模組 (輸入檔) [-選項1 -選項2 -選項3 ...] > 輸出檔名.ps
 ```
 
 簡單來說，先選定你要用的模組，給定輸入的資料，配合該模組底下的選項，來達到你要繪製的圖形，
 而<mark>-</mark>開頭會被GMT視作選項，沒有<mark>-</mark>開頭則被當做資料，所以其先後順序沒差，
 不過為養成好習慣，建議按照下面的範例來輸入每一行指令。
-```bat
+
+```bash
 # 第1行
 gmt psxy (輸入檔) -J -R [-選項1 -選項2 ...] -K  > 輸出檔名.ps
 # 中間各行
 gmt psxy (輸入檔) -J -R [-選項1 -選項2 ...] -K -O >> 輸出檔名.ps
-                          .  
-                          .  
+                          .
+                          .
                           .
 # 最後1行
 gmt psxy (輸入檔) -J -R [-選項1 -選項2 ...] -O >> 輸出檔名.ps
@@ -103,6 +107,7 @@ gmt psxy (輸入檔) -J -R [-選項1 -選項2 ...] -O >> 輸出檔名.ps
 
 選定好的範圍是119.0/123.0/21.5/26.0，預定地圖的寬度為15公分，海洋顏色為藍色，海岸線的寬度是1公分，
 顏色及樣式則採用預設黑色及實線，指令如下:
+
 ```bat
 gmt pscoast -R119.0/122.5/21.5/26.0 -JM18 -S0/0/255 -W1 > 5_3_taiwan.ps
 ```
@@ -119,6 +124,7 @@ gmt pscoast -R119.0/122.5/21.5/26.0 -JM18 -S0/0/255 -W1 > 5_3_taiwan.ps
 也可以透過自動(<mark>a</mark>uto)，依照地圖尺寸來決定海岸線的解析度。
 接著陸地是白色，似乎有點單調，來試看看用`-G`英文單字，來更改陸地的顏色，
 於是乎將指令改寫如下:
+
 ```bat
 gmt pscoast -R119.0/122.5/21.5/26.0 -JM18 -S0/0/255 -Gspringgreen2 -W1 -Df -P > 5_3_taiwan.ps
 ```
@@ -136,7 +142,8 @@ gmt pscoast -R119.0/122.5/21.5/26.0 -JM18 -S0/0/255 -Gspringgreen2 -W1 -Df -P > 
 美國幅員遼闊，經度橫跨約55度，且主要在中緯度，不適合使用麥卡托投影(`-JM`)，因此這邊介紹蘭伯特投影法(`-JL`)。
 與前一節一樣，先初步畫出美國的國土，給定範圍在-130/-66/24/52，但`-JL`的用法較不一樣，
 它需要的格式是`-JL`中心點經度/中心點緯度/固定緯度線1/固定緯度線2/寬度，指令如下:
-```bat
+
+```bash
 gmt pscoast -R-130/-66/24/52 -JL-98/35/33/45/25 -S0/0/255 -Gspringgreen2 -W1 -Df > 5_4_unitedstate.ps
 ```
 
@@ -166,13 +173,27 @@ gmt pscoast -R-130/-66/24/52 -JL-98/35/33/45/25 -S0/0/255 -Gspringgreen2 -W1 -Df
 透過上述的選項，將這張美國地圖做了一些改善，包括省略面積500km^2以下的湖泊，加上經緯度外框、網格線、
 比例尺、方向標，更改湖泊、河川的顏色，把墨西哥(MX)及加拿大(CA)國土變成灰色，以下是指令及成果圖。
 
-```bat
-gmt pscoast -R-130/-66/24/52 -JL-98/35/33/45/25 -A500 -BWESN ^
--Bxa10g10 -Bya10f5g10 -C104/210/223 -Df -EMX,CA+g210 ^
--Gspringgreen2 -N1/2,red -S0/0/255 -Lg-125/27+c27+w500+f+l"km" ^
--I1.5/1,41/143/194,solid -Tdg-70/27+w1.5+f2 -W1 -F+g255+r > ^
-5_4_unitedstate.ps
-```
+=== "Windows 批次檔"
+
+    ```bat
+    gmt pscoast -R-130/-66/24/52 -JL-98/35/33/45/25 -A500 -BWESN ^
+    -Bxa10g10 -Bya10f5g10 -C104/210/223 -Df -EMX,CA+g210 ^
+    -Gspringgreen2 -N1/2,red -S0/0/255 -Lg-125/27+c27+w500+f+l"km" ^
+    -I1.5/1,41/143/194,solid -Tdg-70/27+w1.5+f2 -W1 -F+g255+r > ^
+    5_4_unitedstate.ps
+    ```
+
+=== "Bash 腳本"
+
+    ```bash
+    #!/usr/bin/env bash
+
+    gmt pscoast -R-130/-66/24/52 -JL-98/35/33/45/25 -A500 -BWESN \
+    -Bxa10g10 -Bya10f5g10 -C104/210/223 -Df -EMX,CA+g210 \
+    -Gspringgreen2 -N1/2,red -S0/0/255 -Lg-125/27+c27+w500+f+l"km" \
+    -I1.5/1,41/143/194,solid -Tdg-70/27+w1.5+f2 -W1 -F+g255+r > \
+    5_4_unitedstate.ps
+    ```
 
 <p align="center">
   <img src="/fig/5_4_unitedstate_2.png" width="702" height="496"/>
@@ -213,22 +234,43 @@ Linux及MAC則使用<mark>\</mark>。
   <img src="/fig/5_5_TPEairline_1.png"/>
 </p>
 
-批次檔
-```bat
-set ps=5_5_TPEairline.ps
+=== "Windows 批次檔"
 
-gmt pscoast -Rg -JE121.2342/25.0797/12 -S0 -G50 -W.2,white -A1000 -K > %ps%
-echo 40 -45 | gmt psxy -R -JE -Sa.8 -Gred -K -O >> %ps%
-echo -80 20 | gmt psxy -R -JE -Sa.8 -Gred -K -O >> %ps%
-awk "{print $5, $4}" TPE_airline.dat | gmt psxy -R -JE -Sc.15 -G159/174/229 -K -O >> %ps%
-gmt psxy TPE_airline.gmt -R -JE -W.3,yellow -K -O >> %ps%
+    ```bat
+    set ps=5_5_TPEairline.ps
 
-gmt pscoast -R40/-45/-80/20r -JE121.2342/15.0/12 -S0 -G50 -W.2,white -A1000 -X13.5 -K -O >> %ps%
-awk "{print $5, $4}" TPE_airline.dat | gmt psxy -R -JE -Sc.2 -G159/174/229 -K -O >> %ps%
-gmt psxy TPE_airline.gmt -R -JE -W.3,yellow -O >> %ps%
+    gmt pscoast -Rg -JE121.2342/25.0797/12 -S0 -G50 -W.2,white -A1000 -K > %ps%
+    echo 40 -45 | gmt psxy -R -JE -Sa.8 -Gred -K -O >> %ps%
+    echo -80 20 | gmt psxy -R -JE -Sa.8 -Gred -K -O >> %ps%
+    awk "{print $5, $4}" TPE_airline.dat | gmt psxy -R -JE -Sc.15 -G159/174/229 -K -O >> %ps%
+    gmt psxy TPE_airline.gmt -R -JE -W.3,yellow -K -O >> %ps%
 
-gmt psconvert %ps% -Tg -A -P
-```
+    gmt pscoast -R40/-45/-80/20r -JE121.2342/15.0/12 -S0 -G50 -W.2,white -A1000 -X13.5 -K -O >> %ps%
+    awk "{print $5, $4}" TPE_airline.dat | gmt psxy -R -JE -Sc.2 -G159/174/229 -K -O >> %ps%
+    gmt psxy TPE_airline.gmt -R -JE -W.3,yellow -O >> %ps%
+
+    gmt psconvert %ps% -Tg -A -P
+    ```
+
+=== "Bash 腳本"
+
+    ```bash
+    #!/usr/bin/env bash
+
+    ps=5_5_TPEairline.ps
+
+    gmt pscoast -Rg -JE121.2342/25.0797/12 -S0 -G50 -W.2,white -A1000 -K > "${ps}"
+    echo 40 -45 | gmt psxy -R -JE -Sa.8 -Gred -K -O >> "${ps}"
+    echo -80 20 | gmt psxy -R -JE -Sa.8 -Gred -K -O >> "${ps}"
+    awk '{print $5, $4}' TPE_airline.dat | gmt psxy -R -JE -Sc.15 -G159/174/229 -K -O >> "${ps}"
+    gmt psxy TPE_airline.gmt -R -JE -W.3,yellow -K -O >> "${ps}"
+
+    gmt pscoast -R40/-45/-80/20r -JE121.2342/15.0/12 -S0 -G50 -W.2,white -A1000 -X13.5 -K -O >> "${ps}"
+    awk '{print $5, $4}' TPE_airline.dat | gmt psxy -R -JE -Sc.2 -G159/174/229 -K -O >> "${ps}"
+    gmt psxy TPE_airline.gmt -R -JE -W.3,yellow -O >> "${ps}"
+
+    gmt psconvert "${ps}" -Tg -A -P
+    ```
 
 透過範例，學習到的新用法:
 
@@ -277,6 +319,7 @@ gmt psconvert %ps% -Tg -A -P
 `ENABLEDELAYEDEXPANSION`啟用延遲環境變數擴充功能，來批次設定國家的顏色。讓我們來看成果及批次檔吧！
 
 使用的資料檔:
+
 - [顏色對應國碼檔](https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/data/CountryCode.dat)
 
 成果圖
@@ -284,51 +327,83 @@ gmt psconvert %ps% -Tg -A -P
   <img src="/fig/5_6_globalNationalBoundary_1.png"/>
 </p>
 
-批次檔
-```bat
-set ps=5_6_globalNationalBoundary.ps
+=== "Windows 批次檔"
 
-setlocal ENABLEDELAYEDEXPANSION
-set vidx=0
-for /F "tokens=2" %%A in (CountryCode.dat) do (
-    set /A vidx=!vidx! + 1
-    set var!vidx!=%%A
-)
-set var
+    ```bat linenums="1"
+    set ps=5_6_globalNationalBoundary.ps
 
-set vidx=0
-for /F "tokens=1" %%A in (CountryCode.dat) do (
-    set /A vidx=!vidx! + 1
-    set color!vidx!=%%A
-)
-set color
+    setlocal ENABLEDELAYEDEXPANSION
+    set vidx=0
+    for /F "tokens=1" %%A in (CountryCode.dat) do (
+        set /A vidx=!vidx! + 1
+        set var!vidx!=%%A
+    )
+    set var
 
-gmt pscoast -R-180/180/-79/90 -JN0/25 -W1 -Ba -K > %ps%
-gmt pscoast -R -JN -E%var1%+g%color1% -K -O >> %ps%
-gmt pscoast -R -JN -E%var2%+g%color2% -K -O >> %ps%
-gmt pscoast -R -JN -E%var3%+g%color3% -K -O >> %ps%
-gmt pscoast -R -JN -E%var4%+g%color4% -K -O >> %ps%
-gmt pscoast -R -JN -E%var5%+g%color5% -K -O >> %ps%
-gmt pscoast -R -JN -E%var6%+g%color6% -K -O >> %ps%
-gmt pscoast -R -JN -E%var7%+g%color7% -K -O >> %ps%
-gmt pscoast -R -JN -E%var8%+g%color8% -K -O >> %ps%
-gmt pscoast -R -JN -E%var9%+g%color9% -K -O >> %ps%
-gmt pscoast -R -JN -E%var10%+g%color10% -K -O >> %ps%
-gmt pscoast -R -JN -A10000 -N1 -W.2 -S255 -O >> %ps%
+    set vidx=0
+    for /F "tokens=2" %%A in (CountryCode.dat) do (
+        set /A vidx=!vidx! + 1
+        set color!vidx!=%%A
+    )
+    set color
 
-gmt psconvert %ps% -Tg -A -P
-```
+    gmt pscoast -R-180/180/-79/90 -JN0/25 -W1 -Ba -K > %ps%
+    gmt pscoast -R -JN -E%var1%+g%color1% -K -O >> %ps%
+    gmt pscoast -R -JN -E%var2%+g%color2% -K -O >> %ps%
+    gmt pscoast -R -JN -E%var3%+g%color3% -K -O >> %ps%
+    gmt pscoast -R -JN -E%var4%+g%color4% -K -O >> %ps%
+    gmt pscoast -R -JN -E%var5%+g%color5% -K -O >> %ps%
+    gmt pscoast -R -JN -E%var6%+g%color6% -K -O >> %ps%
+    gmt pscoast -R -JN -E%var7%+g%color7% -K -O >> %ps%
+    gmt pscoast -R -JN -E%var8%+g%color8% -K -O >> %ps%
+    gmt pscoast -R -JN -E%var9%+g%color9% -K -O >> %ps%
+    gmt pscoast -R -JN -E%var10%+g%color10% -K -O >> %ps%
+    gmt pscoast -R -JN -A10000 -N1 -W.2 -S255 -O >> %ps%
+
+    gmt psconvert %ps% -Tg -A -P
+    ```
+
+=== "Bash 腳本"
+
+    ```bash linenums="1"
+    #!/usr/bin/env bash
+
+    ps=5_6_globalnationalboundary.ps
+
+    mapfile -t var < <(awk '{print $1}' countrycode.dat)
+    mapfile -t color < <(awk '{print $2}' countrycode.dat)
+
+    gmt pscoast -r-180/180/-79/90 -jn0/25 -w1 -ba -k > "${ps}"
+
+    for i in {0..9}
+    do
+    echo ${var[i]} ${color[i]}
+    gmt pscoast -r -jn -e"${var[i]}+g${color[i]}" -k -o >> "${ps}"
+    done
+
+    gmt pscoast -r -jn -a10000 -n1 -w.2 -s255 -o >> "${ps}"
+
+    gmt psconvert "${ps}" -tg -a -p
+    ```
 
 透過範例，學習到的新用法:
 
-* 第4行: 首先設定變數`vidx=0`，因為在後面的迴圈中會每次累加1，
-讓每次的變數名從**var1**變**var2**一直到**var10**。
-* 第5行: 利用`for`迴圈將檔案中一行行讀取資料，
-用法`for /f ["選項"] %%參數名 in (檔名或字串) do 指令`，tokens=2表示讀取每行中第二欄的資料。
-* 第6行: 預設的set變數值為字串，透過/A轉換成整數，其中`!vidx!`為延遲表達變數(delayed expansion variable)，
-用以實現每次迴圈中，**vidx**就加1。
-* 第7行: **var1**、**var2**等等，對應到檔案中的第一行第二欄、第二行第二欄等等。
-* 第9行: 這時候才將剛剛延遲表達的變數一次設定好。
+=== "Windows 批次檔"
+
+    * 第4行: 首先設定變數`vidx=0`，因為在後面的迴圈中會每次累加1，
+    讓每次的變數名從**var1**變**var2**一直到**var10**。
+    * 第5行: 利用`for`迴圈將檔案中一行行讀取資料，
+    用法`for /f ["選項"] %%參數名 in (檔名或字串) do 指令`，tokens=2表示讀取每行中第二欄的資料。
+    * 第6行: 預設的set變數值為字串，透過/A轉換成整數，其中`!vidx!`為延遲表達變數(delayed expansion variable)，
+    用以實現每次迴圈中，**vidx**就加1。
+    * 第7行: **var1**、**var2**等等，對應到檔案中的第一行第二欄、第二行第二欄等等。
+    * 第9行: 這時候才將剛剛延遲表達的變數一次設定好。
+
+=== "Bash 腳本"
+    * 利用 `mapfile` 讀取 `awk` 輸出之內容，儲存至陣列(array)
+    * bash 的陣列索引從 **0** 開始
+    * bash 可以用 `{0..9}` 的方式窮舉 0 到 9 的數列
+    * bash 的 `for` 迴圈用法
 
 顏色變數的設定用法與國碼相同，當這些變數都設置好後，就交給GMT來把圖畫出來吧！`-JN`中心經度/寬度，
 將投影法設定為羅賓森投影法，剩下的指令或選項都以在前面各節描述。
@@ -349,7 +424,7 @@ gmt psconvert %ps% -Tg -A -P
 </p>
 
 ## 5.8 參考批次檔
-列出本章節使用的批次檔，供讀者參考使用，檔案路經可能會有些許不同，再自行修改。
+列出本章節使用的批次檔，供讀者參考使用，檔案路徑可能會有些許不同，請再自行修改。
 
 * [5_3_taiwan](/bat/5_3_taiwan.bat)
 * [5_4_unitedstate](/bat/5_4_unitedstate.bat)
