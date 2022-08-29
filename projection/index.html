@@ -790,8 +790,8 @@ Linux及MAC則使用<mark>\</mark>。</p>
 分別是流水碼、班機性質、目的地、緯度、經度，也整理了一份航線的資料檔給GMT用。
 先來看成果圖及批次檔，再逐行說明。</p>
 <p>使用的資料檔:
-- <a href="/dat/TPE_airline.dat">桃園航班資訊</a>
-- <a href="/dat/TPE_airline.gmt">桃園航線</a></p>
+- <a href="https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/data/TPE_airline.dat">桃園航班資訊</a>
+- <a href="https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/data/TPE_airline.gmt">桃園航線</a></p>
 <p>成果圖</p>
 <p align="center">
   <img src="/fig/5_5_TPEairline_1.png"/>
@@ -854,7 +854,7 @@ gmt psconvert %ps% -Tg -A -P
 本節將會使用到<code>setlocal</code>讓批次檔現可以接受一個選項引數，
 <code>ENABLEDELAYEDEXPANSION</code>啟用延遲環境變數擴充功能，來批次設定國家的顏色。讓我們來看成果及批次檔吧！</p>
 <p>使用的資料檔:
-- <a href="/dat/CountryCode.dat">顏色對應國碼檔</a></p>
+- <a href="https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/data/CountryCode.dat">顏色對應國碼檔</a></p>
 <p>成果圖</p>
 <p align="center">
   <img src="/fig/5_6_globalNationalBoundary_1.png"/>
@@ -911,7 +911,7 @@ gmt psconvert %ps% -Tg -A -P
 * 1.利用政府資料開放平台，提供的<a href="https://data.gov.tw/dataset/28318">新北市公共自行車租賃系統(YouBike)資料</a>，
 為.csv檔，如何利用<code>awk -F "," "指令"</code>來將經緯度資料擷取出來，用<code>psxy</code>畫出哪裡有YouBike的站點，
 經緯度範圍可用<mark>121.263/122.077/24.671/25.343</mark>，
-另外提供<a href="/dat/city_twd97.gmt">縣市邊界的資料</a>(未來會教導如何製作)，試著畫一張新北市YouBike的點位圖。</p>
+另外提供<a href="https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/data/city_twd97.gmt">縣市邊界的資料</a>(未來會教導如何製作)，試著畫一張新北市YouBike的點位圖。</p>
 <p align="center">
   <img src="/fig/5_7_youBike_1.png"/>
 </p>
