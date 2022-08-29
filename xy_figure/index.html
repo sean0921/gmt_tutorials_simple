@@ -616,11 +616,13 @@
 <p>除了將資料展示在地圖上，另一個數據分析很重要的圖表格式就是XY散佈圖，本章將分成4個小節介紹如何將資料呈現在線性、對數、時間軸上，
 以及極座標上。</p>
 <h2 id="61">6.1 目的</h2>
-<p>本章將學習如何繪製
-  1. 線性軸(Linear)
-  2. 指數、對數軸(Power, Logarithmic)
-  3. 時間序列(Time)
-  4. 極軸(Polar)</p>
+<p>本章將學習如何繪製</p>
+<ol>
+<li>線性軸(Linear)</li>
+<li>指數、對數軸(Power, Logarithmic)</li>
+<li>時間序列(Time)</li>
+<li>極軸(Polar)</li>
+</ol>
 <h2 id="62">6.2 學習的指令與概念</h2>
 <ul>
 <li><code>gmtset</code>: GMT地圖參數</li>
@@ -634,21 +636,25 @@
 <p>當我們想知道兩個變數之間的關係，常會用到XY散佈圖來表示，看兩者之間是正相關還是負相關。
 此節利用<a href="https://data.gov.tw/dataset/5965">死因統計</a>，想知道意外事故死亡人數，在各年齡層之間的變化，
 以及與性別的關係，首先先來看成果圖及批次檔。</p>
-<p>使用的資料檔:
-- <a href="https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/data/dead105.dat">2016年意外死亡人數</a></p>
+<p>使用的資料檔:</p>
+<ul>
+<li><a href="https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/data/dead105.dat">2016年意外死亡人數</a></li>
+</ul>
 <p>成果圖</p>
 <p align="center">
   <img src="/fig/6_3_accidentalDeath_1.png"/>
 </p>
 
-<p>批次檔
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Windows 批次檔</label><label for="__tabbed_1_2">Bash 腳本</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">set</span> <span class="nv">ps</span><span class="p">=</span>6_3_accidentalDeath.ps
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a># 製作底圖框架
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="p">:</span><span class="c1">: 製作底圖框架</span>
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>gmt psbasemap -R0/100/0/450 -JX20/15 -Bxa5+l<span class="s2">&quot;Age&quot;</span> -Bya50+l<span class="s2">&quot;Deaths (count)&quot;</span> <span class="se">^</span>
 <a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="se">-</span>BWeSn+t<span class="s2">&quot;2016 Taiwan Accidental Deaths&quot;</span> -K <span class="p">&gt;</span> <span class="nv">%ps%</span>
 <a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a># 繪製垂直虛線
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="p">:</span><span class="c1">: 繪製垂直虛線</span>
 <a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="k">echo</span> 15 0 <span class="p">&gt;</span> area
 <a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="k">echo</span> 15 450 <span class="p">&gt;&gt;</span> area
 <a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>gmt psxy area -R -JX -W1.5,180/180/255,- -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
@@ -656,13 +662,13 @@
 <a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="k">echo</span> 75 450 <span class="p">&gt;&gt;</span> area
 <a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>gmt psxy area -R -JX -W1.5,255/180/180,- -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
 <a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>
-<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a># 繪製死亡人數資料點
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="p">:</span><span class="c1">: 繪製死亡人數資料點</span>
 <a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>awk <span class="s2">&quot;$3==1 {print $1, $2}&quot;</span> dead105.dat <span class="p">|</span> gmt psxy -R -JX -Sd.4 <span class="se">^</span>
 <a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="se">-</span>G30/34/170 -W1 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
 <a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>awk <span class="s2">&quot;$3==2 {print $1, $2}&quot;</span> dead105.dat <span class="p">|</span> gmt psxy -R -JX -Sc.4 <span class="se">^</span>
 <a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="se">-</span>G208/0/111 -W1 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
 <a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>
-<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a># 圖例框與圖例說明
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="p">:</span><span class="c1">: 圖例框與圖例說明</span>
 <a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="k">echo</span> 1 385 <span class="p">&gt;</span> area
 <a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="k">echo</span> 15.5 385 <span class="p">&gt;&gt;</span> area
 <a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="k">echo</span> 15.5 445 <span class="p">&gt;&gt;</span> area
@@ -673,21 +679,61 @@
 <a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="k">echo</span> 3 400 <span class="p">|</span> gmt psxy -R -JX -Sc.4 -G208/0/111 -W1 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
 <a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="k">echo</span> 6 400 Female <span class="p">|</span> gmt pstext -R -JX -F+f14+jML -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
 <a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>
-<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a># 轉成.png檔，刪除暫存資料
+<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="p">:</span><span class="c1">: 轉成.png檔，刪除暫存資料</span>
 <a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>gmt psconvert <span class="nv">%ps%</span> -Tg -A -P
 <a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a><span class="k">del</span> area
-</code></pre></div></p>
-<p>本節學習到的新指令:
-* 第3行: <code>#</code>符號代表這行後面的字為註記，執行時會略過這行，不同的環境下所使用的符號不太一樣，
-像是Linux、MAC是使用<mark>#</mark>(bash shell)，在Windows則是用<mark>rem</mark>。
-<strong>特別說明：因為本網頁語法無支援batch檔的hightlight，所以才用<mark>#</mark>代替<mark>rem</mark>，
-如果複製後在Windows上執行會出錯，請自行修改，或是下載最後提供的參考批次檔。</strong>
-* 第4行: <code>psbasemap</code>製作圖形外框，其中:
-  * <code>-R</code>x軸最小值/x軸最大值/y軸最小值/y軸最大值。
-  * <code>-JX</code>寬度/高度。
-  * <code>-B</code>之中，<code>+l</code>給予標籤；<code>+t</code>給予標題。
-* 第8,9行: 例用<code>echo</code>輸出一個暫存檔area。
-* 第10行: 上一章有介紹<code>-W</code>寬度,顏色,樣色，這邊提供一些參考資訊。</p>
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nv">ps</span><span class="o">=</span>6_3_accidentalDeath.ps
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="c1"># 製作底圖框架</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>gmt psbasemap -R0/100/0/450 -JX20/15 -Bxa5+l<span class="s2">&quot;Age&quot;</span> -Bya50+l<span class="s2">&quot;Deaths (count)&quot;</span> <span class="se">\</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>-BWeSn+t<span class="s2">&quot;2016 Taiwan Accidental Deaths&quot;</span> -K &gt; <span class="s2">&quot;</span><span class="si">${</span><span class="nv">ps</span><span class="si">}</span><span class="s2">&quot;</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="c1"># 繪製垂直虛線</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="nb">echo</span> <span class="m">15</span> <span class="m">0</span> &gt; area
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="nb">echo</span> <span class="m">15</span> <span class="m">450</span> &gt;&gt; area
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>gmt psxy area -R -JX -W1.5,180/180/255,- -K -O &gt;&gt; <span class="s2">&quot;</span><span class="si">${</span><span class="nv">ps</span><span class="si">}</span><span class="s2">&quot;</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="nb">echo</span> <span class="m">75</span> <span class="m">0</span> &gt; area
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="nb">echo</span> <span class="m">75</span> <span class="m">450</span> &gt;&gt; area
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>gmt psxy area -R -JX -W1.5,255/180/180,- -K -O &gt;&gt; <span class="s2">&quot;</span><span class="si">${</span><span class="nv">ps</span><span class="si">}</span><span class="s2">&quot;</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="c1"># 繪製死亡人數資料點</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>awk <span class="s1">&#39;$3==1 {print $1, $2}&#39;</span> dead105.dat <span class="p">|</span> gmt psxy -R -JX -Sd.4 <span class="se">\</span>
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>-G30/34/170 -W1 -K -O &gt;&gt; <span class="s2">&quot;</span><span class="si">${</span><span class="nv">ps</span><span class="si">}</span><span class="s2">&quot;</span>
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>awk <span class="s1">&#39;$3==2 {print $1, $2}&#39;</span> dead105.dat <span class="p">|</span> gmt psxy -R -JX -Sc.4 <span class="se">\</span>
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>-G208/0/111 -W1 -K -O &gt;&gt; <span class="s2">&quot;</span><span class="si">${</span><span class="nv">ps</span><span class="si">}</span><span class="s2">&quot;</span>
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="c1"># 圖例框與圖例說明</span>
+<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="nb">echo</span> <span class="m">1</span> <span class="m">385</span> &gt; area
+<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="nb">echo</span> <span class="m">15</span>.5 <span class="m">385</span> &gt;&gt; area
+<a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a><span class="nb">echo</span> <span class="m">15</span>.5 <span class="m">445</span> &gt;&gt; area
+<a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a><span class="nb">echo</span> <span class="m">1</span> <span class="m">445</span> &gt;&gt; area
+<a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>gmt psxy area -R -JX -W1 -G255 -L -K -O &gt;&gt; <span class="s2">&quot;</span><span class="si">${</span><span class="nv">ps</span><span class="si">}</span><span class="s2">&quot;</span>
+<a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a><span class="nb">echo</span> <span class="m">3</span> <span class="m">430</span> <span class="p">|</span> gmt psxy -R -JX -Sd.4 -G30/34/170 -W1 -K -O &gt;&gt; <span class="s2">&quot;</span><span class="si">${</span><span class="nv">ps</span><span class="si">}</span><span class="s2">&quot;</span>
+<a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a><span class="nb">echo</span> <span class="m">6</span> <span class="m">430</span> Male <span class="p">|</span> gmt pstext -R -JX -F+f14+jML -K -O &gt;&gt; <span class="s2">&quot;</span><span class="si">${</span><span class="nv">ps</span><span class="si">}</span><span class="s2">&quot;</span>
+<a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a><span class="nb">echo</span> <span class="m">3</span> <span class="m">400</span> <span class="p">|</span> gmt psxy -R -JX -Sc.4 -G208/0/111 -W1 -K -O &gt;&gt; <span class="s2">&quot;</span><span class="si">${</span><span class="nv">ps</span><span class="si">}</span><span class="s2">&quot;</span>
+<a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a><span class="nb">echo</span> <span class="m">6</span> <span class="m">400</span> Female <span class="p">|</span> gmt pstext -R -JX -F+f14+jML -O &gt;&gt; <span class="s2">&quot;</span><span class="si">${</span><span class="nv">ps</span><span class="si">}</span><span class="s2">&quot;</span>
+<a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a>
+<a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a><span class="c1"># 轉成.png檔，刪除暫存資料</span>
+<a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a>gmt psconvert <span class="s2">&quot;</span><span class="si">${</span><span class="nv">ps</span><span class="si">}</span><span class="s2">&quot;</span> -Tg -A -P
+<a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a>del area
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>本節學習到的新指令:</p>
+<ul>
+<li>第3行: <code>#</code>符號代表這行後面的字為註記，執行時會略過這行，不同的環境下所使用的符號不太一樣，
+像是Linux、MAC是使用<mark>#</mark>(bash shell)，在Windows則是用<mark>rem</mark>。</li>
+<li>第4行: <code>psbasemap</code>製作圖形外框，其中:</li>
+<li><code>-R</code>x軸最小值/x軸最大值/y軸最小值/y軸最大值。</li>
+<li><code>-JX</code>寬度/高度。</li>
+<li><code>-B</code>之中，<code>+l</code>給予標籤；<code>+t</code>給予標題。</li>
+<li>第8,9行: 例用<code>echo</code>輸出一個暫存檔area。</li>
+<li>第10行: 上一章有介紹<code>-W</code>寬度,顏色,樣色，這邊提供一些參考資訊。</li>
+</ul>
 <p><strong>寬度單字對照表</strong></p>
 <table>
 <thead>
@@ -796,63 +842,118 @@
 其中<strong>A</strong>代表地震儀紀錄最大振幅(微米)；<strong>D</strong>代表震央距(度)；<strong>2.76</strong>及<strong>2.48</strong>是區域修正常數。
 還有其他像是<strong>M<font size="-2">b</font></strong>體波規模、<strong>M<font size="-2">s</font></strong>表面波規模、
 <strong>M<font size="-2">w</font></strong>地震矩規模，來估算地震大小。讓我們來假設震央距為10度，不同大小的振幅所對應的芮氏規模吧！</p>
-<p>使用的資料檔:
-- <a href="https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/data/richter_magnitude.dat">芮氏規模資料</a>
-- <a href="https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/data/richter_magnitude_log.dat">取log後芮氏規模資料</a></p>
+<p>使用的資料檔:</p>
+<ul>
+<li><a href="https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/data/richter_magnitude.dat">芮氏規模資料</a></li>
+<li><a href="https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/data/richter_magnitude_log.dat">取log後芮氏規模資料</a></li>
+</ul>
 <p>成果圖</p>
 <p align="center">
   <img src="/fig/6_4_richter_magnitude_1.png"/>
 </p>
 
-<p>批次檔
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">set</span> <span class="nv">ps</span><span class="p">=</span>6_4_richter_magnitude.ps
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a># 製作左側圖
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>gmt psbasemap -R0/9.99/1e0/9.99e9 -JX9/15l -BWeSn -Bxa1+l<span class="s2">&quot;Richter Mag.&quot;</span> <span class="se">^</span>
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="se">-</span>Bya1pf3+l<span class="s2">&quot;Maximum Amp. (Microns)&quot;</span> -K <span class="p">&gt;</span> <span class="nv">%ps%</span>
-<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>gmt psxy richter_magnitude.dat -R -JX -W1 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
-<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="k">echo</span> 7.3 7.3e6 1999 Chi-Chi <span class="p">&gt;</span> tmp
-<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="k">echo</span> 6.6 6.6e5 2016 Meinong <span class="p">&gt;&gt;</span> tmp
-<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>gmt psxy tmp -R -JX -Sc.6 -G0 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
-<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>gmt pstext tmp -R -JX -F+f14p+jMR -D-.6/0 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
-<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>
-<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a># 製作右側圖
-<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>gmt psbasemap -R0/9.99/1e-2/9.99 -JX9/15p2 -BWeSn -Bxa1+l<span class="s2">&quot;Magnitude&quot;</span> <span class="se">^</span>
-<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="se">-</span>Bya1f.2g1+l<span class="s2">&quot;Log of Maximum Amp. (Microns)&quot;</span> -X12 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
-<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>gmt psxy richter_magnitude_log.dat -R -JX -W1 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
-<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="k">for</span> <span class="k">/l</span> <span class="se">%%</span>x <span class="k">in</span> <span class="p">(</span><span class="mi">1</span>, <span class="mi">1</span>, <span class="mi">9</span><span class="p">)</span> <span class="k">do</span> <span class="p">(</span>
-<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>awk <span class="s2">&quot;$2==</span><span class="se">%%</span><span class="s2">x {print $1, $2}&quot;</span> richter_magnitude_log.dat <span class="p">|</span> <span class="se">^</span>
-<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="se">g</span>mt psxy -R -JX -Sc.5 -G255 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span><span class="p">)</span>
-<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="k">for</span> <span class="k">/l</span> <span class="se">%%</span>x <span class="k">in</span> <span class="p">(</span><span class="mi">1</span>, <span class="mi">1</span>, <span class="mi">9</span><span class="p">)</span> <span class="k">do</span> <span class="p">(</span>
-<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>awk <span class="s2">&quot;$2==</span><span class="se">%%</span><span class="s2">x {print $1, $2, </span><span class="se">%%</span><span class="s2">x}&quot;</span> richter_magnitude_log.dat <span class="p">|</span> <span class="se">^</span>
-<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="se">g</span>mt pstext -R -JX -F+f14p -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span><span class="p">)</span>
-<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="k">echo</span> 2.7 1.7 NOT FELT <span class="p">&gt;</span> tmp
-<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="k">echo</span> 4.2 3.4 MINOR <span class="p">&gt;&gt;</span> tmp
-<a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a><span class="k">echo</span> 5.2 4.5 SMALL <span class="p">&gt;&gt;</span> tmp
-<a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a><span class="k">echo</span> 6 5.5 MODERATE <span class="p">&gt;&gt;</span> tmp
-<a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a><span class="k">echo</span> 7 6.5 STRONG <span class="p">&gt;&gt;</span> tmp
-<a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a><span class="k">echo</span> 8 7.5 MAJOR <span class="p">&gt;&gt;</span> tmp
-<a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a><span class="k">echo</span> 8.2 8.5 GREAT <span class="p">&gt;&gt;</span> tmp
-<a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a>gmt pstext tmp -R -JX -F+f12p+jML -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
-<a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a><span class="k">echo</span> 7.7 9.2 RICHTER SCALE <span class="p">|</span> gmt pstext -R -JX -F+f22p,1+jMR -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
-<a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a><span class="k">echo</span> 7.5 8.9 A <span class="p">|</span> gmt pstext -R -JX -F+f18p,2+jMR -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
-<a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a><span class="k">echo</span> 7.4 8.7 GRAPHIC <span class="p">|</span> gmt pstext -R -JX -F+f18p,2+jMR -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
-<a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a><span class="k">echo</span> 7.3 8.5 REPRESENTATION <span class="p">|</span> gmt pstext -R -JX -F+f18p,2+jMR -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
-<a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a>
-<a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a>gmt psxy -R -JX -T -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
-<a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a>gmt psconvert <span class="nv">%ps%</span> -Tg -A -P
-<a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a><span class="k">del</span> tmp
-</code></pre></div></p>
-<p>成果圖右側參考<mark>Ansfield_1992</mark><sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>。本節學習的新指令:
-* 第4~5行: <code>-JX9/15l</code>會將y軸設定以10次方倍為一個區間的線性軸，
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Windows 批次檔</label><label for="__tabbed_2_2">Bash 腳本</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">set</span> <span class="nv">ps</span><span class="p">=</span>6_4_richter_magnitude.ps
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="p">:</span><span class="c1">: 製作左側圖</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>gmt psbasemap -R0/9.99/1e0/9.99e9 -JX9/15l -BWeSn -Bxa1+l<span class="s2">&quot;Richter Mag.&quot;</span> <span class="se">^</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="se">-</span>Bya1pf3+l<span class="s2">&quot;Maximum Amp. (Microns)&quot;</span> -K <span class="p">&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>gmt psxy richter_magnitude.dat -R -JX -W1 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="k">echo</span> 7.3 7.3e6 1999 Chi-Chi <span class="p">&gt;</span> tmp
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="k">echo</span> 6.6 6.6e5 2016 Meinong <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>gmt psxy tmp -R -JX -Sc.6 -G0 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>gmt pstext tmp -R -JX -F+f14p+jMR -D-.6/0 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="p">:</span><span class="c1">: 製作右側圖</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>gmt psbasemap -R0/9.99/1e-2/9.99 -JX9/15p2 -BWeSn -Bxa1+l<span class="s2">&quot;Magnitude&quot;</span> <span class="se">^</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="se">-</span>Bya1f.2g1+l<span class="s2">&quot;Log of Maximum Amp. (Microns)&quot;</span> -X12 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>gmt psxy richter_magnitude_log.dat -R -JX -W1 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="k">for</span> <span class="k">/l</span> <span class="se">%%</span>x <span class="k">in</span> <span class="p">(</span><span class="mi">1</span>, <span class="mi">1</span>, <span class="mi">9</span><span class="p">)</span> <span class="k">do</span> <span class="p">(</span>
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>awk <span class="s2">&quot;$2==</span><span class="se">%%</span><span class="s2">x {print $1, $2}&quot;</span> richter_magnitude_log.dat <span class="p">|</span> <span class="se">^</span>
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a><span class="se">g</span>mt psxy -R -JX -Sc.5 -G255 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span><span class="p">)</span>
+<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a><span class="k">for</span> <span class="k">/l</span> <span class="se">%%</span>x <span class="k">in</span> <span class="p">(</span><span class="mi">1</span>, <span class="mi">1</span>, <span class="mi">9</span><span class="p">)</span> <span class="k">do</span> <span class="p">(</span>
+<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>awk <span class="s2">&quot;$2==</span><span class="se">%%</span><span class="s2">x {print $1, $2, </span><span class="se">%%</span><span class="s2">x}&quot;</span> richter_magnitude_log.dat <span class="p">|</span> <span class="se">^</span>
+<a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a><span class="se">g</span>mt pstext -R -JX -F+f14p -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span><span class="p">)</span>
+<a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a><span class="k">echo</span> 2.7 1.7 NOT FELT <span class="p">&gt;</span> tmp
+<a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a><span class="k">echo</span> 4.2 3.4 MINOR <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a><span class="k">echo</span> 5.2 4.5 SMALL <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a><span class="k">echo</span> 6 5.5 MODERATE <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a><span class="k">echo</span> 7 6.5 STRONG <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a><span class="k">echo</span> 8 7.5 MAJOR <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-2-28" name="__codelineno-2-28" href="#__codelineno-2-28"></a><span class="k">echo</span> 8.2 8.5 GREAT <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-2-29" name="__codelineno-2-29" href="#__codelineno-2-29"></a>gmt pstext tmp -R -JX -F+f12p+jML -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-30" name="__codelineno-2-30" href="#__codelineno-2-30"></a><span class="k">echo</span> 7.7 9.2 RICHTER SCALE <span class="p">|</span> gmt pstext -R -JX -F+f22p,1+jMR -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-31" name="__codelineno-2-31" href="#__codelineno-2-31"></a><span class="k">echo</span> 7.5 8.9 A <span class="p">|</span> gmt pstext -R -JX -F+f18p,2+jMR -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-32" name="__codelineno-2-32" href="#__codelineno-2-32"></a><span class="k">echo</span> 7.4 8.7 GRAPHIC <span class="p">|</span> gmt pstext -R -JX -F+f18p,2+jMR -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-33" name="__codelineno-2-33" href="#__codelineno-2-33"></a><span class="k">echo</span> 7.3 8.5 REPRESENTATION <span class="p">|</span> gmt pstext -R -JX -F+f18p,2+jMR -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-34" name="__codelineno-2-34" href="#__codelineno-2-34"></a>
+<a id="__codelineno-2-35" name="__codelineno-2-35" href="#__codelineno-2-35"></a>gmt psxy -R -JX -T -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-36" name="__codelineno-2-36" href="#__codelineno-2-36"></a>gmt psconvert <span class="nv">%ps%</span> -Tg -A -P
+<a id="__codelineno-2-37" name="__codelineno-2-37" href="#__codelineno-2-37"></a><span class="k">del</span> tmp
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="ch">#!/usr/bin/env bash</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="nv">ps</span><span class="o">=</span>6_4_richter_magnitude.ps
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="c1"># 製作左側圖</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>gmt psbasemap -R0/9.99/1e0/9.99e9 -JX9/15l -BWeSn -Bxa1+l<span class="s2">&quot;Richter Mag.&quot;</span> <span class="se">\</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>-Bya1pf3+l<span class="s2">&quot;Maximum Amp. (Microns)&quot;</span> -K &gt; <span class="s2">&quot;</span><span class="si">${</span><span class="nv">ps</span><span class="si">}</span><span class="s2">&quot;</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>gmt psxy richter_magnitude.dat -R -JX -W1 -K -O &gt;&gt; <span class="s2">&quot;</span><span class="si">${</span><span class="nv">ps</span><span class="si">}</span><span class="s2">&quot;</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="nb">echo</span> <span class="m">7</span>.3 <span class="m">7</span>.3e6 <span class="m">1999</span> Chi-Chi &gt; tmp
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="nb">echo</span> <span class="m">6</span>.6 <span class="m">6</span>.6e5 <span class="m">2016</span> Meinong &gt;&gt; tmp
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>gmt psxy tmp -R -JX -Sc.6 -G0 -K -O &gt;&gt; <span class="s2">&quot;</span><span class="si">${</span><span class="nv">ps</span><span class="si">}</span><span class="s2">&quot;</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>gmt pstext tmp -R -JX -F+f14p+jMR -D-.6/0 -K -O &gt;&gt; <span class="s2">&quot;</span><span class="si">${</span><span class="nv">ps</span><span class="si">}</span><span class="s2">&quot;</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="c1"># 製作右側圖</span>
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>gmt psbasemap -R0/9.99/1e-2/9.99 -JX9/15p2 -BWeSn -Bxa1+l<span class="s2">&quot;Magnitude&quot;</span> <span class="se">\</span>
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>-Bya1f.2g1+l<span class="s2">&quot;Log of Maximum Amp. (Microns)&quot;</span> -X12 -K -O &gt;&gt; <span class="s2">&quot;</span><span class="si">${</span><span class="nv">ps</span><span class="si">}</span><span class="s2">&quot;</span>
+<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>gmt psxy richter_magnitude_log.dat -R -JX -W1 -K -O &gt;&gt; <span class="s2">&quot;</span><span class="si">${</span><span class="nv">ps</span><span class="si">}</span><span class="s2">&quot;</span>
+<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a><span class="k">for</span> x <span class="k">in</span> <span class="o">{</span><span class="m">1</span>..9<span class="o">}</span>
+<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a><span class="k">do</span>
+<a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a>    awk <span class="s2">&quot;</span><span class="nv">$2</span><span class="s2">==</span><span class="nv">$x</span><span class="s2"> {print \$1, \$2}&quot;</span> richter_magnitude_log.dat <span class="p">|</span> <span class="se">\</span>
+<a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a>    gmt psxy -R -JX -Sc.5 -G255 -K -O &gt;&gt; <span class="s2">&quot;</span><span class="si">${</span><span class="nv">ps</span><span class="si">}</span><span class="s2">&quot;</span>
+<a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a><span class="k">done</span>
+<a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a><span class="k">for</span> x <span class="k">in</span> <span class="o">{</span><span class="m">1</span>..9<span class="o">}</span>
+<a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a><span class="k">do</span>
+<a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a>    awk <span class="s2">&quot;</span><span class="nv">$2</span><span class="s2">==</span><span class="nv">$x</span><span class="s2"> {print \$1, \$2, </span><span class="nv">$x</span><span class="s2">}&quot;</span> richter_magnitude_log.dat <span class="p">|</span> <span class="se">\</span>
+<a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a>    gmt pstext -R -JX -F+f14p -K -O &gt;&gt; <span class="s2">&quot;</span><span class="si">${</span><span class="nv">ps</span><span class="si">}</span><span class="s2">&quot;</span>
+<a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a><span class="k">done</span>
+<a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a><span class="nb">echo</span> <span class="m">2</span>.7 <span class="m">1</span>.7 NOT FELT &gt; tmp
+<a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a><span class="nb">echo</span> <span class="m">4</span>.2 <span class="m">3</span>.4 MINOR &gt;&gt; tmp
+<a id="__codelineno-3-30" name="__codelineno-3-30" href="#__codelineno-3-30"></a><span class="nb">echo</span> <span class="m">5</span>.2 <span class="m">4</span>.5 SMALL &gt;&gt; tmp
+<a id="__codelineno-3-31" name="__codelineno-3-31" href="#__codelineno-3-31"></a><span class="nb">echo</span> <span class="m">6</span> <span class="m">5</span>.5 MODERATE &gt;&gt; tmp
+<a id="__codelineno-3-32" name="__codelineno-3-32" href="#__codelineno-3-32"></a><span class="nb">echo</span> <span class="m">7</span> <span class="m">6</span>.5 STRONG &gt;&gt; tmp
+<a id="__codelineno-3-33" name="__codelineno-3-33" href="#__codelineno-3-33"></a><span class="nb">echo</span> <span class="m">8</span> <span class="m">7</span>.5 MAJOR &gt;&gt; tmp
+<a id="__codelineno-3-34" name="__codelineno-3-34" href="#__codelineno-3-34"></a><span class="nb">echo</span> <span class="m">8</span>.2 <span class="m">8</span>.5 GREAT &gt;&gt; tmp
+<a id="__codelineno-3-35" name="__codelineno-3-35" href="#__codelineno-3-35"></a>gmt pstext tmp -R -JX -F+f12p+jML -K -O &gt;&gt; <span class="s2">&quot;</span><span class="si">${</span><span class="nv">ps</span><span class="si">}</span><span class="s2">&quot;</span>
+<a id="__codelineno-3-36" name="__codelineno-3-36" href="#__codelineno-3-36"></a><span class="nb">echo</span> <span class="m">7</span>.7 <span class="m">9</span>.2 RICHTER SCALE <span class="p">|</span> gmt pstext -R -JX -F+f22p,1+jMR -K -O &gt;&gt; <span class="s2">&quot;</span><span class="si">${</span><span class="nv">ps</span><span class="si">}</span><span class="s2">&quot;</span>
+<a id="__codelineno-3-37" name="__codelineno-3-37" href="#__codelineno-3-37"></a><span class="nb">echo</span> <span class="m">7</span>.5 <span class="m">8</span>.9 A <span class="p">|</span> gmt pstext -R -JX -F+f18p,2+jMR -K -O &gt;&gt; <span class="s2">&quot;</span><span class="si">${</span><span class="nv">ps</span><span class="si">}</span><span class="s2">&quot;</span>
+<a id="__codelineno-3-38" name="__codelineno-3-38" href="#__codelineno-3-38"></a><span class="nb">echo</span> <span class="m">7</span>.4 <span class="m">8</span>.7 GRAPHIC <span class="p">|</span> gmt pstext -R -JX -F+f18p,2+jMR -K -O &gt;&gt; <span class="s2">&quot;</span><span class="si">${</span><span class="nv">ps</span><span class="si">}</span><span class="s2">&quot;</span>
+<a id="__codelineno-3-39" name="__codelineno-3-39" href="#__codelineno-3-39"></a><span class="nb">echo</span> <span class="m">7</span>.3 <span class="m">8</span>.5 REPRESENTATION <span class="p">|</span> gmt pstext -R -JX -F+f18p,2+jMR -K -O &gt;&gt; <span class="s2">&quot;</span><span class="si">${</span><span class="nv">ps</span><span class="si">}</span><span class="s2">&quot;</span>
+<a id="__codelineno-3-40" name="__codelineno-3-40" href="#__codelineno-3-40"></a>
+<a id="__codelineno-3-41" name="__codelineno-3-41" href="#__codelineno-3-41"></a>gmt psxy -R -JX -T -O &gt;&gt; <span class="s2">&quot;</span><span class="si">${</span><span class="nv">ps</span><span class="si">}</span><span class="s2">&quot;</span>
+<a id="__codelineno-3-42" name="__codelineno-3-42" href="#__codelineno-3-42"></a>gmt psconvert <span class="s2">&quot;</span><span class="si">${</span><span class="nv">ps</span><span class="si">}</span><span class="s2">&quot;</span> -Tg -A -P
+<a id="__codelineno-3-43" name="__codelineno-3-43" href="#__codelineno-3-43"></a>rm -f tmp
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>成果圖右側參考 <mark>Ansfield (1992)</mark><sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>。本節學習的新指令:</p>
+<ul>
+<li>第4~5行: <code>-JX9/15l</code>會將y軸設定以10次方倍為一個區間的線性軸，
 <code>-By</code>之中<mark>a1p</mark>是將y軸的註解(tick markes or annotation)變成10次方表示；
-<mark>f3</mark>當-JX設定為l時，次要刻度有兩種選項，2以線性畫刻度，3以次方倍畫刻度。
-* 第13~14行: <code>-JX9/15p2</code>會將y軸設定為資料點平方的指數軸，p後面的數字代表多少次方倍。
-* 第16~21行: <code>for /l</code>設定一個數字範圍迴圈，語法為<code>for /l %%參數 in (起始,間隔,結束) do (指令)</code>，
-利用1~9間隔為1的迴圈，找出芮氏規模為1~9時，對應的振幅，
-* 第31,32行: <code>-F+f22p,1</code> or <code>-F+f18p,2</code>，改變字型，請參考<a href="../basic_defaults/#m4.4f">4-4字體對照表</a>。
-* 第35行: <code>-T</code>忽略所有輸入檔，往往在寫GMT畫圖時，常常需要更改或換指令的前後順序，
-導致圖層沒有確實關閉(-O沒在最後一個畫圖指令)，利用<code>psxy -T</code>忽略輸入檔的方式，來確保圖層關閉。</p>
+<mark>f3</mark>當-JX設定為l時，次要刻度有兩種選項，2以線性畫刻度，3以次方倍畫刻度。</li>
+<li>第13~14行: <code>-JX9/15p2</code>會將y軸設定為資料點平方的指數軸，p後面的數字代表多少次方倍。</li>
+<li>第16~21行: <code>for /l</code>設定一個數字範圍迴圈，語法為<code>for /l %%參數 in (起始,間隔,結束) do (指令)</code>，
+利用1~9間隔為1的迴圈，找出芮氏規模為1~9時，對應的振幅，</li>
+<li>第31,32行: <code>-F+f22p,1</code> or <code>-F+f18p,2</code>，改變字型，請參考<a href="../basic_defaults/#m4.4f">4-4字體對照表</a>。</li>
+<li>第35行: <code>-T</code>忽略所有輸入檔，往往在寫GMT畫圖時，常常需要更改或換指令的前後順序，
+導致圖層沒有確實關閉(-O沒在最後一個畫圖指令)，利用<code>psxy -T</code>忽略輸入檔的方式，來確保圖層關閉。</li>
+</ul>
 <p>在芮氏規模的公式中，振福與規模存在一個10次方倍的關係，如果用線性軸來表示，會因為x,y軸量值差距過大，
 而無法正常表示，所以左側的圖，將y軸設定為以10次方倍為一個區間，才能將這關係轉換至線性，便於表現在圖上。
 右側的圖，為了示意振幅及規模兩者之間非線性關係，先將振幅資料取log，再透過指數軸來示意兩者非線性之間的關係。</p>
@@ -860,59 +961,98 @@
 <p>時間序列這類型的圖，主要用來表示資料與時間之間的關係，普偏地出現在平常的生活當中，股票及匯率的走勢、
 國內生產毛額(GDP)、公司各季的財務報表等等，都被稱作時間序列。本節將利用<a href="https://dbahr.narlabs.org.tw">大氣水文資料庫</a>，
 中央氣象局自動測站C0V250(甲仙)在莫拉克颱風期間的雨量資料，來學習如何繪製時間序列圖。</p>
-<p>使用的資料檔:
-- <a href="https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/data/C0V250_rain.dat">甲仙站雨量資料</a></p>
+<p>使用的資料檔:</p>
+<ul>
+<li><a href="https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/data/C0V250_rain.dat">甲仙站雨量資料</a></li>
+</ul>
 <p>成果圖</p>
 <p align="center">
   <img src="/fig/6_5_C0V250_morakot_1.png"/>
 </p>
 
-<p>批次檔
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">set</span> <span class="nv">ps</span><span class="p">=</span>6_5_C0V250_morakot.ps
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a># 設定圖框、刻度、標題等等
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>gmt gmtset <span class="se">^</span>
-<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="se">F</span>ORMAT_DATE_MAP = yyyy/mm/dd <span class="se">^</span>
-<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="se">M</span>AP_FRAME_PEN = 3p <span class="se">^</span>
-<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="se">M</span>AP_TICK_PEN_PRIMARY = 3p <span class="se">^</span>
-<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="se">F</span>ONT_ANNOT_PRIMARY = 16p,4,black <span class="se">^</span>
-<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="se">F</span>ONT_LABEL = 20p,4,black <span class="se">^</span>
-<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="se">F</span>ONT_TITLE = 26p,4,black
-<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>
-<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a># 繪製雨量長條圖
-<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>gmt psbasemap -R2009-08-06T/2009-08-15T/0/150 -JX20/12 <span class="se">^</span>
-<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="se">-</span>BW+t<span class="s2">&quot;Station: C0V250&quot;</span>+g225 -Bxa2D -Bya30+l<span class="s2">&quot;Rainfall (mm)&quot;</span> -K <span class="p">&gt;</span> <span class="nv">%ps%</span>
-<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>awk <span class="s2">&quot;{print $1,$2}&quot;</span> C0V250_rain.dat <span class="p">|</span> gmt psxy -R -JX -Sb.1 -G0/14/203 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
-<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>
-<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a># 繪製累積雨量折線圖
-<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>awk <span class="s2">&quot;{print $1,$3}&quot;</span> C0V250_rain.dat <span class="p">|</span> gmt psxy -R2009-08-06T/2009-08-15T/0/2200 <span class="se">^</span>
-<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a><span class="se">-</span>JX -W3.5,242/51/51 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
-<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>gmt psbasemap -R -JX -BESn -Bxa2D+l<span class="s2">&quot;Time (Year/Mon/Day)&quot;</span> <span class="se">^</span>
-<a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a><span class="se">-</span>Bya400f200+l<span class="s2">&quot;Accumulated Rainfall (mm)&quot;</span> -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
-<a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a>
-<a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a>gmt psxy -R -JX -T -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
-<a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a>gmt psconvert <span class="nv">%ps%</span> -Tg -A -P
-<a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a><span class="k">del</span> gmt.conf
-</code></pre></div></p>
-<p>本節學習的新指令:
-* 第4~10行: <code>gmtset</code>預設值設定，在章節4-3有提到如何修改預設值，這裡採用第二種方式，
-透過查詢<a href="../basic_defaults/#m4.4m">4-4地圖框的設定</a>，修改了
-  * <code>FORMAT_DATE_MAP</code>地圖的時間格式，<strong>yyyy</strong>四碼年份、<strong>mm</strong>兩碼月份、<strong>dd</strong>兩碼日子。
-  * <code>MAP_FRAME_PEN</code>地圖框畫筆。
-  * <code>MAP_TICK_PEN_PRIMARY</code>刻度畫筆。
-  * <code>FONT_ANNOT_PRIMARY</code>註解的字型。
-  * <code>FONT_LABEL</code>標籤的字型。
-  * <code>FONT_TITLE</code>標題的字型。
-* 第13,14行: 示範psbasemap如何設定為標準時間格式。
-  * <code>-R[date]T[clock]</code>，年月日的寫法是yyyy-mm-dd，時分秒[毫秒]的寫法是hh:mm:ss[.xxx]，
-  中間用T隔開，GMT就可以了解到資料為標準時間格式。
-  * <code>-B+g顏色</code>，設定圖框內的底色。
-  * <code>-Bxa2D</code>，x軸間隔設定為2天，詳細的間隔設定，可參考<a href="../basic_defaults/#4.4t">4-4時間的單位</a>。
-* 第15行: <code>-Sb</code>尺寸，繪製垂直長條，如果是<code>-SB</code>則是水平長條。
-* 第18行: 將y軸範圍改成0/2200，配合累積雨量。
-* 第20行: <code>-BEsn</code>配合第14行<code>-BW</code>，達到繪製雙y軸的效果，此處psbasemap與psxy指令的順序交換，
-是為了不讓累積雨量的折線，覆蓋到圖框。
-* 第25行: 為了避免<mark>gmt.conf</mark>影響到其他GMT畫圖的批次檔，將此檔刪除。</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Windows 批次檔</label><label for="__tabbed_3_2">bash 腳本</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">set</span> <span class="nv">ps</span><span class="p">=</span>6_5_C0V250_morakot.ps
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a># 設定圖框、刻度、標題等等
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>gmt gmtset <span class="se">^</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="se">F</span>ORMAT_DATE_MAP = yyyy/mm/dd <span class="se">^</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="se">M</span>AP_FRAME_PEN = 3p <span class="se">^</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="se">M</span>AP_TICK_PEN_PRIMARY = 3p <span class="se">^</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="se">F</span>ONT_ANNOT_PRIMARY = 16p,4,black <span class="se">^</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="se">F</span>ONT_LABEL = 20p,4,black <span class="se">^</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="se">F</span>ONT_TITLE = 26p,4,black
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a># 繪製雨量長條圖
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>gmt psbasemap -R2009-08-06T/2009-08-15T/0/150 -JX20/12 <span class="se">^</span>
+<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a><span class="se">-</span>BW+t<span class="s2">&quot;Station: C0V250&quot;</span>+g225 -Bxa2D -Bya30+l<span class="s2">&quot;Rainfall (mm)&quot;</span> -K <span class="p">&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a>awk <span class="s2">&quot;{print $1,$2}&quot;</span> C0V250_rain.dat <span class="p">|</span> gmt psxy -R -JX -Sb.1 -G0/14/203 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a>
+<a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a># 繪製累積雨量折線圖
+<a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a>awk <span class="s2">&quot;{print $1,$3}&quot;</span> C0V250_rain.dat <span class="p">|</span> gmt psxy -R2009-08-06T/2009-08-15T/0/2200 <span class="se">^</span>
+<a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a><span class="se">-</span>JX -W3.5,242/51/51 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a>gmt psbasemap -R -JX -BESn -Bxa2D+l<span class="s2">&quot;Time (Year/Mon/Day)&quot;</span> <span class="se">^</span>
+<a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a><span class="se">-</span>Bya400f200+l<span class="s2">&quot;Accumulated Rainfall (mm)&quot;</span> -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-4-22" name="__codelineno-4-22" href="#__codelineno-4-22"></a>
+<a id="__codelineno-4-23" name="__codelineno-4-23" href="#__codelineno-4-23"></a>gmt psxy -R -JX -T -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-4-24" name="__codelineno-4-24" href="#__codelineno-4-24"></a>gmt psconvert <span class="nv">%ps%</span> -Tg -A -P
+<a id="__codelineno-4-25" name="__codelineno-4-25" href="#__codelineno-4-25"></a><span class="k">del</span> gmt.conf
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="ch">#!/usr/bin/env bash</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="nv">ps</span><span class="o">=</span>6_5_C0V250_morakot.ps
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="c1"># 設定圖框、刻度、標題等等</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>gmt gmtset <span class="se">\</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="nv">FORMAT_DATE_MAP</span> <span class="o">=</span> yyyy/mm/dd <span class="se">\</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="nv">MAP_FRAME_PEN</span> <span class="o">=</span> 3p <span class="se">\</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="nv">MAP_TICK_PEN_PRIMARY</span> <span class="o">=</span> 3p <span class="se">\</span>
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="nv">FONT_ANNOT_PRIMARY</span> <span class="o">=</span> 16p,4,black <span class="se">\</span>
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="nv">FONT_LABEL</span> <span class="o">=</span> 20p,4,black <span class="se">\</span>
+<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="nv">FONT_TITLE</span> <span class="o">=</span> 26p,4,black
+<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>
+<a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a><span class="c1"># 繪製雨量長條圖</span>
+<a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a>gmt psbasemap -R2009-08-06T/2009-08-15T/0/150 -JX20/12 <span class="se">\</span>
+<a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a>-BW+t<span class="s2">&quot;Station: C0V250&quot;</span>+g225 -Bxa2D -Bya30+l<span class="s2">&quot;Rainfall (mm)&quot;</span> -K &gt; <span class="s2">&quot;</span><span class="si">${</span><span class="nv">ps</span><span class="si">}</span><span class="s2">&quot;</span>
+<a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a>awk <span class="s2">&quot;{print </span><span class="nv">$1</span><span class="s2">,</span><span class="nv">$2</span><span class="s2">}&quot;</span> C0V250_rain.dat <span class="p">|</span> gmt psxy -R -JX -Sb.1 -G0/14/203 -K -O &gt;&gt; <span class="s2">&quot;</span><span class="si">${</span><span class="nv">ps</span><span class="si">}</span><span class="s2">&quot;</span>
+<a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a>
+<a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a><span class="c1"># 繪製累積雨量折線圖</span>
+<a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a>awk <span class="s1">&#39;{print $1,$3}&#39;</span> C0V250_rain.dat <span class="p">|</span> gmt psxy -R2009-08-06T/2009-08-15T/0/2200 <span class="se">\</span>
+<a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a>-JX -W3.5,242/51/51 -K -O &gt;&gt; <span class="s2">&quot;</span><span class="si">${</span><span class="nv">ps</span><span class="si">}</span><span class="s2">&quot;</span>
+<a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a>gmt psbasemap -R -JX -BESn -Bxa2D+l<span class="s2">&quot;Time (Year/Mon/Day)&quot;</span> <span class="se">\</span>
+<a id="__codelineno-5-23" name="__codelineno-5-23" href="#__codelineno-5-23"></a>-Bya400f200+l<span class="s2">&quot;Accumulated Rainfall (mm)&quot;</span> -K -O &gt;&gt; <span class="s2">&quot;</span><span class="si">${</span><span class="nv">ps</span><span class="si">}</span><span class="s2">&quot;</span>
+<a id="__codelineno-5-24" name="__codelineno-5-24" href="#__codelineno-5-24"></a>
+<a id="__codelineno-5-25" name="__codelineno-5-25" href="#__codelineno-5-25"></a>gmt psxy -R -JX -T -O &gt;&gt; <span class="s2">&quot;</span><span class="si">${</span><span class="nv">ps</span><span class="si">}</span><span class="s2">&quot;</span>
+<a id="__codelineno-5-26" name="__codelineno-5-26" href="#__codelineno-5-26"></a>gmt psconvert <span class="s2">&quot;</span><span class="si">${</span><span class="nv">ps</span><span class="si">}</span><span class="s2">&quot;</span> -Tg -A -P
+<a id="__codelineno-5-27" name="__codelineno-5-27" href="#__codelineno-5-27"></a>rm -f gmt.conf
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>本節學習的新指令:</p>
+<ul>
+<li>第4~10行: <code>gmtset</code>預設值設定，在章節4-3有提到如何修改預設值，這裡採用第二種方式，
+透過查詢<a href="../basic_defaults/#m4.4m">4-4地圖框的設定</a>，修改了</li>
+<li><code>FORMAT_DATE_MAP</code>地圖的時間格式，<strong>yyyy</strong>四碼年份、<strong>mm</strong>兩碼月份、<strong>dd</strong>兩碼日子。</li>
+<li><code>MAP_FRAME_PEN</code>地圖框畫筆。</li>
+<li><code>MAP_TICK_PEN_PRIMARY</code>刻度畫筆。</li>
+<li><code>FONT_ANNOT_PRIMARY</code>註解的字型。</li>
+<li><code>FONT_LABEL</code>標籤的字型。</li>
+<li><code>FONT_TITLE</code>標題的字型。</li>
+<li>第13,14行: 示範psbasemap如何設定為標準時間格式。</li>
+<li><code>-R[date]T[clock]</code>，年月日的寫法是yyyy-mm-dd，時分秒[毫秒]的寫法是hh:mm:ss[.xxx]，
+  中間用T隔開，GMT就可以了解到資料為標準時間格式。</li>
+<li><code>-B+g顏色</code>，設定圖框內的底色。</li>
+<li><code>-Bxa2D</code>，x軸間隔設定為2天，詳細的間隔設定，可參考<a href="../basic_defaults/#4.4t">4-4時間的單位</a>。</li>
+<li>第15行: <code>-Sb</code>尺寸，繪製垂直長條，如果是<code>-SB</code>則是水平長條。</li>
+<li>第18行: 將y軸範圍改成0/2200，配合累積雨量。</li>
+<li>第20行: <code>-BEsn</code>配合第14行<code>-BW</code>，達到繪製雙y軸的效果，此處psbasemap與psxy指令的順序交換，
+是為了不讓累積雨量的折線，覆蓋到圖框。</li>
+<li>第25行: 為了避免<mark>gmt.conf</mark>影響到其他GMT畫圖的批次檔，將此檔刪除。</li>
+</ul>
 <p>為了表達在同一段時間內，不同資料的變化趨勢，雙軸圖(twin axis figure)被廣泛地應用在時間序列中，
 透過簡單的<code>-B</code>參數設定來達到此效果。從圖中可以看到甲仙地區，在2009/08/06晚上開始下雨(藍色長條)，
 約以每小時20~40mm的降水量持續到8號下午，8號晚間帶來80~100mm/hr的雨量，在此之後開始緩慢下降，
@@ -922,90 +1062,152 @@
 <p>極座標軸是由角度和相對原點距離來組成，常應用在數學、物理、工程等等領域，像是岩層走向、航海雷達等。
 本節將利用<a href="https://dbahr.narlabs.org.tw">大氣水文資料庫</a>中台北、台中、台南、台東，共四個氣象站的風速及方向資料，
 來展示台灣夏季及冬季的風向與風速的差異，並示範<code>pslegend</code>的用法。</p>
-<p>使用的資料檔:
-- <a href="https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/data/summer_wind.dat">夏季風資料</a>
-- <a href="https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/data/winter_wind.dat">冬季風資料</a></p>
+<p>使用的資料檔:</p>
+<ul>
+<li><a href="https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/data/summer_wind.dat">夏季風資料</a></li>
+<li><a href="https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/data/winter_wind.dat">冬季風資料</a></li>
+</ul>
 <p>成果圖</p>
 <p align="center">
   <img src="/fig/6_6_season_wind_1.png"/>
 </p>
 
-<p>批次檔
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">set</span> <span class="nv">ps</span><span class="p">=</span>6_6_season_wind.ps
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>gmt psbasemap -R0/360/0/5 -JPa17 -BN+g230 -Bxa20 -Byg1 -K <span class="p">&gt;</span> <span class="nv">%ps%</span>
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a># 466920, Taipei
-<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>awk <span class="s2">&quot;$4==466920 {print $3, $2}&quot;</span> summer_wind.dat <span class="p">|</span> gmt psxy -R -JP -Sc.3 -G161/216/132 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
-<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>awk <span class="s2">&quot;$4==466920 {print $3, $2}&quot;</span> winter_wind.dat <span class="p">|</span> gmt psxy -R -JP -Sc.3 -G42/99/246 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
-<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a># 467490, Taichung
-<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>awk <span class="s2">&quot;$4==467490 {print $3, $2}&quot;</span> summer_wind.dat <span class="p">|</span> gmt psxy -R -JP -Ss.3 -G161/216/132 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
-<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>awk <span class="s2">&quot;$4==467490 {print $3, $2}&quot;</span> winter_wind.dat <span class="p">|</span> gmt psxy -R -JP -Ss.3 -G42/99/246 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
-<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a># 467410, Tainan
-<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>awk <span class="s2">&quot;$4==467410 {print $3, $2}&quot;</span> summer_wind.dat <span class="p">|</span> gmt psxy -R -JP -St.3 -G161/216/132 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
-<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>awk <span class="s2">&quot;$4==467410 {print $3, $2}&quot;</span> winter_wind.dat <span class="p">|</span> gmt psxy -R -JP -St.3 -G42/99/246 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
-<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a># 467660, Taitung
-<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>awk <span class="s2">&quot;$4==467660 {print $3, $2}&quot;</span> summer_wind.dat <span class="p">|</span> gmt psxy -R -JP -Sn.3 -G161/216/132 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
-<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>awk <span class="s2">&quot;$4==467660 {print $3, $2}&quot;</span> winter_wind.dat <span class="p">|</span> gmt psxy -R -JP -Sn.3 -G42/99/246 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
-<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a># wind speed label
-<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="k">echo</span> -90 1 1 m/s <span class="p">&gt;</span> tmp
-<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a><span class="k">echo</span> -90 2 2 m/s <span class="p">&gt;&gt;</span> tmp
-<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a><span class="k">echo</span> -90 3 3 m/s <span class="p">&gt;&gt;</span> tmp
-<a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a><span class="k">echo</span> -90 4 4 m/s <span class="p">&gt;&gt;</span> tmp
-<a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a>gmt pstext tmp -R -JP -F+f14p -G230 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
-<a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a>
-<a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a># legend set
-<a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a><span class="k">echo</span> H 24 Times-Roman Legend <span class="p">&gt;</span> tmp
-<a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a><span class="k">echo</span> D 0.4 1p <span class="p">&gt;&gt;</span> tmp
-<a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a><span class="k">echo</span> G .2 <span class="p">&gt;&gt;</span> tmp
-<a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a><span class="k">echo</span> N 2 <span class="p">&gt;&gt;</span> tmp
-<a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a><span class="k">echo</span> S .5 c .5 0 0 1 Taipei <span class="p">&gt;&gt;</span> tmp
-<a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a><span class="k">echo</span> S .5 s .5 0 0 1 Taichung <span class="p">&gt;&gt;</span> tmp
-<a id="__codelineno-3-30" name="__codelineno-3-30" href="#__codelineno-3-30"></a><span class="k">echo</span> G .1 <span class="p">&gt;&gt;</span> tmp
-<a id="__codelineno-3-31" name="__codelineno-3-31" href="#__codelineno-3-31"></a><span class="k">echo</span> S .5 t .5 0 0 1 Tainan <span class="p">&gt;&gt;</span> tmp
-<a id="__codelineno-3-32" name="__codelineno-3-32" href="#__codelineno-3-32"></a><span class="k">echo</span> S .5 n .5 0 0 1 Taitung <span class="p">&gt;&gt;</span> tmp
-<a id="__codelineno-3-33" name="__codelineno-3-33" href="#__codelineno-3-33"></a><span class="k">echo</span> D 0.8 1p,0,- <span class="p">&gt;&gt;</span> tmp
-<a id="__codelineno-3-34" name="__codelineno-3-34" href="#__codelineno-3-34"></a><span class="k">echo</span> P <span class="p">&gt;&gt;</span> tmp
-<a id="__codelineno-3-35" name="__codelineno-3-35" href="#__codelineno-3-35"></a><span class="k">echo</span> G .1 <span class="p">&gt;&gt;</span> tmp
-<a id="__codelineno-3-36" name="__codelineno-3-36" href="#__codelineno-3-36"></a><span class="k">echo</span> T Each symbols indicate the different city. <span class="p">&gt;&gt;</span> tmp
-<a id="__codelineno-3-37" name="__codelineno-3-37" href="#__codelineno-3-37"></a><span class="k">echo</span> T The green data are in the summer (Jun., Jul., Aug.), <span class="p">&gt;&gt;</span> tmp
-<a id="__codelineno-3-38" name="__codelineno-3-38" href="#__codelineno-3-38"></a><span class="k">echo</span> T and the blue points are in the winter (Dec., Jan., Feb.). <span class="p">&gt;&gt;</span> tmp
-<a id="__codelineno-3-39" name="__codelineno-3-39" href="#__codelineno-3-39"></a>gmt pslegend tmp -R -JP -C.1/.1 -Dx18.5/5+w8 -F+g240+p1+s4p/-4p/gray50 <span class="se">^</span>
-<a id="__codelineno-3-40" name="__codelineno-3-40" href="#__codelineno-3-40"></a><span class="se">-</span>-FONT_ANNOT_PRIMARY=16p -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
-<a id="__codelineno-3-41" name="__codelineno-3-41" href="#__codelineno-3-41"></a>
-<a id="__codelineno-3-42" name="__codelineno-3-42" href="#__codelineno-3-42"></a>gmt psxy -R -JX -T -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
-<a id="__codelineno-3-43" name="__codelineno-3-43" href="#__codelineno-3-43"></a>gmt psconvert <span class="nv">%ps%</span> -Tg -A -P
-<a id="__codelineno-3-44" name="__codelineno-3-44" href="#__codelineno-3-44"></a><span class="k">del</span> tmp
-</code></pre></div></p>
-<p>本節學習的新指令:
-* 第3行: <code>-JPa17</code>其中<strong>a</strong>表示由北開始，如果沒有則是從東開始；<strong>17</strong>設定圖寬度。
+<div class="tabbed-set tabbed-alternate" data-tabs="4:2"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">Windows 批次檔</label><label for="__tabbed_4_2">Bash 腳本</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">set</span> <span class="nv">ps</span><span class="p">=</span>6_6_season_wind.ps
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>gmt psbasemap -R0/360/0/5 -JPa17 -BN+g230 -Bxa20 -Byg1 -K <span class="p">&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="p">:</span><span class="c1">: 466920, Taipei</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>awk <span class="s2">&quot;$4==466920 {print $3, $2}&quot;</span> summer_wind.dat <span class="p">|</span> gmt psxy -R -JP -Sc.3 -G161/216/132 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>awk <span class="s2">&quot;$4==466920 {print $3, $2}&quot;</span> winter_wind.dat <span class="p">|</span> gmt psxy -R -JP -Sc.3 -G42/99/246 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="p">:</span><span class="c1">: 467490, Taichung</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>awk <span class="s2">&quot;$4==467490 {print $3, $2}&quot;</span> summer_wind.dat <span class="p">|</span> gmt psxy -R -JP -Ss.3 -G161/216/132 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>awk <span class="s2">&quot;$4==467490 {print $3, $2}&quot;</span> winter_wind.dat <span class="p">|</span> gmt psxy -R -JP -Ss.3 -G42/99/246 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="p">:</span><span class="c1">: 467410, Tainan</span>
+<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>awk <span class="s2">&quot;$4==467410 {print $3, $2}&quot;</span> summer_wind.dat <span class="p">|</span> gmt psxy -R -JP -St.3 -G161/216/132 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>awk <span class="s2">&quot;$4==467410 {print $3, $2}&quot;</span> winter_wind.dat <span class="p">|</span> gmt psxy -R -JP -St.3 -G42/99/246 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="p">:</span><span class="c1">: 467660, Taitung</span>
+<a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a>awk <span class="s2">&quot;$4==467660 {print $3, $2}&quot;</span> summer_wind.dat <span class="p">|</span> gmt psxy -R -JP -Sn.3 -G161/216/132 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a>awk <span class="s2">&quot;$4==467660 {print $3, $2}&quot;</span> winter_wind.dat <span class="p">|</span> gmt psxy -R -JP -Sn.3 -G42/99/246 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a><span class="p">:</span><span class="c1">: wind speed label</span>
+<a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a><span class="k">echo</span> -90 1 1 m/s <span class="p">&gt;</span> tmp
+<a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a><span class="k">echo</span> -90 2 2 m/s <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a><span class="k">echo</span> -90 3 3 m/s <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-6-20" name="__codelineno-6-20" href="#__codelineno-6-20"></a><span class="k">echo</span> -90 4 4 m/s <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-6-21" name="__codelineno-6-21" href="#__codelineno-6-21"></a>gmt pstext tmp -R -JP -F+f14p -G230 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-6-22" name="__codelineno-6-22" href="#__codelineno-6-22"></a>
+<a id="__codelineno-6-23" name="__codelineno-6-23" href="#__codelineno-6-23"></a><span class="p">:</span><span class="c1">: legend set</span>
+<a id="__codelineno-6-24" name="__codelineno-6-24" href="#__codelineno-6-24"></a><span class="k">echo</span> H 24 Times-Roman Legend <span class="p">&gt;</span> tmp
+<a id="__codelineno-6-25" name="__codelineno-6-25" href="#__codelineno-6-25"></a><span class="k">echo</span> D 0.4 1p <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-6-26" name="__codelineno-6-26" href="#__codelineno-6-26"></a><span class="k">echo</span> G .2 <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-6-27" name="__codelineno-6-27" href="#__codelineno-6-27"></a><span class="k">echo</span> N 2 <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-6-28" name="__codelineno-6-28" href="#__codelineno-6-28"></a><span class="k">echo</span> S .5 c .5 0 0 1 Taipei <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-6-29" name="__codelineno-6-29" href="#__codelineno-6-29"></a><span class="k">echo</span> S .5 s .5 0 0 1 Taichung <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-6-30" name="__codelineno-6-30" href="#__codelineno-6-30"></a><span class="k">echo</span> G .1 <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-6-31" name="__codelineno-6-31" href="#__codelineno-6-31"></a><span class="k">echo</span> S .5 t .5 0 0 1 Tainan <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-6-32" name="__codelineno-6-32" href="#__codelineno-6-32"></a><span class="k">echo</span> S .5 n .5 0 0 1 Taitung <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-6-33" name="__codelineno-6-33" href="#__codelineno-6-33"></a><span class="k">echo</span> D 0.8 1p,0,- <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-6-34" name="__codelineno-6-34" href="#__codelineno-6-34"></a><span class="k">echo</span> P <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-6-35" name="__codelineno-6-35" href="#__codelineno-6-35"></a><span class="k">echo</span> G .1 <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-6-36" name="__codelineno-6-36" href="#__codelineno-6-36"></a><span class="k">echo</span> T Each symbols indicate the different city. <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-6-37" name="__codelineno-6-37" href="#__codelineno-6-37"></a><span class="k">echo</span> T The green data are in the summer (Jun., Jul., Aug.), <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-6-38" name="__codelineno-6-38" href="#__codelineno-6-38"></a><span class="k">echo</span> T and the blue points are in the winter (Dec., Jan., Feb.). <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-6-39" name="__codelineno-6-39" href="#__codelineno-6-39"></a>gmt pslegend tmp -R -JP -C.1/.1 -Dx18.5/5+w8 -F+g240+p1+s4p/-4p/gray50 <span class="se">^</span>
+<a id="__codelineno-6-40" name="__codelineno-6-40" href="#__codelineno-6-40"></a><span class="se">-</span>-FONT_ANNOT_PRIMARY=16p -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-6-41" name="__codelineno-6-41" href="#__codelineno-6-41"></a>
+<a id="__codelineno-6-42" name="__codelineno-6-42" href="#__codelineno-6-42"></a>gmt psxy -R -JX -T -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-6-43" name="__codelineno-6-43" href="#__codelineno-6-43"></a>gmt psconvert <span class="nv">%ps%</span> -Tg -A -P
+<a id="__codelineno-6-44" name="__codelineno-6-44" href="#__codelineno-6-44"></a><span class="k">del</span> tmp
+</code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="ch">#!/usr/bin/env bash</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="nb">set</span> <span class="nv">ps</span><span class="o">=</span>6_6_season_wind.ps
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>gmt psbasemap -R0/360/0/5 -JPa17 -BN+g230 -Bxa20 -Byg1 -K &gt; <span class="s2">&quot;</span><span class="si">${</span><span class="nv">ps</span><span class="si">}</span><span class="s2">&quot;</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="c1"># 466920, Taipei</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>awk <span class="s1">&#39;$4==466920 {print $3, $2}&#39;</span> summer_wind.dat <span class="p">|</span> gmt psxy -R -JP -Sc.3 -G161/216/132 -K -O &gt;&gt; <span class="s2">&quot;</span><span class="si">${</span><span class="nv">ps</span><span class="si">}</span><span class="s2">&quot;</span>
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>awk <span class="s1">&#39;$4==466920 {print $3, $2}&#39;</span> winter_wind.dat <span class="p">|</span> gmt psxy -R -JP -Sc.3 -G42/99/246 -K -O &gt;&gt; <span class="s2">&quot;</span><span class="si">${</span><span class="nv">ps</span><span class="si">}</span><span class="s2">&quot;</span>
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="c1"># 467490, Taichung</span>
+<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>awk <span class="s1">&#39;$4==467490 {print $3, $2}&#39;</span> summer_wind.dat <span class="p">|</span> gmt psxy -R -JP -Ss.3 -G161/216/132 -K -O &gt;&gt; <span class="s2">&quot;</span><span class="si">${</span><span class="nv">ps</span><span class="si">}</span><span class="s2">&quot;</span>
+<a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a>awk <span class="s1">&#39;$4==467490 {print $3, $2}&#39;</span> winter_wind.dat <span class="p">|</span> gmt psxy -R -JP -Ss.3 -G42/99/246 -K -O &gt;&gt; <span class="s2">&quot;</span><span class="si">${</span><span class="nv">ps</span><span class="si">}</span><span class="s2">&quot;</span>
+<a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a><span class="c1"># 467410, Tainan</span>
+<a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a>awk <span class="s1">&#39;$4==467410 {print $3, $2}&#39;</span> summer_wind.dat <span class="p">|</span> gmt psxy -R -JP -St.3 -G161/216/132 -K -O &gt;&gt; <span class="s2">&quot;</span><span class="si">${</span><span class="nv">ps</span><span class="si">}</span><span class="s2">&quot;</span>
+<a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a>awk <span class="s1">&#39;$4==467410 {print $3, $2}&#39;</span> winter_wind.dat <span class="p">|</span> gmt psxy -R -JP -St.3 -G42/99/246 -K -O &gt;&gt; <span class="s2">&quot;</span><span class="si">${</span><span class="nv">ps</span><span class="si">}</span><span class="s2">&quot;</span>
+<a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a><span class="c1"># 467660, Taitung</span>
+<a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a>awk <span class="s1">&#39;$4==467660 {print $3, $2}&#39;</span> summer_wind.dat <span class="p">|</span> gmt psxy -R -JP -Sn.3 -G161/216/132 -K -O &gt;&gt; <span class="s2">&quot;</span><span class="si">${</span><span class="nv">ps</span><span class="si">}</span><span class="s2">&quot;</span>
+<a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a>awk <span class="s1">&#39;$4==467660 {print $3, $2}&#39;</span> winter_wind.dat <span class="p">|</span> gmt psxy -R -JP -Sn.3 -G42/99/246 -K -O &gt;&gt; <span class="s2">&quot;</span><span class="si">${</span><span class="nv">ps</span><span class="si">}</span><span class="s2">&quot;</span>
+<a id="__codelineno-7-18" name="__codelineno-7-18" href="#__codelineno-7-18"></a><span class="c1"># wind speed label</span>
+<a id="__codelineno-7-19" name="__codelineno-7-19" href="#__codelineno-7-19"></a><span class="nb">echo</span> -90 <span class="m">1</span> <span class="m">1</span> m/s &gt; tmp
+<a id="__codelineno-7-20" name="__codelineno-7-20" href="#__codelineno-7-20"></a><span class="nb">echo</span> -90 <span class="m">2</span> <span class="m">2</span> m/s &gt;&gt; tmp
+<a id="__codelineno-7-21" name="__codelineno-7-21" href="#__codelineno-7-21"></a><span class="nb">echo</span> -90 <span class="m">3</span> <span class="m">3</span> m/s &gt;&gt; tmp
+<a id="__codelineno-7-22" name="__codelineno-7-22" href="#__codelineno-7-22"></a><span class="nb">echo</span> -90 <span class="m">4</span> <span class="m">4</span> m/s &gt;&gt; tmp
+<a id="__codelineno-7-23" name="__codelineno-7-23" href="#__codelineno-7-23"></a>gmt pstext tmp -R -JP -F+f14p -G230 -K -O &gt;&gt; <span class="s2">&quot;</span><span class="si">${</span><span class="nv">ps</span><span class="si">}</span><span class="s2">&quot;</span>
+<a id="__codelineno-7-24" name="__codelineno-7-24" href="#__codelineno-7-24"></a>
+<a id="__codelineno-7-25" name="__codelineno-7-25" href="#__codelineno-7-25"></a><span class="c1"># legend set</span>
+<a id="__codelineno-7-26" name="__codelineno-7-26" href="#__codelineno-7-26"></a><span class="nb">echo</span> H <span class="m">24</span> Times-Roman Legend &gt; tmp
+<a id="__codelineno-7-27" name="__codelineno-7-27" href="#__codelineno-7-27"></a><span class="nb">echo</span> D <span class="m">0</span>.4 1p &gt;&gt; tmp
+<a id="__codelineno-7-28" name="__codelineno-7-28" href="#__codelineno-7-28"></a><span class="nb">echo</span> G .2 &gt;&gt; tmp
+<a id="__codelineno-7-29" name="__codelineno-7-29" href="#__codelineno-7-29"></a><span class="nb">echo</span> N <span class="m">2</span> &gt;&gt; tmp
+<a id="__codelineno-7-30" name="__codelineno-7-30" href="#__codelineno-7-30"></a><span class="nb">echo</span> S .5 c .5 <span class="m">0</span> <span class="m">0</span> <span class="m">1</span> Taipei &gt;&gt; tmp
+<a id="__codelineno-7-31" name="__codelineno-7-31" href="#__codelineno-7-31"></a><span class="nb">echo</span> S .5 s .5 <span class="m">0</span> <span class="m">0</span> <span class="m">1</span> Taichung &gt;&gt; tmp
+<a id="__codelineno-7-32" name="__codelineno-7-32" href="#__codelineno-7-32"></a><span class="nb">echo</span> G .1 &gt;&gt; tmp
+<a id="__codelineno-7-33" name="__codelineno-7-33" href="#__codelineno-7-33"></a><span class="nb">echo</span> S .5 t .5 <span class="m">0</span> <span class="m">0</span> <span class="m">1</span> Tainan &gt;&gt; tmp
+<a id="__codelineno-7-34" name="__codelineno-7-34" href="#__codelineno-7-34"></a><span class="nb">echo</span> S .5 n .5 <span class="m">0</span> <span class="m">0</span> <span class="m">1</span> Taitung &gt;&gt; tmp
+<a id="__codelineno-7-35" name="__codelineno-7-35" href="#__codelineno-7-35"></a><span class="nb">echo</span> D <span class="m">0</span>.8 1p,0,- &gt;&gt; tmp
+<a id="__codelineno-7-36" name="__codelineno-7-36" href="#__codelineno-7-36"></a><span class="nb">echo</span> P &gt;&gt; tmp
+<a id="__codelineno-7-37" name="__codelineno-7-37" href="#__codelineno-7-37"></a><span class="nb">echo</span> G .1 &gt;&gt; tmp
+<a id="__codelineno-7-38" name="__codelineno-7-38" href="#__codelineno-7-38"></a><span class="nb">echo</span> T Each symbols indicate the different city. &gt;&gt; tmp
+<a id="__codelineno-7-39" name="__codelineno-7-39" href="#__codelineno-7-39"></a><span class="nb">echo</span> T The green data are <span class="k">in</span> the summer <span class="o">(</span>Jun., Jul., Aug.<span class="o">)</span>, &gt;&gt; tmp
+<a id="__codelineno-7-40" name="__codelineno-7-40" href="#__codelineno-7-40"></a><span class="nb">echo</span> T and the blue points are <span class="k">in</span> the winter <span class="o">(</span>Dec., Jan., Feb.<span class="o">)</span>. &gt;&gt; tmp
+<a id="__codelineno-7-41" name="__codelineno-7-41" href="#__codelineno-7-41"></a>gmt pslegend tmp -R -JP -C.1/.1 -Dx18.5/5+w8 -F+g240+p1+s4p/-4p/gray50 <span class="se">\</span>
+<a id="__codelineno-7-42" name="__codelineno-7-42" href="#__codelineno-7-42"></a>--FONT_ANNOT_PRIMARY<span class="o">=</span>16p -K -O &gt;&gt; <span class="s2">&quot;</span><span class="si">${</span><span class="nv">ps</span><span class="si">}</span><span class="s2">&quot;</span>
+<a id="__codelineno-7-43" name="__codelineno-7-43" href="#__codelineno-7-43"></a>
+<a id="__codelineno-7-44" name="__codelineno-7-44" href="#__codelineno-7-44"></a>gmt psxy -R -JX -T -O &gt;&gt; <span class="s2">&quot;</span><span class="si">${</span><span class="nv">ps</span><span class="si">}</span><span class="s2">&quot;</span>
+<a id="__codelineno-7-45" name="__codelineno-7-45" href="#__codelineno-7-45"></a>gmt psconvert <span class="s2">&quot;</span><span class="si">${</span><span class="nv">ps</span><span class="si">}</span><span class="s2">&quot;</span> -Tg -A -P
+<a id="__codelineno-7-46" name="__codelineno-7-46" href="#__codelineno-7-46"></a>rm -f tmp
+</code></pre></div>
+</div>
+</div>
+</div>
+<p>本節學習的新指令:</p>
+<ul>
+<li>第3行: <code>-JPa17</code>其中<strong>a</strong>表示由北開始，如果沒有則是從東開始；<strong>17</strong>設定圖寬度。
 <code>-R0/360/0/5</code>前兩個數字設定圓的角度範圍，也可以用-180/180表示，只能給整圓和半圓(0/180)；
-後面則是距離範圍。<code>-BN</code>只用給定N，大寫顯示註解、小寫則無。
-* 第5~15行: 利用<code>awk</code>讀取各城市的資料，用不同的符號來表示，季節則用不同顏色顯示。
-* 第17~21行: 寫風速的註解。
-* 第24~38行: 示範如何編寫配合<code>pslegend</code>的文檔，按順序介紹:
-  * <strong>H</strong>設定標題，字大小 字體 標題文字
-  * <strong>D</strong>繪製水平線，兩測的空白間距 線屬性
-  * <strong>G</strong>給一個垂直空白
-  * <strong>N</strong>修改圖例中的欄數，給予數量(等寬)或是數量 [欄寬1 欄寬2 ...]
-  * <strong>S</strong>繪製圖例符號，格式為符號左邊界距離 符號代碼 符號大小 符號顏色 符號筆觸 文字左邊界距離 文字內容
-  * <strong>P</strong>開啟段落模式
-  * <strong>T</strong>寫一段文字
-  * 其他還有滿多的用法，可自行參考GMT官網。
-* 第39,40行: 示範<code>pslegend</code>的用法:
-  * <code>-C</code>: 設定圖例邊框與內部圖例之間的空白，預設是4p/4p。
-  * <code>-D</code>: 設定圖例框的位置及大小。
-    * <strong>x</strong>是參考點方式接上位移單位，共有<strong>g</strong>, <strong>j</strong>, <strong>J</strong>, <strong>n</strong>, <strong>x</strong>
-      * <strong>g</strong>用數據的座標系
-      * <strong>j</strong>指定底圖的9個錨點(BL, BC, BR ...)
-      * <strong>J</strong>指定底圖錨點並同時給定圖例錨點。假設底圖錨點為BR、圖例錨點TL，則圖例會出現在底圖的右下角
-      * <strong>n</strong>正規化座標系(0~1之間)
-      * <strong>x</strong>用底圖的座標，類似<code>-X</code>、<code>-Y</code>的用法
-    * <strong>+w</strong>圖例框的寬度，可給長/高，如寬不設定或為0，則GMT會自動估算高度
-  * <code>-F</code>: 圖例框的屬性。
-    * <strong>+g</strong>圖例框內的底色
-    * <strong>+p</strong>圖例框的筆觸
-    * <strong>+s</strong>設定陰影
-  * <code>--FONT_ANNOT_...</code>: 改變<mark>gmtset</mark>，只對這行有效。</p>
+後面則是距離範圍。<code>-BN</code>只用給定N，大寫顯示註解、小寫則無。</li>
+<li>第5~15行: 利用<code>awk</code>讀取各城市的資料，用不同的符號來表示，季節則用不同顏色顯示。</li>
+<li>第17~21行: 寫風速的註解。</li>
+<li>第24~38行: 示範如何編寫配合<code>pslegend</code>的文檔，按順序介紹:</li>
+<li><strong>H</strong>設定標題，字大小 字體 標題文字</li>
+<li><strong>D</strong>繪製水平線，兩測的空白間距 線屬性</li>
+<li><strong>G</strong>給一個垂直空白</li>
+<li><strong>N</strong>修改圖例中的欄數，給予數量(等寬)或是數量 [欄寬1 欄寬2 ...]</li>
+<li><strong>S</strong>繪製圖例符號，格式為符號左邊界距離 符號代碼 符號大小 符號顏色 符號筆觸 文字左邊界距離 文字內容</li>
+<li><strong>P</strong>開啟段落模式</li>
+<li><strong>T</strong>寫一段文字</li>
+<li>其他還有滿多的用法，可自行參考GMT官網。</li>
+<li>第39,40行: 示範<code>pslegend</code>的用法:</li>
+<li><code>-C</code>: 設定圖例邊框與內部圖例之間的空白，預設是4p/4p。</li>
+<li><code>-D</code>: 設定圖例框的位置及大小。<ul>
+<li><strong>x</strong>是參考點方式接上位移單位，共有<strong>g</strong>, <strong>j</strong>, <strong>J</strong>, <strong>n</strong>, <strong>x</strong></li>
+<li><strong>g</strong>用數據的座標系</li>
+<li><strong>j</strong>指定底圖的9個錨點(BL, BC, BR ...)</li>
+<li><strong>J</strong>指定底圖錨點並同時給定圖例錨點。假設底圖錨點為BR、圖例錨點TL，則圖例會出現在底圖的右下角</li>
+<li><strong>n</strong>正規化座標系(0~1之間)</li>
+<li><strong>x</strong>用底圖的座標，類似<code>-X</code>、<code>-Y</code>的用法</li>
+<li><strong>+w</strong>圖例框的寬度，可給長/高，如寬不設定或為0，則GMT會自動估算高度</li>
+</ul>
+</li>
+<li><code>-F</code>: 圖例框的屬性。<ul>
+<li><strong>+g</strong>圖例框內的底色</li>
+<li><strong>+p</strong>圖例框的筆觸</li>
+<li><strong>+s</strong>設定陰影</li>
+</ul>
+</li>
+<li><code>--FONT_ANNOT_...</code>: 改變<mark>gmtset</mark>，只對這行有效。</li>
+</ul>
 <p>台灣為在副熱帶季風區，在夏季的時後吹西南風；冬季則是吹東北風，從這四個站的資料顯示，大致符合這個現象，
 夏季風向約從140至240度，而冬季從320度至80度(順時鐘數)，另一方面，冬季季風的風速大於夏季季風。</p>
 <p>圖例是一張圖中重要的元素之一，要能清楚地表達各符號、顏色等等分別代表什麼意思，GMT提供了方便的指令，
