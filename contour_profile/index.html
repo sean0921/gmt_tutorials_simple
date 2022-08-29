@@ -251,7 +251,7 @@
   
     <li class="md-nav__item">
       <a href="../basic_defaults/" class="md-nav__link">
-        第零章: 基本概念及默認值
+        第零章: 基本概念及預設值
       </a>
     </li>
   
@@ -683,9 +683,9 @@ Penghu_20m.tif: scale_factor: 1 add_offset: 0
 <li>以及<code>-D</code>寫檔頭資訊:</li>
 <li><strong>+x</strong>x軸名稱，格式為名稱 [單位]，例如distance [km]。</li>
 <li><strong>+y</strong>、<strong>+z</strong>同上。</li>
-<li><strong>+s</strong>讀取網格數據後的放大倍率，默認值為1。</li>
-<li><strong>+o</strong>讀取網格數據後要加上的常數，默認值為0。</li>
-<li><strong>+n</strong>指定特定數值為無效值，默認為NaN。</li>
+<li><strong>+s</strong>讀取網格數據後的放大倍率，預設值為1。</li>
+<li><strong>+o</strong>讀取網格數據後要加上的常數，預設值為0。</li>
+<li><strong>+n</strong>指定特定數值為無效值，預設為NaN。</li>
 <li><strong>+t</strong>網格檔的標題。</li>
 <li><strong>+r</strong>網格檔的註解。</li>
 </ul>
@@ -744,7 +744,7 @@ gmt psconvert %ps% -Tg -A -P
 <ul>
 <li>第6,12行: <code>grdcontour</code>透過網格檔繪製等高線，語法是<code>grdcontour 網格檔 -C間隔值</code>，其中最常用到的選項:</li>
 <li><strong>-A</strong>繪製有註解的等高線:<ul>
-<li><strong>+a</strong>註解的角度，<strong>+an</strong>垂直等高線；<strong>+ap</strong>平行等高線(默認值)</li>
+<li><strong>+a</strong>註解的角度，<strong>+an</strong>垂直等高線；<strong>+ap</strong>平行等高線(預設值)</li>
 <li><strong>+f</strong>註解字體的屬性</li>
 <li><strong>+g</strong>字體框的底色</li>
 <li><strong>+p</strong>字體框框線的屬性</li>
@@ -880,7 +880,7 @@ del tmp*
 </ul>
 </li>
 <li><code>-F</code><strong>d</strong>、<strong>l</strong>、<strong>t</strong>，對應地圖邊界(<code>-D</code>)、比例尺(<code>-L</code>)、方向標(<code>-T</code>)，
-  默認值是三者設定。<ul>
+  預設值是三者設定。<ul>
 <li><strong>+c</strong>小圖與外框間隔</li>
 <li><strong>+g</strong>填滿顏色</li>
 <li><strong>+p</strong>外框線屬性</li>
@@ -894,7 +894,7 @@ del tmp*
 <li><code>project</code>將表格式資料投影到一條線上、大圓上、別的座標系上，此區只介紹投影至線上。</li>
 <li><code>-C</code>起始點座標</li>
 <li><code>-E</code>結束點座標</li>
-<li><code>-F</code>輸出的選量，輸出可選xyzpqrs(默認值)，代表X、Y、Z軸(以度為單位)；如果搭配使用-G，
+<li><code>-F</code>輸出的選量，輸出可選xyzpqrs(預設值)，代表X、Y、Z軸(以度為單位)；如果搭配使用-G，
   輸出成rsp(以公里為單位)</li>
 <li><code>-G</code>取樣距離</li>
 <li><code>-Q</code>地圖的單位，轉換成KM</li>

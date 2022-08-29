@@ -251,7 +251,7 @@
   
     <li class="md-nav__item">
       <a href="../basic_defaults/" class="md-nav__link">
-        第零章: 基本概念及默認值
+        第零章: 基本概念及預設值
       </a>
     </li>
   
@@ -692,7 +692,7 @@ gmt psxy (輸入檔) -J -R [-選項1 -選項2 ...] -O &gt;&gt; 輸出檔名.ps
 <li><code>-J</code>投影法(一個英文字母代碼)[中心點經度]/[中心點緯度]/規模(或是寬度)。</li>
 <li>當英文字母為小寫時，其大小設定為規模，表示每一度的寬度，或是用1:5000表示；</li>
 <li>字母為大寫時，表示整張圖的寬度。</li>
-<li>GMT5的寬度預設值是公分(c)，如果要換單位，方式如<code>-JM6i</code>，變成圖的寬度設定為6英吋(inch)。</li>
+<li>GMT5的寬度預設是公分(c)，如果要換單位，方式如<code>-JM6i</code>，變成圖的寬度設定為6英吋(inch)。</li>
 <li><code>-S</code>海洋的顏色。在GMT中顏色的輸入有很多種，常見的有三種，以藍色為例，</li>
 <li>Hex Color，十六進位色碼(#0000FF)</li>
 <li>RGB Color，十進位制色碼(0/0/255)</li>
@@ -701,7 +701,7 @@ gmt psxy (輸入檔) -J -R [-選項1 -選項2 ...] -O &gt;&gt; 輸出檔名.ps
 <li><code>-W</code>寬度,顏色,樣式。</li>
 </ul>
 <p>選定好的範圍是119.0/123.0/21.5/26.0，預定地圖的寬度為15公分，海洋顏色為藍色，海岸線的寬度是1公分，
-顏色及樣式則採用預設值黑色及實線，指令如下:</p>
+顏色及樣式則採用預設黑色及實線，指令如下:</p>
 <pre><code class="language-bat">gmt pscoast -R119.0/122.5/21.5/26.0 -JM18 -S0/0/255 -W1 &gt; 5_3_taiwan.ps
 </code></pre>
 <p>來看看結果的圖長什麼樣。</p>
@@ -712,7 +712,7 @@ gmt psxy (輸入檔) -J -R [-選項1 -選項2 ...] -O &gt;&gt; 輸出檔名.ps
 原來是因為GMT預設紙張方向是橫向(Landscape)，如果要改成縱向(Portrait)，需要加上<code>-P</code>這個選項。
 再來是這海岸線的解析度也太粗糙了吧！我們可以透過<code>-D</code>這個選項來改善這問題，其解析成度分別是
 詳細(<mark>f</mark>ull)、高度(<mark>h</mark>igh)、中度(<mark>i</mark>ntermediate)、
-低度(<mark>l</mark>ow)、粗糙(<mark>c</mark>rude)，海岸線的解析度預設值是低度(l)，
+低度(<mark>l</mark>ow)、粗糙(<mark>c</mark>rude)，海岸線的解析度預設是低度(l)，
 也可以透過自動(<mark>a</mark>uto)，依照地圖尺寸來決定海岸線的解析度。
 接著陸地是白色，似乎有點單調，來試看看用<code>-G</code>英文單字，來更改陸地的顏色，
 於是乎將指令改寫如下:</p>
@@ -749,7 +749,7 @@ gmt psxy (輸入檔) -J -R [-選項1 -選項2 ...] -O &gt;&gt; 輸出檔名.ps
 <li><code>-E</code>國碼+g顏色。</li>
 <li><code>-F</code>設定比例尺或是方向標的邊框。</li>
 <li><code>-I</code>河的種類/畫筆設定。種類數字或英文對應河的種類(主流、支流)，請自行參考官網說明。</li>
-<li><code>-L</code>比例尺對應的中心點方式/中心點經度/中心點緯度+c參考緯度+w比例尺長度(默認單位km)+f黑白相間的比例尺+l標籤。</li>
+<li><code>-L</code>比例尺對應的中心點方式/中心點經度/中心點緯度+c參考緯度+w比例尺長度(預設單位km)+f黑白相間的比例尺+l標籤。</li>
 <li><code>-N</code>行政邊界(種類)/畫筆設定。</li>
 <li>種類對應，1表示國家邊界；2表示州邊界(美國);3表示領海邊界;a表示全部邊界。</li>
 <li><code>-T</code>指針方向標(d)[羅盤方向標(m)]對應的中心點方式/中心點經度/中心點緯度+w寬度+l標籤</li>
@@ -778,7 +778,7 @@ Linux及MAC則使用<mark>\</mark>。</p>
 <li>簡易的資料處理: 在GMT的資料輸入檔，常常會需要特定欄位的資料，而往往拿到的資料檔，是有非常多欄位是用不到的，
 不可能每次都改寫資料檔，這時後就可以調用<code>awk</code>，來達到簡單的數據資料處理。</li>
 </ul>
-<p>編者在編譯此教程是預設在Windows環境底下，但為了處理資料方便，另外安裝了<a href="http://gnuwin32.sourceforge.net/packages/gawk.htm">Gawk for Windows</a>，
+<p>編者在編譯此教學手冊是預設在Windows環境底下，但為了處理資料方便，另外安裝了<a href="http://gnuwin32.sourceforge.net/packages/gawk.htm">Gawk for Windows</a>，
 並把執行檔(bin)路徑加入系統環境變數下，設定方式可<a href="https://openhome.cc/Gossip/JavaEssence/WhatPath.html">參考此網頁</a>，
 如果你熟悉使用Linux其他指令，也可以安裝<a href="https://www.cygwin.com/">Cygwin</a>。</p>
 <p>回到本節重點，要利用等距方位投影法來繪製桃園機場的航線圖，首先要收集的是桃園機場的航班資訊，
@@ -899,7 +899,7 @@ gmt psconvert %ps% -Tg -A -P
 讓每次的變數名從<strong>var1</strong>變<strong>var2</strong>一直到<strong>var10</strong>。</li>
 <li>第5行: 利用<code>for</code>迴圈將檔案中一行行讀取資料，
 用法<code>for /f ["選項"] %%參數名 in (檔名或字串) do 指令</code>，tokens=2表示讀取每行中第二欄的資料。</li>
-<li>第6行: 默認的set變數值為字串，透過/A轉換成整數，其中<code>!vidx!</code>為延遲表達變數(delayed expansion variable)，
+<li>第6行: 預設的set變數值為字串，透過/A轉換成整數，其中<code>!vidx!</code>為延遲表達變數(delayed expansion variable)，
 用以實現每次迴圈中，<strong>vidx</strong>就加1。</li>
 <li>第7行: <strong>var1</strong>、<strong>var2</strong>等等，對應到檔案中的第一行第二欄、第二行第二欄等等。</li>
 <li>第9行: 這時候才將剛剛延遲表達的變數一次設定好。</li>
@@ -951,7 +951,7 @@ gmt psconvert %ps% -Tg -A -P
     <nav class="md-footer__inner md-grid" aria-label="Footer" >
       
         
-        <a href="../basic_defaults/" class="md-footer__link md-footer__link--prev" aria-label="上一頁: 第零章: 基本概念及默認值" rel="prev">
+        <a href="../basic_defaults/" class="md-footer__link md-footer__link--prev" aria-label="上一頁: 第零章: 基本概念及預設值" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
           </div>
@@ -960,7 +960,7 @@ gmt psconvert %ps% -Tg -A -P
               <span class="md-footer__direction">
                 上一頁
               </span>
-              第零章: 基本概念及默認值
+              第零章: 基本概念及預設值
             </div>
           </div>
         </a>
