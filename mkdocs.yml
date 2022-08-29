@@ -1,5 +1,7 @@
-site_name: Simplified GMT Tutorial
-site_description: "GMT5 教程 | 編者: Po-Chin Tseng"
+site_name: "GMT 簡易教學手冊"
+site_description: "GMT 簡易教學手冊 | 編者: Po-Chin Tseng, Sean Li-Shin Ho"
+repo_name: sean0921/gmt_tutorials_simple
+repo_url: https://github.com/sean0921/gmt_tutorials_simple
 theme:
   name: material
   language: zh-TW
@@ -18,3 +20,6 @@ nav:
   - '第八章: 直方、圓餅、三元圖': histo_pie_ternary.md
   - '第九章: 三維空間視圖': three_dimension.md
   - '第十章: 地質圖': geology_map.md
+copyright: 'Project maintained by jimmytseng79, sean0921.  License: CC-BY-SA 3.0'
+markdown_extensions:
+  - footnotes
