@@ -109,7 +109,7 @@ N	127.5
 切割的範圍`121.27/121.85/25.05/25.35`，可以自行練習`grdcut`，或者直接下載下方載點，
 
 使用的資料檔:
-- [陽明山數值高程](/dat/yangmingShan.grd)
+- [陽明山數值高程](https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/data/yangmingShan.grd)
 
 成果圖
 <p align="center">

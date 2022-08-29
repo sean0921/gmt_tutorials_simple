@@ -27,7 +27,7 @@
 來更加了解台灣的地震分佈與地體構造活動。
 
 使用的資料檔:
-- [2017地震活動性](/dat/2017_catalog.gmt)
+- [2017地震活動性](https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/data/2017_catalog.gmt)
 
 成果圖
 <p align="center">
@@ -191,7 +191,7 @@ C代表東北部地震帶，包含了琉球隱沒帶及沖繩海溝，許多規�
 1996~2017台灣地區規模大於5的震源機制解，並將幾個著名災害性地震標示出來。
 
 使用的資料檔:
-- [台灣震源機制解](/dat/focal_mechanism.gmt)
+- [台灣震源機制解](https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/data/focal_mechanism.gmt)
 
 成果圖
 <p align="center">
@@ -431,7 +431,7 @@ del tmp*
 寬度往北30km，往南20km。
 
 使用的資料檔:
-- [美濃地震後6個月地震目錄](/dat/after6m_meinong_catalog.gmt)
+- [美濃地震後6個月地震目錄](https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/data/after6m_meinong_catalog.gmt)
 
 完成圖如下:
 <p align="center">

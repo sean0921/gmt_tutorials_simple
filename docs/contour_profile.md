@@ -140,7 +140,7 @@ gmt grdcut input.grd -Goutput.grd -R範圍
 不由得讚嘆大自然的神奇，就讓我們來看看其高程的變化吧！
 
 使用的資料檔:
-- [花東縱谷數值地形檔](/dat/east_rift_valley.grd)
+- [花東縱谷數值地形檔](https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/data/east_rift_valley.grd)
 
 成果圖
 <p align="center">
@@ -368,7 +368,7 @@ del tmp*
 其他四個至高點(北峰、東峰、南峰、西峰)，來繪製玉山區域的等高線圖，以及主峰到其餘四峰的高度剖面。
 
 使用的資料檔:
-- [玉山區域網格檔](/dat/yuShan.grd)的製作可參考7-3的方式，或者直接使用前面連結下載。
+- [玉山區域網格檔](https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/data/yuShan.grd)的製作可參考7-3的方式，或者直接使用前面連結下載。
 
 完成圖如下:
 <p align="center">

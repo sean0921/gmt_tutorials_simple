@@ -29,9 +29,9 @@
 將此網站的資料整理成GMT的區塊文件(segment file)，利用點與點連接，來完成多種多面體。
 
 使用的資料檔:
-- [多面體\_點](/dat/polyhedron_vertex.gmt)
-- [多面體\_線](/dat/polyhedron_edge.gmt)
-- [多面體\_面](/dat/polyhedron_face.gmt)
+- [多面體\_點](https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/data/polyhedron_vertex.gmt)
+- [多面體\_線](https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/data/polyhedron_edge.gmt)
+- [多面體\_面](https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/data/polyhedron_face.gmt)
 
 成果圖
 
@@ -175,7 +175,7 @@ del tmp*
 將能同時間展現出井口位置以及岩性隨深度的變化。
 
 使用的資料檔:
-- [鑽井岩心資料](/dat/core.gmt)
+- [鑽井岩心資料](https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/data/core.gmt)
 
 成果圖
 
@@ -317,7 +317,7 @@ del tmp*
 
 使用的資料檔:
 - 請參考[8-5地形暈眩圖](topography_cpt.md#m8.5)，下載全球一角分的數值地形圖。
-- [ibcao色階檔](/dat/ibcao.cpt)
+- [ibcao色階檔](https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/data/ibcao.cpt)
 
 成果圖
 

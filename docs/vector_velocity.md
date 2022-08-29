@@ -141,9 +141,9 @@ del tmp*
 
 使用的資料檔:
 
-- [莫拉克颱風風速](/dat/morakot_wind.gmt)
-- [莫拉克颱風氣壓](/dat/morakot_presure.gmt)
-- [莫拉克颱風路徑](/dat/morakot_track.dat)
+- [莫拉克颱風風速](https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/data/morakot_wind.gmt)
+- [莫拉克颱風氣壓](https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/data/morakot_presure.gmt)
+- [莫拉克颱風路徑](https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/data/morakot_track.dat)
 
 成果圖
 <p align="center">
@@ -253,7 +253,7 @@ del tmp*
 
 使用的資料檔:
 
-- [莫拉克颱風風速純量](/dat/morakot_wind_scalar.gmt)
+- [莫拉克颱風風速純量](https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/data/morakot_wind_scalar.gmt)
 
 成果圖
 <p align="center">
@@ -346,8 +346,8 @@ del tmp*
 
 使用的資料檔:
 
-- [201701全球洋流東西向](/dat/ucur_201701.xyz)
-- [201701全球洋流南北向](/dat/vcur_201701.xyz)
+- [201701全球洋流東西向](https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/data/ucur_201701.xyz)
+- [201701全球洋流南北向](https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/data/vcur_201701.xyz)
 
 完成圖如下:
 <p align="center">
