@@ -141,9 +141,9 @@ del tmp*
 
 使用的資料檔:
 
-- [莫拉克颱風風速](dat/morakot_wind.gmt)
-- [莫拉克颱風氣壓](dat/morakot_presure.gmt)
-- [莫拉克颱風路徑](dat/morakot_track.dat)
+- [莫拉克颱風風速](/dat/morakot_wind.gmt)
+- [莫拉克颱風氣壓](/dat/morakot_presure.gmt)
+- [莫拉克颱風路徑](/dat/morakot_track.dat)
 
 成果圖
 <p align="center">
@@ -253,7 +253,7 @@ del tmp*
 
 使用的資料檔:
 
-- [莫拉克颱風風速純量](dat/morakot_wind_scalar.gmt)
+- [莫拉克颱風風速純量](/dat/morakot_wind_scalar.gmt)
 
 成果圖
 <p align="center">
@@ -346,8 +346,8 @@ del tmp*
 
 使用的資料檔:
 
-- [201701全球洋流東西向](dat/ucur_201701.xyz)
-- [201701全球洋流南北向](dat/vcur_201701.xyz)
+- [201701全球洋流東西向](/dat/ucur_201701.xyz)
+- [201701全球洋流南北向](/dat/vcur_201701.xyz)
 
 完成圖如下:
 <p align="center">
@@ -357,9 +357,9 @@ del tmp*
 ## 10.7 參考批次檔
 列出本章節使用的批次檔，供讀者參考使用，檔案路經可能會有些許不同，再自行修改。
 
-* [10_3_vector](bat/10_3_vector.bat)
-* [10_4_morakot_wind](bat/10_4_morakot_wind.bat)
-* [10_5_grid_vector](bat/10_5_grid_vector.bat)
-* [10_6_ocean_current](bat/10_6_ocean_current.bat)
+- [10_3_vector](/bat/10_3_vector.bat)
+- [10_4_morakot_wind](/bat/10_4_morakot_wind.bat)
+- [10_5_grid_vector](/bat/10_5_grid_vector.bat)
+- [10_6_ocean_current](/bat/10_6_ocean_current.bat)
 
 

@@ -168,9 +168,9 @@ lon, lat = p(float(x), float(y), inverse=True)
 
 使用的資料檔:
 
-- [東南亞地質檔](dat/geo3bl_lonlat.gmt)
-- [地質年代色階檔](dat/rock_unit.cpt)
-- [圖例壓縮檔](dat/legend.rar)
+- [東南亞地質檔](/dat/geo3bl_lonlat.gmt)
+- [地質年代色階檔](/dat/rock_unit.cpt)
+- [圖例壓縮檔](/dat/legend.rar)
 
 成果圖
 
@@ -246,8 +246,8 @@ del tmp*
 
 使用的資料檔:
 
-- [東南亞地質網格檔](dat/geo3bl_lonlat.grd)
-- [地質年代色階檔](dat/rock_unit.cpt)
+- [東南亞地質網格檔](/dat/geo3bl_lonlat.grd)
+- [地質年代色階檔](/dat/rock_unit.cpt)
 
 成果圖
 
@@ -328,8 +328,8 @@ TODO
 ## 14.7 參考批次檔
 列出本章節使用的批次檔，供讀者參考使用，檔案路經可能會有些許不同，再自行修改。
 
-* [14_3_bit_harchure_patterns](bat/14_3_bit_harchure_patterns.bat)
-* [14_4_se_geo](bat/14_4_se_geo.bat)
-* [14_5_se_geo_grd](bat/14_5_se_geo_grd.bat)
+* [14_3_bit_harchure_patterns](/bat/14_3_bit_harchure_patterns.bat)
+* [14_4_se_geo](/bat/14_4_se_geo.bat)
+* [14_5_se_geo_grd](/bat/14_5_se_geo_grd.bat)
 
 

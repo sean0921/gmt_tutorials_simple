@@ -30,10 +30,10 @@
 首先示範台灣地區重要的交通道路系統，分別是省道(綠色)、國道(藍色)、台鐵(黑白相間)及高鐵(黑紅相間)。
 
 使用的資料檔:
-- [省道路線](dat/provincial_highway.gmt)
-- [國道路線](dat/national_freeway.gmt)
-- [台鐵路縣](dat/TRA_rail.gmt)
-- [高鐵路縣](dat/THSRC_rail.gmt)
+- [省道路線](/dat/provincial_highway.gmt)
+- [國道路線](/dat/national_freeway.gmt)
+- [台鐵路縣](/dat/TRA_rail.gmt)
+- [高鐵路縣](/dat/THSRC_rail.gmt)
 
 成果圖
 <p align="center">
@@ -99,8 +99,8 @@ del tmp*
 示範如何繪製鄉鎮市的行政邊界，並把各鄉鎮市的名字標記上去。
 
 使用的資料檔:
-- [都市邊界](dat/city_2016.gmt)
-- [鄉鎮邊界](dat/country_2016.gmt)
+- [都市邊界](/dat/city_2016.gmt)
+- [鄉鎮邊界](/dat/country_2016.gmt)
 
 成果圖
 <p align="center">
@@ -191,8 +191,8 @@ del tmp*
 本節將分別繪製河川主流(Mainstream)流域圖及支流(Tributary)流域圖。
 
 使用的資料檔:
-- [河川主流資料](dat/taiwan_river_mainstream.gmt)
-- [河川支流資料](dat/taiwan_river_tributary.gmt)
+- [河川主流資料](/dat/taiwan_river_mainstream.gmt)
+- [河川支流資料](/dat/taiwan_river_tributary.gmt)
 
 成果圖
 <p align="center">
@@ -241,8 +241,8 @@ del tmp* gmt.conf
 第二類活動斷層及存疑、掩埋與否。
 
 使用的資料檔:
-- [斷層分佈資料](dat/CGS_fault.gmt)
-- [斷層編號](dat/fault_label_fix.dat)
+- [斷層分佈資料](/dat/CGS_fault.gmt)
+- [斷層編號](/dat/fault_label_fix.dat)
 
 完成圖如下:
 <p align="center">
@@ -398,9 +398,9 @@ del tmp*
 本章最後一小節，將利用人口密度資料，來示範區塊文件如何配合`psxy -C`指令，來完成人口密度分佈圖。
 
 使用的資料檔:
-- [鄉鎮人口密度](dat/country_popuDen_2016f.gmt)
-- [色階檔分隔條件](dat/range.txt)
-- [人口密度色階檔](dat/population_density.cpt)
+- [鄉鎮人口密度](/dat/country_popuDen_2016f.gmt)
+- [色階檔分隔條件](/dat/range.txt)
+- [人口密度色階檔](/dat/population_density.cpt)
 
 完成圖如下:
 <p align="center">
@@ -471,11 +471,11 @@ del tmp*
 ## 11.8 參考批次檔
 列出本章節使用的批次檔，供讀者參考使用，檔案路經可能會有些許不同，再自行修改。
 
-* [11_3_taiwan_road](bat/11_3_taiwan_road.bat)
-* [11_4_region_border](bat/11_4_region_border.bat)
-* [11_5_drainage_area](bat/11_5_drainage_area.bat)
-* [11_6_cgs_fault](bat/11_6_cgs_fault.bat)
-* [11_6_fault_type](bat/11_6_fault_type.bat)
-* [11_7_population_density](bat/11_7_population_density.bat)
+* [11_3_taiwan_road](/bat/11_3_taiwan_road.bat)
+* [11_4_region_border](/bat/11_4_region_border.bat)
+* [11_5_drainage_area](/bat/11_5_drainage_area.bat)
+* [11_6_cgs_fault](/bat/11_6_cgs_fault.bat)
+* [11_6_fault_type](/bat/11_6_fault_type.bat)
+* [11_7_population_density](/bat/11_7_population_density.bat)
 
 

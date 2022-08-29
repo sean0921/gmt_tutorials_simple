@@ -27,7 +27,7 @@
 以及與性別的關係，首先先來看成果圖及批次檔。
 
 使用的資料檔:
-- [2016年意外死亡人數](dat/dead105.dat)
+- [2016年意外死亡人數](/dat/dead105.dat)
 
 成果圖
 <p align="center">
@@ -135,8 +135,8 @@ del area
 **M<font size="-2">w</font>**地震矩規模，來估算地震大小。讓我們來假設震央距為10度，不同大小的振幅所對應的芮氏規模吧！
 
 使用的資料檔:
-- [芮氏規模資料](dat/richter_magnitude.dat)
-- [取log後芮氏規模資料](dat/richter_magnitude_log.dat)
+- [芮氏規模資料](/dat/richter_magnitude.dat)
+- [取log後芮氏規模資料](/dat/richter_magnitude_log.dat)
 
 成果圖
 <p align="center">
@@ -208,7 +208,7 @@ del tmp
 中央氣象局自動測站C0V250(甲仙)在莫拉克颱風期間的雨量資料，來學習如何繪製時間序列圖。
 
 使用的資料檔:
-- [甲仙站雨量資料](dat/C0V250_rain.dat)
+- [甲仙站雨量資料](/dat/C0V250_rain.dat)
 
 成果圖
 <p align="center">
@@ -277,8 +277,8 @@ del gmt.conf
 來展示台灣夏季及冬季的風向與風速的差異，並示範`pslegend`的用法。
 
 使用的資料檔:
-- [夏季風資料](dat/summer_wind.dat)
-- [冬季風資料](dat/winter_wind.dat)
+- [夏季風資料](/dat/summer_wind.dat)
+- [冬季風資料](/dat/winter_wind.dat)
 
 成果圖
 <p align="center">
@@ -376,7 +376,7 @@ del tmp
 以及這兩個變數之間有什麼關係。
 
 使用的資料檔:
-- [高鐵乘客客數據](dat/THSRC_NUMBER.dat)
+- [高鐵乘客客數據](/dat/THSRC_NUMBER.dat)
 
 * 1.繪製從2007-01-01至2017-08-31的折線圖，顯示**列車次數**及**旅客人數**在時間上的變化。
 請用雙軸的方式呈現，並嘗試更改其外框顏色，另外練習在2008-01-01畫一條垂直虛線，
@@ -395,11 +395,11 @@ del tmp
 ## 6.8 參考批次檔
 列出本章節使用的批次檔，供讀者參考使用，檔案路經可能會有些許不同，再自行修改。
 
-* [6_3_accidentalDeath](bat/6_3_accidentalDeath.bat)
-* [6_4_richter_magnitude](bat/6_4_richter_magnitude.bat)
-* [6_5_C0V250_morakot](bat/6_5_C0V250_morakot.bat)
-* [6_6_season_wind](bat/6_6_season_wind.bat)
-* [6_7_THSRC_timeseries](bat/6_7_THSRC_timeseries.bat)
-* [6_7_THSRC_xyFigure](bat/6_7_THSRC_xyFigure.bat)
+* [6_3_accidentalDeath](/bat/6_3_accidentalDeath.bat)
+* [6_4_richter_magnitude](/bat/6_4_richter_magnitude.bat)
+* [6_5_C0V250_morakot](/bat/6_5_C0V250_morakot.bat)
+* [6_6_season_wind](/bat/6_6_season_wind.bat)
+* [6_7_THSRC_timeseries](/bat/6_7_THSRC_timeseries.bat)
+* [6_7_THSRC_xyFigure](/bat/6_7_THSRC_xyFigure.bat)
 
 

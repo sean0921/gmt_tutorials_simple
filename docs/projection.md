@@ -205,8 +205,8 @@ Linux及MAC則使用<mark>\</mark>。
 先來看成果圖及批次檔，再逐行說明。
 
 使用的資料檔:
-- [桃園航班資訊](dat/TPE_airline.dat)
-- [桃園航線](dat/TPE_airline.gmt)
+- [桃園航班資訊](/dat/TPE_airline.dat)
+- [桃園航線](/dat/TPE_airline.gmt)
 
 成果圖
 <p align="center">
@@ -277,7 +277,7 @@ gmt psconvert %ps% -Tg -A -P
 `ENABLEDELAYEDEXPANSION`啟用延遲環境變數擴充功能，來批次設定國家的顏色。讓我們來看成果及批次檔吧！
 
 使用的資料檔:
-- [顏色對應國碼檔](dat/CountryCode.dat)
+- [顏色對應國碼檔](/dat/CountryCode.dat)
 
 成果圖
 <p align="center">
@@ -338,7 +338,7 @@ gmt psconvert %ps% -Tg -A -P
 * 1.利用政府資料開放平台，提供的[新北市公共自行車租賃系統(YouBike)資料](https://data.gov.tw/dataset/28318)，
 為.csv檔，如何利用`awk -F "," "指令"`來將經緯度資料擷取出來，用`psxy`畫出哪裡有YouBike的站點，
 經緯度範圍可用<mark>121.263/122.077/24.671/25.343</mark>，
-另外提供[縣市邊界的資料](dat/city_twd97.gmt)(未來會教導如何製作)，試著畫一張新北市YouBike的點位圖。
+另外提供[縣市邊界的資料](/dat/city_twd97.gmt)(未來會教導如何製作)，試著畫一張新北市YouBike的點位圖。
 <p align="center">
   <img src="/fig/5_7_youBike_1.png"/>
 </p>
@@ -351,11 +351,11 @@ gmt psconvert %ps% -Tg -A -P
 ## 5.8 參考批次檔
 列出本章節使用的批次檔，供讀者參考使用，檔案路經可能會有些許不同，再自行修改。
 
-* [5_3_taiwan](bat/5_3_taiwan.bat)
-* [5_4_unitedstate](bat/5_4_unitedstate.bat)
-* [5_5_TPEairline](bat/5_5_TPEairline.bat)
-* [5_6_globalNationalBoundary](bat/5_6_globalNationalBoundary.bat)
-* [5_7_youBike](bat/5_7_youBike.bat)
-* [5_7_favoriteCountry](bat/5_7_favoriteCountry.bat)
+* [5_3_taiwan](/bat/5_3_taiwan.bat)
+* [5_4_unitedstate](/bat/5_4_unitedstate.bat)
+* [5_5_TPEairline](/bat/5_5_TPEairline.bat)
+* [5_6_globalNationalBoundary](/bat/5_6_globalNationalBoundary.bat)
+* [5_7_youBike](/bat/5_7_youBike.bat)
+* [5_7_favoriteCountry](/bat/5_7_favoriteCountry.bat)
 
 

@@ -27,7 +27,7 @@
 以每五歲為一個級距，來繪製人口金字塔圖。本次檔案有點大，故做壓縮處理。
 
 使用的資料檔:
-- [2016台灣人口年齡](dat/population_2016.rar)
+- [2016台灣人口年齡](/dat/population_2016.rar)
 
 成果圖
 
@@ -97,8 +97,8 @@ del tmp*
 透過Python，將資料按人數多至少排序且轉換成適合`gmt psxy -SW`的格式。
 
 使用的資料檔:
-- [2016來台觀光人數](dat/visitor_2016.gmt)
-- [觀光人數色階檔](dat/visitor.cpt)
+- [2016來台觀光人數](/dat/visitor_2016.gmt)
+- [觀光人數色階檔](/dat/visitor.cpt)
 
 成果圖
 
@@ -154,7 +154,7 @@ GMT在圓餅圖上的功能甚少，但還是製作示範供大家參考。
 理面包含了各種化合物或是元素的比例或重量，來看看不同地區火山的成分差異。
 
 使用的資料檔:
-- [火山組成資料](dat/volcano_composition.dat)
+- [火山組成資料](/dat/volcano_composition.dat)
 
 成果圖
 
@@ -253,7 +253,7 @@ del tmp*
 可嘗試自行代入公式製作資料，也可以使用下方提供的資料。
 
 使用的資料檔:
-- [常態分佈數據](dat/normal_distribution.dat)
+- [常態分佈數據](/dat/normal_distribution.dat)
 
 完成圖如下:
 
@@ -264,9 +264,9 @@ del tmp*
 ## 12.7 參考批次檔
 列出本章節使用的批次檔，供讀者參考使用，檔案路經可能會有些許不同，再自行修改。
 
-* [12_3_population_histo](bat/12_3_population_histo.bat)
-* [12_4_visitor_residence](bat/12_4_visitor_residence.bat)
-* [12_5_volcano_compo](bat/12_5_volcano_compo.bat)
-* [12_6_normal_distribution](bat/12_6_normal_distribution.bat)
+* [12_3_population_histo](/bat/12_3_population_histo.bat)
+* [12_4_visitor_residence](/bat/12_4_visitor_residence.bat)
+* [12_5_volcano_compo](/bat/12_5_volcano_compo.bat)
+* [12_6_normal_distribution](/bat/12_6_normal_distribution.bat)
 
 

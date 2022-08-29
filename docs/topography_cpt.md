@@ -109,7 +109,7 @@ N	127.5
 切割的範圍`121.27/121.85/25.05/25.35`，可以自行練習`grdcut`，或者直接下載下方載點，
 
 使用的資料檔:
-- [陽明山數值高程](dat/yangmingShan.grd)
+- [陽明山數值高程](/dat/yangmingShan.grd)
 
 成果圖
 <p align="center">
@@ -327,9 +327,9 @@ grdgradient ETOPO1_Bed_g_gmt5.grd -Nt1 -A300 -GETOPO1_Bed_g_gmt5_shad.grd
 ## 8.7 參考批次檔
 列出本章節使用的批次檔，供讀者參考使用，檔案路經可能會有些許不同，再自行修改。
 
-* [8_3_cpt](bat/8_3_cpt.bat)
-* [8_4_yangmingShan](bat/8_4_yangmingShan.bat)
-* [8_5_ryukyu_trench](bat/8_5_ryukyu_trench.bat)
-* [8_6_mid-atlantic_ridge](bat/8_6_mid-atlantic_ridge.bat)
+* [8_3_cpt](/bat/8_3_cpt.bat)
+* [8_4_yangmingShan](/bat/8_4_yangmingShan.bat)
+* [8_5_ryukyu_trench](/bat/8_5_ryukyu_trench.bat)
+* [8_6_mid-atlantic_ridge](/bat/8_6_mid-atlantic_ridge.bat)
 
 
