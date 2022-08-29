@@ -1,26 +1,6 @@
 
 # 基本概念及默認值
 
----
-
-### 目錄
-1. [總覽](/index.md)
-2. [GMT介紹及安裝](/intro_install.md)
-3. [網路資源及配套軟體](/net_software.md)
-4. [第零章: 基本概念及默認值](/basic_defaults.md)
-5. [第一章: 製作地圖(地理投影法)](/projection.md)
-6. [第二章: XY散佈圖(其他投影法)](/xy_figure.md)
-7. [第三章: 等高線圖及剖面](/contour_profile.md)
-8. [第四章: 地形圖與色階](/topography_cpt.md)
-9. [第五章: 地震活動性與機制解](/seismicity_meca.md)
-10. [第六章: 向量與速度場](/vector_velocity.md)
-11. [第七章: 台灣地理資訊](/taiwan_geography.md)
-12. [第八章: 直方、圓餅、三元圖](/histo_pie_ternary.md)
-13. [第九章: 三維空間視圖](/three_dimension.md)
-14. [第十章: 地質圖](/geology_map.md)
-
----
-
 ## <a name="m4.1"></a>4.1 基本概念
 GMT是由指令輸入來製圖，那如何開啟指令輸入的環境
 
@@ -30,7 +10,7 @@ GMT是由指令輸入來製圖，那如何開啟指令輸入的環境
 
 為了避免與其他指令混用，自GMT5之後，GMT的指令輸入格式如下:
 
-```bash
+```bat
 GMT [options]
 GMT <module name> [<module-options>]
 ```
@@ -50,7 +30,7 @@ GMT <module name> [<module-options>]
 GMT的作圖是利用一張張PS檔疊加在一起，示意圖如下:
 
 <p align="center">
-  <img src="fig/4_layers.png"/>
+  <img src="/fig/4_layers.png"/>
 </p>
 
 在示意圖的左側，可以看到4張圖層，編號分別是0(底色為灰色)、1(紅色圓形)、
@@ -64,7 +44,7 @@ GMT的作圖是利用一張張PS檔疊加在一起，示意圖如下:
 最後一行圖層指令只加**-O**。
 
 <p align="center">
-  <img src="fig/4_plot_overlays.jpg"/>
+  <img src="/fig/4_plot_overlays.jpg"/>
 </p>
 
 ## 4.3 默認值
@@ -72,12 +52,12 @@ GMT在畫圖上有一些默認的設定，像是圖框種類、時間單位、�
 會產生<mark>gmt.conf</mark>檔案，將檔案用編輯器打開後，可以看各種參數的默認值，如果要修改有四種方式:
 
 1. 在下 GMT 指令時，使用<mark>--長參數</mark>的語法，參數的名稱就是這裡出現的大寫字串，例如：
-```bash
+```bat
 gmt psxy -T -JX1/1 -R0/1/0/1 -K --PS_PAGE_ORIENTATION=portrait > out.ps
 ```
 
 2. 開啟一個畫圖腳本檔，寫入
-```bash
+```bat
 gmt gmtset 參數名1 參數值1 [參數名2 參數值2 參數名3 參數值3...]
 # 或是
 gmtset 參數名1=參數值1 [參數名2=參數值2 參數名3=參數值3...]
@@ -97,65 +77,63 @@ GMT在讀取<mark>gmt.conf</mark>檔時，會優先讀取當前資料夾底下�
 * <a name="m4.4m"></a><mark><mark>地圖框的設定</mark>
 
 <p align="center">
-  <img src="fig/4_map_setting.jpg"/>
+  <img src="/fig/4_map_setting.jpg"/>
 </p>
 
 * <a name="m4.4d"></a><mark>距離的單位</mark>
 
 <p align="center">
-  <img src="fig/4_dist_unit.jpg"/>
+  <img src="/fig/4_dist_unit.jpg"/>
 </p>
 
 * <a name="m4.4t"></a><mark>時間的單位</mark>
 
 <p align="center">
-  <img src="fig/4_time_unit.jpg"/>
+  <img src="/fig/4_time_unit.jpg"/>
 </p>
 
 * <a name="m4.4j"></a><mark>字的對齊方式</mark>
 
 <p align="center">
-  <img src="fig/4_text_placement.jpg"/>
+  <img src="/fig/4_text_placement.jpg"/>
 </p>
 
 * <a name="m4.4g"></a><mark>點和刻線圖案</mark>(bit and hachure patterns)
 
 <p align="center">
-  <img src="fig/4_hachure_patterns.jpg"/>
+  <img src="/fig/4_hachure_patterns.jpg"/>
 </p>
 
 * <a name="m4.4fs"></a><mark><mark>特殊字元或符號</mark>
 
 <p align="center">
-  <img src="fig/4_octal_code1.jpg"/>
+  <img src="/fig/4_octal_code1.jpg"/>
 </p>
 
 * <a name="m4.4f"></a><mark>字體對照表</mark>
 
 <p align="center">
-  <img src="fig/4_font_type.jpg"/>
+  <img src="/fig/4_font_type.jpg"/>
 </p>
 
 * <a name="m4.4c"></a><mark>顏色RGB對照表</mark>
 
 <p align="center">
-  <img src="fig/4_GMT_RGBchart_a4.png"/>
+  <img src="/fig/4_GMT_RGBchart_a4.png"/>
 </p>
 
 * <a name="m4.4s"></a><mark>-S符號對照表</mark>
 
 <p align="center">
-  <img src="fig/4_symbol_gmt.jpg" width="489" height="600"/>
+  <img src="/fig/4_symbol_gmt.jpg" width="489" height="600"/>
 </p>
 
 * <a name="m4.4sk"></a><mark>-Sk自訂符號對照表</mark>
 
 <p align="center">
-  <img src="fig/4_custom_symbol.jpg"/>
+  <img src="/fig/4_custom_symbol.jpg"/>
 </p>
 
-部份的圖檔，可以在<mark>GMT根目錄/share/doc/html/_images</mark>找到。
+部份的圖檔，可以在 <mark>GMT根目錄/share/doc/html/\_images</mark> 找到。
 
----
 
-[上一章](/net_software.md) -- [下一章](/projection.md)

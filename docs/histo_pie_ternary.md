@@ -1,35 +1,16 @@
 
 # 直方、圓餅、三元圖
 
----
-
-### 目錄
-1. [總覽](/index.md)
-2. [GMT介紹及安裝](/intro_install.md)
-3. [網路資源及配套軟體](/net_software.md)
-4. [第零章: 基本概念及默認值](/basic_defaults.md)
-5. [第一章: 製作地圖(地理投影法)](/projection.md)
-6. [第二章: XY散佈圖(其他投影法)](/xy_figure.md)
-7. [第三章: 等高線圖及剖面](/contour_profile.md)
-8. [第四章: 地形圖與色階](/topography_cpt.md)
-9. [第五章: 地震活動性與機制解](/seismicity_meca.md)
-10. [第六章: 向量與速度場](/vector_velocity.md)
-11. [第七章: 台灣地理資訊](/taiwan_geography.md)
-12. [第八章: 直方、圓餅、三元圖](/histo_pie_ternary.md)
-13. [第九章: 三維空間視圖](/three_dimension.md)
-14. [第十章: 地質圖](/geology_map.md)
-
----
-
 ## 12. 直方、圓餅、三元圖
 在統計圖表中，除了之前介紹的折線圖、點散佈圖等，還有一些是平常生活中也常會使用到的，
 本章將依序介紹GMT是如何繪製直方圖、圓餅圖及三元圖。
 
 ## 12.1 目的
 本章將學習如何繪製
-  1. 直方圖(Histogram)
-  2. 圓餅圖(Pie Chart)
-  3. 三元圖(Ternary)
+
+1. 直方圖(Histogram)
+2. 圓餅圖(Pie Chart)
+3. 三元圖(Ternary)
 
 ## 12.2 學習的指令與概念
 
@@ -51,11 +32,11 @@
 成果圖
 
 <p align="center">
-  <img src="fig/12_3_population_histo_1.png"/>
+  <img src="/fig/12_3_population_histo_1.png"/>
 </p>
 
 批次檔
-```bash
+```bat
 set ps=12_3_population_histo.ps
 set cpt=haxby.cpt
 
@@ -74,6 +55,7 @@ del tmp*
 ```
 
 學習到的指令:
+
 * `pshistogram`繪製直方圖。
   * `-W`間隔寬度。
     * 控制落在範圍外點的處理方式，**+b**範圍外的數據包含在第一個或最後一個級距中；
@@ -121,11 +103,11 @@ del tmp*
 成果圖
 
 <p align="center">
-  <img src="fig/12_4_visitor_residence_1.png"/>
+  <img src="/fig/12_4_visitor_residence_1.png"/>
 </p>
 
 批次檔
-```bash
+```bat
 set ps=12_4_visitor_residence.ps
 set cpt=categorical.cpt
 
@@ -150,6 +132,7 @@ del tmp*
 ```
 
 學習到的指令:
+
 * `makecpt`製作色階檔，最常用於分類的色階檔為<mark>categorical.cpt</mark>，
 在給定色階的範圍，製作好色階檔後，手動開啟色階檔在每個分類後面加上`; 國家名稱`，
 這樣`psscale`的註解將會用國家名稱來取代編號。
@@ -176,11 +159,11 @@ GMT在圓餅圖上的功能甚少，但還是製作示範供大家參考。
 成果圖
 
 <p align="center">
-  <img src="fig/12_5_volcano_compo_1.png"/>
+  <img src="/fig/12_5_volcano_compo_1.png"/>
 </p>
 
 批次檔
-```bash
+```bat
 set ps=12_5_volcano_compo.ps
 
 # ternary diagram
@@ -239,6 +222,7 @@ del tmp*
 ```
 
 學習到的指令:
+
 * `psternary`繪製三元圖。對應的輸入格式是<mark>資料一 資料二 資料三 量值</mark>
   * `-B`設定三邊邊框。用<mark>-Ba -Bb -Bc</mark>分別來設定。
   * `-C`色階檔。配合`-S`有設定時，會自動讀取第四欄來繪製對應顏色。
@@ -258,7 +242,7 @@ del tmp*
 在數理、工程等領域都時常用到的機率分佈，其機率密度函數(Probability Density Function, PDF)為
 
 <p align="center">
-  <img src="fig/eq_ProbabilityDensityFunction.png"/>
+  <img src="/fig/eq_ProbabilityDensityFunction.png"/>
 </p>
 
 分佈的情形由平均數及標準差來決定，通常標準常態分佈是指平均數為0，標準差為1。
@@ -274,16 +258,15 @@ del tmp*
 完成圖如下:
 
 <p align="center">
-  <img src="fig/12_6_normal_distribution_1.png"/>
+  <img src="/fig/12_6_normal_distribution_1.png"/>
 </p>
 
 ## 12.7 參考批次檔
 列出本章節使用的批次檔，供讀者參考使用，檔案路經可能會有些許不同，再自行修改。
+
 * [12_3_population_histo](bat/12_3_population_histo.bat)
 * [12_4_visitor_residence](bat/12_4_visitor_residence.bat)
 * [12_5_volcano_compo](bat/12_5_volcano_compo.bat)
 * [12_6_normal_distribution](bat/12_6_normal_distribution.bat)
 
----
 
-[上一章](/taiwan_geography.md) -- [下一章](/three_dimension.md)

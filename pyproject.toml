@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "gmt_tutorials_simple"
+version = "0.1.0"
+description = "Simplified GMT tutortial for geophysics application"
+authors = ["Sean Ho <sean.li.shin.ho@gmail.com>"]
+license = "CC BY-SA 3.0"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+mkdocs = "^1.3.1"
+mkdocs-material = "^8.4.2"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

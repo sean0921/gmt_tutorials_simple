@@ -1,35 +1,16 @@
 
 # 等高線圖及剖面
 
----
-
-### 目錄
-1. [總覽](/index.md)
-2. [GMT介紹及安裝](/intro_install.md)
-3. [網路資源及配套軟體](/net_software.md)
-4. [第零章: 基本概念及默認值](/basic_defaults.md)
-5. [第一章: 製作地圖(地理投影法)](/projection.md)
-6. [第二章: XY散佈圖(其他投影法)](/xy_figure.md)
-7. [第三章: 等高線圖及剖面](/contour_profile.md)
-8. [第四章: 地形圖與色階](/topography_cpt.md)
-9. [第五章: 地震活動性與機制解](/seismicity_meca.md)
-10. [第六章: 向量與速度場](/vector_velocity.md)
-11. [第七章: 台灣地理資訊](/taiwan_geography.md)
-12. [第八章: 直方、圓餅、三元圖](/histo_pie_ternary.md)
-13. [第九章: 三維空間視圖](/three_dimension.md)
-14. [第十章: 地質圖](/geology_map.md)
-
----
-
 ## 7. 等高線圖及剖面
 本章將會先說明GMT所使用的網格檔是什麼、如何製作，接著如何將數值高程以等高線的方式呈現，
 最後，當要看一條特定線上的高程變化時，如何利用GMT來繪製該線段的高度變化剖面。
 
 ## 7.1 目的
 本章將學習如何繪製
-  1. 簡介網格檔(Grid data)
-  2. 等高線圖(Contour)
-  3. 地形剖面(Profile)
+
+1. 簡介網格檔(Grid data)
+2. 等高線圖(Contour)
+3. 地形剖面(Profile)
 
 ## 7.2 學習的指令與概念
 
@@ -53,19 +34,19 @@
 這樣可以有效地壓縮檔案所占用的空間。
 
 用實際例子來說明檔案格式的差異，本章將會使用到政府資料開放平台中的[20公尺網格數值地形模組資料](https://data.gov.tw/dataset/35430)，
-其中的不分福_全台及澎湖的資料，下載下來的<mark>.tif</mark>檔，透過一般的編譯器打開，如下圖:
+其中的不分幅\_全台及澎湖的資料，下載下來的<mark>.tif</mark>檔，透過一般的編譯器打開，如下圖:
 
 <p align="center">
-  <img src="fig/7_3_binaryView.png"/>
+  <img src="/fig/7_3_binaryView.png"/>
 </p>
 
 顯示出一推看不懂的亂碼，但如何想簡單的得知這個檔案理面的資料資訊，可以使用
-```bash
+```bat
 gmt grdinfo 檔名
 ```
 
 讀取<mark>Penghu_20m.tif</mark>，可得到資訊如下:
-```bash
+```bat
 Penghu_20m.tif: Title: Grid imported via GDAL
 Penghu_20m.tif: Command:
 Penghu_20m.tif: Remark:
@@ -82,18 +63,19 @@ Penghu_20m.tif: scale_factor: 1 add_offset: 0
 但這檔案要提供給GMT使用，會遇到兩個問題，第一，檔案格式為<mark>Geotiff</mark>，
 利用[GDAL](http://www.gdal.org/index.html)(地理空間資料抽象化文庫, Geospatial Data Abstraction Library)
 提供的轉檔程式<mark>gdal_translate</mark>，透過指令，
-```bash
+```bat
 gdal_translate -of XYZ [input.tif] [output.xyz]
 ```
 
 將<mark>.tif</mark>檔轉換成<mark>.xyz</mark>檔。第二，由於內政部提供的檔案其座標系是<mark>TWD97</mark>，
 而GMT繪製地圖慣用在<mark>WGS84座標系</mark>，因此需要做座標系轉換，透過Python，將檔案轉成WGS84座標系，
 完成後再將<mark>.xyz</mark>檔轉換成<mark>.grd檔</mark>。
-```bash
+```bat
 gmt xyz2grd [input.xyz] -R119.0/119.9/21.8/25.4 -I0.6s/0.6s -G[output.grd]
 ```
 
 其中
+
 * `-R`是給定檔案的X、Y軸範圍。
 * `-I`給與X、Y軸的間隔，後面的英文字代表單位，可參考[4-4距離的單位](basic_defaults.md#m4.4d)。
   * **m**對應角分。
@@ -122,7 +104,7 @@ gmt xyz2grd [input.xyz] -R119.0/119.9/21.8/25.4 -I0.6s/0.6s -G[output.grd]
   * **+r**網格檔的註解。
 
 同樣的，也可以透過
-```bash
+```bat
 gmt grd2xyz input.grd > output.xyz
 ```
 
@@ -131,7 +113,7 @@ gmt grd2xyz input.grd > output.xyz
 透過上述方式，成功地將內政部提供的數值高程檔轉換成GMT繪圖使用的格式，在這個範例中，
 一般<mark>.xyz</mark>的檔案大小約為420MB，轉換成<mark>.grd</mark>的格式後，變成4.61MB，大大地節省硬碟空間。
 使用一樣的做法，把台灣本島的數值高程也轉換成功後，不希望之後畫圖都要分開讀取台灣本島以及澎湖，所以使用:
-```bash
+```bat
 gmt grdpaste input1.grd input2.grd -Goutput.grd -fg
 ```
 
@@ -141,7 +123,7 @@ gmt grdpaste input1.grd input2.grd -Goutput.grd -fg
 * **-fc**卡式座標系統
 
 當然一次讀取這麼大的數值資料，會耗費很長的時間，因此可以利用GMT提供的網格切割指令:
-```bash
+```bat
 gmt grdcut input.grd -Goutput.grd -R範圍
 ```
 
@@ -162,11 +144,11 @@ gmt grdcut input.grd -Goutput.grd -R範圍
 
 成果圖
 <p align="center">
-  <img src="fig/7_4_east_rift_valley_1.png"/>
+  <img src="/fig/7_4_east_rift_valley_1.png"/>
 </p>
 
 批次檔
-```bash
+```bat
 set ps=7_4_east_rift_valley.ps
 
 # left figure without clip
@@ -187,6 +169,7 @@ gmt psconvert %ps% -Tg -A -P
 ```
 
 本節學習的新指令:
+
 * 第6,12行: `grdcontour`透過網格檔繪製等高線，語法是`grdcontour 網格檔 -C間隔值`，其中最常用到的選項:
   * **-A**繪製有註解的等高線:
     * **+a**註解的角度，**+an**垂直等高線；**+ap**平行等高線(默認值)
@@ -223,11 +206,11 @@ gmt psconvert %ps% -Tg -A -P
 
 成果圖
 <p align="center">
-  <img src="fig/7_5_elevation_profile_1.png"/>
+  <img src="/fig/7_5_elevation_profile_1.png"/>
 </p>
 
 批次檔
-```bash
+```bat
 # 1. set two profile start point and end point
 set ps=7_5_elevation_profile.ps
 set Alon1=121.38
@@ -317,6 +300,7 @@ del tmp*
 
 <mark>5</mark> 當在製作小區域地圖時，往往需要利用全區域的小張地圖來框繪出小區域的範圍
 ，有兩種方式。
+
 * `psbasemap`
   * `-D`x軸最小/x軸最大/y軸最小/y軸最大。
   * `-D`參考點模式，可參考[6-6極軸](xy_figure.md#m6.6)中`pslegend -D`。
@@ -334,6 +318,7 @@ del tmp*
     * **+s**加陰影
 
 <mark>6</mark> 製作AA'剖面:
+
 * `project`將表格式資料投影到一條線上、大圓上、別的座標系上，此區只介紹投影至線上。
   * `-C`起始點座標
   * `-E`結束點座標
@@ -387,16 +372,15 @@ del tmp*
 
 完成圖如下:
 <p align="center">
-  <img src="fig/7_6_yuShan_1.png"/>
+  <img src="/fig/7_6_yuShan_1.png"/>
 </p>
 
 ## 7.7 參考批次檔
 列出本章節使用的批次檔，供讀者參考使用，檔案路經可能會有些許不同，再自行修改。
-* [7_3_grd_intro](bat/7_3_grd_intro.bat)
-* [7_4_east_rift_valley](bat/7_4_east_rift_valley.bat)
-* [7_5_elevation_profile](bat/7_5_elevation_profile.bat)
-* [7_6_yuShan](bat/7_6_yuShan.bat)
 
----
+* [7_3_grd_intro](/bat/7_3_grd_intro.bat)
+* [7_4_east_rift_valley](/bat/7_4_east_rift_valley.bat)
+* [7_5_elevation_profile](/bat/7_5_elevation_profile.bat)
+* [7_6_yuShan](/bat/7_6_yuShan.bat)
 
-[上一章](/xy_figure.md) -- [下一章](/topography_cpt.md)
+

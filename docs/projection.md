@@ -1,31 +1,11 @@
 
 # 製作地圖(地理投影法)
 
----
-
-### 目錄
-1. [總覽](/index.md)
-2. [GMT介紹及安裝](/intro_install.md)
-3. [網路資源及配套軟體](/net_software.md)
-4. [第零章: 基本概念及默認值](/basic_defaults.md)
-5. [第一章: 製作地圖(地理投影法)](/projection.md)
-6. [第二章: XY散佈圖(其他投影法)](/xy_figure.md)
-7. [第三章: 等高線圖及剖面](/contour_profile.md)
-8. [第四章: 地形圖與色階](/topography_cpt.md)
-9. [第五章: 地震活動性與機制解](/seismicity_meca.md)
-10. [第六章: 向量與速度場](/vector_velocity.md)
-11. [第七章: 台灣地理資訊](/taiwan_geography.md)
-12. [第八章: 直方、圓餅、三元圖](/histo_pie_ternary.md)
-13. [第九章: 三維空間視圖](/three_dimension.md)
-14. [第十章: 地質圖](/geology_map.md)
-
----
-
 ## 5. 投影法
 GMT在投影法方面，分成兩部份，如下圖，一部份是地理投影法，另一部分是其他投影法，
 
 <p align="center">
-  <img src="fig/5_GMT_-J.png"/>
+  <img src="/fig/5_GMT_-J.png"/>
 </p>
 
 本章節將主要介紹地理投影法，其中又分成四個子部份，分別是:
@@ -41,6 +21,7 @@ GMT在投影法方面，分成兩部份，如下圖，一部份是地理投影�
 ## 5.1 目的
 
 本章將學習如何繪製
+
 1. 麥卡托投影法(Mercator Projection)
 2. 蘭伯特正形圓錐投影(Lambert Conic conformal Projection)
 3. 等距方位投影(Azimuthal Equidistant Projection)
@@ -71,24 +52,24 @@ GMT在投影法方面，分成兩部份，如下圖，一部份是地理投影�
 可以參考[WIKI百科](https://en.wikipedia.org/wiki/Geographic_coordinate_conversion)。
 請開啟命令提式字元(cmd.exe)或是終端機(terminal)，開啟方式可[參考4-1](basic_defaults.md#m4.1)，
 接著輸入下方指令:
-```bash
+```bat
 gmt pscoast
 ```
 
 會看到一連串關於`pscoast`的說明，如果你對各選項的意思已經了解，可以透過:
-```bash
+```bat
 gmt pscoast -
 ```
 
 你將只看到選項用法出現在影幕上。通常GMT指令的語法如下:
-```bash
+```bat
 gmt 模組 (輸入檔) [-選項1 -選項2 -選項3 ...] > 輸出檔名.ps
 ```
 
 簡單來說，先選定你要用的模組，給定輸入的資料，配合該模組底下的選項，來達到你要繪製的圖形，
 而<mark>-</mark>開頭會被GMT視作選項，沒有<mark>-</mark>開頭則被當做資料，所以其先後順序沒差，
 不過為養成好習慣，建議按照下面的範例來輸入每一行指令。
-```bash
+```bat
 # 第1行
 gmt psxy (輸入檔) -J -R [-選項1 -選項2 ...] -K  > 輸出檔名.ps
 # 中間各行
@@ -122,13 +103,13 @@ gmt psxy (輸入檔) -J -R [-選項1 -選項2 ...] -O >> 輸出檔名.ps
 
 選定好的範圍是119.0/123.0/21.5/26.0，預定地圖的寬度為15公分，海洋顏色為藍色，海岸線的寬度是1公分，
 顏色及樣式則採用預設值黑色及實線，指令如下:
-```bash
+```bat
 gmt pscoast -R119.0/122.5/21.5/26.0 -JM18 -S0/0/255 -W1 > 5_3_taiwan.ps
 ```
 
 來看看結果的圖長什麼樣。
 <p align="center">
-  <img src="fig/5_3_taiwan_1.png" width="702" height="496"/>
+  <img src="/fig/5_3_taiwan_1.png" width="702" height="496"/>
 </p>
 在預設紙張大小為A4的情況下，看到台灣北部並沒有被涵蓋在A4的紙張上，是什麼原因呢？
 原來是因為GMT預設紙張方向是橫向(Landscape)，如果要改成縱向(Portrait)，需要加上`-P`這個選項。
@@ -138,12 +119,12 @@ gmt pscoast -R119.0/122.5/21.5/26.0 -JM18 -S0/0/255 -W1 > 5_3_taiwan.ps
 也可以透過自動(<mark>a</mark>uto)，依照地圖尺寸來決定海岸線的解析度。
 接著陸地是白色，似乎有點單調，來試看看用`-G`英文單字，來更改陸地的顏色，
 於是乎將指令改寫如下:
-```bash
+```bat
 gmt pscoast -R119.0/122.5/21.5/26.0 -JM18 -S0/0/255 -Gspringgreen2 -W1 -Df -P > 5_3_taiwan.ps
 ```
 
 <p align="center">
-  <img src="fig/5_3_taiwan_2.png" width="496" height="702"/>
+  <img src="/fig/5_3_taiwan_2.png" width="496" height="702"/>
 </p>
 
 看起來，這圖已經有點起色了，但好像還缺少點什麼，例如地圖比例尺(map scale)、
@@ -155,13 +136,13 @@ gmt pscoast -R119.0/122.5/21.5/26.0 -JM18 -S0/0/255 -Gspringgreen2 -W1 -Df -P > 
 美國幅員遼闊，經度橫跨約55度，且主要在中緯度，不適合使用麥卡托投影(`-JM`)，因此這邊介紹蘭伯特投影法(`-JL`)。
 與前一節一樣，先初步畫出美國的國土，給定範圍在-130/-66/24/52，但`-JL`的用法較不一樣，
 它需要的格式是`-JL`中心點經度/中心點緯度/固定緯度線1/固定緯度線2/寬度，指令如下:
-```bash
+```bat
 gmt pscoast -R-130/-66/24/52 -JL-98/35/33/45/25 -S0/0/255 -Gspringgreen2 -W1 -Df > 5_4_unitedstate.ps
 ```
 
 其結果為
 <p align="center">
-  <img src="fig/5_4_unitedstate_1.png" width="702" height="496"/>
+  <img src="/fig/5_4_unitedstate_1.png" width="702" height="496"/>
 </p>
 
 中心點的經度，表示該經度線為垂直線，而中心點緯度則不影響，兩條固定緯度線則請想像用圓錐去罩住一顆球，
@@ -179,12 +160,13 @@ gmt pscoast -R-130/-66/24/52 -JL-98/35/33/45/25 -S0/0/255 -Gspringgreen2 -W1 -Df
 * `-I`河的種類/畫筆設定。種類數字或英文對應河的種類(主流、支流)，請自行參考官網說明。
 * `-L`比例尺對應的中心點方式/中心點經度/中心點緯度+c參考緯度+w比例尺長度(默認單位km)+f黑白相間的比例尺+l標籤。
 * `-N`行政邊界(種類)/畫筆設定。
-  *種類對應，1表示國家邊界；2表示州邊界(美國);3表示領海邊界;a表示全部邊界。
+  * 種類對應，1表示國家邊界；2表示州邊界(美國);3表示領海邊界;a表示全部邊界。
 * `-T`指針方向標(d)[羅盤方向標(m)]對應的中心點方式/中心點經度/中心點緯度+w寬度+l標籤
 
 透過上述的選項，將這張美國地圖做了一些改善，包括省略面積500km^2以下的湖泊，加上經緯度外框、網格線、
 比例尺、方向標，更改湖泊、河川的顏色，把墨西哥(MX)及加拿大(CA)國土變成灰色，以下是指令及成果圖。
-```bash
+
+```bat
 gmt pscoast -R-130/-66/24/52 -JL-98/35/33/45/25 -A500 -BWESN ^
 -Bxa10g10 -Bya10f5g10 -C104/210/223 -Df -EMX,CA+g210 ^
 -Gspringgreen2 -N1/2,red -S0/0/255 -Lg-125/27+c27+w500+f+l"km" ^
@@ -193,7 +175,7 @@ gmt pscoast -R-130/-66/24/52 -JL-98/35/33/45/25 -A500 -BWESN ^
 ```
 
 <p align="center">
-  <img src="fig/5_4_unitedstate_2.png" width="702" height="496"/>
+  <img src="/fig/5_4_unitedstate_2.png" width="702" height="496"/>
 </p>
 
 應該注意到上面的指令，多出現了一種符號<mark>^</mark>。因為使用的選項很多，造成指令過長，
@@ -203,6 +185,7 @@ Linux及MAC則使用<mark>\</mark>。
 ## 5.5 <a name="m5.5"></a>等距方位投影(`-Je` `-JE`)
 在這節開始之前，先介紹在Windows的環境下什麼是批次檔(.bat)，或是在Linux或MAC環境下的shell scripts(.sh)。
 主要的原因是:
+
 * 連續的指令單一化: 要把一行行指令打在指令環境底下，要排序或是更改都會變得十分麻煩，
 這時後就需要有個檔案(.bat)可以彙整這些指令，透過執行批次檔來達到一行行指令的輸入。
 * 簡易的資料處理: 在GMT的資料輸入檔，常常會需要特定欄位的資料，而往往拿到的資料檔，是有非常多欄位是用不到的，
@@ -227,11 +210,11 @@ Linux及MAC則使用<mark>\</mark>。
 
 成果圖
 <p align="center">
-  <img src="fig/5_5_TPEairline_1.png"/>
+  <img src="/fig/5_5_TPEairline_1.png"/>
 </p>
 
 批次檔
-```bash
+```bat
 set ps=5_5_TPEairline.ps
 
 gmt pscoast -Rg -JE121.2342/25.0797/12 -S0 -G50 -W.2,white -A1000 -K > %ps%
@@ -248,6 +231,7 @@ gmt psconvert %ps% -Tg -A -P
 ```
 
 透過範例，學習到的新用法:
+
 * 第1行: `set 變數名=字串`這個指令，可以設定變數供其他指令來使用，而呼叫的方式是`%變數名%`，範例中，
 將變數名ps設定成要輸出的ps檔檔名，方便之後改輸出檔名時，不需要一個個改或是利用取代的方式(有可能出錯)。
 * 第3行:
@@ -261,18 +245,19 @@ gmt psconvert %ps% -Tg -A -P
 * 第6行: `awk`會自動將以空格區分的檔案資料辨識成以行跟列排序的表格，`"{print $5, $4}"`表示列出第五及第四欄的資料，
 即經度及緯度，最後則接上要擷取的檔案檔名，更多的用法，可參考[鳥哥的Linux私房菜](http://linux.vbird.org/linux_basic/0330regularex.php)。
 * 第7行: 要繪製兩機場之間的連線，需要兩點的經緯度，透過讀取<mark>TPE_airline.gmt</mark>來實現，而檔案的格式是:
-  ```bash
-  >
-   121.2342  25.0797
-   103.9940   1.3502
-  >
-   121.2342  25.0797
-   139.7800  35.5523
-  >
-   .
-   .
-   .
-  ```
+
+```bat
+>
+ 121.2342  25.0797
+ 103.9940   1.3502
+>
+ 121.2342  25.0797
+ 139.7800  35.5523
+>
+ .
+ .
+ .
+```
 
 可以看到兩點的經緯度透過<mark>></mark>分開，原來GMT會自動將<mark>></mark>內的資料視為同一組，藉由此方式，
 就輕鬆地完成兩機場之間的連線。`psxy`除了能畫符號，也能透過-W來繪製線。
@@ -296,11 +281,11 @@ gmt psconvert %ps% -Tg -A -P
 
 成果圖
 <p align="center">
-  <img src="fig/5_6_globalNationalBoundary_1.png"/>
+  <img src="/fig/5_6_globalNationalBoundary_1.png"/>
 </p>
 
 批次檔
-```bash
+```bat
 set ps=5_6_globalNationalBoundary.ps
 
 setlocal ENABLEDELAYEDEXPANSION
@@ -335,6 +320,7 @@ gmt psconvert %ps% -Tg -A -P
 ```
 
 透過範例，學習到的新用法:
+
 * 第4行: 首先設定變數`vidx=0`，因為在後面的迴圈中會每次累加1，
 讓每次的變數名從**var1**變**var2**一直到**var10**。
 * 第5行: 利用`for`迴圈將檔案中一行行讀取資料，
@@ -354,16 +340,17 @@ gmt psconvert %ps% -Tg -A -P
 經緯度範圍可用<mark>121.263/122.077/24.671/25.343</mark>，
 另外提供[縣市邊界的資料](dat/city_twd97.gmt)(未來會教導如何製作)，試著畫一張新北市YouBike的點位圖。
 <p align="center">
-  <img src="fig/5_7_youBike_1.png"/>
+  <img src="/fig/5_7_youBike_1.png"/>
 </p>
 * 2.透過羅賓森投影法，繪製全球地圖，將你最喜歡的國家，設為中心點經度，並用一個特別的顏色標示出來。
 編者使用紐西蘭當作範例。
 <p align="center">
-  <img src="fig/5_7_favoriteCountry_1.png"/>
+  <img src="/fig/5_7_favoriteCountry_1.png"/>
 </p>
 
 ## 5.8 參考批次檔
 列出本章節使用的批次檔，供讀者參考使用，檔案路經可能會有些許不同，再自行修改。
+
 * [5_3_taiwan](bat/5_3_taiwan.bat)
 * [5_4_unitedstate](bat/5_4_unitedstate.bat)
 * [5_5_TPEairline](bat/5_5_TPEairline.bat)
@@ -371,6 +358,4 @@ gmt psconvert %ps% -Tg -A -P
 * [5_7_youBike](bat/5_7_youBike.bat)
 * [5_7_favoriteCountry](bat/5_7_favoriteCountry.bat)
 
----
 
-[上一章](/basic_defaults.md) -- [下一章](/xy_figure.md)

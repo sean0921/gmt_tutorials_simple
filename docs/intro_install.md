@@ -1,26 +1,6 @@
 
 # GMT介紹及安裝
 
----
-
-### 目錄
-1. [總覽](/index.md)
-2. [GMT介紹及安裝](/intro_install.md)
-3. [網路資源及配套軟體](/net_software.md)
-4. [第零章: 基本概念及默認值](/basic_defaults.md)
-5. [第一章: 製作地圖(地理投影法)](/projection.md)
-6. [第二章: XY散佈圖(其他投影法)](/xy_figure.md)
-7. [第三章: 等高線圖及剖面](/contour_profile.md)
-8. [第四章: 地形圖與色階](/topography_cpt.md)
-9. [第五章: 地震活動性與機制解](/seismicity_meca.md)
-10. [第六章: 向量與速度場](/vector_velocity.md)
-11. [第七章: 台灣地理資訊](/taiwan_geography.md)
-12. [第八章: 直方、圓餅、三元圖](/histo_pie_ternary.md)
-13. [第九章: 三維空間視圖](/three_dimension.md)
-14. [第十章: 地質圖](/geology_map.md)
-
----
-
 ## 2.1. GMT簡介
 
 GMT建立於1988年，由Paul Wessel和Walter H.F. Smith共同開發，
@@ -32,7 +12,7 @@ GMT建立於1988年，由Paul Wessel和Walter H.F. Smith共同開發，
 [詳細的版本資訊](https://www.soest.hawaii.edu/gmt/gmt/gmt_releases.html)。
 
 <p align="center">
-  <img src="fig/2_GMT5_Summit_2016.jpg"/>
+  <img src="/fig/2_GMT5_Summit_2016.jpg"/>
 </p>
 
 目前由圖中五位共同維護。由左自右分別是，Joaquim Luis、Walter H.F. Smith、
@@ -48,7 +28,7 @@ GMT作為免費、開源的製圖軟體，將大幅底減少這些花費。
 但其快速的資料處理、批次處理、完全免費的特點，使其擁有一群死忠的使用者。
 
 <p align="center">
-  <img src="fig/2_map_geoip_all.png"/>
+  <img src="/fig/2_map_geoip_all.png"/>
 </p>
 
 圖為GMT全球的下載量。
@@ -74,7 +54,7 @@ GMT的安裝已經非常人性化了，官網也提供各平台的安裝教學�
 * Windows: 透過`.exe`檔安裝
 * Linux: 透過`apt-get`或`.tar`檔安裝
 
-```bash
+```bat
 # by apt-get
 sudo apt-get install gmt gmt-dcw gmt-gshhg
 
@@ -102,6 +82,4 @@ make install
 * <mark>GSHHG</mark>(**Global Self-consistent, Hierarchical, High-resolution Geography**):
 提供數種解析度的向量形式資料，像是海岸線、河湖水系、國界與州界等等。
 
----
 
-[上一章](/index.md) -- [下一章](/net_software.md)

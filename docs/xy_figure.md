@@ -1,26 +1,6 @@
 
 # XY散佈圖(其他投影法)
 
----
-
-### 目錄
-1. [總覽](/index.md)
-2. [GMT介紹及安裝](/intro_install.md)
-3. [網路資源及配套軟體](/net_software.md)
-4. [第零章: 基本概念及默認值](/basic_defaults.md)
-5. [第一章: 製作地圖(地理投影法)](/projection.md)
-6. [第二章: XY散佈圖(其他投影法)](/xy_figure.md)
-7. [第三章: 等高線圖及剖面](/contour_profile.md)
-8. [第四章: 地形圖與色階](/topography_cpt.md)
-9. [第五章: 地震活動性與機制解](/seismicity_meca.md)
-10. [第六章: 向量與速度場](/vector_velocity.md)
-11. [第七章: 台灣地理資訊](/taiwan_geography.md)
-12. [第八章: 直方、圓餅、三元圖](/histo_pie_ternary.md)
-13. [第九章: 三維空間視圖](/three_dimension.md)
-14. [第十章: 地質圖](/geology_map.md)
-
----
-
 ## 6. XY散佈圖
 除了將資料展示在地圖上，另一個數據分析很重要的圖表格式就是XY散佈圖，本章將分成4個小節介紹如何將資料呈現在線性、對數、時間軸上，
 以及極座標上。
@@ -51,11 +31,11 @@
 
 成果圖
 <p align="center">
-  <img src="fig/6_3_accidentalDeath_1.png"/>
+  <img src="/fig/6_3_accidentalDeath_1.png"/>
 </p>
 
 批次檔
-```bash
+```bat
 set ps=6_3_accidentalDeath.ps
 
 # 製作底圖框架
@@ -160,11 +140,11 @@ del area
 
 成果圖
 <p align="center">
-  <img src="fig/6_4_richter_magnitude_1.png"/>
+  <img src="/fig/6_4_richter_magnitude_1.png"/>
 </p>
 
 批次檔
-```bash
+```bat
 set ps=6_4_richter_magnitude.ps
 
 # 製作左側圖
@@ -232,11 +212,11 @@ del tmp
 
 成果圖
 <p align="center">
-  <img src="fig/6_5_C0V250_morakot_1.png"/>
+  <img src="/fig/6_5_C0V250_morakot_1.png"/>
 </p>
 
 批次檔
-```bash
+```bat
 set ps=6_5_C0V250_morakot.ps
 
 # 設定圖框、刻度、標題等等
@@ -302,11 +282,11 @@ del gmt.conf
 
 成果圖
 <p align="center">
-  <img src="fig/6_6_season_wind_1.png"/>
+  <img src="/fig/6_6_season_wind_1.png"/>
 </p>
 
 批次檔
-```bash
+```bat
 set ps=6_6_season_wind.ps
 
 gmt psbasemap -R0/360/0/5 -JPa17 -BN+g230 -Bxa20 -Byg1 -K > %ps%
@@ -402,18 +382,19 @@ del tmp
 請用雙軸的方式呈現，並嘗試更改其外框顏色，另外練習在2008-01-01畫一條垂直虛線，
 以及如何製作圖例`pslegend`，完成圖如下:
 <p align="center">
-  <img src="fig/6_7_THSRC_timeseries_1.png"/>
+  <img src="/fig/6_7_THSRC_timeseries_1.png"/>
 </p>
 * 2.繪製**旅客人數**及**列車次數**的XY點散佈圖，從上題完成圖中可以看到2007年(第一年)，
 較之後有很大的不同，試著將2007年的點用不同的顏色表示出來。另外GMT有提供一些資料運算的功能，
 在將來將會依序用到，此題將會使用到`gmt regress`，將**旅客人數**及**列車次數**做線性回歸，
 並繪製回歸線及方程式，請試著去[GMT官網](http://gmt.soest.hawaii.edu/doc/5.4.2/index.html)找到該模組，並練習如何使用。
 <p align="center">
-  <img src="fig/6_7_THSRC_xyFigure_1.png"/>
+  <img src="/fig/6_7_THSRC_xyFigure_1.png"/>
 </p>
 
 ## 6.8 參考批次檔
 列出本章節使用的批次檔，供讀者參考使用，檔案路經可能會有些許不同，再自行修改。
+
 * [6_3_accidentalDeath](bat/6_3_accidentalDeath.bat)
 * [6_4_richter_magnitude](bat/6_4_richter_magnitude.bat)
 * [6_5_C0V250_morakot](bat/6_5_C0V250_morakot.bat)
@@ -421,10 +402,4 @@ del tmp
 * [6_7_THSRC_timeseries](bat/6_7_THSRC_timeseries.bat)
 * [6_7_THSRC_xyFigure](bat/6_7_THSRC_xyFigure.bat)
 
----
 
-[上一章](/projection.md) -- [下一章](/contour_profile.md)
-
----
-
-### 註腳

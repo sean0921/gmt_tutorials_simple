@@ -1,26 +1,6 @@
 
 # 地震活動性與機制解
 
----
-
-### 目錄
-1. [總覽](/index.md)
-2. [GMT介紹及安裝](/intro_install.md)
-3. [網路資源及配套軟體](/net_software.md)
-4. [第零章: 基本概念及默認值](/basic_defaults.md)
-5. [第一章: 製作地圖(地理投影法)](/projection.md)
-6. [第二章: XY散佈圖(其他投影法)](/xy_figure.md)
-7. [第三章: 等高線圖及剖面](/contour_profile.md)
-8. [第四章: 地形圖與色階](/topography_cpt.md)
-9. [第五章: 地震活動性與機制解](/seismicity_meca.md)
-10. [第六章: 向量與速度場](/vector_velocity.md)
-11. [第七章: 台灣地理資訊](/taiwan_geography.md)
-12. [第八章: 直方、圓餅、三元圖](/histo_pie_ternary.md)
-13. [第九章: 三維空間視圖](/three_dimension.md)
-14. [第十章: 地質圖](/geology_map.md)
-
----
-
 ## 9. 地震活動性與機制解
 地震活動性是描述一段時間內，地震的空間分佈特性，包含其位置及深度，也紀錄地震強度的變化。
 震源機制解是描述地震發震機制的一種方式，地震的發生，是由於斷層發生錯動，而透過對地震訊號進行分析，
@@ -51,11 +31,11 @@
 
 成果圖
 <p align="center">
-  <img src="fig/9_3_seismicity_1.png"/>
+  <img src="/fig/9_3_seismicity_1.png"/>
 </p>
 
 批次檔
-```bash
+```bat
 set ps=9_3_seismicity.ps
 set data=D:\GMT_data\
 set cpt=seis.cpt
@@ -182,7 +162,7 @@ C代表東北部地震帶，包含了琉球隱沒帶及沖繩海溝，許多規�
 
 成果圖
 <p align="center">
-  <img src="fig/9_4_focal_mechanism_1.png"/>
+  <img src="/fig/9_4_focal_mechanism_1.png"/>
 </p>
 
 在繪製震源機制解時，有幾種檔案格式會被提到，`-Sa`用Aki and Richards制訂的震源機制格式，
@@ -215,11 +195,11 @@ C代表東北部地震帶，包含了琉球隱沒帶及沖繩海溝，許多規�
 
 成果圖
 <p align="center">
-  <img src="fig/9_4_taiwan_focal_1.png"/>
+  <img src="/fig/9_4_taiwan_focal_1.png"/>
 </p>
 
 批次檔
-```bash
+```bat
 set ps=9_4_taiwan_focal.ps
 set data=D:\GMT_data\
 
@@ -313,11 +293,11 @@ del tmp*
 
 成果圖
 <p align="center">
-  <img src="fig/9_5_focal_profile_1.png"/>
+  <img src="/fig/9_5_focal_profile_1.png"/>
 </p>
 
 批次檔
-```bash
+```bat
 set ps=9_5_focal_profile.ps
 set data=D:\GMT_data\
 set cpt=seis.cpt
@@ -455,7 +435,7 @@ del tmp*
 
 完成圖如下:
 <p align="center">
-  <img src="fig/9_6_after6m_meinong_1.png"/>
+  <img src="/fig/9_6_after6m_meinong_1.png"/>
 </p>
 
 ## 9.7 參考批次檔
@@ -469,10 +449,4 @@ del tmp*
 |[9_5_focal_profile](bat/9_5_focal_profile.bat)|[9_5_focal_profile](csh/9_5_focal_profile.csh)|
 |[9_6_after6m_meinong](bat/9_6_after6m_meinong.bat)|[9_6_after6m_meinong](csh/9_6_after6m_meinong.csh)|
 
----
 
-[上一章](/topography_cpt.md) -- [下一章](/vector_velocity.md)
-
----
-
-### 註腳

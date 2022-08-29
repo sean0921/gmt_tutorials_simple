@@ -1,26 +1,6 @@
 
 # 地形圖與色階
 
----
-
-### 目錄
-1. [總覽](/index.md)
-2. [GMT介紹及安裝](/intro_install.md)
-3. [網路資源及配套軟體](/net_software.md)
-4. [第零章: 基本概念及默認值](/basic_defaults.md)
-5. [第一章: 製作地圖(地理投影法)](/projection.md)
-6. [第二章: XY散佈圖(其他投影法)](/xy_figure.md)
-7. [第三章: 等高線圖及剖面](/contour_profile.md)
-8. [第四章: 地形圖與色階](/topography_cpt.md)
-9. [第五章: 地震活動性與機制解](/seismicity_meca.md)
-10. [第六章: 向量與速度場](/vector_velocity.md)
-11. [第七章: 台灣地理資訊](/taiwan_geography.md)
-12. [第八章: 直方、圓餅、三元圖](/histo_pie_ternary.md)
-13. [第九章: 三維空間視圖](/three_dimension.md)
-14. [第十章: 地質圖](/geology_map.md)
-
----
-
 ## 8. 地形圖與色階
 當想要呈現三維的資料，可以利用xyz座標系畫出立體圖，但如果三維資料要呈現在二維平面上時，
 除了利用等高線之外，還可以利用顏色來做為第三維度的變化，因此衍生出了色階，
@@ -46,7 +26,7 @@
 色階的概念是將某一區段的資料用一種顏色來表示，這種技巧被應用在很多方面，像是熱影像圖、地形圖等等。
 GMT在安裝的時後，同時有提供一些色階檔作為使用，這些檔案被安裝在<mark>GMT根目錄/share/cpt</mark>，
 打開<mark>abyss.cpt</mark>，裡面的內容:
-```bash
+```bat
 #       $Id$
 #
 # Color table for bathymetry modeled after IBCSO
@@ -73,13 +53,14 @@ N gray
 來看GMT有提供的色階檔畫出來的樣子:
 
 <p align="center">
-  <img src="fig/8_3_cpt_1.png"/>
+  <img src="/fig/8_3_cpt_1.png"/>
 </p>
 
 圖中列出44個GMT默認提供的色階檔(GMT version 5.4.2)，將每個色階做正規化的步驟，上方色階代表顏色連續的色階檔，
 下方則是顏色離散的色階檔(間隔0.25)，如果原始的色階檔就不連續，那做出來就是不連續的色階檔。
 而兩者檔案中，有什麼差別呢？
-```bash
+
+```bat
 # 不連續的色階
 0	166/206/227	1	166/206/227
 1	31/120/180	2	31/120/180
@@ -92,7 +73,8 @@ N gray
 有看出差別了嗎？在不連續的色階中，0~1都是用同一種顏色，而連續的色階中0~1是不同顏色，而接續下去1~2也是如此，
 GMT就是用這種方式，來區分二者的差異。接下來，示範如何用`makecpt`來製作色階檔。自己手動編輯色階檔也是可以，
 但需要對顏色的敏感度非常好，時常色階檔的製作，都是利用現成的檔案進行範圍的改寫。
-```bash
+
+```bat
 makecpt -Ccool.cpt -T0/50/10 -D -Z > tmp.cpt
 # 產生的tmp.cpt內容如下
 0	cyan	10	51/204/255
@@ -106,6 +88,7 @@ N	127.5
 ```
 
 學習到的指令:
+
 * `makecpt`:
   * `-C`輸入的色階檔。
   * `-I`倒轉(reverse)色碼檔
@@ -130,11 +113,12 @@ N	127.5
 
 成果圖
 <p align="center">
-  <img src="fig/8_4_yangmingShan_1.png"/>
+  <img src="/fig/8_4_yangmingShan_1.png"/>
 </p>
 
 批次檔
-```bash
+
+```bat
 set ps=8_4_yangmingShan.ps
 set cpt=dem1.cpt
 
@@ -169,6 +153,7 @@ del tmp*
 本節學習到的新指令:
 
 <mark>1</mark> 繪製地形圖
+
 * `grdimage`投影網格或是影像(images)至地圖上:
   * `-C`輸入色階檔。
   * `-M`黑白畫面!!
@@ -200,6 +185,7 @@ del tmp*
 <mark>3</mark> 將色階檔範圍改成0至1200，間距100，`-Z`變成連續的色階檔，`-I`開啟色彩條照明效果。
 這裡使用`grdclip`將高度200以下的資料設定為NaN，配合`grdimage -Q`，讓高度200以下的地區，以透明著色。
 詳細的`grdclip`模組介紹。
+
 * `grdclip`剪切網格檔的範圍。
   * `-G`輸出檔名。
   * `-R`範圍。
@@ -215,6 +201,7 @@ del tmp*
 則是針對200公尺以上的區域，較完整地呈現該地區的地形。
 
 ## <a name="m8.5"></a>8.5 地形暈渲面
+
 Hillshading暈渲法(或稱陰影法)，是一種地形圖的表示方式，應用光影的原裡，
 以色調的明暗對比來展現地形上的高低起伏，此法是假設一個光源從一特定角度照射照射強度不變的平行光線，
 地形的明暗取決於波面受光方向的夾角，迎光面會展線明亮的色調，反之背光面則陰暗，而坡度的變化，
@@ -233,11 +220,11 @@ Hillshading暈渲法(或稱陰影法)，是一種地形圖的表示方式，應�
 
 成果圖
 <p align="center">
-  <img src="fig/8_5_ryukyu_trench_n_1.png"/>
+  <img src="/fig/8_5_ryukyu_trench_n_1.png"/>
 </p>
 
 批次檔
-```bash
+```bat
 set ps=8_5_ryukyu_trench_n.ps
 set data=D:\GMT_data\
 set dcpt=colomia_d.cpt
@@ -273,6 +260,7 @@ del tmp*
 本節學習的新指令:
 
 <mark>1</mark>繪製海底地形
+
 * `grdinfo`: 獲取網格檔資訊，在前一節中，製作色階檔都仰賴手動設定最大最小值，
 這邊將介紹如何利用這指令，來找出網格檔的範圍。
   * `-C`輸出x軸最小(w) x軸最大(e) y軸最小(s) y軸最大(n) z軸最小(z0) z軸最大(z1) x軸間隔 y軸間隔 x軸點數 y軸點數。
@@ -280,7 +268,7 @@ del tmp*
   * `-I`四捨五入輸出，搭配`-C`使用。
   * `-L`輸出基本統計的數值。
     * **-L0**重新掃描一次資料在輸出資訊，而非使用檔頭的資訊
-    * **-L1**回傳z軸的中位數及1.4826*中位數決對偏差(Median Absolute Deviation)
+    * **-L1**回傳z軸的中位數及 1.4826 \* 中位數絕對偏差(Median Absolute Deviation)
     * **-L2**回傳z軸平均、標準差、方均根
     * **-La**回傳上述全部資訊
   * `-M`回傳z軸最大最小值出現的xy座標。
@@ -288,6 +276,7 @@ del tmp*
   * `-T`輸出z軸最小/最大/間隔，供`makecpt -T`使用。
 
 <mark>2</mark>繪製陸地地形
+
 * `grd2cpt`: 從網格檔直接輸出色階檔。  
   * `-C`對應使用的色階檔。
   * `-D`讓前景色與背景色對應最小及最大值的色碼
@@ -300,11 +289,13 @@ del tmp*
 列出這些的使用方法，供作參考。
 
 接下來，將介紹陰影檔的製作方式，使用的指令是`grdgradient`，範例如下:
-```bash
+
+```bat
 grdgradient ETOPO1_Bed_g_gmt5.grd -Nt1 -A300 -GETOPO1_Bed_g_gmt5_shad.grd
 ```
 
 本節學習的新指令:
+
 * `grdgradient`從網格檔計算方向導數或梯度
   * `-A`角度，光源照射的角度。
   * `-G`輸出檔名，輸出的檔案名稱。
@@ -318,7 +309,7 @@ grdgradient ETOPO1_Bed_g_gmt5.grd -Nt1 -A300 -GETOPO1_Bed_g_gmt5_shad.grd
 
 成果圖
 <p align="center">
-  <img src="fig/8_5_ryukyu_trench_1.png"/>
+  <img src="/fig/8_5_ryukyu_trench_1.png"/>
 </p>
 
 ## 8.6 習題
@@ -330,16 +321,15 @@ grdgradient ETOPO1_Bed_g_gmt5.grd -Nt1 -A300 -GETOPO1_Bed_g_gmt5_shad.grd
 
 完成圖如下:
 <p align="center">
-  <img src="fig/8_6_mid-atlantic_ridge_1.png"/>
+  <img src="/fig/8_6_mid-atlantic_ridge_1.png"/>
 </p>
 
 ## 8.7 參考批次檔
 列出本章節使用的批次檔，供讀者參考使用，檔案路經可能會有些許不同，再自行修改。
+
 * [8_3_cpt](bat/8_3_cpt.bat)
 * [8_4_yangmingShan](bat/8_4_yangmingShan.bat)
 * [8_5_ryukyu_trench](bat/8_5_ryukyu_trench.bat)
 * [8_6_mid-atlantic_ridge](bat/8_6_mid-atlantic_ridge.bat)
 
----
 
-[上一章](/contour_profile.md) -- [下一章](/seismicity_meca.md)

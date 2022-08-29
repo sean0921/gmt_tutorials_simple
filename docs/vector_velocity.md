@@ -1,26 +1,6 @@
 
 # 向量與速度場
 
----
-
-### 目錄
-1. [總覽](/index.md)
-2. [GMT介紹及安裝](/intro_install.md)
-3. [網路資源及配套軟體](/net_software.md)
-4. [第零章: 基本概念及默認值](/basic_defaults.md)
-5. [第一章: 製作地圖(地理投影法)](/projection.md)
-6. [第二章: XY散佈圖(其他投影法)](/xy_figure.md)
-7. [第三章: 等高線圖及剖面](/contour_profile.md)
-8. [第四章: 地形圖與色階](/topography_cpt.md)
-9. [第五章: 地震活動性與機制解](/seismicity_meca.md)
-10. [第六章: 向量與速度場](/vector_velocity.md)
-11. [第七章: 台灣地理資訊](/taiwan_geography.md)
-12. [第八章: 直方、圓餅、三元圖](/histo_pie_ternary.md)
-13. [第九章: 三維空間視圖](/three_dimension.md)
-14. [第十章: 地質圖](/geology_map.md)
-
----
-
 ## 10. 向量與速度場
 向量(vector)是用來同時表達大小與方向的幾何圖形，在6-6極軸中，
 介紹了利用極軸來表示四個氣象站夏季與冬季的風量(大小)及風向(方向)，
@@ -29,9 +9,10 @@
 
 ## 10.1 目的
 本章將學習如何繪製
-  1. 向量(Vector)
-  2. 速度場(Velocity Field)
-  3. 網格速度場(Grid Velocity Field)
+
+1. 向量(Vector)
+2. 速度場(Velocity Field)
+3. 網格速度場(Grid Velocity Field)
 
 ## 10.2 學習的指令與概念
 
@@ -47,11 +28,11 @@
 
 成果圖
 <p align="center">
-  <img src="fig/10_3_vector_1.png"/>
+  <img src="/fig/10_3_vector_1.png"/>
 </p>
 
 批次檔
-```bash
+```bat
 set ps=10_3_vector.ps
 
 gmt psbasemap -R0/19/0/15 -JX19/15 -BWESN -Bag1 -K > %ps%
@@ -159,17 +140,18 @@ del tmp*
 透過氣象局[颱風資料庫](http://rdc28.cwb.gov.tw/)下載取得。
 
 使用的資料檔:
+
 - [莫拉克颱風風速](dat/morakot_wind.gmt)
 - [莫拉克颱風氣壓](dat/morakot_presure.gmt)
 - [莫拉克颱風路徑](dat/morakot_track.dat)
 
 成果圖
 <p align="center">
-  <img src="fig/10_4_morakot_wind_1.png"/>
+  <img src="/fig/10_4_morakot_wind_1.png"/>
 </p>
 
 批次檔
-```bash
+```bat
 set ps=10_4_morakot_wind.ps
 set data=D:\GMT_data\
 set cpt=gebco.cpt
@@ -232,6 +214,7 @@ del tmp*
 <mark>1</mark>繪製地形及氣壓等值線
 
 <mark>2</mark>繪製向量(風速和方向)及颱風路徑
+
 * `psvelo`在地圖上繪製向量場
   * `-Se`向量尺寸/誤差橢圓尺寸/標題字大小，對應的輸入資料格式為<mark>經度 緯度
   東西向數值 南北向數值 東西向誤差 南北向誤差 東西向與南北向的相關性 標題名</mark>。
@@ -252,6 +235,7 @@ del tmp*
   * `-Sk`自訂義符號名稱/大小，可參考[4-4自訂符號對照表](basic_defaults.md#m4.4sk)。
 
 <mark>3</mark>製作圖例說明
+
 * 同樣地，在製作自訂符號的圖例說明，也是用到`S 圖間隔 k自訂符號名稱 大小 顏色 外框筆觸
 字間隔 文字`的模式來完成。
 
@@ -268,15 +252,16 @@ del tmp*
 如何呈現網格速度場。另外製作風速的純量檔，利用色階來呈現。
 
 使用的資料檔:
+
 - [莫拉克颱風風速純量](dat/morakot_wind_scalar.gmt)
 
 成果圖
 <p align="center">
-  <img src="fig/10_5_grid_vector_1.png"/>
+  <img src="/fig/10_5_grid_vector_1.png"/>
 </p>
 
 批次檔
-```bash
+```bat
 set ps=10_5_grid_vector.ps
 set data=D:\GMT_data\
 set cpt=sealand.cpt
@@ -360,25 +345,21 @@ del tmp*
 本次習題希望利用下方兩筆資料，來繪製全球洋流的地圖。
 
 使用的資料檔:
+
 - [201701全球洋流東西向](dat/ucur_201701.xyz)
 - [201701全球洋流南北向](dat/vcur_201701.xyz)
 
 完成圖如下:
 <p align="center">
-  <img src="fig/10_6_ocean_current_1.png"/>
+  <img src="/fig/10_6_ocean_current_1.png"/>
 </p>
 
 ## 10.7 參考批次檔
 列出本章節使用的批次檔，供讀者參考使用，檔案路經可能會有些許不同，再自行修改。
+
 * [10_3_vector](bat/10_3_vector.bat)
 * [10_4_morakot_wind](bat/10_4_morakot_wind.bat)
 * [10_5_grid_vector](bat/10_5_grid_vector.bat)
 * [10_6_ocean_current](bat/10_6_ocean_current.bat)
 
----
 
-[上一章](/seismicity_meca.md) -- [下一章](/taiwan_geography.md)
-
----
-
-### 註腳

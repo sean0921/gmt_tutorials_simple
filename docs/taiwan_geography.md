@@ -1,26 +1,6 @@
 
 # 台灣地理資訊
 
----
-
-### 目錄
-1. [總覽](/index.md)
-2. [GMT介紹及安裝](/intro_install.md)
-3. [網路資源及配套軟體](/net_software.md)
-4. [第零章: 基本概念及默認值](/basic_defaults.md)
-5. [第一章: 製作地圖(地理投影法)](/projection.md)
-6. [第二章: XY散佈圖(其他投影法)](/xy_figure.md)
-7. [第三章: 等高線圖及剖面](/contour_profile.md)
-8. [第四章: 地形圖與色階](/topography_cpt.md)
-9. [第五章: 地震活動性與機制解](/seismicity_meca.md)
-10. [第六章: 向量與速度場](/vector_velocity.md)
-11. [第七章: 台灣地理資訊](/taiwan_geography.md)
-12. [第八章: 直方、圓餅、三元圖](/histo_pie_ternary.md)
-13. [第九章: 三維空間視圖](/three_dimension.md)
-14. [第十章: 地質圖](/geology_map.md)
-
----
-
 ## 11. 台灣地理資訊
 本章的目的較為特殊，其目的是提供讀者繪製台灣地區常用的地理資訊，
 並不針對特定模組做詳細的闡述，只針對處理這些資料會用到的指令做必要的說明，所使用的資料可以從
@@ -57,11 +37,11 @@
 
 成果圖
 <p align="center">
-  <img src="fig/11_3_taiwan_road_1.png"/>
+  <img src="/fig/11_3_taiwan_road_1.png"/>
 </p>
 
 批次檔
-```bash
+```bat
 set ps=11_3_taiwan_road.ps
 set data=D:\GMT_data\road\
 
@@ -109,6 +89,7 @@ del tmp*
 ```
 
 學習到的指令:
+
 * `gmt psxy %data%TRA_rail.gmt -R -JM -W2.5,black,4_4:0p -K -O >> %ps%`
   * 之前有提到`-W`寬度,顏色,樣式，其中樣式可以用<mark>-</mark>,<mark>.</mark>符號來繪製虛線，
   這邊使用<mark>4_4:0p</mark>，數字分別對應虛線長度、虛線間隔長度、起始位置偏移，
@@ -123,11 +104,11 @@ del tmp*
 
 成果圖
 <p align="center">
-  <img src="fig/11_4_region_border_1.png"/>
+  <img src="/fig/11_4_region_border_1.png"/>
 </p>
 
 批次檔
-```bash
+```bat
 set ps=11_4_region_border.ps
 set data=D:\GMT_data\
 set cpt=gebco.cpt
@@ -194,6 +175,7 @@ del tmp*
 ```
 
 學習到的指令:
+
 * `gmtspatial -Q+p -o0,1`從多區塊文件中算出質心位置。
   * `-Q+p`假設每個區塊文件中的資料都是封閉多邊形，並計算出質心位置。
   * `-o0,1`指定輸出第一欄(經度)和第二欄(緯度)。
@@ -214,11 +196,11 @@ del tmp*
 
 成果圖
 <p align="center">
-  <img src="fig/11_5_drainage_area_1.png"/>
+  <img src="/fig/11_5_drainage_area_1.png"/>
 </p>
 
 批次檔
-```bash
+```bat
 set ps=11_5_drainage_area.ps
 set data=D:\GMT_data\
 set cpt=gebco.cpt
@@ -249,6 +231,7 @@ del tmp* gmt.conf
 ```
 
 學習到的指令:
+
 * `echo 120.75 25.35 Mainstream \046 | gmt pstext`寫出特殊字元(&)。
   * <mark>\046</mark>可對應到<mark>&</mark>符號，
   詳細內容請參考[4-4特殊字元或符號](basic_defaults#m4.4fs)。
@@ -263,11 +246,11 @@ del tmp* gmt.conf
 
 完成圖如下:
 <p align="center">
-  <img src="fig/11_6_cgs_fault_1.png"/>
+  <img src="/fig/11_6_cgs_fault_1.png"/>
 </p>
 
 批次檔
-```bash
+```bat
 set ps=11_6_cgs_fault.ps
 set data=D:\GMT_data\
 set cpt=gebco.cpt
@@ -350,11 +333,11 @@ del tmp*
 
 完成圖如下:
 <p align="center">
-  <img src="fig/11_6_fault_type_1.png"/>
+  <img src="/fig/11_6_fault_type_1.png"/>
 </p>
 
 批次檔
-```bash
+```bat
 set ps=11_6_fault_type.ps
 set data=D:\GMT_data\
 set cpt=dem3.cpt
@@ -421,11 +404,12 @@ del tmp*
 
 完成圖如下:
 <p align="center">
-  <img src="fig/11_7_population_density_1.png"/>
+  <img src="/fig/11_7_population_density_1.png"/>
 </p>
 
 批次檔
-```bash
+
+```bat
 set ps=11_7_population_density.ps
 set data=D:\GMT_data\
 set cpt=rainbow.cpt
@@ -467,6 +451,7 @@ del tmp*
 ```
 
 學習到的指令:
+
 * `#`符號開頭的兩行`makecpt ... -Trange.txt -Fr+c ...及... -E42 ...`。
   * `-Trange.txt`用<mark>range.txt</mark>來指定色階檔分隔的依據。
   * `-Fr`指定輸出為RGB格式。
@@ -485,6 +470,7 @@ del tmp*
 
 ## 11.8 參考批次檔
 列出本章節使用的批次檔，供讀者參考使用，檔案路經可能會有些許不同，再自行修改。
+
 * [11_3_taiwan_road](bat/11_3_taiwan_road.bat)
 * [11_4_region_border](bat/11_4_region_border.bat)
 * [11_5_drainage_area](bat/11_5_drainage_area.bat)
@@ -492,6 +478,4 @@ del tmp*
 * [11_6_fault_type](bat/11_6_fault_type.bat)
 * [11_7_population_density](bat/11_7_population_density.bat)
 
----
 
-[上一章](/vector_velocity.md) -- [下一章](/histo_pie_ternary.md)

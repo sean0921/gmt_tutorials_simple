@@ -1,26 +1,6 @@
 
 # 三維空間視圖
 
----
-
-### 目錄
-1. [總覽](/index.md)
-2. [GMT介紹及安裝](/intro_install.md)
-3. [網路資源及配套軟體](/net_software.md)
-4. [第零章: 基本概念及默認值](/basic_defaults.md)
-5. [第一章: 製作地圖(地理投影法)](/projection.md)
-6. [第二章: XY散佈圖(其他投影法)](/xy_figure.md)
-7. [第三章: 等高線圖及剖面](/contour_profile.md)
-8. [第四章: 地形圖與色階](/topography_cpt.md)
-9. [第五章: 地震活動性與機制解](/seismicity_meca.md)
-10. [第六章: 向量與速度場](/vector_velocity.md)
-11. [第七章: 台灣地理資訊](/taiwan_geography.md)
-12. [第八章: 直方、圓餅、三元圖](/histo_pie_ternary.md)
-13. [第九章: 三維空間視圖](/three_dimension.md)
-14. [第十章: 地質圖](/geology_map.md)
-
----
-
 ## 13. 三維空間視圖
 本章將展示如何在GMT中繪製三維空間的圖，其中包含利用`psxyz`來繪製多面體圖形及三維柱狀圖，
 `grdview`來繪製三維透視圖。當製作立體圖的時候，透過觀看視角的調整，
@@ -28,9 +8,10 @@
 
 ## 13.1 目的
 本章將學習如何繪製
-  1. 多面體圖(Polyhedron)
-  2. 柱狀圖(3D Bar Graph)
-  3. 三維透視圖(3D Perspective Map)
+
+1. 多面體圖(Polyhedron)
+2. 柱狀圖(3D Bar Graph)
+3. 三維透視圖(3D Perspective Map)
 
 ## 13.2 學習的指令與概念
 
@@ -48,18 +29,19 @@
 將此網站的資料整理成GMT的區塊文件(segment file)，利用點與點連接，來完成多種多面體。
 
 使用的資料檔:
-- [多面體_點](dat/polyhedron_vertex.gmt)
-- [多面體_線](dat/polyhedron_edge.gmt)
-- [多面體_面](dat/polyhedron_face.gmt)
+- [多面體\_點](dat/polyhedron_vertex.gmt)
+- [多面體\_線](dat/polyhedron_edge.gmt)
+- [多面體\_面](dat/polyhedron_face.gmt)
 
 成果圖
 
 <p align="center">
-  <img src="fig/13_3_3d_polyhedron_1.png"/>
+  <img src="/fig/13_3_3d_polyhedron_1.png"/>
 </p>
 
 批次檔
-```bash
+
+```bat
 set ps=13_3_3d_polyhedron.ps
 
 gmt psbasemap -R-15/15/-15/15/-12/12 -JX15 -JZ12 -p220/25 ^
@@ -171,6 +153,7 @@ del tmp*
 ```
 
 學習到的指令:
+
 * `psbasemap`繪製座標系的軸。
   * `-Jz|Z`設定z軸的尺寸，語法如同`-Jx`。
   * `-p`設定觀看圖片的角度，對應的輸入格式<mark>平面角度 俯視角度</mark>。
@@ -197,11 +180,12 @@ del tmp*
 成果圖
 
 <p align="center">
-  <img src="fig/13_4_3d_bar_1.png"/>
+  <img src="/fig/13_4_3d_bar_1.png"/>
 </p>
 
 批次檔
-```bash
+
+```bat
 set ps=13_4_3d_bar.ps
 set data=D:\GMT_data\
 set C=gray
@@ -313,6 +297,7 @@ del tmp*
 ```
 
 學習到的指令:
+
 * `psxyz`繪製三維空間中的點線面。
   * `-So`以z軸為基底，繪製三維柱狀圖。讀取的資料格式為<mark>經度 緯度 高度1 高度2</mark>，指令本身後面接上<mark>尺寸[b]</mark>，如果有加上b的話，則更改以高度2為基底高度，反之則用0為基底高度，如果用`-SO`則取消三維照明的效果。
 * `pslegend`繪製圖例。
@@ -337,11 +322,11 @@ del tmp*
 成果圖
 
 <p align="center">
-  <img src="fig/13_5_3d_perspective_1.png"/>
+  <img src="/fig/13_5_3d_perspective_1.png"/>
 </p>
 
 批次檔
-```bash
+```bat
 set data=D:\GMT_data\
 set ps=13_5_3d_perspective.ps
 set R=-80/-70/-56/-48
@@ -377,6 +362,7 @@ del tmp*
 ```
 
 學習到的指令:
+
 * `grdview`繪製三維透視圖或是網格表面。
   * `-Q`模式選擇。
     * **i**影像圖。後面接上dpi值，來調整解析程度，默認是100 dpi。
@@ -410,16 +396,15 @@ del tmp*
 
 完成圖如下:
 <p align="center">
-  <img src="fig/13_6_3d_east_coast_1.png"/>
+  <img src="/fig/13_6_3d_east_coast_1.png"/>
 </p>
 
 ## 13.7 參考批次檔
 列出本章節使用的批次檔，供讀者參考使用，檔案路經可能會有些許不同，再自行修改。
+
 * [13_3_3d_polyhedron](bat/13_3_3d_polyhedron.bat)
 * [13_4_3d_bar](bat/13_4_3d_bar.bat)
 * [13_5_3d_perspective](bat/13_5_3d_perspective.bat)
 * [13_6_3d_east_coast](bat/13_6_3d_east_coast.bat)
 
----
 
-[上一章](/histo_pie_ternary.md) -- [下一章](/geology_map.md)
