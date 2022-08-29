@@ -629,81 +629,81 @@
   <img src="/fig/9_3_seismicity_1.png"/>
 </p>
 
-<p>批次檔</p>
-<pre><code class="language-bat">set ps=9_3_seismicity.ps
-set data=D:\GMT_data\
-set cpt=seis.cpt
-
-# 1. seismicity basemap
-gmt gmtinfo 2017_catalog.gmt -i2 -T20 &gt; tmp
-set /p cr=&lt;tmp
-gmt makecpt -C%cpt% %cr% &gt; tmp.cpt
-gmt psbasemap -R119/123/21/26 -JM15 -BwESn -Bxa -Bya -P -K &gt; %ps%
-gmt pscoast -R -JM -Df -W1 -S203/211/235 -G230 -K -O &gt;&gt; %ps%
-awk &quot;{print $1,$2,$3,exp($4)*0.002}&quot; 2017_catalog.gmt | ^
-gmt psxy -R -JM -Ctmp.cpt -Sc -K -O &gt;&gt; %ps%
-
-# 2. magnitude calculation
-echo 1 &gt; tmp
-for /l %%i in (2, 1, 6) do (echo %%i &gt;&gt; tmp)
-setlocal ENABLEDELAYEDEXPANSION
-set vidx=0
-for /f %%i in ('awk &quot;{print exp($1)*0.002}&quot; tmp') do (
-    set /A vidx=!vidx! + 1
-    set var!vidx!=%%i
-)
-set var
-
-# 3. boundary of four seismic zones
-echo 119.0 22.8 &gt; tmp
-echo 120.8 22.8 &gt;&gt; tmp
-echo ^&gt; &gt;&gt; tmp
-echo 120.8 21.0 &gt;&gt; tmp
-echo 120.8 22.8 &gt;&gt; tmp
-echo ^&gt; &gt;&gt; tmp
-echo 120.8 22.8 &gt;&gt; tmp
-echo 121.5 24.2 &gt;&gt; tmp
-echo ^&gt; &gt;&gt; tmp
-echo 121.5 26.0 &gt;&gt; tmp
-echo 121.5 24.2 &gt;&gt; tmp
-echo ^&gt; &gt;&gt; tmp
-echo 123.0 23.3 &gt;&gt; tmp
-echo 121.5 24.2 &gt;&gt; tmp
-echo ^&gt; &gt;&gt; tmp
-gmt psxy tmp -R -JM -W1 -K -O &gt;&gt; %ps%
-echo 119.8 23.8 A | gmt pstext -R -JM -F+f40p,2 -K -O &gt;&gt; %ps%
-echo 119.8 22.1 B | gmt pstext -R -JM -F+f40p,2 -K -O &gt;&gt; %ps%
-echo 122.3 25.3 C | gmt pstext -R -JM -F+f40p,2 -K -O &gt;&gt; %ps%
-echo 122.3 22.1 D | gmt pstext -R -JM -F+f40p,2 -K -O &gt;&gt; %ps%
-
-# 4. legend set
-echo H 18 1 Legend &gt; tmp
-echo D 0.4 1p &gt;&gt; tmp
-echo G .7 &gt;&gt; tmp
-echo B tmp.cpt 0.2 0.3+ml -Ba40f20+l&quot;Depth (km)&quot; &gt;&gt; tmp
-echo G .3 &gt;&gt; tmp
-echo M 121 23.5 100+u +f &gt;&gt; tmp
-echo G .1 &gt;&gt; tmp
-echo D 0.6 1p,0,- &gt;&gt; tmp
-echo G .2 &gt;&gt; tmp
-echo L 14 0 C Magnitude &gt;&gt; tmp
-echo N 3 &gt;&gt; tmp
-echo G .2 &gt;&gt; tmp
-echo S .5 c %var1% 0 0 1 1 &gt;&gt; tmp
-echo S .5 c %var2% 0 0 1 2 &gt;&gt; tmp
-echo S .5 c %var3% 0 0 1 3 &gt;&gt; tmp
-echo G .4 &gt;&gt; tmp
-echo S .5 c %var4% 0 0 1 4 &gt;&gt; tmp
-echo S .5 c %var5% 0 0 1 5 &gt;&gt; tmp
-echo S .5 c %var6% 0 0 1 6 &gt;&gt; tmp
-echo G .3 &gt;&gt; tmp
-gmt pslegend tmp -R -JM -C.1/.1 -Dx.1/14+w5 -F+g245+p1+s4p/-4p/gray50 ^
---FONT_ANNOT_PRIMARY=10p --FONT_LABEL=14p -K -O &gt;&gt; %ps%
-
-gmt psxy -R -JM -T -O &gt;&gt; %ps%
-gmt psconvert %ps% -Tg -A -P
-del tmp*
-</code></pre>
+<p>批次檔
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">set</span> <span class="nv">ps</span><span class="p">=</span>9_3_seismicity.ps
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="k">set</span> <span class="nv">data</span><span class="p">=</span>D:\GMT_data\
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="k">set</span> <span class="nv">cpt</span><span class="p">=</span>seis.cpt
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a># 1. seismicity basemap
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>gmt gmtinfo 2017_catalog.gmt -i2 -T20 <span class="p">&gt;</span> tmp
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="k">set</span> <span class="k">/p</span> <span class="nv">cr</span><span class="p">=&lt;</span>tmp
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>gmt makecpt -C<span class="nv">%cpt%</span> <span class="nv">%cr%</span> <span class="p">&gt;</span> tmp.cpt
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>gmt psbasemap -R119/123/21/26 -JM15 -BwESn -Bxa -Bya -P -K <span class="p">&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>gmt pscoast -R -JM -Df -W1 -S203/211/235 -G230 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>awk <span class="s2">&quot;{print $1,$2,$3,exp($4)*0.002}&quot;</span> 2017_catalog.gmt <span class="p">|</span> <span class="se">^</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="se">g</span>mt psxy -R -JM -Ctmp.cpt -Sc -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a># 2. magnitude calculation
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="k">echo</span> 1 <span class="p">&gt;</span> tmp
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="k">for</span> <span class="k">/l</span> <span class="se">%%</span>i <span class="k">in</span> <span class="p">(</span><span class="mi">2</span>, <span class="mi">1</span>, <span class="mi">6</span><span class="p">)</span> <span class="k">do</span> <span class="p">(</span><span class="k">echo</span> <span class="se">%%</span>i <span class="p">&gt;&gt;</span> tmp<span class="p">)</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="k">setlocal</span> ENABLEDELAYEDEXPANSION
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="k">set</span> <span class="nv">vidx</span><span class="p">=</span>0
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="k">for</span> <span class="k">/f</span> <span class="se">%%</span>i <span class="k">in</span> <span class="p">(</span><span class="s1">&#39;awk &quot;{print exp($1)*0.002}&quot; tmp&#39;</span><span class="p">)</span> <span class="k">do</span> <span class="p">(</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>    <span class="k">set</span> <span class="k">/A</span> <span class="nv">vidx</span><span class="o">=!</span><span class="nv">vidx</span><span class="o">!</span> <span class="o">+</span> <span class="mi">1</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>    <span class="k">set</span> <span class="nv">var!vidx!</span><span class="p">=</span><span class="se">%%</span>i
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="p">)</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="k">set</span> <span class="nv">var</span>
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a># 3. boundary of four seismic zones
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="k">echo</span> 119.0 22.8 <span class="p">&gt;</span> tmp
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="k">echo</span> 120.8 22.8 <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="k">echo</span> <span class="se">^&gt;</span> <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="k">echo</span> 120.8 21.0 <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="k">echo</span> 120.8 22.8 <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="k">echo</span> <span class="se">^&gt;</span> <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="k">echo</span> 120.8 22.8 <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="k">echo</span> 121.5 24.2 <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a><span class="k">echo</span> <span class="se">^&gt;</span> <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a><span class="k">echo</span> 121.5 26.0 <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a><span class="k">echo</span> 121.5 24.2 <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a><span class="k">echo</span> <span class="se">^&gt;</span> <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a><span class="k">echo</span> 123.0 23.3 <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a><span class="k">echo</span> 121.5 24.2 <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a><span class="k">echo</span> <span class="se">^&gt;</span> <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>gmt psxy tmp -R -JM -W1 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a><span class="k">echo</span> 119.8 23.8 A <span class="p">|</span> gmt pstext -R -JM -F+f40p,2 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a><span class="k">echo</span> 119.8 22.1 B <span class="p">|</span> gmt pstext -R -JM -F+f40p,2 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a><span class="k">echo</span> 122.3 25.3 C <span class="p">|</span> gmt pstext -R -JM -F+f40p,2 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a><span class="k">echo</span> 122.3 22.1 D <span class="p">|</span> gmt pstext -R -JM -F+f40p,2 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>
+<a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a># 4. legend set
+<a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a><span class="k">echo</span> H 18 1 Legend <span class="p">&gt;</span> tmp
+<a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a><span class="k">echo</span> D 0.4 1p <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a><span class="k">echo</span> G .7 <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a><span class="k">echo</span> B tmp.cpt 0.2 0.3+ml -Ba40f20+l<span class="s2">&quot;Depth (km)&quot;</span> <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a><span class="k">echo</span> G .3 <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a><span class="k">echo</span> M 121 23.5 100+u +f <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a><span class="k">echo</span> G .1 <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a><span class="k">echo</span> D 0.6 1p,0,- <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a><span class="k">echo</span> G .2 <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a><span class="k">echo</span> L 14 0 C Magnitude <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a><span class="k">echo</span> N 3 <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a><span class="k">echo</span> G .2 <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a><span class="k">echo</span> S .5 c <span class="nv">%var1%</span> 0 0 1 1 <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-0-61" name="__codelineno-0-61" href="#__codelineno-0-61"></a><span class="k">echo</span> S .5 c <span class="nv">%var2%</span> 0 0 1 2 <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-0-62" name="__codelineno-0-62" href="#__codelineno-0-62"></a><span class="k">echo</span> S .5 c <span class="nv">%var3%</span> 0 0 1 3 <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-0-63" name="__codelineno-0-63" href="#__codelineno-0-63"></a><span class="k">echo</span> G .4 <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-0-64" name="__codelineno-0-64" href="#__codelineno-0-64"></a><span class="k">echo</span> S .5 c <span class="nv">%var4%</span> 0 0 1 4 <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-0-65" name="__codelineno-0-65" href="#__codelineno-0-65"></a><span class="k">echo</span> S .5 c <span class="nv">%var5%</span> 0 0 1 5 <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-0-66" name="__codelineno-0-66" href="#__codelineno-0-66"></a><span class="k">echo</span> S .5 c <span class="nv">%var6%</span> 0 0 1 6 <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-0-67" name="__codelineno-0-67" href="#__codelineno-0-67"></a><span class="k">echo</span> G .3 <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-0-68" name="__codelineno-0-68" href="#__codelineno-0-68"></a>gmt pslegend tmp -R -JM -C.1/.1 -Dx.1/14+w5 -F+g245+p1+s4p/-4p/gray50 <span class="se">^</span>
+<a id="__codelineno-0-69" name="__codelineno-0-69" href="#__codelineno-0-69"></a><span class="se">-</span>-FONT_ANNOT_PRIMARY=10p --FONT_LABEL=14p -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-70" name="__codelineno-0-70" href="#__codelineno-0-70"></a>
+<a id="__codelineno-0-71" name="__codelineno-0-71" href="#__codelineno-0-71"></a>gmt psxy -R -JM -T -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-72" name="__codelineno-0-72" href="#__codelineno-0-72"></a>gmt psconvert <span class="nv">%ps%</span> -Tg -A -P
+<a id="__codelineno-0-73" name="__codelineno-0-73" href="#__codelineno-0-73"></a><span class="k">del</span> tmp*
+</code></pre></div></p>
 <p>學習到的指令:</p>
 <p><mark>1</mark>繪製地震活動性底圖
 * <code>gmtinfo</code>讀取第三欄(深度)做色階的範圍。
@@ -816,54 +816,54 @@ C代表東北部地震帶，包含了琉球隱沒帶及沖繩海溝，許多規�
   <img src="/fig/9_4_taiwan_focal_1.png"/>
 </p>
 
-<p>批次檔</p>
-<pre><code class="language-bat">set ps=9_4_taiwan_focal.ps
-set data=D:\GMT_data\
-
-# 1. focal meca basemap
-gmt psbasemap -R119/123/21/26 -JM15 -BWeSn -Bxa -Bya -P -K &gt; %ps%
-gmt grdimage %data%ETOPO1_Bed_g_gmt5.grd -R -JM -Cgebco.cpt ^
--I%data%ETOPO1_Bed_g_gmt5_shad.grd -K -O &gt;&gt; %ps%
-gmt pscoast -R -JM -Df -W1 -G230 -K -O &gt;&gt; %ps%
-# left-lateral strike-slip
-awk &quot;{if ($6&gt;=-20 &amp;&amp; $6&lt;20) print $1,$2,$3,$4,$5,$6,$7,$8,$9}&quot; focal_mechanism.gmt | ^
-gmt psmeca -R -JM -Sa.5 -Gyellow -K -O &gt;&gt; %ps%
-# right-lateral strike-slip
-awk &quot;{if ($$6&gt;=160 || 6&lt;-160) print $1,$2,$3,$4,$5,$6,$7,$8,$9}&quot; focal_mechanism.gmt | ^
-gmt psmeca -R -JM -Sa.5 -Gyellow -K -O &gt;&gt; %ps%
-# reverse fault
-awk &quot;{if ($6&gt;=20 &amp;&amp; $6&lt;160) print $1,$2,$3,$4,$5,$6,$7,$8,$9}&quot; focal_mechanism.gmt | ^
-gmt psmeca -R -JM -Sa.5 -Gred -K -O &gt;&gt; %ps%
-# normal fault
-awk &quot;{if ($6&gt;=-160 &amp;&amp; $6&lt;-20) print $1,$2,$3,$4,$5,$6,$7,$8,$9}&quot; focal_mechanism.gmt | ^
-gmt psmeca -R -JM -Sa.5 -Gblue -K -O &gt;&gt; %ps%
-
-# 2. earthquake event
-echo 120.54 22.93 16 288.36 51.02 19.79 6.11 119.2 26.5 Meinong &gt; tmp
-echo 120.56 21.89 41 118.64 50.07 -128.06 6.7 119.9 26.5 Hengchun &gt;&gt; tmp
-echo 120.73 23 18 318.05 41.39 67.64 5.66 120.6 26.5 Jiashian &gt;&gt; tmp
-echo 121.75 23.78 41 237.95 37.03 120.73 6.26 121.3 26.5 Hualien &gt;&gt; tmp
-echo 120.797500 23.861667 8.140 320.06 57.39 66.04 7.30 122.0 26.5 Chi-Chi &gt;&gt; tmp
-echo 121.3982 23.0667 18 8.82 42.16 72.8 6.58 122.7 26.5 Chengkung &gt;&gt; tmp
-gmt psmeca tmp -R -JM -Sa1/14p/6 -Gblack -C1 -N -K -O &gt;&gt; %ps%
-
-# 3. legend set
-echo 119 26 &gt; tmp
-echo 119 25.05 &gt;&gt; tmp
-echo 120.5 25.05 &gt;&gt; tmp
-echo 120.5 26 &gt;&gt; tmp
-gmt psxy tmp -R -JM -G255 -W.5 -D.1/-.1 -K -O &gt;&gt; %ps%
-echo 119.2 25.8 0 0 90 0 5 | gmt psmeca -JM -R -Sa1 -Gyellow -K -O &gt;&gt; %ps%
-echo 119.4 25.8 Strike-Slip Fault | gmt pstext -JM -R -F+f14p+jML -K -O &gt;&gt; %ps%
-echo 119.2 25.5 0 0 45 90 5 | gmt psmeca -JM -R -Sa1 -Gred -K -O &gt;&gt; %ps%
-echo 119.4 25.5 Thrust Fault | gmt pstext -JM -R -F+f14p+jML -K -O &gt;&gt; %ps%
-echo 119.2 25.2 0 0 45 -90 5 | gmt psmeca -JM -R -Sa1 -Gblue -K -O &gt;&gt; %ps%
-echo 119.4 25.2 Normal Fault | gmt pstext -JM -R -F+f14p+jML -K -O &gt;&gt; %ps%
-
-gmt psxy -R -JM -T -O &gt;&gt; %ps%
-gmt psconvert %ps% -Tg -A -P
-del tmp*
-</code></pre>
+<p>批次檔
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">set</span> <span class="nv">ps</span><span class="p">=</span>9_4_taiwan_focal.ps
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">set</span> <span class="nv">data</span><span class="p">=</span>D:\GMT_data\
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a># 1. focal meca basemap
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>gmt psbasemap -R119/123/21/26 -JM15 -BWeSn -Bxa -Bya -P -K <span class="p">&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>gmt grdimage <span class="nv">%data%</span>ETOPO1_Bed_g_gmt5.grd -R -JM -Cgebco.cpt <span class="se">^</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="se">-</span>I<span class="nv">%data%</span>ETOPO1_Bed_g_gmt5_shad.grd -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>gmt pscoast -R -JM -Df -W1 -G230 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a># left-lateral strike-slip
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>awk <span class="s2">&quot;{if ($6&gt;=-20 &amp;&amp; $6&lt;20) print $1,$2,$3,$4,$5,$6,$7,$8,$9}&quot;</span> focal_mechanism.gmt <span class="p">|</span> <span class="se">^</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="se">g</span>mt psmeca -R -JM -Sa.5 -Gyellow -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a># right-lateral strike-slip
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>awk <span class="s2">&quot;{if ($$6&gt;=160 || 6&lt;-160) print $1,$2,$3,$4,$5,$6,$7,$8,$9}&quot;</span> focal_mechanism.gmt <span class="p">|</span> <span class="se">^</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="se">g</span>mt psmeca -R -JM -Sa.5 -Gyellow -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a># reverse fault
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>awk <span class="s2">&quot;{if ($6&gt;=20 &amp;&amp; $6&lt;160) print $1,$2,$3,$4,$5,$6,$7,$8,$9}&quot;</span> focal_mechanism.gmt <span class="p">|</span> <span class="se">^</span>
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="se">g</span>mt psmeca -R -JM -Sa.5 -Gred -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a># normal fault
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>awk <span class="s2">&quot;{if ($6&gt;=-160 &amp;&amp; $6&lt;-20) print $1,$2,$3,$4,$5,$6,$7,$8,$9}&quot;</span> focal_mechanism.gmt <span class="p">|</span> <span class="se">^</span>
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="se">g</span>mt psmeca -R -JM -Sa.5 -Gblue -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>
+<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a># 2. earthquake event
+<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="k">echo</span> 120.54 22.93 16 288.36 51.02 19.79 6.11 119.2 26.5 Meinong <span class="p">&gt;</span> tmp
+<a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a><span class="k">echo</span> 120.56 21.89 41 118.64 50.07 -128.06 6.7 119.9 26.5 Hengchun <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a><span class="k">echo</span> 120.73 23 18 318.05 41.39 67.64 5.66 120.6 26.5 Jiashian <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a><span class="k">echo</span> 121.75 23.78 41 237.95 37.03 120.73 6.26 121.3 26.5 Hualien <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a><span class="k">echo</span> 120.797500 23.861667 8.140 320.06 57.39 66.04 7.30 122.0 26.5 Chi-Chi <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a><span class="k">echo</span> 121.3982 23.0667 18 8.82 42.16 72.8 6.58 122.7 26.5 Chengkung <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a>gmt psmeca tmp -R -JM -Sa1/14p/6 -Gblack -C1 -N -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a>
+<a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a># 3. legend set
+<a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a><span class="k">echo</span> 119 26 <span class="p">&gt;</span> tmp
+<a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a><span class="k">echo</span> 119 25.05 <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a><span class="k">echo</span> 120.5 25.05 <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a><span class="k">echo</span> 120.5 26 <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a>gmt psxy tmp -R -JM -G255 -W.5 -D.1/-.1 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a><span class="k">echo</span> 119.2 25.8 0 0 90 0 5 <span class="p">|</span> gmt psmeca -JM -R -Sa1 -Gyellow -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a><span class="k">echo</span> 119.4 25.8 Strike-Slip Fault <span class="p">|</span> gmt pstext -JM -R -F+f14p+jML -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a><span class="k">echo</span> 119.2 25.5 0 0 45 90 5 <span class="p">|</span> gmt psmeca -JM -R -Sa1 -Gred -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-1-40" name="__codelineno-1-40" href="#__codelineno-1-40"></a><span class="k">echo</span> 119.4 25.5 Thrust Fault <span class="p">|</span> gmt pstext -JM -R -F+f14p+jML -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-1-41" name="__codelineno-1-41" href="#__codelineno-1-41"></a><span class="k">echo</span> 119.2 25.2 0 0 45 -90 5 <span class="p">|</span> gmt psmeca -JM -R -Sa1 -Gblue -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-1-42" name="__codelineno-1-42" href="#__codelineno-1-42"></a><span class="k">echo</span> 119.4 25.2 Normal Fault <span class="p">|</span> gmt pstext -JM -R -F+f14p+jML -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-1-43" name="__codelineno-1-43" href="#__codelineno-1-43"></a>
+<a id="__codelineno-1-44" name="__codelineno-1-44" href="#__codelineno-1-44"></a>gmt psxy -R -JM -T -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-1-45" name="__codelineno-1-45" href="#__codelineno-1-45"></a>gmt psconvert <span class="nv">%ps%</span> -Tg -A -P
+<a id="__codelineno-1-46" name="__codelineno-1-46" href="#__codelineno-1-46"></a><span class="k">del</span> tmp*
+</code></pre></div></p>
 <p>學習到的指令:</p>
 <p><mark>1</mark>繪製機制解底圖
 * <code>psmeca</code>繪製震源機制解。
@@ -906,95 +906,95 @@ del tmp*
   <img src="/fig/9_5_focal_profile_1.png"/>
 </p>
 
-<p>批次檔</p>
-<pre><code class="language-bat">set ps=9_5_focal_profile.ps
-set data=D:\GMT_data\
-set cpt=seis.cpt
-set lon1=122.3
-set lat1=25.3
-set lon2=121.1
-set lat2=21.6
-set width=20
-set depth=100
-set /a wid=%width%*2
-
-# 1. focal meca and seismicity basemap
-gmt psbasemap -R119/123/21/26 -JM10 -BWeSN -Bxa -Bya -K &gt; %ps%
-gmt grdimage %data%ETOPO1_Bed_g_gmt5.grd -R -JM -Cetopo1.cpt ^
--I%data%ETOPO1_Bed_g_gmt5_shad.grd -M -K -O &gt;&gt; %ps%
-gmt pscoast -R -JM -Df -W1 -K -O &gt;&gt; %ps%
-gmt pscoast -R -JM -Df -Gc -K -O &gt;&gt; %ps%
-gmt grdimage %data%tw_40.grd -R -JM -Cetopo1.cpt ^
--I%data%tw_40shad.grd -M -K -O &gt;&gt; %ps%
-gmt pscoast -R -JM -Df -Q -K -O &gt;&gt; %ps%
-gmt gmtinfo 2017_catalog.gmt -i2 -T20 &gt; tmp
-set /p cr=&lt;tmp
-gmt makecpt -C%cpt% %cr% -Z &gt; tmp.cpt
-awk &quot;{print $1,$2,$3,exp($4)*0.002}&quot; 2017_catalog.gmt | ^
-gmt psxy -R -JM -Ctmp.cpt -Sc -K -O &gt;&gt; %ps%
-awk &quot;{print $1,$2,$3,$4,$5,$6,$7,$8,$9}&quot; focal_mechanism.gmt | ^
-gmt psmeca -R -JM -Sa.5 -Ggray -K -O &gt;&gt; %ps%
-
-# 2. cross area
-gmt project 2017_catalog.gmt -C%lon1%/%lat1% -E%lon2%/%lat2% ^
--W-%width%/%width% -Q &gt; catalog_profile.gmt
-gmt project focal_mechanism.gmt -C%lon1%/%lat1% -E%lon2%/%lat2% ^
--W-%width%/%width% -Q &gt; focal_profile.gmt
-# left-lateral strike-slip
-awk &quot;{if ($6&gt;=-20 &amp;&amp; $6&lt;20) print $1,$2,$3,$4,$5,$6,$7,$8,$9}&quot; focal_profile.gmt &gt; tmp.ls
-gmt psmeca tmp.ls -R -JM -Sa.5 -Gyellow -K -O &gt;&gt; %ps%
-# right-lateral strike-slip
-awk &quot;{if ($6&gt;=160 || $6&lt;-160) print $1,$2,$3,$4,$5,$6,$7,$8,$9}&quot; focal_profile.gmt &gt; tmp.rs
-gmt psmeca tmp.rs -R -JM -Sa.5 -Gyellow -K -O &gt;&gt; %ps%
-# reverse fault
-awk &quot;{if ($6&gt;=20 &amp;&amp; $6&lt;160) print $1,$2,$3,$4,$5,$6,$7,$8,$9}&quot; focal_profile.gmt &gt; tmp.rf
-gmt psmeca tmp.rf -R -JM -Sa.5 -Gred -K -O &gt;&gt; %ps%
-# normal fault
-awk &quot;{if ($6&gt;=-160 &amp;&amp; $6&lt;-20) print $1,$2,$3,$4,$5,$6,$7,$8,$9}&quot; focal_profile.gmt &gt; tmp.nf
-gmt psmeca tmp.nf -R -JM -Sa.5 -Gblue -K -O &gt;&gt; %ps%
-echo %lon1% %lat1% &gt; tmp
-echo %lon2% %lat2% &gt;&gt; tmp
-gmt psxy tmp -R -JM -W3 -K -O &gt;&gt; %ps%
-echo %lon1% %lat1% A | gmt pstext -R -JM -F+f16p,1,darkgreen -G230 -K -O &gt;&gt; %ps%
-echo %lon2% %lat2% A'| gmt pstext -R -JM -F+f16p,1,darkgreen -G230 -K -O &gt;&gt; %ps%
-
-echo 120.4 25.6 Profile Width: %width%/%width% km | ^
-gmt pstext -R -JM -F+f14p,1+jML -K -O &gt;&gt; %ps%
-
-# 3. seismicity profile
-gmt gmtinfo catalog_profile.gmt -i4 -C -o1 &gt; tmp1
-set /p mdis=&lt;tmp1
-gmt psbasemap -R0/%mdis%/0/%depth% -JX13.56/-8 -BwESn -Bxa+l&quot;Distance (km)&quot; ^
--Bya+l&quot;Depth (km)&quot; -X11 -K -O &gt;&gt; %ps%
-awk &quot;{print $5,$3,$3,exp($4)*0.002}&quot; catalog_profile.gmt | ^
-gmt psxy -R -JX -Ctmp.cpt -Sc -K -O &gt;&gt; %ps%
-awk &quot;{print $1,$2,$3,$4,$5,$6,$7,$8,$9}&quot; tmp.ls | ^
-gmt pscoupe -R -JX -Sa.5 -Gyellow -Aa%lon1%/%lat1%/%lon2%/%lat2%/90/%wid%/0/%depth% -K -O &gt;&gt; %ps%
-awk &quot;{print $1,$2,$3,$4,$5,$6,$7,$8,$9}&quot; tmp.rs | ^
-gmt pscoupe -R -JX -Sa.5 -Gyellow -Aa%lon1%/%lat1%/%lon2%/%lat2%/90/%wid%/0/%depth% -K -O &gt;&gt; %ps%
-awk &quot;{print $1,$2,$3,$4,$5,$6,$7,$8,$9}&quot; tmp.rf | ^
-gmt pscoupe -R -JX -Sa.5 -Gred -Aa%lon1%/%lat1%/%lon2%/%lat2%/90/%wid%/0/%depth% -K -O &gt;&gt; %ps%
-awk &quot;{print $1,$2,$3,$4,$5,$6,$7,$8,$9}&quot; tmp.nf | ^
-gmt pscoupe -R -JX -Sa.5 -Gblue -Aa%lon1%/%lat1%/%lon2%/%lat2%/90/%wid%/0/%depth% -K -O &gt;&gt; %ps%
-
-# 4. legend set
-echo 5 -5 AA' Profile | gmt pstext -R -JX -F+f16p,1+jML -N -K -O &gt;&gt; %ps%
-gmt psscale -R -JX -Ctmp.cpt -Dx3.5/9+w10/.5+ml+h -Bxa+l&quot;Depth (km)&quot; -K -O &gt;&gt; %ps%
-echo 1 2 2 &gt; tmp.m
-echo 2 2 3 &gt;&gt; tmp.m
-echo 3 2 4 &gt;&gt; tmp.m
-echo 4 2 5 &gt;&gt; tmp.m
-echo 5 2 6 &gt;&gt; tmp.m
-echo 6.5 2 7 &gt;&gt; tmp.m
-awk &quot;{print $1,$2,exp($3)*0.002}&quot; tmp.m | ^
-gmt psxy -R0/8/0/10 -JX -Sc -W2 -Y5 -K -O &gt;&gt; %ps%
-gmt pstext tmp.m -R -JX -F+f14p -D0/.7 -K -O &gt;&gt; %ps%
-echo 0 0 Magnitude: | gmt pstext -R -JX -F+f16p,1+jML -N -K -O &gt;&gt; %ps%
-
-gmt psxy -R -J -T -O &gt;&gt; %ps%
-gmt psconvert %ps% -Tg -A -P
-del tmp*
-</code></pre>
+<p>批次檔
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">set</span> <span class="nv">ps</span><span class="p">=</span>9_5_focal_profile.ps
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">set</span> <span class="nv">data</span><span class="p">=</span>D:\GMT_data\
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="k">set</span> <span class="nv">cpt</span><span class="p">=</span>seis.cpt
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="k">set</span> <span class="nv">lon1</span><span class="p">=</span>122.3
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="k">set</span> <span class="nv">lat1</span><span class="p">=</span>25.3
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="k">set</span> <span class="nv">lon2</span><span class="p">=</span>121.1
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="k">set</span> <span class="nv">lat2</span><span class="p">=</span>21.6
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="k">set</span> <span class="nv">width</span><span class="p">=</span>20
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="k">set</span> <span class="nv">depth</span><span class="p">=</span>100
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="k">set</span> <span class="k">/a</span> <span class="nv">wid</span><span class="o">=%</span><span class="nv">width%*2</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a># 1. focal meca and seismicity basemap
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>gmt psbasemap -R119/123/21/26 -JM10 -BWeSN -Bxa -Bya -K <span class="p">&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>gmt grdimage <span class="nv">%data%</span>ETOPO1_Bed_g_gmt5.grd -R -JM -Cetopo1.cpt <span class="se">^</span>
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="se">-</span>I<span class="nv">%data%</span>ETOPO1_Bed_g_gmt5_shad.grd -M -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>gmt pscoast -R -JM -Df -W1 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>gmt pscoast -R -JM -Df -Gc -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>gmt grdimage <span class="nv">%data%</span>tw_40.grd -R -JM -Cetopo1.cpt <span class="se">^</span>
+<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a><span class="se">-</span>I<span class="nv">%data%</span>tw_40shad.grd -M -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>gmt pscoast -R -JM -Df -Q -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a>gmt gmtinfo 2017_catalog.gmt -i2 -T20 <span class="p">&gt;</span> tmp
+<a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a><span class="k">set</span> <span class="k">/p</span> <span class="nv">cr</span><span class="p">=&lt;</span>tmp
+<a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a>gmt makecpt -C<span class="nv">%cpt%</span> <span class="nv">%cr%</span> -Z <span class="p">&gt;</span> tmp.cpt
+<a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a>awk <span class="s2">&quot;{print $1,$2,$3,exp($4)*0.002}&quot;</span> 2017_catalog.gmt <span class="p">|</span> <span class="se">^</span>
+<a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a><span class="se">g</span>mt psxy -R -JM -Ctmp.cpt -Sc -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a>awk <span class="s2">&quot;{print $1,$2,$3,$4,$5,$6,$7,$8,$9}&quot;</span> focal_mechanism.gmt <span class="p">|</span> <span class="se">^</span>
+<a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a><span class="se">g</span>mt psmeca -R -JM -Sa.5 -Ggray -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-28" name="__codelineno-2-28" href="#__codelineno-2-28"></a>
+<a id="__codelineno-2-29" name="__codelineno-2-29" href="#__codelineno-2-29"></a># 2. cross area
+<a id="__codelineno-2-30" name="__codelineno-2-30" href="#__codelineno-2-30"></a>gmt project 2017_catalog.gmt -C<span class="nv">%lon1%</span>/<span class="nv">%lat1%</span> -E<span class="nv">%lon2%</span>/<span class="nv">%lat2%</span> <span class="se">^</span>
+<a id="__codelineno-2-31" name="__codelineno-2-31" href="#__codelineno-2-31"></a><span class="se">-</span>W-<span class="nv">%width%</span>/<span class="nv">%width%</span> -Q <span class="p">&gt;</span> catalog_profile.gmt
+<a id="__codelineno-2-32" name="__codelineno-2-32" href="#__codelineno-2-32"></a>gmt project focal_mechanism.gmt -C<span class="nv">%lon1%</span>/<span class="nv">%lat1%</span> -E<span class="nv">%lon2%</span>/<span class="nv">%lat2%</span> <span class="se">^</span>
+<a id="__codelineno-2-33" name="__codelineno-2-33" href="#__codelineno-2-33"></a><span class="se">-</span>W-<span class="nv">%width%</span>/<span class="nv">%width%</span> -Q <span class="p">&gt;</span> focal_profile.gmt
+<a id="__codelineno-2-34" name="__codelineno-2-34" href="#__codelineno-2-34"></a># left-lateral strike-slip
+<a id="__codelineno-2-35" name="__codelineno-2-35" href="#__codelineno-2-35"></a>awk <span class="s2">&quot;{if ($6&gt;=-20 &amp;&amp; $6&lt;20) print $1,$2,$3,$4,$5,$6,$7,$8,$9}&quot;</span> focal_profile.gmt <span class="p">&gt;</span> tmp.ls
+<a id="__codelineno-2-36" name="__codelineno-2-36" href="#__codelineno-2-36"></a>gmt psmeca tmp.ls -R -JM -Sa.5 -Gyellow -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-37" name="__codelineno-2-37" href="#__codelineno-2-37"></a># right-lateral strike-slip
+<a id="__codelineno-2-38" name="__codelineno-2-38" href="#__codelineno-2-38"></a>awk <span class="s2">&quot;{if ($6&gt;=160 || $6&lt;-160) print $1,$2,$3,$4,$5,$6,$7,$8,$9}&quot;</span> focal_profile.gmt <span class="p">&gt;</span> tmp.rs
+<a id="__codelineno-2-39" name="__codelineno-2-39" href="#__codelineno-2-39"></a>gmt psmeca tmp.rs -R -JM -Sa.5 -Gyellow -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-40" name="__codelineno-2-40" href="#__codelineno-2-40"></a># reverse fault
+<a id="__codelineno-2-41" name="__codelineno-2-41" href="#__codelineno-2-41"></a>awk <span class="s2">&quot;{if ($6&gt;=20 &amp;&amp; $6&lt;160) print $1,$2,$3,$4,$5,$6,$7,$8,$9}&quot;</span> focal_profile.gmt <span class="p">&gt;</span> tmp.rf
+<a id="__codelineno-2-42" name="__codelineno-2-42" href="#__codelineno-2-42"></a>gmt psmeca tmp.rf -R -JM -Sa.5 -Gred -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-43" name="__codelineno-2-43" href="#__codelineno-2-43"></a># normal fault
+<a id="__codelineno-2-44" name="__codelineno-2-44" href="#__codelineno-2-44"></a>awk <span class="s2">&quot;{if ($6&gt;=-160 &amp;&amp; $6&lt;-20) print $1,$2,$3,$4,$5,$6,$7,$8,$9}&quot;</span> focal_profile.gmt <span class="p">&gt;</span> tmp.nf
+<a id="__codelineno-2-45" name="__codelineno-2-45" href="#__codelineno-2-45"></a>gmt psmeca tmp.nf -R -JM -Sa.5 -Gblue -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-46" name="__codelineno-2-46" href="#__codelineno-2-46"></a><span class="k">echo</span> <span class="nv">%lon1%</span> <span class="nv">%lat1%</span> <span class="p">&gt;</span> tmp
+<a id="__codelineno-2-47" name="__codelineno-2-47" href="#__codelineno-2-47"></a><span class="k">echo</span> <span class="nv">%lon2%</span> <span class="nv">%lat2%</span> <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-2-48" name="__codelineno-2-48" href="#__codelineno-2-48"></a>gmt psxy tmp -R -JM -W3 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-49" name="__codelineno-2-49" href="#__codelineno-2-49"></a><span class="k">echo</span> <span class="nv">%lon1%</span> <span class="nv">%lat1%</span> A <span class="p">|</span> gmt pstext -R -JM -F+f16p,1,darkgreen -G230 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-50" name="__codelineno-2-50" href="#__codelineno-2-50"></a><span class="k">echo</span> <span class="nv">%lon2%</span> <span class="nv">%lat2%</span> A&#39;<span class="p">|</span> gmt pstext -R -JM -F+f16p,1,darkgreen -G230 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-51" name="__codelineno-2-51" href="#__codelineno-2-51"></a>
+<a id="__codelineno-2-52" name="__codelineno-2-52" href="#__codelineno-2-52"></a><span class="k">echo</span> 120.4 25.6 Profile Width: <span class="nv">%width%</span>/<span class="nv">%width%</span> km <span class="p">|</span> <span class="se">^</span>
+<a id="__codelineno-2-53" name="__codelineno-2-53" href="#__codelineno-2-53"></a><span class="se">g</span>mt pstext -R -JM -F+f14p,1+jML -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-54" name="__codelineno-2-54" href="#__codelineno-2-54"></a>
+<a id="__codelineno-2-55" name="__codelineno-2-55" href="#__codelineno-2-55"></a># 3. seismicity profile
+<a id="__codelineno-2-56" name="__codelineno-2-56" href="#__codelineno-2-56"></a>gmt gmtinfo catalog_profile.gmt -i4 -C -o1 <span class="p">&gt;</span> tmp1
+<a id="__codelineno-2-57" name="__codelineno-2-57" href="#__codelineno-2-57"></a><span class="k">set</span> <span class="k">/p</span> <span class="nv">mdis</span><span class="p">=&lt;</span>tmp1
+<a id="__codelineno-2-58" name="__codelineno-2-58" href="#__codelineno-2-58"></a>gmt psbasemap -R0/<span class="nv">%mdis%</span>/0/<span class="nv">%depth%</span> -JX13.56/-8 -BwESn -Bxa+l<span class="s2">&quot;Distance (km)&quot;</span> <span class="se">^</span>
+<a id="__codelineno-2-59" name="__codelineno-2-59" href="#__codelineno-2-59"></a><span class="se">-</span>Bya+l<span class="s2">&quot;Depth (km)&quot;</span> -X11 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-60" name="__codelineno-2-60" href="#__codelineno-2-60"></a>awk <span class="s2">&quot;{print $5,$3,$3,exp($4)*0.002}&quot;</span> catalog_profile.gmt <span class="p">|</span> <span class="se">^</span>
+<a id="__codelineno-2-61" name="__codelineno-2-61" href="#__codelineno-2-61"></a><span class="se">g</span>mt psxy -R -JX -Ctmp.cpt -Sc -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-62" name="__codelineno-2-62" href="#__codelineno-2-62"></a>awk <span class="s2">&quot;{print $1,$2,$3,$4,$5,$6,$7,$8,$9}&quot;</span> tmp.ls <span class="p">|</span> <span class="se">^</span>
+<a id="__codelineno-2-63" name="__codelineno-2-63" href="#__codelineno-2-63"></a><span class="se">g</span>mt pscoupe -R -JX -Sa.5 -Gyellow -Aa<span class="nv">%lon1%</span>/<span class="nv">%lat1%</span>/<span class="nv">%lon2%</span>/<span class="nv">%lat2%</span>/90/<span class="nv">%wid%</span>/0/<span class="nv">%depth%</span> -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-64" name="__codelineno-2-64" href="#__codelineno-2-64"></a>awk <span class="s2">&quot;{print $1,$2,$3,$4,$5,$6,$7,$8,$9}&quot;</span> tmp.rs <span class="p">|</span> <span class="se">^</span>
+<a id="__codelineno-2-65" name="__codelineno-2-65" href="#__codelineno-2-65"></a><span class="se">g</span>mt pscoupe -R -JX -Sa.5 -Gyellow -Aa<span class="nv">%lon1%</span>/<span class="nv">%lat1%</span>/<span class="nv">%lon2%</span>/<span class="nv">%lat2%</span>/90/<span class="nv">%wid%</span>/0/<span class="nv">%depth%</span> -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-66" name="__codelineno-2-66" href="#__codelineno-2-66"></a>awk <span class="s2">&quot;{print $1,$2,$3,$4,$5,$6,$7,$8,$9}&quot;</span> tmp.rf <span class="p">|</span> <span class="se">^</span>
+<a id="__codelineno-2-67" name="__codelineno-2-67" href="#__codelineno-2-67"></a><span class="se">g</span>mt pscoupe -R -JX -Sa.5 -Gred -Aa<span class="nv">%lon1%</span>/<span class="nv">%lat1%</span>/<span class="nv">%lon2%</span>/<span class="nv">%lat2%</span>/90/<span class="nv">%wid%</span>/0/<span class="nv">%depth%</span> -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-68" name="__codelineno-2-68" href="#__codelineno-2-68"></a>awk <span class="s2">&quot;{print $1,$2,$3,$4,$5,$6,$7,$8,$9}&quot;</span> tmp.nf <span class="p">|</span> <span class="se">^</span>
+<a id="__codelineno-2-69" name="__codelineno-2-69" href="#__codelineno-2-69"></a><span class="se">g</span>mt pscoupe -R -JX -Sa.5 -Gblue -Aa<span class="nv">%lon1%</span>/<span class="nv">%lat1%</span>/<span class="nv">%lon2%</span>/<span class="nv">%lat2%</span>/90/<span class="nv">%wid%</span>/0/<span class="nv">%depth%</span> -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-70" name="__codelineno-2-70" href="#__codelineno-2-70"></a>
+<a id="__codelineno-2-71" name="__codelineno-2-71" href="#__codelineno-2-71"></a># 4. legend set
+<a id="__codelineno-2-72" name="__codelineno-2-72" href="#__codelineno-2-72"></a><span class="k">echo</span> 5 -5 AA&#39; Profile <span class="p">|</span> gmt pstext -R -JX -F+f16p,1+jML -N -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-73" name="__codelineno-2-73" href="#__codelineno-2-73"></a>gmt psscale -R -JX -Ctmp.cpt -Dx3.5/9+w10/.5+ml+h -Bxa+l<span class="s2">&quot;Depth (km)&quot;</span> -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-74" name="__codelineno-2-74" href="#__codelineno-2-74"></a><span class="k">echo</span> 1 2 2 <span class="p">&gt;</span> tmp.m
+<a id="__codelineno-2-75" name="__codelineno-2-75" href="#__codelineno-2-75"></a><span class="k">echo</span> 2 2 3 <span class="p">&gt;&gt;</span> tmp.m
+<a id="__codelineno-2-76" name="__codelineno-2-76" href="#__codelineno-2-76"></a><span class="k">echo</span> 3 2 4 <span class="p">&gt;&gt;</span> tmp.m
+<a id="__codelineno-2-77" name="__codelineno-2-77" href="#__codelineno-2-77"></a><span class="k">echo</span> 4 2 5 <span class="p">&gt;&gt;</span> tmp.m
+<a id="__codelineno-2-78" name="__codelineno-2-78" href="#__codelineno-2-78"></a><span class="k">echo</span> 5 2 6 <span class="p">&gt;&gt;</span> tmp.m
+<a id="__codelineno-2-79" name="__codelineno-2-79" href="#__codelineno-2-79"></a><span class="k">echo</span> 6.5 2 7 <span class="p">&gt;&gt;</span> tmp.m
+<a id="__codelineno-2-80" name="__codelineno-2-80" href="#__codelineno-2-80"></a>awk <span class="s2">&quot;{print $1,$2,exp($3)*0.002}&quot;</span> tmp.m <span class="p">|</span> <span class="se">^</span>
+<a id="__codelineno-2-81" name="__codelineno-2-81" href="#__codelineno-2-81"></a><span class="se">g</span>mt psxy -R0/8/0/10 -JX -Sc -W2 -Y5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-82" name="__codelineno-2-82" href="#__codelineno-2-82"></a>gmt pstext tmp.m -R -JX -F+f14p -D0/.7 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-83" name="__codelineno-2-83" href="#__codelineno-2-83"></a><span class="k">echo</span> 0 0 Magnitude: <span class="p">|</span> gmt pstext -R -JX -F+f16p,1+jML -N -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-84" name="__codelineno-2-84" href="#__codelineno-2-84"></a>
+<a id="__codelineno-2-85" name="__codelineno-2-85" href="#__codelineno-2-85"></a>gmt psxy -R -J -T -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-86" name="__codelineno-2-86" href="#__codelineno-2-86"></a>gmt psconvert <span class="nv">%ps%</span> -Tg -A -P
+<a id="__codelineno-2-87" name="__codelineno-2-87" href="#__codelineno-2-87"></a><span class="k">del</span> tmp*
+</code></pre></div></p>
 <p>學習到的指令:</p>
 <p><mark>1</mark>繪製地震活動性及機制解底圖，利用前兩節與地形圖學到的方法，
 製作底圖。</p>

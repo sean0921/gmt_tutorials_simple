@@ -673,52 +673,52 @@
   <img src="/fig/11_3_taiwan_road_1.png"/>
 </p>
 
-<p>批次檔</p>
-<pre><code class="language-bat">set ps=11_3_taiwan_road.ps
-set data=D:\GMT_data\road\
-
-# 1. road map
-gmt psbasemap -R119.8/122.1/21.8/25.4 -JM15 -BWeSn -Ba -P -K &gt; %ps%
-gmt pscoast -R -JM -Df -W1 -G80 -S159/229/255 -K -O &gt;&gt; %ps%
-gmt psxy %data%provincial_highway.gmt -R -JM -W.4,green -K -O &gt;&gt; %ps%
-gmt psxy %data%national_freeway.gmt -R -JM -W1.5,blue -K -O &gt;&gt; %ps%
-gmt psxy %data%national_freeway_attach.gmt -R -JM -W.7,purple -K -O &gt;&gt; %ps%
-gmt psxy %data%TRA_rail.gmt -R -JM -W2.5,white -K -O &gt;&gt; %ps%
-gmt psxy %data%TRA_rail.gmt -R -JM -W2.5,black,4_4:0p -K -O &gt;&gt; %ps%
-gmt psxy %data%THSRC_rail.gmt -R -JM -W3,red -K -O &gt;&gt; %ps%
-gmt psxy %data%THSRC_rail.gmt -R -JM -W3,black,8_8:0p -K -O &gt;&gt; %ps%
-gmt psxy %data%THSRC_station.gmt -R -JM -Ss.5 -W.5 -Gred -K -O &gt;&gt; %ps%
-
-# 2. legend set
-echo 119.83 25.37 &gt; tmp
-echo 119.83 24.75 &gt;&gt; tmp
-echo 120.60 24.75 &gt;&gt; tmp
-echo 120.60 25.37 &gt;&gt; tmp
-gmt psxy tmp -R -JM -W2 -L -G200 -K -O &gt;&gt; %ps%
-echo 119.86 25.27 Legend | gmt pstext -R -JM -F+f18,2+jML -K -O &gt;&gt; %ps%
-echo 119.86 25.15 &gt; tmp
-echo 119.96 25.15 &gt;&gt; tmp
-gmt psxy tmp -R -JM -W3,green -K -O &gt;&gt; %ps%
-echo 120.00 25.15 Provincial Highway | gmt pstext -R -JM -F+f12+jML -K -O &gt;&gt; %ps%
-echo 119.86 25.05 &gt; tmp
-echo 119.96 25.05 &gt;&gt; tmp
-gmt psxy tmp -R -JM -W3,blue -K -O &gt;&gt; %ps%
-echo 120.00 25.05 National Freeway | gmt pstext -R -JM -F+f12+jML -K -O &gt;&gt; %ps%
-echo 119.86 24.95 &gt; tmp
-echo 119.96 24.95 &gt;&gt; tmp
-gmt psxy tmp -R -JM -W3,white -K -O &gt;&gt; %ps%
-gmt psxy tmp -R -JM -W3,black,4_4:0p -K -O &gt;&gt; %ps%
-echo 120.00 24.95 TRA Rail | gmt pstext -R -JM -F+f12+jML -K -O &gt;&gt; %ps%
-echo 119.86 24.85 &gt; tmp
-echo 119.96 24.85 &gt;&gt; tmp
-gmt psxy tmp -R -JM -W3,red -K -O &gt;&gt; %ps%
-gmt psxy tmp -R -JM -W3,black,4_4:0p -K -O &gt;&gt; %ps%
-echo 120.00 24.85 THSRC Rail | gmt pstext -R -JM -F+f12+jML -K -O &gt;&gt; %ps%
-
-gmt psxy -R -J -T -O &gt;&gt; %ps%
-gmt psconvert %ps% -Tg -A -P
-del tmp*
-</code></pre>
+<p>批次檔
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">set</span> <span class="nv">ps</span><span class="p">=</span>11_3_taiwan_road.ps
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="k">set</span> <span class="nv">data</span><span class="p">=</span>D:\GMT_data\road\
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a># 1. road map
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>gmt psbasemap -R119.8/122.1/21.8/25.4 -JM15 -BWeSn -Ba -P -K <span class="p">&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>gmt pscoast -R -JM -Df -W1 -G80 -S159/229/255 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>gmt psxy <span class="nv">%data%</span>provincial_highway.gmt -R -JM -W.4,green -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>gmt psxy <span class="nv">%data%</span>national_freeway.gmt -R -JM -W1.5,blue -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>gmt psxy <span class="nv">%data%</span>national_freeway_attach.gmt -R -JM -W.7,purple -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>gmt psxy <span class="nv">%data%</span>TRA_rail.gmt -R -JM -W2.5,white -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>gmt psxy <span class="nv">%data%</span>TRA_rail.gmt -R -JM -W2.5,black,4_4:0p -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>gmt psxy <span class="nv">%data%</span>THSRC_rail.gmt -R -JM -W3,red -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>gmt psxy <span class="nv">%data%</span>THSRC_rail.gmt -R -JM -W3,black,8_8:0p -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>gmt psxy <span class="nv">%data%</span>THSRC_station.gmt -R -JM -Ss.5 -W.5 -Gred -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a># 2. legend set
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="k">echo</span> 119.83 25.37 <span class="p">&gt;</span> tmp
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="k">echo</span> 119.83 24.75 <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="k">echo</span> 120.60 24.75 <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="k">echo</span> 120.60 25.37 <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>gmt psxy tmp -R -JM -W2 -L -G200 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="k">echo</span> 119.86 25.27 Legend <span class="p">|</span> gmt pstext -R -JM -F+f18,2+jML -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="k">echo</span> 119.86 25.15 <span class="p">&gt;</span> tmp
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="k">echo</span> 119.96 25.15 <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>gmt psxy tmp -R -JM -W3,green -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="k">echo</span> 120.00 25.15 Provincial Highway <span class="p">|</span> gmt pstext -R -JM -F+f12+jML -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="k">echo</span> 119.86 25.05 <span class="p">&gt;</span> tmp
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="k">echo</span> 119.96 25.05 <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>gmt psxy tmp -R -JM -W3,blue -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="k">echo</span> 120.00 25.05 National Freeway <span class="p">|</span> gmt pstext -R -JM -F+f12+jML -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="k">echo</span> 119.86 24.95 <span class="p">&gt;</span> tmp
+<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="k">echo</span> 119.96 24.95 <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a>gmt psxy tmp -R -JM -W3,white -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a>gmt psxy tmp -R -JM -W3,black,4_4:0p -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a><span class="k">echo</span> 120.00 24.95 TRA Rail <span class="p">|</span> gmt pstext -R -JM -F+f12+jML -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a><span class="k">echo</span> 119.86 24.85 <span class="p">&gt;</span> tmp
+<a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a><span class="k">echo</span> 119.96 24.85 <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a>gmt psxy tmp -R -JM -W3,red -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a>gmt psxy tmp -R -JM -W3,black,4_4:0p -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a><span class="k">echo</span> 120.00 24.85 THSRC Rail <span class="p">|</span> gmt pstext -R -JM -F+f12+jML -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a>
+<a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a>gmt psxy -R -J -T -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a>gmt psconvert <span class="nv">%ps%</span> -Tg -A -P
+<a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a><span class="k">del</span> tmp*
+</code></pre></div></p>
 <p>學習到的指令:</p>
 <ul>
 <li><code>gmt psxy %data%TRA_rail.gmt -R -JM -W2.5,black,4_4:0p -K -O &gt;&gt; %ps%</code></li>
@@ -736,71 +736,71 @@ del tmp*
   <img src="/fig/11_4_region_border_1.png"/>
 </p>
 
-<p>批次檔</p>
-<pre><code class="language-bat">set ps=11_4_region_border.ps
-set data=D:\GMT_data\
-set cpt=gebco.cpt
-
-# Taiwan
-gmt psbasemap -R119.2/122.1/21.8/25.4 -Jm6 -BWeSn -Ba -P -K &gt; %ps%
-gmt grdimage %data%tw_500_119.grd -R -Jm -C%cpt% -I%data%tw_500shad_119.grd -M -K -O &gt;&gt; %ps%
-gmt pscoast -R -Jm -Df -Gc -K -O &gt;&gt; %ps%
-gmt grdimage %data%tw_40.grd -R -Jm -C%cpt% -I%data%tw_40shad.grd -M -K -O &gt;&gt; %ps%
-gmt psxy %data%country_2016.gmt -R -Jm -W.5,237/98/98 -K -O &gt;&gt; %ps%
-gmt psxy %data%city_2016.gmt -R -Jm -W1,red -K -O &gt;&gt; %ps%
-gmt pscoast -R -Jm -Df -Q -K -O &gt;&gt; %ps%
-gmt pscoast -R -Jm -Df -W1 -K -O &gt;&gt; %ps%
-
-gmt gmtspatial %data%country_2016.gmt -Q+p -o0,1 &gt; tmp1
-gmt gmtconvert %data%country_2016.gmt -L &gt; tmp2
-awk &quot;NR==FNR{tmp1[NR]=$0; next} {print tmp1[FNR], $2,$3,$4}&quot; tmp1 tmp2 &gt; tmp
-awk &quot;{print $1,$2,$3}&quot; tmp | gmt pstext -R -Jm -F+f6p=1p,white -K -O &gt;&gt; %ps%
-awk &quot;{print $1,$2,$3}&quot; tmp | gmt pstext -R -Jm -F+f6p -K -O &gt;&gt; %ps%
-gmt gmtspatial %data%city_2016.gmt -Q+p -o0,1 &gt; tmp1
-gmt gmtconvert %data%city_2016.gmt -L &gt; tmp2
-awk &quot;NR==FNR{tmp1[NR]=$0; next} {print tmp1[FNR], $2,$3,$4}&quot; tmp1 tmp2 &gt; tmp
-gmt pstext tmp -R -Jm -F+f12p=2p,white -K -O &gt;&gt; %ps%
-gmt pstext tmp -R -Jm -F+f12p -K -O &gt;&gt; %ps%
-
-# Kinmen
-gmt psbasemap -R118.17/118.55/24.35/24.58 -Jm12 -Bwesn -B0 ^
--X.2 -Y17 -K -O --MAP_FRAME_TYPE=plain &gt;&gt; %ps%
-gmt pscoast -R -Jm -Df -W1 -G220 -S250 -K -O &gt;&gt; %ps%
-gmt pscoast -R -Jm -Df -Gc -K -O &gt;&gt; %ps%
-gmt psxy %data%country_2016.gmt -R -Jm -W.5,237/98/98 -K -O &gt;&gt; %ps%
-gmt pscoast -R -Jm -Df -Q -K -O &gt;&gt; %ps%
-
-gmt gmtspatial %data%country_2016.gmt -Q+p -o0,1 &gt; tmp1
-gmt gmtconvert %data%country_2016.gmt -L &gt; tmp2
-awk &quot;NR==FNR{tmp1[NR]=$0; next} {print tmp1[FNR], $2,$3,$4}&quot; tmp1 tmp2 &gt; tmp
-awk &quot;{print $1,$2,$3}&quot; tmp | gmt pstext -R -Jm -F+f6p=1p,white -K -O &gt;&gt; %ps%
-awk &quot;{print $1,$2,$3}&quot; tmp | gmt pstext -R -Jm -F+f6p -K -O &gt;&gt; %ps%
-gmt gmtspatial %data%city_2016.gmt -Q+p -o0,1 &gt; tmp1
-gmt gmtconvert %data%city_2016.gmt -L &gt; tmp2
-awk &quot;NR==FNR{tmp1[NR]=$0; next} {print tmp1[FNR], $2,$3,$4}&quot; tmp1 tmp2 &gt; tmp
-gmt pstext tmp -R -Jm -F+f12p=2p,white -K -O &gt;&gt; %ps%
-gmt pstext tmp -R -Jm -F+f12p -K -O &gt;&gt; %ps%
-
-# Lienchiang
-gmt psbasemap -R119.86/120.11/25.91/26.30 -Jm -Bwesn -B0 ^
--X5 -Y1 -K -O --MAP_FRAME_TYPE=plain &gt;&gt; %ps%
-gmt pscoast -R -Jm -Df -W1 -G220 -S250 -K -O &gt;&gt; %ps%
-
-gmt gmtspatial %data%country_2016.gmt -Q+p -o0,1 &gt; tmp1
-gmt gmtconvert %data%country_2016.gmt -L &gt; tmp2
-awk &quot;NR==FNR{tmp1[NR]=$0; next} {print tmp1[FNR], $2,$3,$4}&quot; tmp1 tmp2 &gt; tmp
-awk &quot;{print $1,$2,$3}&quot; tmp | gmt pstext -R -Jm -F+f6p=1p,white -K -O &gt;&gt; %ps%
-awk &quot;{print $1,$2,$3}&quot; tmp | gmt pstext -R -Jm -F+f6p -K -O &gt;&gt; %ps%
-gmt gmtspatial %data%city_2016.gmt -Q+p -o0,1 &gt; tmp1
-gmt gmtconvert %data%city_2016.gmt -L &gt; tmp2
-awk &quot;NR==FNR{tmp1[NR]=$0; next} {print tmp1[FNR], $2,$3,$4}&quot; tmp1 tmp2 &gt; tmp
-gmt pstext tmp -R -Jm -F+f10p=2p,white -D.7/-1 -K -O &gt;&gt; %ps%
-gmt pstext tmp -R -Jm -F+f10p -D.7/-1 -K -O &gt;&gt; %ps%
-
-gmt psxy -R -J -T -O &gt;&gt; %ps%
-gmt psconvert %ps% -Tg -A -P
-del tmp*
-</code></pre>
+<p>批次檔
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">set</span> <span class="nv">ps</span><span class="p">=</span>11_4_region_border.ps
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">set</span> <span class="nv">data</span><span class="p">=</span>D:\GMT_data\
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="k">set</span> <span class="nv">cpt</span><span class="p">=</span>gebco.cpt
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a># Taiwan
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>gmt psbasemap -R119.2/122.1/21.8/25.4 -Jm6 -BWeSn -Ba -P -K <span class="p">&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>gmt grdimage <span class="nv">%data%</span>tw_500_119.grd -R -Jm -C<span class="nv">%cpt%</span> -I<span class="nv">%data%</span>tw_500shad_119.grd -M -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>gmt pscoast -R -Jm -Df -Gc -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>gmt grdimage <span class="nv">%data%</span>tw_40.grd -R -Jm -C<span class="nv">%cpt%</span> -I<span class="nv">%data%</span>tw_40shad.grd -M -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>gmt psxy <span class="nv">%data%</span>country_2016.gmt -R -Jm -W.5,237/98/98 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>gmt psxy <span class="nv">%data%</span>city_2016.gmt -R -Jm -W1,red -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>gmt pscoast -R -Jm -Df -Q -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>gmt pscoast -R -Jm -Df -W1 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>gmt gmtspatial <span class="nv">%data%</span>country_2016.gmt -Q+p -o0,1 <span class="p">&gt;</span> tmp1
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>gmt gmtconvert <span class="nv">%data%</span>country_2016.gmt -L <span class="p">&gt;</span> tmp2
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>awk <span class="s2">&quot;NR==FNR{tmp1[NR]=$0; next} {print tmp1[FNR], $2,$3,$4}&quot;</span> tmp1 tmp2 <span class="p">&gt;</span> tmp
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>awk <span class="s2">&quot;{print $1,$2,$3}&quot;</span> tmp <span class="p">|</span> gmt pstext -R -Jm -F+f6p=1p,white -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>awk <span class="s2">&quot;{print $1,$2,$3}&quot;</span> tmp <span class="p">|</span> gmt pstext -R -Jm -F+f6p -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>gmt gmtspatial <span class="nv">%data%</span>city_2016.gmt -Q+p -o0,1 <span class="p">&gt;</span> tmp1
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>gmt gmtconvert <span class="nv">%data%</span>city_2016.gmt -L <span class="p">&gt;</span> tmp2
+<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>awk <span class="s2">&quot;NR==FNR{tmp1[NR]=$0; next} {print tmp1[FNR], $2,$3,$4}&quot;</span> tmp1 tmp2 <span class="p">&gt;</span> tmp
+<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>gmt pstext tmp -R -Jm -F+f12p=2p,white -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>gmt pstext tmp -R -Jm -F+f12p -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>
+<a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a># Kinmen
+<a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a>gmt psbasemap -R118.17/118.55/24.35/24.58 -Jm12 -Bwesn -B0 <span class="se">^</span>
+<a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a><span class="se">-</span>X.2 -Y17 -K -O --MAP_FRAME_TYPE=plain <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a>gmt pscoast -R -Jm -Df -W1 -G220 -S250 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a>gmt pscoast -R -Jm -Df -Gc -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a>gmt psxy <span class="nv">%data%</span>country_2016.gmt -R -Jm -W.5,237/98/98 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a>gmt pscoast -R -Jm -Df -Q -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a>
+<a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a>gmt gmtspatial <span class="nv">%data%</span>country_2016.gmt -Q+p -o0,1 <span class="p">&gt;</span> tmp1
+<a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a>gmt gmtconvert <span class="nv">%data%</span>country_2016.gmt -L <span class="p">&gt;</span> tmp2
+<a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a>awk <span class="s2">&quot;NR==FNR{tmp1[NR]=$0; next} {print tmp1[FNR], $2,$3,$4}&quot;</span> tmp1 tmp2 <span class="p">&gt;</span> tmp
+<a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a>awk <span class="s2">&quot;{print $1,$2,$3}&quot;</span> tmp <span class="p">|</span> gmt pstext -R -Jm -F+f6p=1p,white -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a>awk <span class="s2">&quot;{print $1,$2,$3}&quot;</span> tmp <span class="p">|</span> gmt pstext -R -Jm -F+f6p -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a>gmt gmtspatial <span class="nv">%data%</span>city_2016.gmt -Q+p -o0,1 <span class="p">&gt;</span> tmp1
+<a id="__codelineno-1-40" name="__codelineno-1-40" href="#__codelineno-1-40"></a>gmt gmtconvert <span class="nv">%data%</span>city_2016.gmt -L <span class="p">&gt;</span> tmp2
+<a id="__codelineno-1-41" name="__codelineno-1-41" href="#__codelineno-1-41"></a>awk <span class="s2">&quot;NR==FNR{tmp1[NR]=$0; next} {print tmp1[FNR], $2,$3,$4}&quot;</span> tmp1 tmp2 <span class="p">&gt;</span> tmp
+<a id="__codelineno-1-42" name="__codelineno-1-42" href="#__codelineno-1-42"></a>gmt pstext tmp -R -Jm -F+f12p=2p,white -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-1-43" name="__codelineno-1-43" href="#__codelineno-1-43"></a>gmt pstext tmp -R -Jm -F+f12p -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-1-44" name="__codelineno-1-44" href="#__codelineno-1-44"></a>
+<a id="__codelineno-1-45" name="__codelineno-1-45" href="#__codelineno-1-45"></a># Lienchiang
+<a id="__codelineno-1-46" name="__codelineno-1-46" href="#__codelineno-1-46"></a>gmt psbasemap -R119.86/120.11/25.91/26.30 -Jm -Bwesn -B0 <span class="se">^</span>
+<a id="__codelineno-1-47" name="__codelineno-1-47" href="#__codelineno-1-47"></a><span class="se">-</span>X5 -Y1 -K -O --MAP_FRAME_TYPE=plain <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-1-48" name="__codelineno-1-48" href="#__codelineno-1-48"></a>gmt pscoast -R -Jm -Df -W1 -G220 -S250 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-1-49" name="__codelineno-1-49" href="#__codelineno-1-49"></a>
+<a id="__codelineno-1-50" name="__codelineno-1-50" href="#__codelineno-1-50"></a>gmt gmtspatial <span class="nv">%data%</span>country_2016.gmt -Q+p -o0,1 <span class="p">&gt;</span> tmp1
+<a id="__codelineno-1-51" name="__codelineno-1-51" href="#__codelineno-1-51"></a>gmt gmtconvert <span class="nv">%data%</span>country_2016.gmt -L <span class="p">&gt;</span> tmp2
+<a id="__codelineno-1-52" name="__codelineno-1-52" href="#__codelineno-1-52"></a>awk <span class="s2">&quot;NR==FNR{tmp1[NR]=$0; next} {print tmp1[FNR], $2,$3,$4}&quot;</span> tmp1 tmp2 <span class="p">&gt;</span> tmp
+<a id="__codelineno-1-53" name="__codelineno-1-53" href="#__codelineno-1-53"></a>awk <span class="s2">&quot;{print $1,$2,$3}&quot;</span> tmp <span class="p">|</span> gmt pstext -R -Jm -F+f6p=1p,white -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-1-54" name="__codelineno-1-54" href="#__codelineno-1-54"></a>awk <span class="s2">&quot;{print $1,$2,$3}&quot;</span> tmp <span class="p">|</span> gmt pstext -R -Jm -F+f6p -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-1-55" name="__codelineno-1-55" href="#__codelineno-1-55"></a>gmt gmtspatial <span class="nv">%data%</span>city_2016.gmt -Q+p -o0,1 <span class="p">&gt;</span> tmp1
+<a id="__codelineno-1-56" name="__codelineno-1-56" href="#__codelineno-1-56"></a>gmt gmtconvert <span class="nv">%data%</span>city_2016.gmt -L <span class="p">&gt;</span> tmp2
+<a id="__codelineno-1-57" name="__codelineno-1-57" href="#__codelineno-1-57"></a>awk <span class="s2">&quot;NR==FNR{tmp1[NR]=$0; next} {print tmp1[FNR], $2,$3,$4}&quot;</span> tmp1 tmp2 <span class="p">&gt;</span> tmp
+<a id="__codelineno-1-58" name="__codelineno-1-58" href="#__codelineno-1-58"></a>gmt pstext tmp -R -Jm -F+f10p=2p,white -D.7/-1 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-1-59" name="__codelineno-1-59" href="#__codelineno-1-59"></a>gmt pstext tmp -R -Jm -F+f10p -D.7/-1 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-1-60" name="__codelineno-1-60" href="#__codelineno-1-60"></a>
+<a id="__codelineno-1-61" name="__codelineno-1-61" href="#__codelineno-1-61"></a>gmt psxy -R -J -T -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-1-62" name="__codelineno-1-62" href="#__codelineno-1-62"></a>gmt psconvert <span class="nv">%ps%</span> -Tg -A -P
+<a id="__codelineno-1-63" name="__codelineno-1-63" href="#__codelineno-1-63"></a><span class="k">del</span> tmp*
+</code></pre></div></p>
 <p>學習到的指令:</p>
 <ul>
 <li><code>gmtspatial -Q+p -o0,1</code>從多區塊文件中算出質心位置。</li>
@@ -824,35 +824,35 @@ del tmp*
   <img src="/fig/11_5_drainage_area_1.png"/>
 </p>
 
-<p>批次檔</p>
-<pre><code class="language-bat">set ps=11_5_drainage_area.ps
-set data=D:\GMT_data\
-set cpt=gebco.cpt
-
-# mainstream
-gmt gmtset MAP_FRAME_TYPE=plain
-gmt psbasemap -R119.8/122.1/21.8/25.4 -JM10 -BWeSn -Ba -K &gt; %ps%
-gmt grdimage %data%tw_500_119.grd -R -JM -C%cpt% -I%data%tw_500shad_119.grd -M -K -O &gt;&gt; %ps%
-gmt pscoast -R -JM -Df -Gc -K -O &gt;&gt; %ps%
-gmt grdimage %data%tw_40.grd -R -JM -C%cpt% -I%data%tw_40shad.grd -M -K -O &gt;&gt; %ps%
-gmt pscoast -R -JM -Df -Q -K -O &gt;&gt; %ps%
-gmt pscoast -R -JM -Df -W1 -K -O &gt;&gt; %ps%
-gmt psxy %data%taiwan_river_mainstream.gmt -R -JM -W1,30/34/170 -K -O &gt;&gt; %ps%
-echo 119.87 25.2 Mainstream | gmt pstext -R -JM -F+f18p,2+jML -K -O &gt;&gt; %ps%
-gmt psbasemap -R -JM -D120.7/121.5/24.6/25.4 -F+p2,red -K -O &gt;&gt; %ps%
-
-# mainstream &amp; tributary
-gmt psbasemap -R120.7/121.5/24.6/25.4 -JM12 -BwESn -Ba -X12 -K -O &gt;&gt; %ps%
-gmt pscoast -R -JM -Df -W1 -S235 -K -O &gt;&gt; %ps%
-gmt psxy %data%taiwan_river_tributary.gmt -R -JM -W.5,72/92/199 -K -O &gt;&gt; %ps%
-gmt psxy %data%taiwan_river_mainstream.gmt -R -JM -W1,30/34/170 -K -O &gt;&gt; %ps%
-echo 120.75 25.35 Mainstream \046 | gmt pstext -R -JM -F+f16p,2+jML -K -O &gt;&gt; %ps%
-echo 120.75 25.30 Tributary | gmt pstext -R -JM -F+f16p,2+jML -K -O &gt;&gt; %ps%
-
-gmt psxy -R -J -T -O &gt;&gt; %ps%
-gmt psconvert %ps% -Tg -A -P
-del tmp* gmt.conf
-</code></pre>
+<p>批次檔
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">set</span> <span class="nv">ps</span><span class="p">=</span>11_5_drainage_area.ps
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">set</span> <span class="nv">data</span><span class="p">=</span>D:\GMT_data\
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="k">set</span> <span class="nv">cpt</span><span class="p">=</span>gebco.cpt
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a># mainstream
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>gmt gmtset MAP_FRAME_TYPE=plain
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>gmt psbasemap -R119.8/122.1/21.8/25.4 -JM10 -BWeSn -Ba -K <span class="p">&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>gmt grdimage <span class="nv">%data%</span>tw_500_119.grd -R -JM -C<span class="nv">%cpt%</span> -I<span class="nv">%data%</span>tw_500shad_119.grd -M -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>gmt pscoast -R -JM -Df -Gc -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>gmt grdimage <span class="nv">%data%</span>tw_40.grd -R -JM -C<span class="nv">%cpt%</span> -I<span class="nv">%data%</span>tw_40shad.grd -M -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>gmt pscoast -R -JM -Df -Q -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>gmt pscoast -R -JM -Df -W1 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>gmt psxy <span class="nv">%data%</span>taiwan_river_mainstream.gmt -R -JM -W1,30/34/170 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="k">echo</span> 119.87 25.2 Mainstream <span class="p">|</span> gmt pstext -R -JM -F+f18p,2+jML -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>gmt psbasemap -R -JM -D120.7/121.5/24.6/25.4 -F+p2,red -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a># mainstream <span class="p">&amp;</span> tributary
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>gmt psbasemap -R120.7/121.5/24.6/25.4 -JM12 -BwESn -Ba -X12 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>gmt pscoast -R -JM -Df -W1 -S235 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>gmt psxy <span class="nv">%data%</span>taiwan_river_tributary.gmt -R -JM -W.5,72/92/199 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a>gmt psxy <span class="nv">%data%</span>taiwan_river_mainstream.gmt -R -JM -W1,30/34/170 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a><span class="k">echo</span> 120.75 25.35 Mainstream \046 <span class="p">|</span> gmt pstext -R -JM -F+f16p,2+jML -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a><span class="k">echo</span> 120.75 25.30 Tributary <span class="p">|</span> gmt pstext -R -JM -F+f16p,2+jML -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a>
+<a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a>gmt psxy -R -J -T -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a>gmt psconvert <span class="nv">%ps%</span> -Tg -A -P
+<a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a><span class="k">del</span> tmp* gmt.conf
+</code></pre></div></p>
 <p>學習到的指令:</p>
 <ul>
 <li><code>echo 120.75 25.35 Mainstream \046 | gmt pstext</code>寫出特殊字元(&amp;)。</li>
@@ -870,60 +870,60 @@ del tmp* gmt.conf
   <img src="/fig/11_6_cgs_fault_1.png"/>
 </p>
 
-<p>批次檔</p>
-<pre><code class="language-bat">set ps=11_6_cgs_fault.ps
-set data=D:\GMT_data\
-set cpt=gebco.cpt
-
-# 1. topographic map
-gmt psbasemap -R119.7/122.1/21.8/25.4 -JM15 -BWeSn -Ba -P -K &gt; %ps%
-gmt pscoast -R -JM -Df -Gc -K -O &gt;&gt; %ps%
-gmt grdimage %data%tw_40.grd -R -JM -C%cpt% -I%data%tw_40shad.grd -M -K -O &gt;&gt; %ps%
-gmt pscoast -R -JM -Df -Q -K -O &gt;&gt; %ps%
-gmt pscoast -R -JM -Df -W1 -K -O &gt;&gt; %ps%
-
-# 2. fault type
-gmt psxy %data%CGS_fault.gmt -R -JM -Sqn1:+Lh+T&quot;fault_label.dat&quot; &gt; tmp
-gmt gmtconvert %data%CGS_fault.gmt -S&quot;1 1 |&quot; &gt; tmp
-gmt psxy tmp -R -JM -W2,red -K -O &gt;&gt; %ps%
-gmt gmtconvert %data%CGS_fault.gmt -S&quot;1 2 |&quot; &gt; tmp
-gmt psxy tmp -R -JM -W2,red,3_3:0p -K -O &gt;&gt; %ps%
-gmt gmtconvert %data%CGS_fault.gmt -S&quot;2 1 |&quot; &gt; tmp
-gmt psxy tmp -R -JM -W2,255/193/37 -K -O &gt;&gt; %ps%
-gmt gmtconvert %data%CGS_fault.gmt -S&quot;2 2 |&quot; &gt; tmp
-gmt psxy tmp -R -JM -W2,255/193/37,3_3:0p -K -O &gt;&gt; %ps%
-
-# 3. fault numbers in map
-awk &quot;$4&lt;=25 {print $0}&quot; fault_label_fix.dat | ^
-gmt pstext -R -JM -F+a -D.2/-.2 -K -O &gt;&gt; %ps%
-awk &quot;$4&gt;=26 {print $0}&quot; fault_label_fix.dat | ^
-gmt pstext -R -JM -F+a -D-.2/.2 -K -O &gt;&gt; %ps%
-
-# 4. fault numbers name
-gmt gmtconvert %data%CGS_fault.gmt -L &gt; tmp
-sed -i 's\\&quot;\\\\g' tmp
-awk &quot;{print $7, $8, $2}&quot; tmp &gt; tmp2
-awk &quot;NR !=1 {print 119.85, 25.35, $4}&quot; fault_label_fix.dat &gt; tmp1
-awk &quot;NR==FNR{tmp1[$3]=$0; next} {$3=tmp1[$3]; print}&quot; tmp2 tmp1 &gt; tmp3
-awk &quot;NR&lt;=20 {print $1, $2-($5-1)*.07, $5, $3, $4}&quot; tmp3 | ^
-gmt pstext -R -JM -F+f12p+jML -K -O &gt;&gt; %ps%
-awk &quot;NR&gt;=21 {print 122.05, $2-($5-1)*.07, $5, $3, $4}&quot; tmp3 | ^
-gmt pstext -R -JM -F+f12p+jMR -D0/-7 -K -O &gt;&gt; %ps%
-
-# 5. legend set
-echo H 18 1 Legend &gt; tmp
-echo D 0.2 1p &gt;&gt; tmp
-echo G .2 &gt;&gt; tmp
-echo S .6 - .8 0 3,red 1.3 Holocene active fault &gt;&gt; tmp
-echo S .6 - .8 0 3,255/193/37 1.3 Late Pleistoene active fault &gt;&gt; tmp
-echo S .6 - .8 0 3,black,3_3:0p 1.3 Fault concealed or inferred &gt;&gt; tmp
-gmt pslegend tmp -R -JM -C.1/.1 -Dx.1/.1+w5.8 -F+p1 ^
---FONT_ANNOT_PRIMARY=10p --FONT_LABEL=14p -K -O &gt;&gt; %ps%
-
-gmt psxy -R -J -T -O &gt;&gt; %ps%
-gmt psconvert %ps% -Tg -A -P
-del tmp*
-</code></pre>
+<p>批次檔
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">set</span> <span class="nv">ps</span><span class="p">=</span>11_6_cgs_fault.ps
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="k">set</span> <span class="nv">data</span><span class="p">=</span>D:\GMT_data\
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="k">set</span> <span class="nv">cpt</span><span class="p">=</span>gebco.cpt
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a># 1. topographic map
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>gmt psbasemap -R119.7/122.1/21.8/25.4 -JM15 -BWeSn -Ba -P -K <span class="p">&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>gmt pscoast -R -JM -Df -Gc -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>gmt grdimage <span class="nv">%data%</span>tw_40.grd -R -JM -C<span class="nv">%cpt%</span> -I<span class="nv">%data%</span>tw_40shad.grd -M -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>gmt pscoast -R -JM -Df -Q -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>gmt pscoast -R -JM -Df -W1 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a># 2. fault type
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>gmt psxy <span class="nv">%data%</span>CGS_fault.gmt -R -JM -Sqn1:+Lh+T<span class="s2">&quot;fault_label.dat&quot;</span> <span class="p">&gt;</span> tmp
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>gmt gmtconvert <span class="nv">%data%</span>CGS_fault.gmt -S<span class="s2">&quot;1 1 |&quot;</span> <span class="p">&gt;</span> tmp
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>gmt psxy tmp -R -JM -W2,red -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>gmt gmtconvert <span class="nv">%data%</span>CGS_fault.gmt -S<span class="s2">&quot;1 2 |&quot;</span> <span class="p">&gt;</span> tmp
+<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>gmt psxy tmp -R -JM -W2,red,3_3:0p -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>gmt gmtconvert <span class="nv">%data%</span>CGS_fault.gmt -S<span class="s2">&quot;2 1 |&quot;</span> <span class="p">&gt;</span> tmp
+<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>gmt psxy tmp -R -JM -W2,255/193/37 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a>gmt gmtconvert <span class="nv">%data%</span>CGS_fault.gmt -S<span class="s2">&quot;2 2 |&quot;</span> <span class="p">&gt;</span> tmp
+<a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a>gmt psxy tmp -R -JM -W2,255/193/37,3_3:0p -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a>
+<a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a># 3. fault numbers in map
+<a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a>awk <span class="s2">&quot;$4&lt;=25 {print $0}&quot;</span> fault_label_fix.dat <span class="p">|</span> <span class="se">^</span>
+<a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a><span class="se">g</span>mt pstext -R -JM -F+a -D.2/-.2 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a>awk <span class="s2">&quot;$4&gt;=26 {print $0}&quot;</span> fault_label_fix.dat <span class="p">|</span> <span class="se">^</span>
+<a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a><span class="se">g</span>mt pstext -R -JM -F+a -D-.2/.2 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a>
+<a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a># 4. fault numbers name
+<a id="__codelineno-3-30" name="__codelineno-3-30" href="#__codelineno-3-30"></a>gmt gmtconvert <span class="nv">%data%</span>CGS_fault.gmt -L <span class="p">&gt;</span> tmp
+<a id="__codelineno-3-31" name="__codelineno-3-31" href="#__codelineno-3-31"></a>sed -i &#39;s\\<span class="s2">&quot;\\\\g&#39; tmp</span>
+<a id="__codelineno-3-32" name="__codelineno-3-32" href="#__codelineno-3-32"></a>awk <span class="s2">&quot;{print $7, $8, $2}&quot;</span> tmp <span class="p">&gt;</span> tmp2
+<a id="__codelineno-3-33" name="__codelineno-3-33" href="#__codelineno-3-33"></a>awk <span class="s2">&quot;NR !=1 {print 119.85, 25.35, $4}&quot;</span> fault_label_fix.dat <span class="p">&gt;</span> tmp1
+<a id="__codelineno-3-34" name="__codelineno-3-34" href="#__codelineno-3-34"></a>awk <span class="s2">&quot;NR==FNR{tmp1[$3]=$0; next} {$3=tmp1[$3]; print}&quot;</span> tmp2 tmp1 <span class="p">&gt;</span> tmp3
+<a id="__codelineno-3-35" name="__codelineno-3-35" href="#__codelineno-3-35"></a>awk <span class="s2">&quot;NR&lt;=20 {print $1, $2-($5-1)*.07, $5, $3, $4}&quot;</span> tmp3 <span class="p">|</span> <span class="se">^</span>
+<a id="__codelineno-3-36" name="__codelineno-3-36" href="#__codelineno-3-36"></a><span class="se">g</span>mt pstext -R -JM -F+f12p+jML -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-3-37" name="__codelineno-3-37" href="#__codelineno-3-37"></a>awk <span class="s2">&quot;NR&gt;=21 {print 122.05, $2-($5-1)*.07, $5, $3, $4}&quot;</span> tmp3 <span class="p">|</span> <span class="se">^</span>
+<a id="__codelineno-3-38" name="__codelineno-3-38" href="#__codelineno-3-38"></a><span class="se">g</span>mt pstext -R -JM -F+f12p+jMR -D0/-7 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-3-39" name="__codelineno-3-39" href="#__codelineno-3-39"></a>
+<a id="__codelineno-3-40" name="__codelineno-3-40" href="#__codelineno-3-40"></a># 5. legend set
+<a id="__codelineno-3-41" name="__codelineno-3-41" href="#__codelineno-3-41"></a><span class="k">echo</span> H 18 1 Legend <span class="p">&gt;</span> tmp
+<a id="__codelineno-3-42" name="__codelineno-3-42" href="#__codelineno-3-42"></a><span class="k">echo</span> D 0.2 1p <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-3-43" name="__codelineno-3-43" href="#__codelineno-3-43"></a><span class="k">echo</span> G .2 <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-3-44" name="__codelineno-3-44" href="#__codelineno-3-44"></a><span class="k">echo</span> S .6 - .8 0 3,red 1.3 Holocene active fault <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-3-45" name="__codelineno-3-45" href="#__codelineno-3-45"></a><span class="k">echo</span> S .6 - .8 0 3,255/193/37 1.3 Late Pleistoene active fault <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-3-46" name="__codelineno-3-46" href="#__codelineno-3-46"></a><span class="k">echo</span> S .6 - .8 0 3,black,3_3:0p 1.3 Fault concealed or inferred <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-3-47" name="__codelineno-3-47" href="#__codelineno-3-47"></a>gmt pslegend tmp -R -JM -C.1/.1 -Dx.1/.1+w5.8 -F+p1 <span class="se">^</span>
+<a id="__codelineno-3-48" name="__codelineno-3-48" href="#__codelineno-3-48"></a><span class="se">-</span>-FONT_ANNOT_PRIMARY=10p --FONT_LABEL=14p -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-3-49" name="__codelineno-3-49" href="#__codelineno-3-49"></a>
+<a id="__codelineno-3-50" name="__codelineno-3-50" href="#__codelineno-3-50"></a>gmt psxy -R -J -T -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-3-51" name="__codelineno-3-51" href="#__codelineno-3-51"></a>gmt psconvert <span class="nv">%ps%</span> -Tg -A -P
+<a id="__codelineno-3-52" name="__codelineno-3-52" href="#__codelineno-3-52"></a><span class="k">del</span> tmp*
+</code></pre></div></p>
 <p>學習到的指令:</p>
 <p><mark>2</mark>斷層型態</p>
 <ul>
@@ -955,54 +955,54 @@ del tmp*
   <img src="/fig/11_6_fault_type_1.png"/>
 </p>
 
-<p>批次檔</p>
-<pre><code class="language-bat">set ps=11_6_fault_type.ps
-set data=D:\GMT_data\
-set cpt=dem3.cpt
-
-gmt psbasemap -R120.0/120.6/22.6/23.2 -JM15 -BWeSn -Ba -P -K --MAP_FRAME_TYPE=plain &gt; %ps%
-gmt grdimage %data%tw_40.grd -R -JM -C%cpt% -I%data%tw_40shad.grd -K -O &gt;&gt; %ps%
-gmt pscoast -R -JM -Df -W1 -S200/200/255 -K -O &gt;&gt; %ps%
-
-# 新化 右移斷
-gmt gmtconvert %data%CGS_fault.gmt -S&quot;Hsinhua Fault&quot; &gt; tmp
-gmt psxy tmp -R -JM -W4,red -Sf.5/.2+r+s+p1,red -K -O &gt;&gt; %ps%
-# 後甲里 逆移斷 西傾
-gmt gmtconvert %data%CGS_fault.gmt -S&quot;Houchiali Fault&quot; &gt; tmp
-gmt psxy tmp -R -JM -W4,255/193/37 -Sf.4/.25+r+t+o.12+p1,255/193/37 -G255/193/37 -K -O &gt;&gt; %ps%
-# 左鎮 左移斷
-gmt gmtconvert %data%CGS_fault.gmt -S&quot;Tsochen Fault&quot; &gt; tmp
-gmt psxy tmp -R -JM -Sf.7/.2+l+s+p1,255/193/37 -K -O &gt;&gt; %ps%
-gmt gmtconvert %data%CGS_fault.gmt -S&quot;Tsochen Fault&quot; &gt; tmp
-gmt psxy tmp -R -JM -W4,255/193/37 -K -O &gt;&gt; %ps%
-# 小崗山 逆移斷 東傾
-gmt gmtconvert %data%CGS_fault.gmt -S&quot;Hsiaokangshan Fault&quot; &gt; tmp
-gmt psxy tmp -R -JM -W4,255/193/37 -Sf.7/.25+l+t+o.12+p1,255/193/37 -G255/193/37 -K -O &gt;&gt; %ps%
-# 旗山斷層 逆移兼 東傾
-gmt gmtconvert %data%CGS_fault.gmt -S&quot;Chishan Fault&quot; &gt; tmp
-gmt psxy tmp -R -JM -Sf.7/.25+l+t+o.12+p1,red -Gred -K -O &gt;&gt; %ps%
-gmt gmtconvert %data%CGS_fault.gmt -S&quot;Chishan Fault&quot; &gt; tmp
-gmt psxy tmp -R -JM -W4,red -K -O &gt;&gt; %ps%
-
-awk &quot;$4&lt;=25 {print $0}&quot; fault_label_fix.dat | ^
-gmt pstext -R -JM -F+f12+a -D.4/-.4 -K -O &gt;&gt; %ps%
-
-gmt gmtconvert -L %data%CGS_fault.gmt &gt; tmp
-sed -i 's\\&quot;\\\\g' tmp
-awk &quot;{print $7, $8, $2}&quot; tmp &gt; tmp2
-awk &quot;NR !=1 {print 120.01, 23.25, $4}&quot; fault_label_fix.dat &gt; tmp1
-awk &quot;NR==FNR{tmp1[$3]=$0; next} {$3=tmp1[$3]; print}&quot; tmp2 tmp1 &gt; tmp3
-awk &quot;NR&gt;=19 &amp;&amp; NR &lt;=23 {print $1, $2-($5-1)*.02, $5, $3, $4}&quot; tmp3 | ^
-gmt pstext -R -JM -F+f12p+jML -K -O &gt;&gt; %ps%
-
-gmt pscoast -R119.8/122.1/21.8/25.4 -JM3 -Df -W1 -B0 -S255 -G230 ^
--X.1 -Y.1 -K -O --MAP_FRAME_TYPE=plain &gt;&gt; %ps%
-gmt psbasemap -R -JM -D120.0/120.6/22.5/23.2 -F+p2,red -K -O &gt;&gt; %ps%
-
-gmt psxy -R -J -T -O &gt;&gt; %ps%
-gmt psconvert %ps% -Tg -A -P
-del tmp*
-</code></pre>
+<p>批次檔
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">set</span> <span class="nv">ps</span><span class="p">=</span>11_6_fault_type.ps
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="k">set</span> <span class="nv">data</span><span class="p">=</span>D:\GMT_data\
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="k">set</span> <span class="nv">cpt</span><span class="p">=</span>dem3.cpt
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>gmt psbasemap -R120.0/120.6/22.6/23.2 -JM15 -BWeSn -Ba -P -K --MAP_FRAME_TYPE=plain <span class="p">&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>gmt grdimage <span class="nv">%data%</span>tw_40.grd -R -JM -C<span class="nv">%cpt%</span> -I<span class="nv">%data%</span>tw_40shad.grd -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>gmt pscoast -R -JM -Df -W1 -S200/200/255 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a># 新化 右移斷
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>gmt gmtconvert <span class="nv">%data%</span>CGS_fault.gmt -S<span class="s2">&quot;Hsinhua Fault&quot;</span> <span class="p">&gt;</span> tmp
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>gmt psxy tmp -R -JM -W4,red -Sf.5/.2+r+s+p1,red -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a># 後甲里 逆移斷 西傾
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>gmt gmtconvert <span class="nv">%data%</span>CGS_fault.gmt -S<span class="s2">&quot;Houchiali Fault&quot;</span> <span class="p">&gt;</span> tmp
+<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>gmt psxy tmp -R -JM -W4,255/193/37 -Sf.4/.25+r+t+o.12+p1,255/193/37 -G255/193/37 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a># 左鎮 左移斷
+<a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a>gmt gmtconvert <span class="nv">%data%</span>CGS_fault.gmt -S<span class="s2">&quot;Tsochen Fault&quot;</span> <span class="p">&gt;</span> tmp
+<a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a>gmt psxy tmp -R -JM -Sf.7/.2+l+s+p1,255/193/37 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a>gmt gmtconvert <span class="nv">%data%</span>CGS_fault.gmt -S<span class="s2">&quot;Tsochen Fault&quot;</span> <span class="p">&gt;</span> tmp
+<a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a>gmt psxy tmp -R -JM -W4,255/193/37 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a># 小崗山 逆移斷 東傾
+<a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a>gmt gmtconvert <span class="nv">%data%</span>CGS_fault.gmt -S<span class="s2">&quot;Hsiaokangshan Fault&quot;</span> <span class="p">&gt;</span> tmp
+<a id="__codelineno-4-22" name="__codelineno-4-22" href="#__codelineno-4-22"></a>gmt psxy tmp -R -JM -W4,255/193/37 -Sf.7/.25+l+t+o.12+p1,255/193/37 -G255/193/37 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-4-23" name="__codelineno-4-23" href="#__codelineno-4-23"></a># 旗山斷層 逆移兼 東傾
+<a id="__codelineno-4-24" name="__codelineno-4-24" href="#__codelineno-4-24"></a>gmt gmtconvert <span class="nv">%data%</span>CGS_fault.gmt -S<span class="s2">&quot;Chishan Fault&quot;</span> <span class="p">&gt;</span> tmp
+<a id="__codelineno-4-25" name="__codelineno-4-25" href="#__codelineno-4-25"></a>gmt psxy tmp -R -JM -Sf.7/.25+l+t+o.12+p1,red -Gred -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-4-26" name="__codelineno-4-26" href="#__codelineno-4-26"></a>gmt gmtconvert <span class="nv">%data%</span>CGS_fault.gmt -S<span class="s2">&quot;Chishan Fault&quot;</span> <span class="p">&gt;</span> tmp
+<a id="__codelineno-4-27" name="__codelineno-4-27" href="#__codelineno-4-27"></a>gmt psxy tmp -R -JM -W4,red -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-4-28" name="__codelineno-4-28" href="#__codelineno-4-28"></a>
+<a id="__codelineno-4-29" name="__codelineno-4-29" href="#__codelineno-4-29"></a>awk <span class="s2">&quot;$4&lt;=25 {print $0}&quot;</span> fault_label_fix.dat <span class="p">|</span> <span class="se">^</span>
+<a id="__codelineno-4-30" name="__codelineno-4-30" href="#__codelineno-4-30"></a><span class="se">g</span>mt pstext -R -JM -F+f12+a -D.4/-.4 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-4-31" name="__codelineno-4-31" href="#__codelineno-4-31"></a>
+<a id="__codelineno-4-32" name="__codelineno-4-32" href="#__codelineno-4-32"></a>gmt gmtconvert -L <span class="nv">%data%</span>CGS_fault.gmt <span class="p">&gt;</span> tmp
+<a id="__codelineno-4-33" name="__codelineno-4-33" href="#__codelineno-4-33"></a>sed -i &#39;s\\<span class="s2">&quot;\\\\g&#39; tmp</span>
+<a id="__codelineno-4-34" name="__codelineno-4-34" href="#__codelineno-4-34"></a>awk <span class="s2">&quot;{print $7, $8, $2}&quot;</span> tmp <span class="p">&gt;</span> tmp2
+<a id="__codelineno-4-35" name="__codelineno-4-35" href="#__codelineno-4-35"></a>awk <span class="s2">&quot;NR !=1 {print 120.01, 23.25, $4}&quot;</span> fault_label_fix.dat <span class="p">&gt;</span> tmp1
+<a id="__codelineno-4-36" name="__codelineno-4-36" href="#__codelineno-4-36"></a>awk <span class="s2">&quot;NR==FNR{tmp1[$3]=$0; next} {$3=tmp1[$3]; print}&quot;</span> tmp2 tmp1 <span class="p">&gt;</span> tmp3
+<a id="__codelineno-4-37" name="__codelineno-4-37" href="#__codelineno-4-37"></a>awk <span class="s2">&quot;NR&gt;=19 &amp;&amp; NR &lt;=23 {print $1, $2-($5-1)*.02, $5, $3, $4}&quot;</span> tmp3 <span class="p">|</span> <span class="se">^</span>
+<a id="__codelineno-4-38" name="__codelineno-4-38" href="#__codelineno-4-38"></a><span class="se">g</span>mt pstext -R -JM -F+f12p+jML -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-4-39" name="__codelineno-4-39" href="#__codelineno-4-39"></a>
+<a id="__codelineno-4-40" name="__codelineno-4-40" href="#__codelineno-4-40"></a>gmt pscoast -R119.8/122.1/21.8/25.4 -JM3 -Df -W1 -B0 -S255 -G230 <span class="se">^</span>
+<a id="__codelineno-4-41" name="__codelineno-4-41" href="#__codelineno-4-41"></a><span class="se">-</span>X.1 -Y.1 -K -O --MAP_FRAME_TYPE=plain <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-4-42" name="__codelineno-4-42" href="#__codelineno-4-42"></a>gmt psbasemap -R -JM -D120.0/120.6/22.5/23.2 -F+p2,red -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-4-43" name="__codelineno-4-43" href="#__codelineno-4-43"></a>
+<a id="__codelineno-4-44" name="__codelineno-4-44" href="#__codelineno-4-44"></a>gmt psxy -R -J -T -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-4-45" name="__codelineno-4-45" href="#__codelineno-4-45"></a>gmt psconvert <span class="nv">%ps%</span> -Tg -A -P
+<a id="__codelineno-4-46" name="__codelineno-4-46" href="#__codelineno-4-46"></a><span class="k">del</span> tmp*
+</code></pre></div></p>
 <p>學習到的指令:
 * <code>psxy -Sf.7/.25+l+t+o.12+p1,red</code>在線段中側邊繪製一個圖案，
 用法是<mark>-Sfgap[/size][+l|+r][+b+c+f+s+t][+ooffset][+p[pen]]</mark>
@@ -1022,45 +1022,45 @@ del tmp*
 </p>
 
 <p>批次檔</p>
-<pre><code class="language-bat">set ps=11_7_population_density.ps
-set data=D:\GMT_data\
-set cpt=rainbow.cpt
-
-# population density map
-gmt psbasemap -R119.2/122.1/21.8/25.4 -JM15 -BWeSn -Ba -P -K --MAP_FRAME_TYPE=plain &gt; %ps%
-gmt grdimage %data%tw_500_119.grd -R -JM -C%cpt% -I%data%tw_500shad_119.grd -M -K -O &gt;&gt; %ps%
-gmt pscoast -R -JM -Df -Gc -K -O &gt;&gt; %ps%
-# gmt makecpt -C%cpt% -Trange.txt -D -Fr &gt; tmp.cpt
-# awk &quot;{print $0}&quot; range.txt | gmt makecpt -C%cpt% -E42 -D -Fr &gt; tmp.cpt2
-gmt psxy %data%country_popuDen_2016f.gmt -R -JM ^
--Cpopulation_density.cpt -L -K -O &gt;&gt; %ps%
-gmt psxy %data%city_2016.gmt -R -JM -W.5 -K -O &gt;&gt; %ps%
-gmt pscoast -R -JM -Df -Q -K -O &gt;&gt; %ps%
-gmt pscoast -R -JM -Df -W1 -K -O &gt;&gt; %ps%
-
-# legend set
-echo 119.2 25.4 &gt; tmp
-echo 119.2 23.9 &gt;&gt; tmp
-echo 120.2 23.9 &gt;&gt; tmp
-echo 120.4 24.2 &gt;&gt; tmp
-echo 120.4 25.4 &gt;&gt; tmp
-gmt psxy tmp -R -JM -G255 -W1 -L -K -O &gt;&gt; %ps%
-awk &quot;$1&gt;=0 &amp;&amp; $1&lt; 1000 {print $0}&quot; population_density.cpt &gt; tmp.cpt
-gmt psscale -Ctmp.cpt -R -JM -Dx1.1/12.8+w7/.5 -A -S ^
--K -O --FONT_ANNOT_PRIMARY=8p &gt;&gt; %ps%
-awk &quot;$1&gt;=1000 &amp;&amp; $1&lt; 8000 {print $0}&quot; population_density.cpt &gt; tmp.cpt
-gmt psscale -Ctmp.cpt -R -JM -Dx3.1/12.8+w7/.5 -A -S ^
--K -O --FONT_ANNOT_PRIMARY=8p &gt;&gt; %ps%
-awk &quot;$1&gt;=8000 &amp;&amp; $1&lt; 40000 {print $0}&quot; population_density.cpt &gt; tmp.cpt
-gmt psscale -Ctmp.cpt -R -JM -Dx5.1/12.8+w7/.5 -A -S ^
--K -O --FONT_ANNOT_PRIMARY=8p &gt;&gt; %ps%
-echo 119.22 24.00 Population Density (1\057km@+2@+) | ^
-gmt pstext -R -JM -F+f12,0+jML -K -O &gt;&gt; %ps%
-
-gmt psxy -R -J -T -O &gt;&gt; %ps%
-gmt psconvert %ps% -Tg -A -P
-del tmp*
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">set</span> <span class="nv">ps</span><span class="p">=</span>11_7_population_density.ps
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="k">set</span> <span class="nv">data</span><span class="p">=</span>D:\GMT_data\
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="k">set</span> <span class="nv">cpt</span><span class="p">=</span>rainbow.cpt
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a># population density map
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>gmt psbasemap -R119.2/122.1/21.8/25.4 -JM15 -BWeSn -Ba -P -K --MAP_FRAME_TYPE=plain <span class="p">&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>gmt grdimage <span class="nv">%data%</span>tw_500_119.grd -R -JM -C<span class="nv">%cpt%</span> -I<span class="nv">%data%</span>tw_500shad_119.grd -M -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>gmt pscoast -R -JM -Df -Gc -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a># gmt makecpt -C<span class="nv">%cpt%</span> -Trange.txt -D -Fr <span class="p">&gt;</span> tmp.cpt
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a># awk <span class="s2">&quot;{print $0}&quot;</span> range.txt <span class="p">|</span> gmt makecpt -C<span class="nv">%cpt%</span> -E42 -D -Fr <span class="p">&gt;</span> tmp.cpt2
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>gmt psxy <span class="nv">%data%</span>country_popuDen_2016f.gmt -R -JM <span class="se">^</span>
+<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="se">-</span>Cpopulation_density.cpt -L -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>gmt psxy <span class="nv">%data%</span>city_2016.gmt -R -JM -W.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>gmt pscoast -R -JM -Df -Q -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a>gmt pscoast -R -JM -Df -W1 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a>
+<a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a># legend set
+<a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a><span class="k">echo</span> 119.2 25.4 <span class="p">&gt;</span> tmp
+<a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a><span class="k">echo</span> 119.2 23.9 <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a><span class="k">echo</span> 120.2 23.9 <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a><span class="k">echo</span> 120.4 24.2 <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a><span class="k">echo</span> 120.4 25.4 <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-5-23" name="__codelineno-5-23" href="#__codelineno-5-23"></a>gmt psxy tmp -R -JM -G255 -W1 -L -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-5-24" name="__codelineno-5-24" href="#__codelineno-5-24"></a>awk <span class="s2">&quot;$1&gt;=0 &amp;&amp; $1&lt; 1000 {print $0}&quot;</span> population_density.cpt <span class="p">&gt;</span> tmp.cpt
+<a id="__codelineno-5-25" name="__codelineno-5-25" href="#__codelineno-5-25"></a>gmt psscale -Ctmp.cpt -R -JM -Dx1.1/12.8+w7/.5 -A -S <span class="se">^</span>
+<a id="__codelineno-5-26" name="__codelineno-5-26" href="#__codelineno-5-26"></a><span class="se">-</span>K -O --FONT_ANNOT_PRIMARY=8p <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-5-27" name="__codelineno-5-27" href="#__codelineno-5-27"></a>awk <span class="s2">&quot;$1&gt;=1000 &amp;&amp; $1&lt; 8000 {print $0}&quot;</span> population_density.cpt <span class="p">&gt;</span> tmp.cpt
+<a id="__codelineno-5-28" name="__codelineno-5-28" href="#__codelineno-5-28"></a>gmt psscale -Ctmp.cpt -R -JM -Dx3.1/12.8+w7/.5 -A -S <span class="se">^</span>
+<a id="__codelineno-5-29" name="__codelineno-5-29" href="#__codelineno-5-29"></a><span class="se">-</span>K -O --FONT_ANNOT_PRIMARY=8p <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-5-30" name="__codelineno-5-30" href="#__codelineno-5-30"></a>awk <span class="s2">&quot;$1&gt;=8000 &amp;&amp; $1&lt; 40000 {print $0}&quot;</span> population_density.cpt <span class="p">&gt;</span> tmp.cpt
+<a id="__codelineno-5-31" name="__codelineno-5-31" href="#__codelineno-5-31"></a>gmt psscale -Ctmp.cpt -R -JM -Dx5.1/12.8+w7/.5 -A -S <span class="se">^</span>
+<a id="__codelineno-5-32" name="__codelineno-5-32" href="#__codelineno-5-32"></a><span class="se">-</span>K -O --FONT_ANNOT_PRIMARY=8p <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-5-33" name="__codelineno-5-33" href="#__codelineno-5-33"></a><span class="k">echo</span> 119.22 24.00 Population Density (1\057km@+2@+) <span class="p">|</span> <span class="se">^</span>
+<a id="__codelineno-5-34" name="__codelineno-5-34" href="#__codelineno-5-34"></a><span class="se">g</span>mt pstext -R -JM -F+f12,0+jML -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-5-35" name="__codelineno-5-35" href="#__codelineno-5-35"></a>
+<a id="__codelineno-5-36" name="__codelineno-5-36" href="#__codelineno-5-36"></a>gmt psxy -R -J -T -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-5-37" name="__codelineno-5-37" href="#__codelineno-5-37"></a>gmt psconvert <span class="nv">%ps%</span> -Tg -A -P
+<a id="__codelineno-5-38" name="__codelineno-5-38" href="#__codelineno-5-38"></a><span class="k">del</span> tmp*
+</code></pre></div>
 <p>學習到的指令:</p>
 <ul>
 <li><code>#</code>符號開頭的兩行<code>makecpt ... -Trange.txt -Fr+c ...及... -E42 ...</code>。</li>

@@ -620,25 +620,25 @@
 <h2 id="83">8.3 簡介色階檔</h2>
 <p>色階的概念是將某一區段的資料用一種顏色來表示，這種技巧被應用在很多方面，像是熱影像圖、地形圖等等。
 GMT在安裝的時後，同時有提供一些色階檔作為使用，這些檔案被安裝在<mark>GMT根目錄/share/cpt</mark>，
-打開<mark>abyss.cpt</mark>，裡面的內容:</p>
-<pre><code class="language-bat">#       $Id$
-#
-# Color table for bathymetry modeled after IBCSO
-# at depth but turning lighter towards sea level.
-# Designed by P. Wessel, SOEST
-# COLOR_MODEL = RGB
--8000      black    -7000   20/30/53
--7000   20/30/53    -6000   38/60/106
--6000   38/60/106   -5000   46/80/133
--5000   46/80/133   -4000   53/99/160
--4000   53/99/160   -3000   72/151/211
--3000   72/151/211  -2000   90/185/233
--2000   90/185/233  -1000   141/210/239
--1000   141/210/239 0   245/255/255
-B black
-F white
-N gray
-</code></pre>
+打開<mark>abyss.cpt</mark>，裡面的內容:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>#       $Id$
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>#
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a># Color table for bathymetry modeled after IBCSO
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a># at depth but turning lighter towards sea level.
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a># Designed by P. Wessel, SOEST
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a># COLOR_MODEL = RGB
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>-8000      black    -7000   20/30/53
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>-7000   20/30/53    -6000   38/60/106
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>-6000   38/60/106   -5000   46/80/133
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>-5000   46/80/133   -4000   53/99/160
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>-4000   53/99/160   -3000   72/151/211
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>-3000   72/151/211  -2000   90/185/233
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>-2000   90/185/233  -1000   141/210/239
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>-1000   141/210/239 0   245/255/255
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>B black
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>F white
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>N gray
+</code></pre></div></p>
 <p>一開始<code>#</code>之後的文字為註解，通常會紀錄設計者名稱、設計目的、使用的顏色模型，接著檔案的格式為四欄，
 第一欄是起始範圍；第二欄色碼；第三欄是結束範圍；第四欄色碼，所以在-8000至-7000就是以黑色來表示，
 在檔案的最下面<strong>B</strong>、<strong>F</strong>、<strong>N</strong>分別代表背景色(Background color)、前景色(Foreground color)及無值的顏色(NaN color)，
@@ -651,28 +651,28 @@ N gray
 <p>圖中列出44個GMT預設提供的色階檔(GMT version 5.4.2)，將每個色階做正規化的步驟，上方色階代表顏色連續的色階檔，
 下方則是顏色離散的色階檔(間隔0.25)，如果原始的色階檔就不連續，那做出來就是不連續的色階檔。
 而兩者檔案中，有什麼差別呢？</p>
-<pre><code class="language-bat"># 不連續的色階
-0   166/206/227 1   166/206/227
-1   31/120/180  2   31/120/180
-
-# 連續的色階
-0   38/60/106   1 46/80/133
-1   46/80/133   2 53/99/160
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a># 不連續的色階
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>0   166/206/227 1   166/206/227
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>1   31/120/180  2   31/120/180
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a># 連續的色階
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>0   38/60/106   1 46/80/133
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>1   46/80/133   2 53/99/160
+</code></pre></div>
 <p>有看出差別了嗎？在不連續的色階中，0~1都是用同一種顏色，而連續的色階中0~1是不同顏色，而接續下去1~2也是如此，
 GMT就是用這種方式，來區分二者的差異。接下來，示範如何用<code>makecpt</code>來製作色階檔。自己手動編輯色階檔也是可以，
 但需要對顏色的敏感度非常好，時常色階檔的製作，都是利用現成的檔案進行範圍的改寫。</p>
-<pre><code class="language-bat">makecpt -Ccool.cpt -T0/50/10 -D -Z &gt; tmp.cpt
-# 產生的tmp.cpt內容如下
-0   cyan    10  51/204/255
-10  51/204/255  20  102/153/255
-20  102/153/255 30  153/102/255
-30  153/102/255 40  204/51/255
-40  204/51/255  50  magenta
-B   cyan
-F   magenta
-N   127.5
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>makecpt -Ccool.cpt -T0/50/10 -D -Z <span class="p">&gt;</span> tmp.cpt
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a># 產生的tmp.cpt內容如下
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>0   cyan    10  51/204/255
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>10  51/204/255  20  102/153/255
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>20  102/153/255 30  153/102/255
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>30  153/102/255 40  204/51/255
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>40  204/51/255  50  magenta
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>B   cyan
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>F   magenta
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>N   127.5
+</code></pre></div>
 <p>學習到的指令:</p>
 <ul>
 <li><code>makecpt</code>:</li>
@@ -702,36 +702,36 @@ N   127.5
 </p>
 
 <p>批次檔</p>
-<pre><code class="language-bat">set ps=8_4_yangmingShan.ps
-set cpt=dem1.cpt
-
-# 1. use default dem1.cpt
-gmt grdimage yangmingShan.grd -R121.27/121.85/25.05/25.35 -JM13 -BWeSn -Ba ^
--C%cpt% -P -Y21 -K &gt; %ps%
-gmt pscoast -R -JM -Df -W1 -S34/201/237 -K -O &gt;&gt; %ps%
-gmt psscale -C%cpt% -Dx14/0+w7/.5+e -Ba100+l&quot;Elevation (m)&quot; -K -O &gt;&gt; %ps%
-echo 121.3 25.32 1. | gmt pstext -R -JM -F+f24p -G250 -K -O &gt;&gt; %ps%
-
-# 2. discrete 0~1200 dem1.cpt
-makecpt -C%cpt% -T0/1200/100 &gt; tmp.cpt
-gmt grdimage yangmingShan.grd -R -JM -BWeSn -Ba -Ctmp.cpt ^
--M -Y-9 -K -O &gt;&gt; %ps%
-gmt pscoast -R -JM -Df -W1 -S34/201/237 -K -O &gt;&gt; %ps%
-gmt psscale -Ctmp.cpt -Dx14/0+w7/.5 -Ba200+l&quot;Elevation (m)&quot; -M -K -O &gt;&gt; %ps%
-echo 121.3 25.32 2. | gmt pstext -R -JM -F+f24p -G250 -K -O &gt;&gt; %ps%
-
-# 3. continuous 200~1200 dem1.cpt
-makecpt -C%cpt% -T0/1200/100 -Z &gt; tmp.cpt
-gmt grdclip yangmingShan.grd -R -Sb200/NaN -Gtmp.grd
-gmt grdimage tmp.grd -R -JM -BWeSn -Ba -Ctmp.cpt -Q -Y-9 -K -O &gt;&gt; %ps%
-gmt pscoast -R -JM -Df -W1 -S34/201/237 -K -O &gt;&gt; %ps%
-gmt psscale -Ctmp.cpt -Dx14/0+w7/.5 -Ba200+l&quot;Elevation (m)&quot; -I -K -O &gt;&gt; %ps%
-echo 121.3 25.32 3. | gmt pstext -R -JM -F+f24p -G250 -K -O &gt;&gt; %ps%
-
-gmt psxy -R -JM -T -O &gt;&gt; %ps%
-gmt psconvert %ps% -Tg -A -P
-del tmp*
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">set</span> <span class="nv">ps</span><span class="p">=</span>8_4_yangmingShan.ps
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="k">set</span> <span class="nv">cpt</span><span class="p">=</span>dem1.cpt
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a># 1. use default dem1.cpt
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>gmt grdimage yangmingShan.grd -R121.27/121.85/25.05/25.35 -JM13 -BWeSn -Ba <span class="se">^</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="se">-</span>C<span class="nv">%cpt%</span> -P -Y21 -K <span class="p">&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>gmt pscoast -R -JM -Df -W1 -S34/201/237 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>gmt psscale -C<span class="nv">%cpt%</span> -Dx14/0+w7/.5+e -Ba100+l<span class="s2">&quot;Elevation (m)&quot;</span> -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="k">echo</span> 121.3 25.32 1. <span class="p">|</span> gmt pstext -R -JM -F+f24p -G250 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a># 2. discrete 0~1200 dem1.cpt
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>makecpt -C<span class="nv">%cpt%</span> -T0/1200/100 <span class="p">&gt;</span> tmp.cpt
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>gmt grdimage yangmingShan.grd -R -JM -BWeSn -Ba -Ctmp.cpt <span class="se">^</span>
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="se">-</span>M -Y-9 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>gmt pscoast -R -JM -Df -W1 -S34/201/237 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>gmt psscale -Ctmp.cpt -Dx14/0+w7/.5 -Ba200+l<span class="s2">&quot;Elevation (m)&quot;</span> -M -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="k">echo</span> 121.3 25.32 2. <span class="p">|</span> gmt pstext -R -JM -F+f24p -G250 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>
+<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a># 3. continuous 200~1200 dem1.cpt
+<a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a>makecpt -C<span class="nv">%cpt%</span> -T0/1200/100 -Z <span class="p">&gt;</span> tmp.cpt
+<a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a>gmt grdclip yangmingShan.grd -R -Sb200/NaN -Gtmp.grd
+<a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a>gmt grdimage tmp.grd -R -JM -BWeSn -Ba -Ctmp.cpt -Q -Y-9 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a>gmt pscoast -R -JM -Df -W1 -S34/201/237 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a>gmt psscale -Ctmp.cpt -Dx14/0+w7/.5 -Ba200+l<span class="s2">&quot;Elevation (m)&quot;</span> -I -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a><span class="k">echo</span> 121.3 25.32 3. <span class="p">|</span> gmt pstext -R -JM -F+f24p -G250 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a>
+<a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a>gmt psxy -R -JM -T -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a>gmt psconvert <span class="nv">%ps%</span> -Tg -A -P
+<a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a><span class="k">del</span> tmp*
+</code></pre></div>
 <p>本節學習到的新指令:</p>
 <p><mark>1</mark> 繪製地形圖</p>
 <ul>
@@ -801,38 +801,38 @@ del tmp*
   <img src="/fig/8_5_ryukyu_trench_n_1.png"/>
 </p>
 
-<p>批次檔</p>
-<pre><code class="language-bat">set ps=8_5_ryukyu_trench_n.ps
-set data=D:\GMT_data\
-set dcpt=colomia_d.cpt
-set ucpt=colomia_u.cpt
-
-# 1. Bathymetry
-gmt grdinfo %data%ETOPO1_Bed_g_gmt5.grd -R121.2/132.0/22.88/31.0 -C -I1 &gt; tmp
-for /f %%i in ('awk &quot;{print $6}&quot; tmp') do set minz=%%i
-gmt makecpt -C%dcpt% -T%minz%/0/1000 -D -Z &gt; tmp.cpt
-# grdinfo %data%ETOPO1_Bed_g_gmt5.grd -R -T500 &gt; tmp
-# set /p T=&lt;tmp
-# makecpt -C%cpt% %T% -Z &gt; tmp.cpt
-gmt grdimage %data%ETOPO1_Bed_g_gmt5.grd -R -JM17 -BWeSn -Ba ^
--Ctmp.cpt -K &gt; %ps%
-gmt psscale -Ctmp.cpt -Dx19/1.5+w10/.5+e+ml -Bxa1000+l&quot;Bathymetry&quot; -By+l&quot;m&quot; -K -O &gt;&gt; %ps%
-
-# 2. Topography
-gmt pscoast -R -JM -Di -W1 -G189/204/150 -K -O &gt;&gt; %ps%
-gmt pscoast -R -JM -Df -Gc -K -O &gt;&gt; %ps%
-gmt grdinfo %data%tw_40.grd -R -C -I1 &gt; tmp
-for /f %%i in ('awk &quot;{print $7}&quot; tmp') do set maxz=%%i
-gmt makecpt -C%ucpt% -T0/%maxz%/500 -D -Z &gt; tmp.cpt
-# gmt grd2cpt %data%tw_40.grd -C%cpt% -R &gt; tmp.cpt
-gmt grdimage %data%tw_40.grd -R -JM -Ctmp.cpt -K -O &gt;&gt; %ps%
-gmt pscoast -R -JM -Df -Q -K -O &gt;&gt; %ps%
-gmt psscale -Ctmp.cpt -Dx22.5/1.5+w10/.5+e+ml -Bxa500+l&quot;Topography&quot; -By+l&quot;m&quot; -K -O &gt;&gt; %ps%
-
-gmt psxy -R -JM -T -O &gt;&gt; %ps%
-gmt psconvert %ps% -Tg -A -P
-del tmp*
-</code></pre>
+<p>批次檔
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">set</span> <span class="nv">ps</span><span class="p">=</span>8_5_ryukyu_trench_n.ps
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="k">set</span> <span class="nv">data</span><span class="p">=</span>D:\GMT_data\
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="k">set</span> <span class="nv">dcpt</span><span class="p">=</span>colomia_d.cpt
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="k">set</span> <span class="nv">ucpt</span><span class="p">=</span>colomia_u.cpt
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a># 1. Bathymetry
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>gmt grdinfo <span class="nv">%data%</span>ETOPO1_Bed_g_gmt5.grd -R121.2/132.0/22.88/31.0 -C -I1 <span class="p">&gt;</span> tmp
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="k">for</span> <span class="k">/f</span> <span class="se">%%</span>i <span class="k">in</span> <span class="p">(</span><span class="s1">&#39;awk &quot;{print $6}&quot; tmp&#39;</span><span class="p">)</span> <span class="k">do</span> <span class="k">set</span> <span class="nv">minz</span><span class="p">=</span><span class="se">%%</span>i
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>gmt makecpt -C<span class="nv">%dcpt%</span> -T<span class="nv">%minz%</span>/0/1000 -D -Z <span class="p">&gt;</span> tmp.cpt
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a># grdinfo <span class="nv">%data%</span>ETOPO1_Bed_g_gmt5.grd -R -T500 <span class="p">&gt;</span> tmp
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a># set /p T=<span class="p">&lt;</span>tmp
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a># makecpt -C<span class="nv">%cpt%</span> <span class="nv">%T%</span> -Z <span class="p">&gt;</span> tmp.cpt
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>gmt grdimage <span class="nv">%data%</span>ETOPO1_Bed_g_gmt5.grd -R -JM17 -BWeSn -Ba <span class="se">^</span>
+<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a><span class="se">-</span>Ctmp.cpt -K <span class="p">&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a>gmt psscale -Ctmp.cpt -Dx19/1.5+w10/.5+e+ml -Bxa1000+l<span class="s2">&quot;Bathymetry&quot;</span> -By+l<span class="s2">&quot;m&quot;</span> -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a>
+<a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a># 2. Topography
+<a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a>gmt pscoast -R -JM -Di -W1 -G189/204/150 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a>gmt pscoast -R -JM -Df -Gc -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a>gmt grdinfo <span class="nv">%data%</span>tw_40.grd -R -C -I1 <span class="p">&gt;</span> tmp
+<a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a><span class="k">for</span> <span class="k">/f</span> <span class="se">%%</span>i <span class="k">in</span> <span class="p">(</span><span class="s1">&#39;awk &quot;{print $7}&quot; tmp&#39;</span><span class="p">)</span> <span class="k">do</span> <span class="k">set</span> <span class="nv">maxz</span><span class="p">=</span><span class="se">%%</span>i
+<a id="__codelineno-4-22" name="__codelineno-4-22" href="#__codelineno-4-22"></a>gmt makecpt -C<span class="nv">%ucpt%</span> -T0/<span class="nv">%maxz%</span>/500 -D -Z <span class="p">&gt;</span> tmp.cpt
+<a id="__codelineno-4-23" name="__codelineno-4-23" href="#__codelineno-4-23"></a># gmt grd2cpt <span class="nv">%data%</span>tw_40.grd -C<span class="nv">%cpt%</span> -R <span class="p">&gt;</span> tmp.cpt
+<a id="__codelineno-4-24" name="__codelineno-4-24" href="#__codelineno-4-24"></a>gmt grdimage <span class="nv">%data%</span>tw_40.grd -R -JM -Ctmp.cpt -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-4-25" name="__codelineno-4-25" href="#__codelineno-4-25"></a>gmt pscoast -R -JM -Df -Q -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-4-26" name="__codelineno-4-26" href="#__codelineno-4-26"></a>gmt psscale -Ctmp.cpt -Dx22.5/1.5+w10/.5+e+ml -Bxa500+l<span class="s2">&quot;Topography&quot;</span> -By+l<span class="s2">&quot;m&quot;</span> -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-4-27" name="__codelineno-4-27" href="#__codelineno-4-27"></a>
+<a id="__codelineno-4-28" name="__codelineno-4-28" href="#__codelineno-4-28"></a>gmt psxy -R -JM -T -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-4-29" name="__codelineno-4-29" href="#__codelineno-4-29"></a>gmt psconvert <span class="nv">%ps%</span> -Tg -A -P
+<a id="__codelineno-4-30" name="__codelineno-4-30" href="#__codelineno-4-30"></a><span class="k">del</span> tmp*
+</code></pre></div></p>
 <p>本節學習的新指令:</p>
 <p><mark>1</mark>繪製海底地形</p>
 <ul>
@@ -865,8 +865,8 @@ del tmp*
 如果單純使用一種，可以直接使用該指令。GMT提供了多種方式來獲取網格檔的訊息，以及提供方便的<code>grd2cpt</code>指令，
 列出這些的使用方法，供作參考。</p>
 <p>接下來，將介紹陰影檔的製作方式，使用的指令是<code>grdgradient</code>，範例如下:</p>
-<pre><code class="language-bat">grdgradient ETOPO1_Bed_g_gmt5.grd -Nt1 -A300 -GETOPO1_Bed_g_gmt5_shad.grd
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>grdgradient ETOPO1_Bed_g_gmt5.grd -Nt1 -A300 -GETOPO1_Bed_g_gmt5_shad.grd
+</code></pre></div>
 <p>本節學習的新指令:</p>
 <ul>
 <li><code>grdgradient</code>從網格檔計算方向導數或梯度</li>

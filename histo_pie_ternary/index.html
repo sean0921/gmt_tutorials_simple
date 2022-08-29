@@ -628,23 +628,23 @@
   <img src="/fig/12_3_population_histo_1.png"/>
 </p>
 
-<p>批次檔</p>
-<pre><code class="language-bat">set ps=12_3_population_histo.ps
-set cpt=haxby.cpt
-
-gmt makecpt -C%cpt% -T0/100/5 -D &gt; tmp.cpt
-
-# histogram
-gmt pshistogram population_2016_b.dat -R0/102.5/0/1.3e6 -JX-12/15 ^
--BWeS+t&quot;2016 Taiwan Age Distribution&quot; -Bxa20f10+l&quot;Age&quot; -Bya+l&quot;Male&quot; ^
--A -Ctmp.cpt -D+o-1.7 -W5 -L0.5 -K &gt; %ps%
-gmt pshistogram population_2016_g.dat -R -JX12/15 ^
--BS -Bxa -Bya+l&quot;Female&quot; -A -Ctmp.cpt -D -W5 -L0.5 -X12 -K -O &gt;&gt; %ps%
-
-gmt psxy -R -J -T -O &gt;&gt; %ps%
-gmt psconvert %ps% -Tg -A -P
-del tmp*
-</code></pre>
+<p>批次檔
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">set</span> <span class="nv">ps</span><span class="p">=</span>12_3_population_histo.ps
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="k">set</span> <span class="nv">cpt</span><span class="p">=</span>haxby.cpt
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>gmt makecpt -C<span class="nv">%cpt%</span> -T0/100/5 -D <span class="p">&gt;</span> tmp.cpt
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a># histogram
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>gmt pshistogram population_2016_b.dat -R0/102.5/0/1.3e6 -JX-12/15 <span class="se">^</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="se">-</span>BWeS+t<span class="s2">&quot;2016 Taiwan Age Distribution&quot;</span> -Bxa20f10+l<span class="s2">&quot;Age&quot;</span> -Bya+l<span class="s2">&quot;Male&quot;</span> <span class="se">^</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="se">-</span>A -Ctmp.cpt -D+o-1.7 -W5 -L0.5 -K <span class="p">&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>gmt pshistogram population_2016_g.dat -R -JX12/15 <span class="se">^</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="se">-</span>BS -Bxa -Bya+l<span class="s2">&quot;Female&quot;</span> -A -Ctmp.cpt -D -W5 -L0.5 -X12 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>gmt psxy -R -J -T -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>gmt psconvert <span class="nv">%ps%</span> -Tg -A -P
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="k">del</span> tmp*
+</code></pre></div></p>
 <p>學習到的指令:</p>
 <ul>
 <li><code>pshistogram</code>繪製直方圖。</li>
@@ -700,29 +700,29 @@ del tmp*
   <img src="/fig/12_4_visitor_residence_1.png"/>
 </p>
 
-<p>批次檔</p>
-<pre><code class="language-bat">set ps=12_4_visitor_residence.ps
-set cpt=categorical.cpt
-
-# gmt makecpt -C%cpt% -T0/39/1 -Fr &gt; tmp.cpt
-
-# pie chart
-echo 10 10 0 360 | gmt psxy -R0/20/0/20 -JX15 -SW14 -W3 -K &gt; %ps%
-gmt psxy visitor_2016.gmt -R -JX -Cvisitor.cpt -SW14 -K -O &gt;&gt; %ps%
-awk &quot;NR==1 {print 14,13,$6}&quot; visitor_2016.gmt | ^
-gmt pstext -R -JX -F+f14p,1 -N -K -O &gt;&gt; %ps%
-awk &quot;NR==2 {print 13,5,$6}&quot; visitor_2016.gmt | ^
-gmt pstext -R -JX -F+f14p,1 -N -K -O &gt;&gt; %ps%
-awk &quot;NR==3 {print 7,5,$6}&quot; visitor_2016.gmt | ^
-gmt pstext -R -JX -F+f14p,1 -N -K -O &gt;&gt; %ps%
-awk &quot;{sum += $6} END {print 15,1,&quot;&quot;Total:&quot;&quot;&quot;&quot;,sum}&quot; visitor_2016.gmt | ^
-gmt pstext -R -JX -F+f16p,1+jML -N -K -O &gt;&gt; %ps%
-gmt psscale -R -JX -Cvisitor.cpt -D22/0+w15/1.2 -K -O &gt;&gt; %ps%
-
-gmt psxy -R -J -T -O &gt;&gt; %ps%
-gmt psconvert %ps% -Tg -A -P
-del tmp*
-</code></pre>
+<p>批次檔
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">set</span> <span class="nv">ps</span><span class="p">=</span>12_4_visitor_residence.ps
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">set</span> <span class="nv">cpt</span><span class="p">=</span>categorical.cpt
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a># gmt makecpt -C<span class="nv">%cpt%</span> -T0/39/1 -Fr <span class="p">&gt;</span> tmp.cpt
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a># pie chart
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="k">echo</span> 10 10 0 360 <span class="p">|</span> gmt psxy -R0/20/0/20 -JX15 -SW14 -W3 -K <span class="p">&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>gmt psxy visitor_2016.gmt -R -JX -Cvisitor.cpt -SW14 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>awk <span class="s2">&quot;NR==1 {print 14,13,$6}&quot;</span> visitor_2016.gmt <span class="p">|</span> <span class="se">^</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="se">g</span>mt pstext -R -JX -F+f14p,1 -N -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>awk <span class="s2">&quot;NR==2 {print 13,5,$6}&quot;</span> visitor_2016.gmt <span class="p">|</span> <span class="se">^</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="se">g</span>mt pstext -R -JX -F+f14p,1 -N -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>awk <span class="s2">&quot;NR==3 {print 7,5,$6}&quot;</span> visitor_2016.gmt <span class="p">|</span> <span class="se">^</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="se">g</span>mt pstext -R -JX -F+f14p,1 -N -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>awk <span class="s2">&quot;{sum += $6} END {print 15,1,&quot;&quot;Total:&quot;&quot;&quot;&quot;,sum}&quot;</span> visitor_2016.gmt <span class="p">|</span> <span class="se">^</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="se">g</span>mt pstext -R -JX -F+f16p,1+jML -N -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>gmt psscale -R -JX -Cvisitor.cpt -D22/0+w15/1.2 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>gmt psxy -R -J -T -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>gmt psconvert <span class="nv">%ps%</span> -Tg -A -P
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="k">del</span> tmp*
+</code></pre></div></p>
 <p>學習到的指令:</p>
 <ul>
 <li><code>makecpt</code>製作色階檔，最常用於分類的色階檔為<mark>categorical.cpt</mark>，
@@ -750,63 +750,63 @@ GMT在圓餅圖上的功能甚少，但還是製作示範供大家參考。</p>
   <img src="/fig/12_5_volcano_compo_1.png"/>
 </p>
 
-<p>批次檔</p>
-<pre><code class="language-bat">set ps=12_5_volcano_compo.ps
-
-# ternary diagram
-gmt gmtconvert volcano_composition.dat -S&quot;ctranew_york_kimberlites&quot; | ^
-awk &quot;NR!=1{print $2,$3,$4}&quot; | ^
-gmt psternary -R0/35/0/50/0/50 -JX15 -Baag+l&quot;Weight Percent (\045)&quot; ^
--Bbag -Bcag -B+g20 -LAl@-2@-O@-3@-/CaO/MgO -Sa.3 -G102/121.13/255 ^
--P -Xc -Y5 -K --MAP_GRID_PEN_PRIMARY=.25p,230 &gt; %ps%
-
-gmt gmtconvert volcano_composition.dat -S&quot;ETNA_SICILY&quot; | ^
-awk &quot;NR!=1 {print $2,$3,$4}&quot; | ^
-gmt psternary -R -JX -Ba -Sc.3 -G102/235.88/255 -K -O &gt;&gt; %ps%
-
-gmt gmtconvert volcano_composition.dat -S&quot;HYBLEAN_OR_IBLEAN_PLATEAU&quot; | ^
-awk &quot;NR!=1 {print $2,$3,$4}&quot; | ^
-gmt psternary -R -JX -Ba -St.3 -G102/255/159.38 -K -O &gt;&gt; %ps%
-
-gmt gmtconvert volcano_composition.dat -S&quot;NUEVO_LEON&quot; | ^
-awk &quot;NR!=1 {print $2,$3,$4}&quot; | ^
-gmt psternary -R -JX -Ba -Ss.3 -G159.38/255/102 -K -O &gt;&gt; %ps%
-
-gmt gmtconvert volcano_composition.dat -S&quot;OAXACA&quot; | ^
-awk &quot;NR!=1 {print $2,$3,$4}&quot; | ^
-gmt psternary -R -JX -Ba -Sd.3 -G255/232.69/165.75 -K -O &gt;&gt; %ps%
-
-gmt gmtconvert volcano_composition.dat -S&quot;POTIGUAR_BASIN&quot; | ^
-awk &quot;NR!=1 {print $2,$3,$4}&quot; | ^
-gmt psternary -R -JX -Ba -Sn.3 -G255/188.06/165.75 -K -O &gt;&gt; %ps%
-
-gmt gmtconvert volcano_composition.dat -S&quot;TAMAULIPAS&quot; | ^
-awk &quot;NR!=1 {print $2,$3,$4}&quot; | ^
-gmt psternary -R -JX -Ba -Sh.3 -G255/175.31/190.25 -K -O &gt;&gt; %ps%
-
-gmt gmtconvert volcano_composition.dat -S&quot;USTICA_ISLAND&quot; | ^
-awk &quot;NR!=1 {print $2,$3,$4}&quot; | ^
-gmt psternary -R -JX -Ba -Sg.3 -G255/194.44/228.5 -K -O &gt;&gt; %ps%
-
-# legend set
-echo H 16 1 Legend &gt; tmp
-echo D 0.4 1p &gt;&gt; tmp
-echo G .2 &gt;&gt; tmp
-echo S .4 a .4 102/121.13/255 0 .8 ctranew_york_kimberlites &gt;&gt; tmp
-echo S .4 c .4 102/235.88/255 0 .8 ETNA_SICILY &gt;&gt; tmp
-echo S .4 t .4 102/255/159.38 0 .8 HYBLEAN_OR_IBLEAN_PLATEAU &gt;&gt; tmp
-echo S .4 s .4 159.38/255/102 0 .8 NUEVO_LEON &gt;&gt; tmp
-echo S .4 d .4 255/232.69/165.75 0 .8 OAXACA &gt;&gt; tmp
-echo S .4 n .4 255/188.06/165.75 0 .8 POTIGUAR_BASIN &gt;&gt; tmp
-echo S .4 h .4 255/175.31/190.25 0 .8 TAMAULIPAS &gt;&gt; tmp
-echo S .4 g .4 255/194.44/228.5 0 .8 USTICA_ISLAND &gt;&gt; tmp
-gmt pslegend tmp -R0/1/0/1 -JX -C.1/.1 -Dx-2/9+w7.8 -F+g240+p1+s4p/-4p/gray50 ^
---FONT_ANNOT_PRIMARY=12p -K -O &gt;&gt; %ps%
-
-gmt psxy -R -J -T -O &gt;&gt; %ps%
-gmt psconvert %ps% -Tg -A -P
-del tmp*
-</code></pre>
+<p>批次檔
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">set</span> <span class="nv">ps</span><span class="p">=</span>12_5_volcano_compo.ps
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a># ternary diagram
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>gmt gmtconvert volcano_composition.dat -S<span class="s2">&quot;ctranew_york_kimberlites&quot;</span> <span class="p">|</span> <span class="se">^</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="se">a</span>wk <span class="s2">&quot;NR!=1{print $2,$3,$4}&quot;</span> <span class="p">|</span> <span class="se">^</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="se">g</span>mt psternary -R0/35/0/50/0/50 -JX15 -Baag+l<span class="s2">&quot;Weight Percent (\045)&quot;</span> <span class="se">^</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="se">-</span>Bbag -Bcag -B+g20 -LAl@-2@-O@-3@-/CaO/MgO -Sa.3 -G102/121.13/255 <span class="se">^</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="se">-</span>P -Xc -Y5 -K --MAP_GRID_PEN_PRIMARY=.25p,230 <span class="p">&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>gmt gmtconvert volcano_composition.dat -S<span class="s2">&quot;ETNA_SICILY&quot;</span> <span class="p">|</span> <span class="se">^</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="se">a</span>wk <span class="s2">&quot;NR!=1 {print $2,$3,$4}&quot;</span> <span class="p">|</span> <span class="se">^</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="se">g</span>mt psternary -R -JX -Ba -Sc.3 -G102/235.88/255 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>gmt gmtconvert volcano_composition.dat -S<span class="s2">&quot;HYBLEAN_OR_IBLEAN_PLATEAU&quot;</span> <span class="p">|</span> <span class="se">^</span>
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="se">a</span>wk <span class="s2">&quot;NR!=1 {print $2,$3,$4}&quot;</span> <span class="p">|</span> <span class="se">^</span>
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="se">g</span>mt psternary -R -JX -Ba -St.3 -G102/255/159.38 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>gmt gmtconvert volcano_composition.dat -S<span class="s2">&quot;NUEVO_LEON&quot;</span> <span class="p">|</span> <span class="se">^</span>
+<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a><span class="se">a</span>wk <span class="s2">&quot;NR!=1 {print $2,$3,$4}&quot;</span> <span class="p">|</span> <span class="se">^</span>
+<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a><span class="se">g</span>mt psternary -R -JX -Ba -Ss.3 -G159.38/255/102 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a>
+<a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a>gmt gmtconvert volcano_composition.dat -S<span class="s2">&quot;OAXACA&quot;</span> <span class="p">|</span> <span class="se">^</span>
+<a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a><span class="se">a</span>wk <span class="s2">&quot;NR!=1 {print $2,$3,$4}&quot;</span> <span class="p">|</span> <span class="se">^</span>
+<a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a><span class="se">g</span>mt psternary -R -JX -Ba -Sd.3 -G255/232.69/165.75 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a>
+<a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a>gmt gmtconvert volcano_composition.dat -S<span class="s2">&quot;POTIGUAR_BASIN&quot;</span> <span class="p">|</span> <span class="se">^</span>
+<a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a><span class="se">a</span>wk <span class="s2">&quot;NR!=1 {print $2,$3,$4}&quot;</span> <span class="p">|</span> <span class="se">^</span>
+<a id="__codelineno-2-28" name="__codelineno-2-28" href="#__codelineno-2-28"></a><span class="se">g</span>mt psternary -R -JX -Ba -Sn.3 -G255/188.06/165.75 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-29" name="__codelineno-2-29" href="#__codelineno-2-29"></a>
+<a id="__codelineno-2-30" name="__codelineno-2-30" href="#__codelineno-2-30"></a>gmt gmtconvert volcano_composition.dat -S<span class="s2">&quot;TAMAULIPAS&quot;</span> <span class="p">|</span> <span class="se">^</span>
+<a id="__codelineno-2-31" name="__codelineno-2-31" href="#__codelineno-2-31"></a><span class="se">a</span>wk <span class="s2">&quot;NR!=1 {print $2,$3,$4}&quot;</span> <span class="p">|</span> <span class="se">^</span>
+<a id="__codelineno-2-32" name="__codelineno-2-32" href="#__codelineno-2-32"></a><span class="se">g</span>mt psternary -R -JX -Ba -Sh.3 -G255/175.31/190.25 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-33" name="__codelineno-2-33" href="#__codelineno-2-33"></a>
+<a id="__codelineno-2-34" name="__codelineno-2-34" href="#__codelineno-2-34"></a>gmt gmtconvert volcano_composition.dat -S<span class="s2">&quot;USTICA_ISLAND&quot;</span> <span class="p">|</span> <span class="se">^</span>
+<a id="__codelineno-2-35" name="__codelineno-2-35" href="#__codelineno-2-35"></a><span class="se">a</span>wk <span class="s2">&quot;NR!=1 {print $2,$3,$4}&quot;</span> <span class="p">|</span> <span class="se">^</span>
+<a id="__codelineno-2-36" name="__codelineno-2-36" href="#__codelineno-2-36"></a><span class="se">g</span>mt psternary -R -JX -Ba -Sg.3 -G255/194.44/228.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-37" name="__codelineno-2-37" href="#__codelineno-2-37"></a>
+<a id="__codelineno-2-38" name="__codelineno-2-38" href="#__codelineno-2-38"></a># legend set
+<a id="__codelineno-2-39" name="__codelineno-2-39" href="#__codelineno-2-39"></a><span class="k">echo</span> H 16 1 Legend <span class="p">&gt;</span> tmp
+<a id="__codelineno-2-40" name="__codelineno-2-40" href="#__codelineno-2-40"></a><span class="k">echo</span> D 0.4 1p <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-2-41" name="__codelineno-2-41" href="#__codelineno-2-41"></a><span class="k">echo</span> G .2 <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-2-42" name="__codelineno-2-42" href="#__codelineno-2-42"></a><span class="k">echo</span> S .4 a .4 102/121.13/255 0 .8 ctranew_york_kimberlites <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-2-43" name="__codelineno-2-43" href="#__codelineno-2-43"></a><span class="k">echo</span> S .4 c .4 102/235.88/255 0 .8 ETNA_SICILY <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-2-44" name="__codelineno-2-44" href="#__codelineno-2-44"></a><span class="k">echo</span> S .4 t .4 102/255/159.38 0 .8 HYBLEAN_OR_IBLEAN_PLATEAU <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-2-45" name="__codelineno-2-45" href="#__codelineno-2-45"></a><span class="k">echo</span> S .4 s .4 159.38/255/102 0 .8 NUEVO_LEON <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-2-46" name="__codelineno-2-46" href="#__codelineno-2-46"></a><span class="k">echo</span> S .4 d .4 255/232.69/165.75 0 .8 OAXACA <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-2-47" name="__codelineno-2-47" href="#__codelineno-2-47"></a><span class="k">echo</span> S .4 n .4 255/188.06/165.75 0 .8 POTIGUAR_BASIN <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-2-48" name="__codelineno-2-48" href="#__codelineno-2-48"></a><span class="k">echo</span> S .4 h .4 255/175.31/190.25 0 .8 TAMAULIPAS <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-2-49" name="__codelineno-2-49" href="#__codelineno-2-49"></a><span class="k">echo</span> S .4 g .4 255/194.44/228.5 0 .8 USTICA_ISLAND <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-2-50" name="__codelineno-2-50" href="#__codelineno-2-50"></a>gmt pslegend tmp -R0/1/0/1 -JX -C.1/.1 -Dx-2/9+w7.8 -F+g240+p1+s4p/-4p/gray50 <span class="se">^</span>
+<a id="__codelineno-2-51" name="__codelineno-2-51" href="#__codelineno-2-51"></a><span class="se">-</span>-FONT_ANNOT_PRIMARY=12p -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-52" name="__codelineno-2-52" href="#__codelineno-2-52"></a>
+<a id="__codelineno-2-53" name="__codelineno-2-53" href="#__codelineno-2-53"></a>gmt psxy -R -J -T -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-54" name="__codelineno-2-54" href="#__codelineno-2-54"></a>gmt psconvert <span class="nv">%ps%</span> -Tg -A -P
+<a id="__codelineno-2-55" name="__codelineno-2-55" href="#__codelineno-2-55"></a><span class="k">del</span> tmp*
+</code></pre></div></p>
 <p>學習到的指令:</p>
 <ul>
 <li><code>psternary</code>繪製三元圖。對應的輸入格式是<mark>資料一 資料二 資料三 量值</mark></li>

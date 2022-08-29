@@ -550,9 +550,9 @@
 <li>MAC: 可在Applications/Utilities/下找到<mark>Terminal.app</mark>。</li>
 </ul>
 <p>為了避免與其他指令混用，自GMT5之後，GMT的指令輸入格式如下:</p>
-<pre><code class="language-bat">GMT [options]
-GMT &lt;module name&gt; [&lt;module-options&gt;]
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>GMT [options]
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>GMT <span class="p">&lt;</span>module name<span class="p">&gt;</span> [<span class="p">&lt;</span>module-options<span class="p">&gt;</span>]
+</code></pre></div>
 <p><mark>options</mark>代表GMT的基本設定，例如<code>gmt --show-bindir</code>顯示執行檔的資料夾，
 或是<code>gmt --version</code>告訴你當前執行環境下GMT的版本。
 <mark>module name</mark>表示你用來製圖的模組，像是<strong>psxy</strong>(畫圖形)、<strong>pstext</strong>(寫字)等等，
@@ -584,19 +584,21 @@ GMT &lt;module name&gt; [&lt;module-options&gt;]
 <p>GMT在畫圖上有一些預設的設定，像是圖框種類、時間單位、長度單位等等，可以透過輸入<code>gmt gmtset</code>，
 會產生<mark>gmt.conf</mark>檔案，將檔案用編輯器打開後，可以看各種參數的預設值，如果要修改有四種方式:</p>
 <ol>
-<li>在下 GMT 指令時，使用<mark>--長參數</mark>的語法，參數的名稱就是這裡出現的大寫字串，例如：</li>
-</ol>
-<pre><code class="language-bat">gmt psxy -T -JX1/1 -R0/1/0/1 -K --PS_PAGE_ORIENTATION=portrait &gt; out.ps
-</code></pre>
-<ol>
-<li>開啟一個畫圖腳本檔，寫入</li>
-</ol>
-<pre><code class="language-bat">gmt gmtset 參數名1 參數值1 [參數名2 參數值2 參數名3 參數值3...]
-# 或是
-gmtset 參數名1=參數值1 [參數名2=參數值2 參數名3=參數值3...]
-</code></pre>
-<ol>
-<li>利用<code>gmt gmtset</code>叫出<mark>gmt.conf</mark>，開啟當前資料夾底下的<mark>gmt.conf</mark>，更改裡面的參數。</li>
+<li>
+<p>在下 GMT 指令時，使用<mark>--長參數</mark>的語法，參數的名稱就是這裡出現的大寫字串，例如：
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>gmt psxy -T -JX1/1 -R0/1/0/1 -K --PS_PAGE_ORIENTATION=portrait <span class="p">&gt;</span> out.ps
+</code></pre></div></p>
+</li>
+<li>
+<p>開啟一個畫圖腳本檔，寫入
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>gmt gmtset 參數名1 參數值1 [參數名2 參數值2 參數名3 參數值3...]
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a># 或是
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>gmtset 參數名1=參數值1 [參數名2=參數值2 參數名3=參數值3...]
+</code></pre></div></p>
+</li>
+<li>
+<p>利用<code>gmt gmtset</code>叫出<mark>gmt.conf</mark>，開啟當前資料夾底下的<mark>gmt.conf</mark>，更改裡面的參數。</p>
+</li>
 <li>更改位於<mark>GMT根目錄/share/conf/gmt.conf</mark>的參數檔，但請小心，這是GMT原始的設定，
 修改前請記得備份。</li>
 </ol>

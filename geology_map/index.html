@@ -632,71 +632,71 @@
   <img src="/fig/14_3_bit_harchure_patterns_1.png"/>
 </p>
 
-<p>批次檔</p>
-<pre><code class="language-bat">set ps=14_3_bit_harchure_patterns.ps
-
-# -Gpdpi/pattern[:Bcolor[Fcolor]]
-echo .2 23.3 Demonstration of -Gp | gmt pstext -R0/16/0/24 -JX16/24 -F+f18p,1+jML -P -K &gt; %ps%
-echo 2 21 3 1.5 | gmt psxy -R -JX -Sr -Gp100/24 -W.5 -K -O &gt;&gt; %ps%
-echo 6 21 3 1.5 | gmt psxy -R -JX -Sr -Gp300/24 -W.5 -K -O &gt;&gt; %ps%
-echo 10 21 3 1.5 | gmt psxy -R -JX -Sr -Gp500/24:Fblue -W.5 -K -O &gt;&gt; %ps%
-echo 14 21 3 1.5 | gmt psxy -R -JX -Sr -Gp300/24:BblackFyellow -W.5 -K -O &gt;&gt; %ps%
-echo .5 22.1 -Gp100/24 &gt; tmp
-echo 4.5 22.1 -Gp300/24 &gt;&gt; tmp
-echo 8.5 22.1 -Gp500/24:Fblue &gt;&gt; tmp
-echo 11.8 22.1 -Gp300/24:BblackFyellow &gt;&gt; tmp
-gmt pstext tmp -R -JX -F+f10p+jML -K -O &gt;&gt; %ps%
-
-# Sedimentary Rock
-echo .3 19 Sedimentary Lithology Patterns | gmt pstext -R -JX -F+f14p,1+jML -K -O &gt;&gt; %ps%
-echo 2 17.5 3 1.5 | gmt psxy -R -JX -Sr -Gp200/24:B230 -W.5 -K -O &gt;&gt; %ps%
-echo 6 17.5 3 1.5 | gmt psxy -R -JX -Sr -Gp200/43:B230 -W.5 -K -O &gt;&gt; %ps%
-echo 10 17.5 3 1.5 | gmt psxy -R -JX -Sr -Gp200/31:B230 -W.5 -K -O &gt;&gt; %ps%
-echo 14 17.5 3 1.5 | gmt psxy -R -JX -Sr -Gp200/62:B227/249/124 -W.5 -K -O &gt;&gt; %ps%
-echo .6 18 24 &gt; tmp
-echo 4.6 18 43 &gt;&gt; tmp
-echo 8.6 18 31 &gt;&gt; tmp
-echo 12.6 18 62 &gt;&gt; tmp
-gmt pstext tmp -R -JX -F+f10p+jML -W.2 -G255 -K -O &gt;&gt; %ps%
-echo 2 16.4 Clay or clay shale &gt; tmp
-echo 6 16.4 Sandy or silty shale &gt;&gt; tmp
-echo 10 16.4 Massive sand or sandstone &gt;&gt; tmp
-echo 14 16.4 Gravel or conglomerate &gt;&gt; tmp
-gmt pstext tmp -R -JX -F+f9p+jMC -K -O &gt;&gt; %ps%
-
-echo 2 15.1 3 1.5 | gmt psxy -R -JX -Sr -Gp200/33 -W.5 -K -O &gt;&gt; %ps%
-echo 6 15.1 3 1.5 | gmt psxy -R -JX -Sr -Gp200/20 -W.5 -K -O &gt;&gt; %ps%
-echo 10 15.1 3 1.5 | gmt psxy -R -JX -Sr -Gp200/21 -W.5 -K -O &gt;&gt; %ps%
-echo 14 15.1 3 1.5 | gmt psxy -R -JX -Sr -Gp200/61:B136/251/144 -W.5 -K -O &gt;&gt; %ps%
-echo .6 15.6 33 &gt; tmp
-echo 4.6 15.6 20 &gt;&gt; tmp
-echo 8.6 15.6 21 &gt;&gt; tmp
-echo 12.6 15.6 61 &gt;&gt; tmp
-gmt pstext tmp -R -JX -F+f10p+jML -W.2 -G255 -K -O &gt;&gt; %ps%
-echo 2 14.0 Sandy limestone &gt; tmp
-echo 6 14.0 Limestone &gt;&gt; tmp
-echo 10 14.0 Dolostone or dolomite &gt;&gt; tmp
-echo 14 14.0 Breccia &gt;&gt; tmp
-gmt pstext tmp -R -JX -F+f9p+jMC -K -O &gt;&gt; %ps%
-
-# Igneous rock
-echo .3 12.4 Igneous and Vein-matter Lithology Patterns | gmt pstext -R -JX -F+f14p,1+jML -K -O &gt;&gt; %ps%
-echo 2 10.9 3 1.5 | gmt psxy -R -JX -Sr -Gp200/29:B245/99/165 -W.5 -K -O &gt;&gt; %ps%
-echo 6 10.9 3 1.5 | gmt psxy -R -JX -Sr -Gp200/47:B245/99/165 -W.5 -K -O &gt;&gt; %ps%
-echo 10 10.9 3 1.5 | gmt psxy -R -JX -Sr -Gp200/28:B245/99/165 -W.5 -K -O &gt;&gt; %ps%
-echo .6 11.4 29 &gt; tmp
-echo 4.6 11.4 47 &gt;&gt; tmp
-echo 8.6 11.4 28 &gt;&gt; tmp
-gmt pstext tmp -R -JX -F+f10p+jML -W.2 -G255 -K -O &gt;&gt; %ps%
-echo 2 9.8 Igneous &gt; tmp
-echo 6 9.8 Granite &gt;&gt; tmp
-echo 10 9.8 Vitrophyre &gt;&gt; tmp
-gmt pstext tmp -R -JX -F+f9p+jMC -K -O &gt;&gt; %ps%
-
-gmt psxy -R -J -T -O &gt;&gt; %ps%
-gmt psconvert %ps% -Tg -A -P
-del tmp*
-</code></pre>
+<p>批次檔
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">set</span> <span class="nv">ps</span><span class="p">=</span>14_3_bit_harchure_patterns.ps
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a># -Gpdpi/pattern[:Bcolor[Fcolor]]
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="k">echo</span> .2 23.3 Demonstration of -Gp <span class="p">|</span> gmt pstext -R0/16/0/24 -JX16/24 -F+f18p,1+jML -P -K <span class="p">&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="k">echo</span> 2 21 3 1.5 <span class="p">|</span> gmt psxy -R -JX -Sr -Gp100/24 -W.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="k">echo</span> 6 21 3 1.5 <span class="p">|</span> gmt psxy -R -JX -Sr -Gp300/24 -W.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="k">echo</span> 10 21 3 1.5 <span class="p">|</span> gmt psxy -R -JX -Sr -Gp500/24:Fblue -W.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="k">echo</span> 14 21 3 1.5 <span class="p">|</span> gmt psxy -R -JX -Sr -Gp300/24:BblackFyellow -W.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="k">echo</span> .5 22.1 -Gp100/24 <span class="p">&gt;</span> tmp
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="k">echo</span> 4.5 22.1 -Gp300/24 <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="k">echo</span> 8.5 22.1 -Gp500/24:Fblue <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="k">echo</span> 11.8 22.1 -Gp300/24:BblackFyellow <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>gmt pstext tmp -R -JX -F+f10p+jML -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a># Sedimentary Rock
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="k">echo</span> .3 19 Sedimentary Lithology Patterns <span class="p">|</span> gmt pstext -R -JX -F+f14p,1+jML -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="k">echo</span> 2 17.5 3 1.5 <span class="p">|</span> gmt psxy -R -JX -Sr -Gp200/24:B230 -W.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="k">echo</span> 6 17.5 3 1.5 <span class="p">|</span> gmt psxy -R -JX -Sr -Gp200/43:B230 -W.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="k">echo</span> 10 17.5 3 1.5 <span class="p">|</span> gmt psxy -R -JX -Sr -Gp200/31:B230 -W.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="k">echo</span> 14 17.5 3 1.5 <span class="p">|</span> gmt psxy -R -JX -Sr -Gp200/62:B227/249/124 -W.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="k">echo</span> .6 18 24 <span class="p">&gt;</span> tmp
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="k">echo</span> 4.6 18 43 <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="k">echo</span> 8.6 18 31 <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="k">echo</span> 12.6 18 62 <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>gmt pstext tmp -R -JX -F+f10p+jML -W.2 -G255 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="k">echo</span> 2 16.4 Clay or clay shale <span class="p">&gt;</span> tmp
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="k">echo</span> 6 16.4 Sandy or silty shale <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="k">echo</span> 10 16.4 Massive sand or sandstone <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="k">echo</span> 14 16.4 Gravel or conglomerate <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>gmt pstext tmp -R -JX -F+f9p+jMC -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>
+<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="k">echo</span> 2 15.1 3 1.5 <span class="p">|</span> gmt psxy -R -JX -Sr -Gp200/33 -W.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="k">echo</span> 6 15.1 3 1.5 <span class="p">|</span> gmt psxy -R -JX -Sr -Gp200/20 -W.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a><span class="k">echo</span> 10 15.1 3 1.5 <span class="p">|</span> gmt psxy -R -JX -Sr -Gp200/21 -W.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a><span class="k">echo</span> 14 15.1 3 1.5 <span class="p">|</span> gmt psxy -R -JX -Sr -Gp200/61:B136/251/144 -W.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a><span class="k">echo</span> .6 15.6 33 <span class="p">&gt;</span> tmp
+<a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a><span class="k">echo</span> 4.6 15.6 20 <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a><span class="k">echo</span> 8.6 15.6 21 <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a><span class="k">echo</span> 12.6 15.6 61 <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a>gmt pstext tmp -R -JX -F+f10p+jML -W.2 -G255 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a><span class="k">echo</span> 2 14.0 Sandy limestone <span class="p">&gt;</span> tmp
+<a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a><span class="k">echo</span> 6 14.0 Limestone <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a><span class="k">echo</span> 10 14.0 Dolostone or dolomite <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a><span class="k">echo</span> 14 14.0 Breccia <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a>gmt pstext tmp -R -JX -F+f9p+jMC -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>
+<a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a># Igneous rock
+<a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a><span class="k">echo</span> .3 12.4 Igneous and Vein-matter Lithology Patterns <span class="p">|</span> gmt pstext -R -JX -F+f14p,1+jML -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a><span class="k">echo</span> 2 10.9 3 1.5 <span class="p">|</span> gmt psxy -R -JX -Sr -Gp200/29:B245/99/165 -W.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a><span class="k">echo</span> 6 10.9 3 1.5 <span class="p">|</span> gmt psxy -R -JX -Sr -Gp200/47:B245/99/165 -W.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a><span class="k">echo</span> 10 10.9 3 1.5 <span class="p">|</span> gmt psxy -R -JX -Sr -Gp200/28:B245/99/165 -W.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a><span class="k">echo</span> .6 11.4 29 <span class="p">&gt;</span> tmp
+<a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a><span class="k">echo</span> 4.6 11.4 47 <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a><span class="k">echo</span> 8.6 11.4 28 <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a>gmt pstext tmp -R -JX -F+f10p+jML -W.2 -G255 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a><span class="k">echo</span> 2 9.8 Igneous <span class="p">&gt;</span> tmp
+<a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a><span class="k">echo</span> 6 9.8 Granite <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a><span class="k">echo</span> 10 9.8 Vitrophyre <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a>gmt pstext tmp -R -JX -F+f9p+jMC -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a>
+<a id="__codelineno-0-61" name="__codelineno-0-61" href="#__codelineno-0-61"></a>gmt psxy -R -J -T -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-62" name="__codelineno-0-62" href="#__codelineno-0-62"></a>gmt psconvert <span class="nv">%ps%</span> -Tg -A -P
+<a id="__codelineno-0-63" name="__codelineno-0-63" href="#__codelineno-0-63"></a><span class="k">del</span> tmp*
+</code></pre></div></p>
 <p>學習到的指令:
 * <code>psxy -Gp</code>填上地質圖元符號。格式為<mark>-Gp解析度/種類代碼:B背景色F前景色</mark>。</p>
 <p>GMT提供了非常簡單的方式來繪製地質圖案，透過解析度可以調整點或是線的疏密程度，
@@ -715,35 +715,35 @@ del tmp*
 可將.tiff檔轉換成GMT使用的網格檔。
 而這邊將介紹該組織所提供的另一個轉檔程式<mark>ogr2ogr</mark>，
 它可將.shp檔案轉換成GMT可使用的格式，指令如下:</p>
-<pre><code class="language-bat"># ogr2ogr -f &quot;輸出格式種類&quot; 輸出檔名 輸入檔名
-ogr2ogr -f &quot;GMT&quot; geo3bl.gmt geo3bl.shp
-ogr2ogr -f &quot;CSV&quot; geo3bl.csv geo3bl.shp
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a># ogr2ogr -f <span class="s2">&quot;輸出格式種類&quot;</span> 輸出檔名 輸入檔名
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>ogr2ogr -f <span class="s2">&quot;GMT&quot;</span> geo3bl.gmt geo3bl.shp
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>ogr2ogr -f <span class="s2">&quot;CSV&quot;</span> geo3bl.csv geo3bl.shp
+</code></pre></div>
 <p>實際將geo3bl.shp透過上述指令轉換成.gmt及.csv檔，在此需要注意的是，除了.shp檔外，
 其他像是.bdf, .kst, .shx 等等的檔案都需要放在同一個資料夾，否則會發生轉檔錯誤。
 打開轉好的geo3bl.gmt，會發現轉出的格式為GMT區塊文件，
 而檔頭則給了一些該資料的編排模式及座標系資訊等等，下面展示前11列的資訊。</p>
-<pre><code class="language-bat"># @VGMT1.0 @GPOLYGON
-# @R-2843593.21876/4218174.81256/-1324372.95632/2600390.64774             
-# @Jp&quot;+proj=lcc +lat_1=31 +lat_2=-29 +lat_0=0 +lon_0=120 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs &quot;
-# @Jw&quot;PROJCS[\&quot;WGS_1984_Lambert_Conformal_Conic\&quot;,GEOGCS[\&quot;GCS_WGS_1984\&quot;,DATUM[\&quot;WGS_1984\&quot;,SPHEROID[\&quot;WGS_84\&quot;,6378137.0,298.257223563]],PRIMEM[\&quot;Greenwich\&quot;,0.0],UNIT[\&quot;Degree\&quot;,0.0174532925199433]],PROJECTION[\&quot;Lambert_Conformal_Conic_2SP\&quot;],PARAMETER[\&quot;False_Easting\&quot;,0.0],PARAMETER[\&quot;False_Northing\&quot;,0.0],PARAMETER[\&quot;Central_Meridian\&quot;,120.0],PARAMETER[\&quot;Standard_Parallel_1\&quot;,31.0],PARAMETER[\&quot;Standard_Parallel_2\&quot;,-29.0],PARAMETER[\&quot;Latitude_Of_Origin\&quot;,0.0],UNIT[\&quot;Meter\&quot;,1.0]]&quot;
-# @NAREA|PERIMETER|TYPE|GLG|GEN_GLG
-# @Tdouble|double|string|string|string
-# FEATURE_DATA
-&gt;
-# @D12326932870131.613|139356345.717||H2O|H2O
-# @P
--24973.412025285801 2597878.6243802495
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a># @VGMT1.0 @GPOLYGON
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a># @R-2843593.21876/4218174.81256/-1324372.95632/2600390.64774             
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a># @Jp<span class="s2">&quot;+proj=lcc +lat_1=31 +lat_2=-29 +lat_0=0 +lon_0=120 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs &quot;</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a># @Jw<span class="s2">&quot;PROJCS[\&quot;</span>WGS_1984_Lambert_Conformal_Conic\<span class="s2">&quot;,GEOGCS[\&quot;</span>GCS_WGS_1984\<span class="s2">&quot;,DATUM[\&quot;</span>WGS_1984\<span class="s2">&quot;,SPHEROID[\&quot;</span>WGS_84\<span class="s2">&quot;,6378137.0,298.257223563]],PRIMEM[\&quot;</span>Greenwich\<span class="s2">&quot;,0.0],UNIT[\&quot;</span>Degree\<span class="s2">&quot;,0.0174532925199433]],PROJECTION[\&quot;</span>Lambert_Conformal_Conic_2SP\<span class="s2">&quot;],PARAMETER[\&quot;</span>False_Easting\<span class="s2">&quot;,0.0],PARAMETER[\&quot;</span>False_Northing\<span class="s2">&quot;,0.0],PARAMETER[\&quot;</span>Central_Meridian\<span class="s2">&quot;,120.0],PARAMETER[\&quot;</span>Standard_Parallel_1\<span class="s2">&quot;,31.0],PARAMETER[\&quot;</span>Standard_Parallel_2\<span class="s2">&quot;,-29.0],PARAMETER[\&quot;</span>Latitude_Of_Origin\<span class="s2">&quot;,0.0],UNIT[\&quot;</span>Meter\<span class="s2">&quot;,1.0]]&quot;</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a># @NAREA<span class="p">|</span>PERIMETER<span class="p">|</span><span class="k">TYPE</span><span class="p">|</span>GLG<span class="p">|</span>GEN_GLG
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a># @Tdouble<span class="p">|</span>double<span class="p">|</span>string<span class="p">|</span>string<span class="p">|</span>string
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a># FEATURE_DATA
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>&gt;
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a># @D12326932870131.613<span class="p">|</span>139356345.717<span class="p">||</span>H2O<span class="p">|</span>H2O
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a># @P
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>-24973.412025285801 2597878.6243802495
+</code></pre></div>
 <p>其中最後一列顯示出x及y的位置，但不是我們熟悉的WGS84座標系統，
 而第三列顯示該檔案的座標系統被投影在東經120度，南緯29度至北緯31度間，
 所以還需要做座標系的轉換，轉換成WGS84，才能方便地供GMT使用。
 編者這裡透過Python中的<strong>pyproj</strong>模組來完成座標系轉換，僅列出關鍵的指令部份:</p>
-<pre><code class="language-python">import pyproj
-p = pyproj.Proj(
-    &quot;+proj=lcc +lat_1=31 +lat_2=-29 +lat_0=0 +lon_0=120 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs&quot;)
-lon, lat = p(float(x), float(y), inverse=True)
-</code></pre>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kn">import</span> <span class="nn">pyproj</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">p</span> <span class="o">=</span> <span class="n">pyproj</span><span class="o">.</span><span class="n">Proj</span><span class="p">(</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    <span class="s2">&quot;+proj=lcc +lat_1=31 +lat_2=-29 +lat_0=0 +lon_0=120 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="n">lon</span><span class="p">,</span> <span class="n">lat</span> <span class="o">=</span> <span class="n">p</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="nb">float</span><span class="p">(</span><span class="n">y</span><span class="p">),</span> <span class="n">inverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</code></pre></div>
 <p>接著透過讀取檔案、迴圈處理、條件判斷，將轉好的資料輸出，就是下方所提供的東南亞地質檔。</p>
 <p>使用的資料檔:</p>
 <ul>
@@ -756,52 +756,52 @@ lon, lat = p(float(x), float(y), inverse=True)
   <img src="/fig/14_4_se_geo_1.png"/>
 </p>
 
-<p>批次檔</p>
-<pre><code class="language-bat">set ps=14_4_se_geo.ps
-
-# basemap and geology color
-gmt pscoast -R88/165/-16/28 -JL140.0/0.0/-10.0/15.0/25 -Ba10g2.5 -Df ^
--A5000 -W.5 -G245/246/246 -S234/246/253 -K &gt; %ps%
-gmt psxy geo3bl_lonlat.gmt -R -JL -W.1,red -Crock_unit.cpt -L -K -O &gt;&gt; %ps%
-
-# 3 specified rock type
-gmt gmtconvert geo3bl_lonlat.gmt -S&quot;|v|&quot; &gt; tmp
-awk &quot;{print $1,&quot;&quot;p400/28:F50B&quot;&quot;&quot;&quot;$2,$3,&quot;&quot;p400/28:F50B&quot;&quot;&quot;&quot;$4}&quot; rock_unit.cpt &gt; tmp.cpt
-gmt psxy tmp -R -JL -Ctmp.cpt -W.1,red -L -K -O &gt;&gt; %ps%
-
-gmt gmtconvert geo3bl_lonlat.gmt -S&quot;|i|&quot; &gt; tmp
-awk &quot;{print $1,&quot;&quot;p400/29:F50B&quot;&quot;&quot;&quot;$2,$3,&quot;&quot;p400/29:F50B&quot;&quot;&quot;&quot;$4}&quot; rock_unit.cpt &gt; tmp.cpt
-gmt psxy tmp -R -JL -Ctmp.cpt -W.1,red -L -K -O &gt;&gt; %ps%
-
-gmt gmtconvert geo3bl_lonlat.gmt -S&quot;|w|&quot; &gt; tmp
-awk &quot;{print $1,&quot;&quot;p400/44:F50B&quot;&quot;&quot;&quot;$2,$3,&quot;&quot;p400/44:F50B&quot;&quot;&quot;&quot;$4}&quot; rock_unit.cpt &gt; tmp.cpt
-gmt psxy tmp -R -JL -Ctmp.cpt -W.1,red -L -K -O &gt;&gt; %ps%
-
-# legend part
-echo 0 0 &gt; tmp
-echo 10 0 &gt;&gt; tmp
-echo 10 10 &gt;&gt; tmp
-echo 0 10 &gt;&gt; tmp
-gmt psxy tmp -JX13/10 -R0/10/0/10 -G255/255/255 -W1 -L -K -O -X13 -Y7 &gt;&gt; %ps%
-echo 0.3 9.6 Age of rock units &gt; tmp
-echo 2.2 2.3 Specified rock type &gt;&gt; tmp
-echo 6.5 2.3 Other units &gt;&gt; tmp
-gmt pstext tmp -R -JX -F+f12p,3+jML -K -O &gt;&gt; %ps%
-echo 2.4 1.7 0.5 0.30 | gmt psxy -R -JX -Sr -W.5 -Gp400/28:B255 -K -O &gt;&gt; %ps%
-echo 2.4 1.2 0.5 0.30 | gmt psxy -R -JX -Sr -W.5 -Gp400/29:B255 -K -O &gt;&gt; %ps%
-echo 2.4 0.7 0.5 0.30 | gmt psxy -R -JX -Sr -W.5 -Gp400/44:B255 -K -O &gt;&gt; %ps%
-echo 2.7 1.7 Volcanic rocks &gt; tmp
-echo 2.7 1.2 Intrusive rocks &gt;&gt; tmp
-echo 2.7 0.7 Ophiolites \046 ultrabasic rocks &gt;&gt; tmp
-gmt pstext tmp -R -JX -F+f10p+jML -K -O &gt;&gt; %ps%
-gmt psxy legend.dat -R -JX -Sr -W.5 -Crock_unit.cpt -K -O &gt;&gt; %ps%
-gmt pstext legend.cod -R -JX -F+f4p+jMC -K -O &gt;&gt; %ps%
-gmt pstext legend.tex -R -JX -F+f10p+jML -K -O &gt;&gt; %ps%
-
-gmt psxy -R -J -T -O &gt;&gt; %ps%
-gmt psconvert %ps% -Tg -A -P
-del tmp*
-</code></pre>
+<p>批次檔
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">set</span> <span class="nv">ps</span><span class="p">=</span>14_4_se_geo.ps
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a># basemap and geology color
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>gmt pscoast -R88/165/-16/28 -JL140.0/0.0/-10.0/15.0/25 -Ba10g2.5 -Df <span class="se">^</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="se">-</span>A5000 -W.5 -G245/246/246 -S234/246/253 -K <span class="p">&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>gmt psxy geo3bl_lonlat.gmt -R -JL -W.1,red -Crock_unit.cpt -L -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a># 3 specified rock type
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>gmt gmtconvert geo3bl_lonlat.gmt -S<span class="s2">&quot;|v|&quot;</span> <span class="p">&gt;</span> tmp
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>awk <span class="s2">&quot;{print $1,&quot;&quot;p400/28:F50B&quot;&quot;&quot;&quot;$2,$3,&quot;&quot;p400/28:F50B&quot;&quot;&quot;&quot;$4}&quot;</span> rock_unit.cpt <span class="p">&gt;</span> tmp.cpt
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>gmt psxy tmp -R -JL -Ctmp.cpt -W.1,red -L -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>gmt gmtconvert geo3bl_lonlat.gmt -S<span class="s2">&quot;|i|&quot;</span> <span class="p">&gt;</span> tmp
+<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>awk <span class="s2">&quot;{print $1,&quot;&quot;p400/29:F50B&quot;&quot;&quot;&quot;$2,$3,&quot;&quot;p400/29:F50B&quot;&quot;&quot;&quot;$4}&quot;</span> rock_unit.cpt <span class="p">&gt;</span> tmp.cpt
+<a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a>gmt psxy tmp -R -JL -Ctmp.cpt -W.1,red -L -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a>
+<a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a>gmt gmtconvert geo3bl_lonlat.gmt -S<span class="s2">&quot;|w|&quot;</span> <span class="p">&gt;</span> tmp
+<a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a>awk <span class="s2">&quot;{print $1,&quot;&quot;p400/44:F50B&quot;&quot;&quot;&quot;$2,$3,&quot;&quot;p400/44:F50B&quot;&quot;&quot;&quot;$4}&quot;</span> rock_unit.cpt <span class="p">&gt;</span> tmp.cpt
+<a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a>gmt psxy tmp -R -JL -Ctmp.cpt -W.1,red -L -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a>
+<a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a># legend part
+<a id="__codelineno-4-22" name="__codelineno-4-22" href="#__codelineno-4-22"></a><span class="k">echo</span> 0 0 <span class="p">&gt;</span> tmp
+<a id="__codelineno-4-23" name="__codelineno-4-23" href="#__codelineno-4-23"></a><span class="k">echo</span> 10 0 <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-4-24" name="__codelineno-4-24" href="#__codelineno-4-24"></a><span class="k">echo</span> 10 10 <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-4-25" name="__codelineno-4-25" href="#__codelineno-4-25"></a><span class="k">echo</span> 0 10 <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-4-26" name="__codelineno-4-26" href="#__codelineno-4-26"></a>gmt psxy tmp -JX13/10 -R0/10/0/10 -G255/255/255 -W1 -L -K -O -X13 -Y7 <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-4-27" name="__codelineno-4-27" href="#__codelineno-4-27"></a><span class="k">echo</span> 0.3 9.6 Age of rock units <span class="p">&gt;</span> tmp
+<a id="__codelineno-4-28" name="__codelineno-4-28" href="#__codelineno-4-28"></a><span class="k">echo</span> 2.2 2.3 Specified rock type <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-4-29" name="__codelineno-4-29" href="#__codelineno-4-29"></a><span class="k">echo</span> 6.5 2.3 Other units <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-4-30" name="__codelineno-4-30" href="#__codelineno-4-30"></a>gmt pstext tmp -R -JX -F+f12p,3+jML -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-4-31" name="__codelineno-4-31" href="#__codelineno-4-31"></a><span class="k">echo</span> 2.4 1.7 0.5 0.30 <span class="p">|</span> gmt psxy -R -JX -Sr -W.5 -Gp400/28:B255 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-4-32" name="__codelineno-4-32" href="#__codelineno-4-32"></a><span class="k">echo</span> 2.4 1.2 0.5 0.30 <span class="p">|</span> gmt psxy -R -JX -Sr -W.5 -Gp400/29:B255 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-4-33" name="__codelineno-4-33" href="#__codelineno-4-33"></a><span class="k">echo</span> 2.4 0.7 0.5 0.30 <span class="p">|</span> gmt psxy -R -JX -Sr -W.5 -Gp400/44:B255 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-4-34" name="__codelineno-4-34" href="#__codelineno-4-34"></a><span class="k">echo</span> 2.7 1.7 Volcanic rocks <span class="p">&gt;</span> tmp
+<a id="__codelineno-4-35" name="__codelineno-4-35" href="#__codelineno-4-35"></a><span class="k">echo</span> 2.7 1.2 Intrusive rocks <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-4-36" name="__codelineno-4-36" href="#__codelineno-4-36"></a><span class="k">echo</span> 2.7 0.7 Ophiolites \046 ultrabasic rocks <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-4-37" name="__codelineno-4-37" href="#__codelineno-4-37"></a>gmt pstext tmp -R -JX -F+f10p+jML -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-4-38" name="__codelineno-4-38" href="#__codelineno-4-38"></a>gmt psxy legend.dat -R -JX -Sr -W.5 -Crock_unit.cpt -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-4-39" name="__codelineno-4-39" href="#__codelineno-4-39"></a>gmt pstext legend.cod -R -JX -F+f4p+jMC -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-4-40" name="__codelineno-4-40" href="#__codelineno-4-40"></a>gmt pstext legend.tex -R -JX -F+f10p+jML -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-4-41" name="__codelineno-4-41" href="#__codelineno-4-41"></a>
+<a id="__codelineno-4-42" name="__codelineno-4-42" href="#__codelineno-4-42"></a>gmt psxy -R -J -T -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-4-43" name="__codelineno-4-43" href="#__codelineno-4-43"></a>gmt psconvert <span class="nv">%ps%</span> -Tg -A -P
+<a id="__codelineno-4-44" name="__codelineno-4-44" href="#__codelineno-4-44"></a><span class="k">del</span> tmp*
+</code></pre></div></p>
 <p>學習到的指令:</p>
 <p>首先可從輸出的.csv檔中，找出共有幾種地質年代及岩性，並將其手動製作成圖例說明的資料。
 在<a href="../taiwan_geography/#m11.7">11.7人口密度</a>中，示範了如何利用<code>psxy -C -L</code>配合區塊文件
@@ -826,45 +826,45 @@ del tmp*
   <img src="/fig/14_5_se_geo_grd_1.png"/>
 </p>
 
-<p>批次檔</p>
-<pre><code class="language-bat">set ps=14_5_se_geo_grd.ps
-set data=D:\GMT_data\
-
-# gmt grdmask geo3bl_lonlat.gmt -R88/165/-16/28 -I1m -Nz -Ggeo3bl_lonlat.grd -V
-
-gmt gmtset MAP_FRAME_TYPE plain
-
-# base grid image
-gmt grdimage geo3bl_lonlat.grd -R108/120/-5/7.7 -JM14 -Ba -BwESn ^
--Crock_unit.cpt -I%data%ETOPO1_Bed_g_gmt5_shad.grd -K &gt; %ps%
-gmt pscoast -R -JM -Df -A500 -W.5 -K -O &gt;&gt; %ps%
-
-# legend set
-echo H 20 Times-Roman Legend &gt; tmp
-echo G .2 &gt;&gt; tmp
-echo N 2 &gt;&gt; tmp
-echo S .5 r .5 255/251/198 .3 .9 Quaternary &gt;&gt; tmp
-echo S .5 r .5 255/245/127 .3 .9 Cenozoic &gt;&gt; tmp
-echo S .5 r .5 255/233/123 .3 .9 Neogene &gt;&gt; tmp
-echo S .5 r .5 139/186/164 .3 .9 Mesozoic &gt;&gt; tmp
-echo S .5 r .5 250/190/0 .3 .9 Undivided Tertiary &gt;&gt; tmp
-echo S .5 r .5 224/189/188 .3 .9 Mesozoic/Paleozoic &gt;&gt; tmp
-echo N 1 &gt;&gt; tmp
-echo S .5 r .5 213/201/161 .3 .9 Paleogene &gt;&gt; tmp
-echo N 2 &gt;&gt; tmp
-echo S .5 r .5 240/244/197 .3 .9 Tertiary/Cretaceous &gt;&gt; tmp
-echo S .5 r .5 234/246/253 .3 .9 Surface water &gt;&gt; tmp
-echo S .5 r .5 144/195/31 .3 .9 Cretaceous &gt;&gt; tmp
-echo S .5 r .5 245/246/246 .3 .9 Geology not shown &gt;&gt; tmp
-echo S .5 r .5 92/194/207 .3 .9 Triassic &gt;&gt; tmp
-echo S .5 r .5 181/0/129 .3 .9 Undetermined age &gt;&gt; tmp
-gmt pslegend tmp -R -JM -C.1/.1 -Dx.2/13+w9 -F+g240+p1+r.2 ^
---FONT_ANNOT_PRIMARY=10p -K -O &gt;&gt; %ps%
-
-gmt psxy -R -J -T -O &gt;&gt; %ps%
-gmt psconvert %ps% -Tg -A -P
-del tmp*
-</code></pre>
+<p>批次檔
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">set</span> <span class="nv">ps</span><span class="p">=</span>14_5_se_geo_grd.ps
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="k">set</span> <span class="nv">data</span><span class="p">=</span>D:\GMT_data\
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a># gmt grdmask geo3bl_lonlat.gmt -R88/165/-16/28 -I1m -Nz -Ggeo3bl_lonlat.grd -V
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>gmt gmtset MAP_FRAME_TYPE plain
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a># base grid image
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>gmt grdimage geo3bl_lonlat.grd -R108/120/-5/7.7 -JM14 -Ba -BwESn <span class="se">^</span>
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="se">-</span>Crock_unit.cpt -I<span class="nv">%data%</span>ETOPO1_Bed_g_gmt5_shad.grd -K <span class="p">&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>gmt pscoast -R -JM -Df -A500 -W.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>
+<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a># legend set
+<a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a><span class="k">echo</span> H 20 Times-Roman Legend <span class="p">&gt;</span> tmp
+<a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a><span class="k">echo</span> G .2 <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a><span class="k">echo</span> N 2 <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a><span class="k">echo</span> S .5 r .5 255/251/198 .3 .9 Quaternary <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a><span class="k">echo</span> S .5 r .5 255/245/127 .3 .9 Cenozoic <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a><span class="k">echo</span> S .5 r .5 255/233/123 .3 .9 Neogene <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a><span class="k">echo</span> S .5 r .5 139/186/164 .3 .9 Mesozoic <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a><span class="k">echo</span> S .5 r .5 250/190/0 .3 .9 Undivided Tertiary <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a><span class="k">echo</span> S .5 r .5 224/189/188 .3 .9 Mesozoic/Paleozoic <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-5-23" name="__codelineno-5-23" href="#__codelineno-5-23"></a><span class="k">echo</span> N 1 <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-5-24" name="__codelineno-5-24" href="#__codelineno-5-24"></a><span class="k">echo</span> S .5 r .5 213/201/161 .3 .9 Paleogene <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-5-25" name="__codelineno-5-25" href="#__codelineno-5-25"></a><span class="k">echo</span> N 2 <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-5-26" name="__codelineno-5-26" href="#__codelineno-5-26"></a><span class="k">echo</span> S .5 r .5 240/244/197 .3 .9 Tertiary/Cretaceous <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-5-27" name="__codelineno-5-27" href="#__codelineno-5-27"></a><span class="k">echo</span> S .5 r .5 234/246/253 .3 .9 Surface water <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-5-28" name="__codelineno-5-28" href="#__codelineno-5-28"></a><span class="k">echo</span> S .5 r .5 144/195/31 .3 .9 Cretaceous <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-5-29" name="__codelineno-5-29" href="#__codelineno-5-29"></a><span class="k">echo</span> S .5 r .5 245/246/246 .3 .9 Geology not shown <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-5-30" name="__codelineno-5-30" href="#__codelineno-5-30"></a><span class="k">echo</span> S .5 r .5 92/194/207 .3 .9 Triassic <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-5-31" name="__codelineno-5-31" href="#__codelineno-5-31"></a><span class="k">echo</span> S .5 r .5 181/0/129 .3 .9 Undetermined age <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-5-32" name="__codelineno-5-32" href="#__codelineno-5-32"></a>gmt pslegend tmp -R -JM -C.1/.1 -Dx.2/13+w9 -F+g240+p1+r.2 <span class="se">^</span>
+<a id="__codelineno-5-33" name="__codelineno-5-33" href="#__codelineno-5-33"></a><span class="se">-</span>-FONT_ANNOT_PRIMARY=10p -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-5-34" name="__codelineno-5-34" href="#__codelineno-5-34"></a>
+<a id="__codelineno-5-35" name="__codelineno-5-35" href="#__codelineno-5-35"></a>gmt psxy -R -J -T -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-5-36" name="__codelineno-5-36" href="#__codelineno-5-36"></a>gmt psconvert <span class="nv">%ps%</span> -Tg -A -P
+<a id="__codelineno-5-37" name="__codelineno-5-37" href="#__codelineno-5-37"></a><span class="k">del</span> tmp*
+</code></pre></div></p>
 <p>學習到的指令:</p>
 <ul>
 <li><code>grdmask</code>透過點或多邊形來製作網格檔。</li>

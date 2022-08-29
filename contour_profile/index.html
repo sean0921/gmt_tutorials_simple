@@ -634,32 +634,32 @@
   <img src="/fig/7_3_binaryView.png"/>
 </p>
 
-<p>顯示出一推看不懂的亂碼，但如何想簡單的得知這個檔案理面的資料資訊，可以使用</p>
-<pre><code class="language-bat">gmt grdinfo 檔名
-</code></pre>
-<p>讀取<mark>Penghu_20m.tif</mark>，可得到資訊如下:</p>
-<pre><code class="language-bat">Penghu_20m.tif: Title: Grid imported via GDAL
-Penghu_20m.tif: Command:
-Penghu_20m.tif: Remark:
-Penghu_20m.tif: Pixel node registration used [Cartesian grid]
-Penghu_20m.tif: Grid file format: gd = Import/export through GDAL
-Penghu_20m.tif: x_min: 76661.4764748 x_max: 121061.476475 x_inc: 20 name: x nx: 2220
-Penghu_20m.tif: y_min: 2563952.79393 y_max: 2633852.79393 y_inc: 20 name: y ny: 3495
-Penghu_20m.tif: z_min: -999 z_max: 70.5 name: z
-Penghu_20m.tif: scale_factor: 1 add_offset: 0
-+proj=tmerc +lat_0=0 +lon_0=121 +k=0.9999 +x_0=250000 +y_0=0 +ellps=GRS80 +units=m +no_defs
-</code></pre>
+<p>顯示出一推看不懂的亂碼，但如何想簡單的得知這個檔案理面的資料資訊，可以使用
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>gmt grdinfo 檔名
+</code></pre></div></p>
+<p>讀取<mark>Penghu_20m.tif</mark>，可得到資訊如下:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Penghu_20m.tif: Title: Grid imported via GDAL
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>Penghu_20m.tif: Command:
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>Penghu_20m.tif: Remark:
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>Penghu_20m.tif: Pixel node registration used [Cartesian grid]
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>Penghu_20m.tif: Grid file format: gd = Import/export through GDAL
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>Penghu_20m.tif: x_min: 76661.4764748 x_max: 121061.476475 x_inc: 20 name: x nx: 2220
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>Penghu_20m.tif: y_min: 2563952.79393 y_max: 2633852.79393 y_inc: 20 name: y ny: 3495
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>Penghu_20m.tif: z_min: -999 z_max: 70.5 name: z
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>Penghu_20m.tif: scale_factor: 1 add_offset: 0
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>+proj=tmerc +lat_0=0 +lon_0=121 +k=0.9999 +x_0=250000 +y_0=0 +ellps=GRS80 +units=m +no_defs
+</code></pre></div></p>
 <p>從這些資訊可以得知標題、X、Y、Z軸的範圍和間距，放大倍率(scale_factor)等等的訊息。
 但這檔案要提供給GMT使用，會遇到兩個問題，第一，檔案格式為<mark>Geotiff</mark>，
 利用<a href="http://www.gdal.org/index.html">GDAL</a>(地理空間資料抽象化文庫, Geospatial Data Abstraction Library)
-提供的轉檔程式<mark>gdal_translate</mark>，透過指令，</p>
-<pre><code class="language-bat">gdal_translate -of XYZ [input.tif] [output.xyz]
-</code></pre>
+提供的轉檔程式<mark>gdal_translate</mark>，透過指令，
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>gdal_translate -of XYZ [input.tif] [output.xyz]
+</code></pre></div></p>
 <p>將<mark>.tif</mark>檔轉換成<mark>.xyz</mark>檔。第二，由於內政部提供的檔案其座標系是<mark>TWD97</mark>，
 而GMT繪製地圖慣用在<mark>WGS84座標系</mark>，因此需要做座標系轉換，透過Python，將檔案轉成WGS84座標系，
-完成後再將<mark>.xyz</mark>檔轉換成<mark>.grd檔</mark>。</p>
-<pre><code class="language-bat">gmt xyz2grd [input.xyz] -R119.0/119.9/21.8/25.4 -I0.6s/0.6s -G[output.grd]
-</code></pre>
+完成後再將<mark>.xyz</mark>檔轉換成<mark>.grd檔</mark>。
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>gmt xyz2grd [input.xyz] -R119.0/119.9/21.8/25.4 -I0.6s/0.6s -G[output.grd]
+</code></pre></div></p>
 <p>其中</p>
 <ul>
 <li><code>-R</code>是給定檔案的X、Y軸範圍。</li>
@@ -689,22 +689,22 @@ Penghu_20m.tif: scale_factor: 1 add_offset: 0
 <li><strong>+t</strong>網格檔的標題。</li>
 <li><strong>+r</strong>網格檔的註解。</li>
 </ul>
-<p>同樣的，也可以透過</p>
-<pre><code class="language-bat">gmt grd2xyz input.grd &gt; output.xyz
-</code></pre>
+<p>同樣的，也可以透過
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>gmt grd2xyz input.grd <span class="p">&gt;</span> output.xyz
+</code></pre></div></p>
 <p>將網格檔轉回<mark>.xyz</mark>檔。</p>
 <p>透過上述方式，成功地將內政部提供的數值高程檔轉換成GMT繪圖使用的格式，在這個範例中，
 一般<mark>.xyz</mark>的檔案大小約為420MB，轉換成<mark>.grd</mark>的格式後，變成4.61MB，大大地節省硬碟空間。
-使用一樣的做法，把台灣本島的數值高程也轉換成功後，不希望之後畫圖都要分開讀取台灣本島以及澎湖，所以使用:</p>
-<pre><code class="language-bat">gmt grdpaste input1.grd input2.grd -Goutput.grd -fg
-</code></pre>
+使用一樣的做法，把台灣本島的數值高程也轉換成功後，不希望之後畫圖都要分開讀取台灣本島以及澎湖，所以使用:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>gmt grdpaste input1.grd input2.grd -Goutput.grd -fg
+</code></pre></div></p>
 <p>把兩個擁有共同邊界的網格檔給合併，<code>-f</code>是指定輸入及輸出資料的格式，
 * <strong>-ff</strong>給予浮點數格式
 * <strong>-fg</strong>地理座標系統
 * <strong>-fc</strong>卡式座標系統</p>
-<p>當然一次讀取這麼大的數值資料，會耗費很長的時間，因此可以利用GMT提供的網格切割指令:</p>
-<pre><code class="language-bat">gmt grdcut input.grd -Goutput.grd -R範圍
-</code></pre>
+<p>當然一次讀取這麼大的數值資料，會耗費很長的時間，因此可以利用GMT提供的網格切割指令:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>gmt grdcut input.grd -Goutput.grd -R範圍
+</code></pre></div></p>
 <p>將網格檔切割成較小的區域來做使用，接下來，繪製等高線圖的部份，將會使用以花東縱谷做為範圍切割的網格檔。
 資料壓縮的方式非常多種，無法在此一一介紹，編者以使用過的經驗作為分享，請見諒。</p>
 <h2 id="74">7.4 等高線圖</h2>
@@ -721,25 +721,25 @@ Penghu_20m.tif: scale_factor: 1 add_offset: 0
   <img src="/fig/7_4_east_rift_valley_1.png"/>
 </p>
 
-<p>批次檔</p>
-<pre><code class="language-bat">set ps=7_4_east_rift_valley.ps
-
-# left figure without clip
-gmt pscoast -R121.33/121.68/23.55/24.1 -JM10 -BWeSn -Bxa.2 -Bya.2 ^
--Df -W1 -G194/250/216 -S175/243/255 -K &gt; %ps%
-gmt grdcontour east_rift_valley.grd -R -JM -C250 -A1000+f12p -K -O &gt;&gt; %ps%
-
-# right figure with clip
-gmt pscoast -R121.33/121.68/23.55/24.1 -JM10 -BWeSn -Bxa.2 -Bya.2 ^
--Df -W1 -G194/250/216 -S175/243/255 -X13 -K -O &gt;&gt; %ps%
-gmt pscoast -R -JM -Df -Gc -K -O &gt;&gt; %ps%
-gmt grdcontour east_rift_valley.grd -R -JM -C250 -A1000+an+f12p+g255/153/199 ^
--Gd15c -Wc.5,255/110/110 -Wa1,180/13/13 -Q180 -L0/2000 -K -O &gt;&gt; %ps%
-gmt pscoast -R -JM -Q -K -O &gt;&gt; %ps%
-
-gmt psxy -R -JM -T -O &gt;&gt; %ps%
-gmt psconvert %ps% -Tg -A -P
-</code></pre>
+<p>批次檔
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">set</span> <span class="nv">ps</span><span class="p">=</span>7_4_east_rift_valley.ps
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a># left figure without clip
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>gmt pscoast -R121.33/121.68/23.55/24.1 -JM10 -BWeSn -Bxa.2 -Bya.2 <span class="se">^</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="se">-</span>Df -W1 -G194/250/216 -S175/243/255 -K <span class="p">&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>gmt grdcontour east_rift_valley.grd -R -JM -C250 -A1000+f12p -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a># right figure with clip
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>gmt pscoast -R121.33/121.68/23.55/24.1 -JM10 -BWeSn -Bxa.2 -Bya.2 <span class="se">^</span>
+<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="se">-</span>Df -W1 -G194/250/216 -S175/243/255 -X13 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a>gmt pscoast -R -JM -Df -Gc -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a>gmt grdcontour east_rift_valley.grd -R -JM -C250 -A1000+an+f12p+g255/153/199 <span class="se">^</span>
+<a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a><span class="se">-</span>Gd15c -Wc.5,255/110/110 -Wa1,180/13/13 -Q180 -L0/2000 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a>gmt pscoast -R -JM -Q -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-7-15" name="__codelineno-7-15" href="#__codelineno-7-15"></a>
+<a id="__codelineno-7-16" name="__codelineno-7-16" href="#__codelineno-7-16"></a>gmt psxy -R -JM -T -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-7-17" name="__codelineno-7-17" href="#__codelineno-7-17"></a>gmt psconvert <span class="nv">%ps%</span> -Tg -A -P
+</code></pre></div></p>
 <p>本節學習的新指令:</p>
 <ul>
 <li>第6,12行: <code>grdcontour</code>透過網格檔繪製等高線，語法是<code>grdcontour 網格檔 -C間隔值</code>，其中最常用到的選項:</li>
@@ -784,82 +784,82 @@ gmt psconvert %ps% -Tg -A -P
   <img src="/fig/7_5_elevation_profile_1.png"/>
 </p>
 
-<p>批次檔</p>
-<pre><code class="language-bat"># 1. set two profile start point and end point
-set ps=7_5_elevation_profile.ps
-set Alon1=121.38
-set Alat1=24.07
-set Alon2=121.5
-set Alat2=23.6
-set Blon1=121.54
-set Blat1=24.06
-set Blon2=121.47
-set Blat2=24.0
-
-# 2. contour basemap
-gmt pscoast -R121.33/121.68/23.55/24.1 -JM10 -BWeSn -Bxa.2 -Bya.2 ^
--Df -W1 -G194/250/216 -S175/243/255 -K --MAP_FRAME_TYPE=plain &gt; %ps%
-gmt pscoast -R -JM -Df -Gc -K -O &gt;&gt; %ps%
-gmt grdcontour east_rift_valley.grd -R -JM -C250 -A1000+f10p ^
--Wc.5,150 -Wa1,30 -Q180 -K -O &gt;&gt; %ps%
-gmt pscoast -R -JM -Q -K -O &gt;&gt; %ps%
-
-# 3. AA' line
-echo %Alon1% %Alat1% &gt; tmp
-echo %Alon2% %Alat2% &gt;&gt; tmp
-gmt psxy tmp -R -JM -W2,238/91/78 -K -O &gt;&gt; %ps%
-echo %Alon1% %Alat1% A &gt; tmp
-gmt psxy tmp -R -JM -Sc.8 -G238/91/78 -W1 -K -O &gt;&gt; %ps%
-gmt pstext tmp -R -JM -F+f16p,0,blue -K -O &gt;&gt; %ps%
-echo %Alon2% %Alat2% A' &gt; tmp
-gmt psxy tmp -R -JM -Sc.8 -G238/91/78 -W1 -K -O &gt;&gt; %ps%
-gmt pstext tmp -R -JM -F+f16p,0,blue -K -O &gt;&gt; %ps%
-
-# 4. BB' line
-echo %Blon1% %Blat1% &gt; tmp
-echo %Blon2% %Blat2% &gt;&gt; tmp
-gmt psxy tmp -R -JM -W2,234/235/128 -K -O &gt;&gt; %ps%
-echo %Blon1% %Blat1% B &gt; tmp
-gmt psxy tmp -R -JM -Sc.8 -G234/235/128 -W1 -K -O &gt;&gt; %ps%
-gmt pstext tmp -R -JM -F+f16p -K -O &gt;&gt; %ps%
-echo %Blon2% %Blat2% B' &gt; tmp
-gmt psxy tmp -R -JM -Sc.8 -G234/235/128 -W1 -K -O &gt;&gt; %ps%
-gmt pstext tmp -R -JM -F+f16p -K -O &gt;&gt; %ps%
-
-# 5. insert map
-gmt pscoast -R119.9/122.1/21.8/25.4 -JM3 -Bwesn -Ba -Df -W1 -S255 -G230 ^
--X7 -K -O --MAP_FRAME_TYPE=inside &gt;&gt; %ps%
-gmt psbasemap -R -JM -D121.33/121.68/23.55/24.1 -F+p2 -K -O &gt;&gt; %ps%
-
-# 6. AA' profile
-gmt project -C%Alon1%/%Alat1% -E%Alon2%/%Alat2% -G0.1 -Q | ^
-gmt grdtrack -Geast_rift_valley.grd &gt; tmp
-gmtinfo tmp -i2,3 -I1/10 &gt; tmp1
-set /p pr=&lt;tmp1
-gmtinfo tmp -i2 -C -o1 &gt; tmp1
-set /p md=&lt;tmp1
-sed -i '1i %Alon1% %Alat1% 0 0' tmp
-sed -i '$a %Alon2% %Alat2% %md% 0' tmp
-awk &quot;{print $3, $4}&quot; tmp | gmt psxy %pr% -JX12/6 -W2 -G238/91/78 -X5 -Y.5 -K -O &gt;&gt; %ps%
-gmt psbasemap -R -JX -BwESn+t&quot;AA' Profile&quot; -Bxa+l&quot;Distance (km)&quot; ^
--Bya+l&quot;Elevation (m)&quot; -K -O --FONT_TITLE=24p,0,blue &gt;&gt; %ps%
-
-# 7. BB' profile
-gmt project -C%Blon1%/%Blat1% -E%Blon2%/%Blat2% -G0.1 -Q | ^
-gmt grdtrack -Geast_rift_valley.grd &gt; tmp
-gmtinfo tmp -i2,3 -I1/10 &gt; tmp1
-set /p pr=&lt;tmp1
-gmtinfo tmp -i2 -C -o1 &gt; tmp1
-set /p md=&lt;tmp1
-sed -i '1i %Blon1% %Blat1% 0 0' tmp
-sed -i '$a %Blon2% %Blat2% %md% 0' tmp
-awk &quot;{print $3, $4}&quot; tmp | gmt psxy %pr% -JX -W2 -G234/235/128 -Y9 -K -O &gt;&gt; %ps%
-gmt psbasemap -R -JX -BwESn+t&quot;BB' Profile&quot; -Bxa -Bya+l&quot;Elevation (m)&quot; -K -O &gt;&gt; %ps%
-
-gmt psxy -R -JX -T -O &gt;&gt; %ps%
-gmt psconvert %ps% -Tg -A -P
-del tmp*
-</code></pre>
+<p>批次檔
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a># 1. set two profile start point and end point
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="k">set</span> <span class="nv">ps</span><span class="p">=</span>7_5_elevation_profile.ps
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="k">set</span> <span class="nv">Alon1</span><span class="p">=</span>121.38
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="k">set</span> <span class="nv">Alat1</span><span class="p">=</span>24.07
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="k">set</span> <span class="nv">Alon2</span><span class="p">=</span>121.5
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="k">set</span> <span class="nv">Alat2</span><span class="p">=</span>23.6
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="k">set</span> <span class="nv">Blon1</span><span class="p">=</span>121.54
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="k">set</span> <span class="nv">Blat1</span><span class="p">=</span>24.06
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="k">set</span> <span class="nv">Blon2</span><span class="p">=</span>121.47
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="k">set</span> <span class="nv">Blat2</span><span class="p">=</span>24.0
+<a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>
+<a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a># 2. contour basemap
+<a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a>gmt pscoast -R121.33/121.68/23.55/24.1 -JM10 -BWeSn -Bxa.2 -Bya.2 <span class="se">^</span>
+<a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a><span class="se">-</span>Df -W1 -G194/250/216 -S175/243/255 -K --MAP_FRAME_TYPE=plain <span class="p">&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-8-15" name="__codelineno-8-15" href="#__codelineno-8-15"></a>gmt pscoast -R -JM -Df -Gc -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-8-16" name="__codelineno-8-16" href="#__codelineno-8-16"></a>gmt grdcontour east_rift_valley.grd -R -JM -C250 -A1000+f10p <span class="se">^</span>
+<a id="__codelineno-8-17" name="__codelineno-8-17" href="#__codelineno-8-17"></a><span class="se">-</span>Wc.5,150 -Wa1,30 -Q180 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-8-18" name="__codelineno-8-18" href="#__codelineno-8-18"></a>gmt pscoast -R -JM -Q -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-8-19" name="__codelineno-8-19" href="#__codelineno-8-19"></a>
+<a id="__codelineno-8-20" name="__codelineno-8-20" href="#__codelineno-8-20"></a># 3. AA&#39; line
+<a id="__codelineno-8-21" name="__codelineno-8-21" href="#__codelineno-8-21"></a><span class="k">echo</span> <span class="nv">%Alon1%</span> <span class="nv">%Alat1%</span> <span class="p">&gt;</span> tmp
+<a id="__codelineno-8-22" name="__codelineno-8-22" href="#__codelineno-8-22"></a><span class="k">echo</span> <span class="nv">%Alon2%</span> <span class="nv">%Alat2%</span> <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-8-23" name="__codelineno-8-23" href="#__codelineno-8-23"></a>gmt psxy tmp -R -JM -W2,238/91/78 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-8-24" name="__codelineno-8-24" href="#__codelineno-8-24"></a><span class="k">echo</span> <span class="nv">%Alon1%</span> <span class="nv">%Alat1%</span> A <span class="p">&gt;</span> tmp
+<a id="__codelineno-8-25" name="__codelineno-8-25" href="#__codelineno-8-25"></a>gmt psxy tmp -R -JM -Sc.8 -G238/91/78 -W1 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-8-26" name="__codelineno-8-26" href="#__codelineno-8-26"></a>gmt pstext tmp -R -JM -F+f16p,0,blue -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-8-27" name="__codelineno-8-27" href="#__codelineno-8-27"></a><span class="k">echo</span> <span class="nv">%Alon2%</span> <span class="nv">%Alat2%</span> A&#39; <span class="p">&gt;</span> tmp
+<a id="__codelineno-8-28" name="__codelineno-8-28" href="#__codelineno-8-28"></a>gmt psxy tmp -R -JM -Sc.8 -G238/91/78 -W1 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-8-29" name="__codelineno-8-29" href="#__codelineno-8-29"></a>gmt pstext tmp -R -JM -F+f16p,0,blue -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-8-30" name="__codelineno-8-30" href="#__codelineno-8-30"></a>
+<a id="__codelineno-8-31" name="__codelineno-8-31" href="#__codelineno-8-31"></a># 4. BB&#39; line
+<a id="__codelineno-8-32" name="__codelineno-8-32" href="#__codelineno-8-32"></a><span class="k">echo</span> <span class="nv">%Blon1%</span> <span class="nv">%Blat1%</span> <span class="p">&gt;</span> tmp
+<a id="__codelineno-8-33" name="__codelineno-8-33" href="#__codelineno-8-33"></a><span class="k">echo</span> <span class="nv">%Blon2%</span> <span class="nv">%Blat2%</span> <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-8-34" name="__codelineno-8-34" href="#__codelineno-8-34"></a>gmt psxy tmp -R -JM -W2,234/235/128 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-8-35" name="__codelineno-8-35" href="#__codelineno-8-35"></a><span class="k">echo</span> <span class="nv">%Blon1%</span> <span class="nv">%Blat1%</span> B <span class="p">&gt;</span> tmp
+<a id="__codelineno-8-36" name="__codelineno-8-36" href="#__codelineno-8-36"></a>gmt psxy tmp -R -JM -Sc.8 -G234/235/128 -W1 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-8-37" name="__codelineno-8-37" href="#__codelineno-8-37"></a>gmt pstext tmp -R -JM -F+f16p -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-8-38" name="__codelineno-8-38" href="#__codelineno-8-38"></a><span class="k">echo</span> <span class="nv">%Blon2%</span> <span class="nv">%Blat2%</span> B&#39; <span class="p">&gt;</span> tmp
+<a id="__codelineno-8-39" name="__codelineno-8-39" href="#__codelineno-8-39"></a>gmt psxy tmp -R -JM -Sc.8 -G234/235/128 -W1 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-8-40" name="__codelineno-8-40" href="#__codelineno-8-40"></a>gmt pstext tmp -R -JM -F+f16p -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-8-41" name="__codelineno-8-41" href="#__codelineno-8-41"></a>
+<a id="__codelineno-8-42" name="__codelineno-8-42" href="#__codelineno-8-42"></a># 5. insert map
+<a id="__codelineno-8-43" name="__codelineno-8-43" href="#__codelineno-8-43"></a>gmt pscoast -R119.9/122.1/21.8/25.4 -JM3 -Bwesn -Ba -Df -W1 -S255 -G230 <span class="se">^</span>
+<a id="__codelineno-8-44" name="__codelineno-8-44" href="#__codelineno-8-44"></a><span class="se">-</span>X7 -K -O --MAP_FRAME_TYPE=inside <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-8-45" name="__codelineno-8-45" href="#__codelineno-8-45"></a>gmt psbasemap -R -JM -D121.33/121.68/23.55/24.1 -F+p2 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-8-46" name="__codelineno-8-46" href="#__codelineno-8-46"></a>
+<a id="__codelineno-8-47" name="__codelineno-8-47" href="#__codelineno-8-47"></a># 6. AA&#39; profile
+<a id="__codelineno-8-48" name="__codelineno-8-48" href="#__codelineno-8-48"></a>gmt project -C<span class="nv">%Alon1%</span>/<span class="nv">%Alat1%</span> -E<span class="nv">%Alon2%</span>/<span class="nv">%Alat2%</span> -G0.1 -Q <span class="p">|</span> <span class="se">^</span>
+<a id="__codelineno-8-49" name="__codelineno-8-49" href="#__codelineno-8-49"></a><span class="se">g</span>mt grdtrack -Geast_rift_valley.grd <span class="p">&gt;</span> tmp
+<a id="__codelineno-8-50" name="__codelineno-8-50" href="#__codelineno-8-50"></a>gmtinfo tmp -i2,3 -I1/10 <span class="p">&gt;</span> tmp1
+<a id="__codelineno-8-51" name="__codelineno-8-51" href="#__codelineno-8-51"></a><span class="k">set</span> <span class="k">/p</span> <span class="nv">pr</span><span class="p">=&lt;</span>tmp1
+<a id="__codelineno-8-52" name="__codelineno-8-52" href="#__codelineno-8-52"></a>gmtinfo tmp -i2 -C -o1 <span class="p">&gt;</span> tmp1
+<a id="__codelineno-8-53" name="__codelineno-8-53" href="#__codelineno-8-53"></a><span class="k">set</span> <span class="k">/p</span> <span class="nv">md</span><span class="p">=&lt;</span>tmp1
+<a id="__codelineno-8-54" name="__codelineno-8-54" href="#__codelineno-8-54"></a>sed -i &#39;1i <span class="nv">%Alon1%</span> <span class="nv">%Alat1%</span> 0 0&#39; tmp
+<a id="__codelineno-8-55" name="__codelineno-8-55" href="#__codelineno-8-55"></a>sed -i &#39;$a <span class="nv">%Alon2%</span> <span class="nv">%Alat2%</span> <span class="nv">%md%</span> 0&#39; tmp
+<a id="__codelineno-8-56" name="__codelineno-8-56" href="#__codelineno-8-56"></a>awk <span class="s2">&quot;{print $3, $4}&quot;</span> tmp <span class="p">|</span> gmt psxy <span class="nv">%pr%</span> -JX12/6 -W2 -G238/91/78 -X5 -Y.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-8-57" name="__codelineno-8-57" href="#__codelineno-8-57"></a>gmt psbasemap -R -JX -BwESn+t<span class="s2">&quot;AA&#39; Profile&quot;</span> -Bxa+l<span class="s2">&quot;Distance (km)&quot;</span> <span class="se">^</span>
+<a id="__codelineno-8-58" name="__codelineno-8-58" href="#__codelineno-8-58"></a><span class="se">-</span>Bya+l<span class="s2">&quot;Elevation (m)&quot;</span> -K -O --FONT_TITLE=24p,0,blue <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-8-59" name="__codelineno-8-59" href="#__codelineno-8-59"></a>
+<a id="__codelineno-8-60" name="__codelineno-8-60" href="#__codelineno-8-60"></a># 7. BB&#39; profile
+<a id="__codelineno-8-61" name="__codelineno-8-61" href="#__codelineno-8-61"></a>gmt project -C<span class="nv">%Blon1%</span>/<span class="nv">%Blat1%</span> -E<span class="nv">%Blon2%</span>/<span class="nv">%Blat2%</span> -G0.1 -Q <span class="p">|</span> <span class="se">^</span>
+<a id="__codelineno-8-62" name="__codelineno-8-62" href="#__codelineno-8-62"></a><span class="se">g</span>mt grdtrack -Geast_rift_valley.grd <span class="p">&gt;</span> tmp
+<a id="__codelineno-8-63" name="__codelineno-8-63" href="#__codelineno-8-63"></a>gmtinfo tmp -i2,3 -I1/10 <span class="p">&gt;</span> tmp1
+<a id="__codelineno-8-64" name="__codelineno-8-64" href="#__codelineno-8-64"></a><span class="k">set</span> <span class="k">/p</span> <span class="nv">pr</span><span class="p">=&lt;</span>tmp1
+<a id="__codelineno-8-65" name="__codelineno-8-65" href="#__codelineno-8-65"></a>gmtinfo tmp -i2 -C -o1 <span class="p">&gt;</span> tmp1
+<a id="__codelineno-8-66" name="__codelineno-8-66" href="#__codelineno-8-66"></a><span class="k">set</span> <span class="k">/p</span> <span class="nv">md</span><span class="p">=&lt;</span>tmp1
+<a id="__codelineno-8-67" name="__codelineno-8-67" href="#__codelineno-8-67"></a>sed -i &#39;1i <span class="nv">%Blon1%</span> <span class="nv">%Blat1%</span> 0 0&#39; tmp
+<a id="__codelineno-8-68" name="__codelineno-8-68" href="#__codelineno-8-68"></a>sed -i &#39;$a <span class="nv">%Blon2%</span> <span class="nv">%Blat2%</span> <span class="nv">%md%</span> 0&#39; tmp
+<a id="__codelineno-8-69" name="__codelineno-8-69" href="#__codelineno-8-69"></a>awk <span class="s2">&quot;{print $3, $4}&quot;</span> tmp <span class="p">|</span> gmt psxy <span class="nv">%pr%</span> -JX -W2 -G234/235/128 -Y9 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-8-70" name="__codelineno-8-70" href="#__codelineno-8-70"></a>gmt psbasemap -R -JX -BwESn+t<span class="s2">&quot;BB&#39; Profile&quot;</span> -Bxa -Bya+l<span class="s2">&quot;Elevation (m)&quot;</span> -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-8-71" name="__codelineno-8-71" href="#__codelineno-8-71"></a>
+<a id="__codelineno-8-72" name="__codelineno-8-72" href="#__codelineno-8-72"></a>gmt psxy -R -JX -T -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-8-73" name="__codelineno-8-73" href="#__codelineno-8-73"></a>gmt psconvert <span class="nv">%ps%</span> -Tg -A -P
+<a id="__codelineno-8-74" name="__codelineno-8-74" href="#__codelineno-8-74"></a><span class="k">del</span> tmp*
+</code></pre></div></p>
 <p>本次批次檔篇幅較長，將利用註解號碼來依序解說，本節學習的新指令:</p>
 <p><mark>1</mark> 設定兩條剖面線的經緯度，漸漸去習慣把一些常需要更改的值，設定為變數，並在批次檔的開頭，
 規劃一個區域去編輯這些變數。</p>

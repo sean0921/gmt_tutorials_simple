@@ -626,76 +626,76 @@
   <img src="/fig/10_3_vector_1.png"/>
 </p>
 
-<p>批次檔</p>
-<pre><code class="language-bat">set ps=10_3_vector.ps
-
-gmt psbasemap -R0/19/0/15 -JX19/15 -BWESN -Bag1 -K &gt; %ps%
-
-# 1. -Sv
-echo 2 1 0 1.5 | gmt psxy -R -JX -Sv.5+e -W1.5 -Gred -K -O &gt;&gt; %ps%
-echo 1.8 1 0\260 | gmt pstext -R -JX -F+f14p,1+jMR -G255 -K -O &gt;&gt; %ps%
-echo 2 1.5 90 1.5 | gmt psxy -R -JX -Sv.5+e -W1.5 -Gred -K -O &gt;&gt; %ps%
-echo 1.8 2 90\260 | gmt pstext -R -JX -F+f14p,1+jMR -G255 -K -O &gt;&gt; %ps%
-echo 2 3.5 180 1.5 | gmt psxy -R -JX -Sv.5+e -W1.5 -Gred -K -O &gt;&gt; %ps%
-echo 2.2 3.5 180\260 | gmt pstext -R -JX -F+f14p,1+jML -G255 -K -O &gt;&gt; %ps%
-echo 2 5.5 270 1.5 | gmt psxy -R -JX -Sv.5+e -W1.5 -Gred -K -O &gt;&gt; %ps%
-echo 2.2 5 270\260 | gmt pstext -R -JX -F+f14p,1+jML -G255 -K -O &gt;&gt; %ps%
-echo 1.25 6.25 -Sv | gmt pstext -R -JX -F+f18p,1+jML -G255 -K -O &gt;&gt; %ps%
-
-# 2. -SV
-echo 6 1 0 1.5 | gmt psxy -R -JX -SV.5+e -W1.5 -Gred -K -O &gt;&gt; %ps%
-echo 5.8 1.5 0\260 | gmt pstext -R -JX -F+f14p,1+jMR -G255 -K -O &gt;&gt; %ps%
-echo 6 3.0 90 1.5 | gmt psxy -R -JX -SV.5+e -W1.5 -Gred -K -O &gt;&gt; %ps%
-echo 5.8 3.0 90\260 | gmt pstext -R -JX -F+f14p,1+jMR -G255 -K -O &gt;&gt; %ps%
-echo 6 5.0 180 1.5 | gmt psxy -R -JX -SV.5+e -W1.5 -Gred -K -O &gt;&gt; %ps%
-echo 6.2 4.5 180\260 | gmt pstext -R -JX -F+f14p,1+jML -G255 -K -O &gt;&gt; %ps%
-echo 6 5.5 270 1.5 | gmt psxy -R -JX -SV.5+e -W1.5 -Gred -K -O &gt;&gt; %ps%
-echo 6.2 5.5 270\260 | gmt pstext -R -JX -F+f14p,1+jML -G255 -K -O &gt;&gt; %ps%
-echo 5.25 6.25 -SV | gmt pstext -R -JX -F+f18p,1+jML -G255 -K -O &gt;&gt; %ps%
-
-# 3. -Sm
-echo 1 7 2 0 90 | gmt psxy -R -JX -Sm0.2i+e -W1.5 -Gred -K -O &gt;&gt; %ps%
-echo 1 7.5 0~90\260 | gmt pstext -R -JX -F+f14p,1+jML -G255 -K -O &gt;&gt; %ps%
-echo 5 9 2 270 450 | gmt psxy -R -JX -Sm0.2i+e -W1.5 -Gred -K -O &gt;&gt; %ps%
-echo 4 8 270~450\260 | gmt pstext -R -JX -F+f14p,1+jML -G255 -K -O &gt;&gt; %ps%
-echo 3 12 2 0 270 | gmt psxy -R -JX -Sm0.2i+e -W1.5 -Gred -K -O &gt;&gt; %ps%
-echo 3 12 0~270\260 | gmt pstext -R -JX -F+f14p,1+jMC -G255 -K -O &gt;&gt; %ps%
-echo 3.5 9.5 -Sm | gmt pstext -R -JX -F+f18p,1+jML -G255 -K -O &gt;&gt; %ps%
-
-# 4. vector type
-echo 9 14 0 3 | gmt psxy -R -JX -Sv.5+ba+ea -W1.5 -Gred -K -O &gt;&gt; %ps%
-echo 13 14 -Sv.5+ba+ea | gmt pstext -R -JX -F+f14p,1+jML -G255 -K -O &gt;&gt; %ps%
-echo 9 13 0 3 | gmt psxy -R -JX -Sv.5+ba+ea -W1.5 -Gred -K -O --MAP_VECTOR_SHAPE=-2 &gt;&gt; %ps%
-echo 13 13 MAP_VECTOR_SHAPE=-2 | gmt pstext -R -JX -F+f12p,1+jML -G255 -K -O &gt;&gt; %ps%
-echo 9 12 0 3 | gmt psxy -R -JX -Sv.5+ba+ea -W1.5 -Gred -K -O --MAP_VECTOR_SHAPE=-1 &gt;&gt; %ps%
-echo 13 12 MAP_VECTOR_SHAPE=-1 | gmt pstext -R -JX -F+f12p,1+jML -G255 -K -O &gt;&gt; %ps%
-echo 9 11 0 3 | gmt psxy -R -JX -Sv.5+ba+ea -W1.5 -Gred -K -O --MAP_VECTOR_SHAPE=1 &gt;&gt; %ps%
-echo 13 11 MAP_VECTOR_SHAPE=1 | gmt pstext -R -JX -F+f12p,1+jML -G255 -K -O &gt;&gt; %ps%
-echo 9 10 0 3 | gmt psxy -R -JX -Sv.5+ba+ea -W1.5 -Gred -K -O --MAP_VECTOR_SHAPE=2 &gt;&gt; %ps%
-echo 13 10 MAP_VECTOR_SHAPE=2 | gmt pstext -R -JX -F+f12p,1+jML -G255 -K -O &gt;&gt; %ps%
-echo 9 9 0 3 | gmt psxy -R -JX -Sv.5+bt+e -W1.5 -Gred -K -O &gt;&gt; %ps%
-echo 13 9 -Sv.5+bt+e | gmt pstext -R -JX -F+f14p,1+jML -G255 -K -O &gt;&gt; %ps%
-echo 9 8 0 3 | gmt psxy -R -JX -Sv.5+b+ec -W1.5 -Gred -K -O &gt;&gt; %ps%
-echo 13 8 -Sv.5+b+ec | gmt pstext -R -JX -F+f14p,1+jML -G255 -K -O &gt;&gt; %ps%
-echo 9 7 0 3 | gmt psxy -R -JX -Sv.5+bi+eA -W1.5 -Gred -K -O &gt;&gt; %ps%
-echo 13 7 -Sv.5+bi+eA | gmt pstext -R -JX -F+f14p,1+jML -G255 -K -O &gt;&gt; %ps%
-echo 9 6 0 3 | gmt psxy -R -JX -Sv.5+b+eI -W1.5 -Gred -K -O &gt;&gt; %ps%
-echo 13 6 -Sv.5+b+eI | gmt pstext -R -JX -F+f14p,1+jML -G255 -K -O &gt;&gt; %ps%
-echo 9 5 0 3 | gmt psxy -R -JX -Sv.5+b+e+r -W1.5 -Gred -K -O &gt;&gt; %ps%
-echo 13 5 -Sv.5+b+e+r | gmt pstext -R -JX -F+f14p,1+jML -G255 -K -O &gt;&gt; %ps%
-echo 9 4 0 3 | gmt psxy -R -JX -Sv.5+b+e+l -W1.5 -Gred -K -O &gt;&gt; %ps%
-echo 13 4 -Sv.5+b+e+l | gmt pstext -R -JX -F+f14p,1+jML -G255 -K -O &gt;&gt; %ps%
-echo 9 3 0 3 | gmt psxy -R -JX -Sv.5+b+e+a90 -W1.5 -Gred -K -O &gt;&gt; %ps%
-echo 13 3 -Sv.5+b+e+a90 | gmt pstext -R -JX -F+f14p,1+jML -G255 -K -O &gt;&gt; %ps%
-echo 9 2 0 3 | gmt psxy -R -JX -Sv.5+mf -W1.5 -Gred -K -O &gt;&gt; %ps%
-echo 13 2 -Sv.5+mf | gmt pstext -R -JX -F+f14p,1+jML -G255 -K -O &gt;&gt; %ps%
-echo 9 1 0 3 | gmt psxy -R -JX -Sv.5+mr -W1.5 -Gred -K -O &gt;&gt; %ps%
-echo 13 1 -Sv.5+mr | gmt pstext -R -JX -F+f14p,1+jML -G255 -K -O &gt;&gt; %ps%
-
-gmt psxy -R -J -T -O &gt;&gt; %ps%
-gmt psconvert %ps% -Tg -A -P
-del tmp*
-</code></pre>
+<p>批次檔
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">set</span> <span class="nv">ps</span><span class="p">=</span>10_3_vector.ps
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>gmt psbasemap -R0/19/0/15 -JX19/15 -BWESN -Bag1 -K <span class="p">&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a># 1. -Sv
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="k">echo</span> 2 1 0 1.5 <span class="p">|</span> gmt psxy -R -JX -Sv.5+e -W1.5 -Gred -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="k">echo</span> 1.8 1 0\260 <span class="p">|</span> gmt pstext -R -JX -F+f14p,1+jMR -G255 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="k">echo</span> 2 1.5 90 1.5 <span class="p">|</span> gmt psxy -R -JX -Sv.5+e -W1.5 -Gred -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="k">echo</span> 1.8 2 90\260 <span class="p">|</span> gmt pstext -R -JX -F+f14p,1+jMR -G255 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="k">echo</span> 2 3.5 180 1.5 <span class="p">|</span> gmt psxy -R -JX -Sv.5+e -W1.5 -Gred -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="k">echo</span> 2.2 3.5 180\260 <span class="p">|</span> gmt pstext -R -JX -F+f14p,1+jML -G255 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="k">echo</span> 2 5.5 270 1.5 <span class="p">|</span> gmt psxy -R -JX -Sv.5+e -W1.5 -Gred -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="k">echo</span> 2.2 5 270\260 <span class="p">|</span> gmt pstext -R -JX -F+f14p,1+jML -G255 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="k">echo</span> 1.25 6.25 -Sv <span class="p">|</span> gmt pstext -R -JX -F+f18p,1+jML -G255 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a># 2. -SV
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="k">echo</span> 6 1 0 1.5 <span class="p">|</span> gmt psxy -R -JX -SV.5+e -W1.5 -Gred -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="k">echo</span> 5.8 1.5 0\260 <span class="p">|</span> gmt pstext -R -JX -F+f14p,1+jMR -G255 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="k">echo</span> 6 3.0 90 1.5 <span class="p">|</span> gmt psxy -R -JX -SV.5+e -W1.5 -Gred -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="k">echo</span> 5.8 3.0 90\260 <span class="p">|</span> gmt pstext -R -JX -F+f14p,1+jMR -G255 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="k">echo</span> 6 5.0 180 1.5 <span class="p">|</span> gmt psxy -R -JX -SV.5+e -W1.5 -Gred -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="k">echo</span> 6.2 4.5 180\260 <span class="p">|</span> gmt pstext -R -JX -F+f14p,1+jML -G255 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="k">echo</span> 6 5.5 270 1.5 <span class="p">|</span> gmt psxy -R -JX -SV.5+e -W1.5 -Gred -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="k">echo</span> 6.2 5.5 270\260 <span class="p">|</span> gmt pstext -R -JX -F+f14p,1+jML -G255 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="k">echo</span> 5.25 6.25 -SV <span class="p">|</span> gmt pstext -R -JX -F+f18p,1+jML -G255 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a># 3. -Sm
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="k">echo</span> 1 7 2 0 90 <span class="p">|</span> gmt psxy -R -JX -Sm0.2i+e -W1.5 -Gred -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="k">echo</span> 1 7.5 0~90\260 <span class="p">|</span> gmt pstext -R -JX -F+f14p,1+jML -G255 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="k">echo</span> 5 9 2 270 450 <span class="p">|</span> gmt psxy -R -JX -Sm0.2i+e -W1.5 -Gred -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="k">echo</span> 4 8 270~450\260 <span class="p">|</span> gmt pstext -R -JX -F+f14p,1+jML -G255 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="k">echo</span> 3 12 2 0 270 <span class="p">|</span> gmt psxy -R -JX -Sm0.2i+e -W1.5 -Gred -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="k">echo</span> 3 12 0~270\260 <span class="p">|</span> gmt pstext -R -JX -F+f14p,1+jMC -G255 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a><span class="k">echo</span> 3.5 9.5 -Sm <span class="p">|</span> gmt pstext -R -JX -F+f18p,1+jML -G255 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>
+<a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a># 4. vector type
+<a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a><span class="k">echo</span> 9 14 0 3 <span class="p">|</span> gmt psxy -R -JX -Sv.5+ba+ea -W1.5 -Gred -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a><span class="k">echo</span> 13 14 -Sv.5+ba+ea <span class="p">|</span> gmt pstext -R -JX -F+f14p,1+jML -G255 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a><span class="k">echo</span> 9 13 0 3 <span class="p">|</span> gmt psxy -R -JX -Sv.5+ba+ea -W1.5 -Gred -K -O --MAP_VECTOR_SHAPE=-2 <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a><span class="k">echo</span> 13 13 MAP_VECTOR_SHAPE=-2 <span class="p">|</span> gmt pstext -R -JX -F+f12p,1+jML -G255 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a><span class="k">echo</span> 9 12 0 3 <span class="p">|</span> gmt psxy -R -JX -Sv.5+ba+ea -W1.5 -Gred -K -O --MAP_VECTOR_SHAPE=-1 <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a><span class="k">echo</span> 13 12 MAP_VECTOR_SHAPE=-1 <span class="p">|</span> gmt pstext -R -JX -F+f12p,1+jML -G255 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a><span class="k">echo</span> 9 11 0 3 <span class="p">|</span> gmt psxy -R -JX -Sv.5+ba+ea -W1.5 -Gred -K -O --MAP_VECTOR_SHAPE=1 <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a><span class="k">echo</span> 13 11 MAP_VECTOR_SHAPE=1 <span class="p">|</span> gmt pstext -R -JX -F+f12p,1+jML -G255 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a><span class="k">echo</span> 9 10 0 3 <span class="p">|</span> gmt psxy -R -JX -Sv.5+ba+ea -W1.5 -Gred -K -O --MAP_VECTOR_SHAPE=2 <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a><span class="k">echo</span> 13 10 MAP_VECTOR_SHAPE=2 <span class="p">|</span> gmt pstext -R -JX -F+f12p,1+jML -G255 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a><span class="k">echo</span> 9 9 0 3 <span class="p">|</span> gmt psxy -R -JX -Sv.5+bt+e -W1.5 -Gred -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a><span class="k">echo</span> 13 9 -Sv.5+bt+e <span class="p">|</span> gmt pstext -R -JX -F+f14p,1+jML -G255 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a><span class="k">echo</span> 9 8 0 3 <span class="p">|</span> gmt psxy -R -JX -Sv.5+b+ec -W1.5 -Gred -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a><span class="k">echo</span> 13 8 -Sv.5+b+ec <span class="p">|</span> gmt pstext -R -JX -F+f14p,1+jML -G255 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-51" name="__codelineno-0-51" href="#__codelineno-0-51"></a><span class="k">echo</span> 9 7 0 3 <span class="p">|</span> gmt psxy -R -JX -Sv.5+bi+eA -W1.5 -Gred -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-52" name="__codelineno-0-52" href="#__codelineno-0-52"></a><span class="k">echo</span> 13 7 -Sv.5+bi+eA <span class="p">|</span> gmt pstext -R -JX -F+f14p,1+jML -G255 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-53" name="__codelineno-0-53" href="#__codelineno-0-53"></a><span class="k">echo</span> 9 6 0 3 <span class="p">|</span> gmt psxy -R -JX -Sv.5+b+eI -W1.5 -Gred -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-54" name="__codelineno-0-54" href="#__codelineno-0-54"></a><span class="k">echo</span> 13 6 -Sv.5+b+eI <span class="p">|</span> gmt pstext -R -JX -F+f14p,1+jML -G255 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-55" name="__codelineno-0-55" href="#__codelineno-0-55"></a><span class="k">echo</span> 9 5 0 3 <span class="p">|</span> gmt psxy -R -JX -Sv.5+b+e+r -W1.5 -Gred -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-56" name="__codelineno-0-56" href="#__codelineno-0-56"></a><span class="k">echo</span> 13 5 -Sv.5+b+e+r <span class="p">|</span> gmt pstext -R -JX -F+f14p,1+jML -G255 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-57" name="__codelineno-0-57" href="#__codelineno-0-57"></a><span class="k">echo</span> 9 4 0 3 <span class="p">|</span> gmt psxy -R -JX -Sv.5+b+e+l -W1.5 -Gred -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-58" name="__codelineno-0-58" href="#__codelineno-0-58"></a><span class="k">echo</span> 13 4 -Sv.5+b+e+l <span class="p">|</span> gmt pstext -R -JX -F+f14p,1+jML -G255 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-59" name="__codelineno-0-59" href="#__codelineno-0-59"></a><span class="k">echo</span> 9 3 0 3 <span class="p">|</span> gmt psxy -R -JX -Sv.5+b+e+a90 -W1.5 -Gred -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-60" name="__codelineno-0-60" href="#__codelineno-0-60"></a><span class="k">echo</span> 13 3 -Sv.5+b+e+a90 <span class="p">|</span> gmt pstext -R -JX -F+f14p,1+jML -G255 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-61" name="__codelineno-0-61" href="#__codelineno-0-61"></a><span class="k">echo</span> 9 2 0 3 <span class="p">|</span> gmt psxy -R -JX -Sv.5+mf -W1.5 -Gred -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-62" name="__codelineno-0-62" href="#__codelineno-0-62"></a><span class="k">echo</span> 13 2 -Sv.5+mf <span class="p">|</span> gmt pstext -R -JX -F+f14p,1+jML -G255 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-63" name="__codelineno-0-63" href="#__codelineno-0-63"></a><span class="k">echo</span> 9 1 0 3 <span class="p">|</span> gmt psxy -R -JX -Sv.5+mr -W1.5 -Gred -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-64" name="__codelineno-0-64" href="#__codelineno-0-64"></a><span class="k">echo</span> 13 1 -Sv.5+mr <span class="p">|</span> gmt pstext -R -JX -F+f14p,1+jML -G255 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-65" name="__codelineno-0-65" href="#__codelineno-0-65"></a>
+<a id="__codelineno-0-66" name="__codelineno-0-66" href="#__codelineno-0-66"></a>gmt psxy -R -J -T -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-0-67" name="__codelineno-0-67" href="#__codelineno-0-67"></a>gmt psconvert <span class="nv">%ps%</span> -Tg -A -P
+<a id="__codelineno-0-68" name="__codelineno-0-68" href="#__codelineno-0-68"></a><span class="k">del</span> tmp*
+</code></pre></div></p>
 <p>學習到的指令:</p>
 <ul>
 <li><code>-Sv</code>笛卡爾向量(直線向量)，對應的資料格式<mark>x軸位置 y軸位置 角度 長度 (大小)</mark>，
@@ -745,51 +745,51 @@ del tmp*
   <img src="/fig/10_4_morakot_wind_1.png"/>
 </p>
 
-<p>批次檔</p>
-<pre><code class="language-bat">set ps=10_4_morakot_wind.ps
-set data=D:\GMT_data\
-set cpt=gebco.cpt
-
-gmt surface morakot_presure.gmt -R119/123/21/26 -I.01  -Gmorakot_presure.grd
-
-# 1. topography &amp; presure contour
-gmt psbasemap -R119/123/21/26 -JM15 -BWeSn -Bxa -Bya -P -K &gt; %ps%
-gmt grdimage %data%ETOPO1_Bed_g_gmt5.grd -R -JM -C%cpt% ^
--I%data%ETOPO1_Bed_g_gmt5_shad.grd -M -K -O &gt;&gt; %ps%
-gmt pscoast -R -JM -Df -Gc -K -O &gt;&gt; %ps%
-gmt grdimage %data%tw_40.grd -R -JM -C%cpt% ^
--I%data%tw_40shad.grd -M -K -O &gt;&gt; %ps%
-gmt pscoast -R -JM -Q -K -O &gt;&gt; %ps%
-gmt pscoast -R -JM -Df -W1 -K -O &gt;&gt; %ps%
-gmt grdcontour morakot_presure.grd -R -JM -A100 -C50 -K -O &gt;&gt; %ps%
-
-# 2. typhoon track &amp; wind
-gmt psvelo morakot_wind.gmt -R -JM -Se.3/.01/0 -G36/64/254 -A+ea+a45 -W1,36/64/254 -K -O &gt;&gt; %ps%
-awk &quot;{print $3,$2}&quot; morakot_track.dat | gmt psxy -R -JM -W2,255/205/0,- -K -O &gt;&gt; %ps%
-awk &quot;$1 != 082009080800 {print $3,$2}&quot; morakot_track.dat | ^
-gmt psxy -R -JM -SkHURRICANE/.5 -G232/178/14 -W.5 -K -O &gt;&gt; %ps%
-awk &quot;$1 == 082009080800 {print $3,$2}&quot; morakot_track.dat | ^
-gmt psxy -R -JM -SkHURRICANE/.7 -G218/41/28 -W.5 -K -O &gt;&gt; %ps%
-
-# 3. legend set
-echo H 18 1 Legend &gt; tmp
-echo D 0.4 1p &gt;&gt; tmp
-echo G .2 &gt;&gt; tmp
-echo M 122 21.5 100+u +f &gt;&gt; tmp
-echo G .2 &gt;&gt; tmp
-echo S .5 kHURRICANE .5 232/178/14 .5 1 Typhoon Track &gt;&gt; tmp
-echo P &gt;&gt; tmp
-echo G .2 &gt;&gt; tmp
-echo S .5 kHURRICANE .7 218/41/28 .5 1 Eye at 2009/08/08 0:00:00 &gt;&gt; tmp
-echo G .2 &gt;&gt; tmp
-echo S .8 v.3+ea+a45 1 36/64/254 1,36/64/254 1.5 Wind 1 m/s &gt;&gt; tmp
-gmt pslegend tmp -R -JM -C.1/.1 -Dx9.4/.1+w5.5 -F+g245+p1+s4p/-4p/gray50 ^
---FONT_ANNOT_PRIMARY=10p --FONT_LABEL=14p -K -O &gt;&gt; %ps%
-
-gmt psxy -R -J -T -O &gt;&gt; %ps%
-gmt psconvert %ps% -Tg -A -P
-del tmp*
-</code></pre>
+<p>批次檔
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">set</span> <span class="nv">ps</span><span class="p">=</span>10_4_morakot_wind.ps
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">set</span> <span class="nv">data</span><span class="p">=</span>D:\GMT_data\
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="k">set</span> <span class="nv">cpt</span><span class="p">=</span>gebco.cpt
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>gmt surface morakot_presure.gmt -R119/123/21/26 -I.01  -Gmorakot_presure.grd
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a># 1. topography <span class="p">&amp;</span> presure contour
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>gmt psbasemap -R119/123/21/26 -JM15 -BWeSn -Bxa -Bya -P -K <span class="p">&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>gmt grdimage <span class="nv">%data%</span>ETOPO1_Bed_g_gmt5.grd -R -JM -C<span class="nv">%cpt%</span> <span class="se">^</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="se">-</span>I<span class="nv">%data%</span>ETOPO1_Bed_g_gmt5_shad.grd -M -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>gmt pscoast -R -JM -Df -Gc -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>gmt grdimage <span class="nv">%data%</span>tw_40.grd -R -JM -C<span class="nv">%cpt%</span> <span class="se">^</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="se">-</span>I<span class="nv">%data%</span>tw_40shad.grd -M -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>gmt pscoast -R -JM -Q -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>gmt pscoast -R -JM -Df -W1 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>gmt grdcontour morakot_presure.grd -R -JM -A100 -C50 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a># 2. typhoon track <span class="p">&amp;</span> wind
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>gmt psvelo morakot_wind.gmt -R -JM -Se.3/.01/0 -G36/64/254 -A+ea+a45 -W1,36/64/254 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>awk <span class="s2">&quot;{print $3,$2}&quot;</span> morakot_track.dat <span class="p">|</span> gmt psxy -R -JM -W2,255/205/0,- -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>awk <span class="s2">&quot;$1 != 082009080800 {print $3,$2}&quot;</span> morakot_track.dat <span class="p">|</span> <span class="se">^</span>
+<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="se">g</span>mt psxy -R -JM -SkHURRICANE/.5 -G232/178/14 -W.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>awk <span class="s2">&quot;$1 == 082009080800 {print $3,$2}&quot;</span> morakot_track.dat <span class="p">|</span> <span class="se">^</span>
+<a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a><span class="se">g</span>mt psxy -R -JM -SkHURRICANE/.7 -G218/41/28 -W.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>
+<a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a># 3. legend set
+<a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a><span class="k">echo</span> H 18 1 Legend <span class="p">&gt;</span> tmp
+<a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a><span class="k">echo</span> D 0.4 1p <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a><span class="k">echo</span> G .2 <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a><span class="k">echo</span> M 122 21.5 100+u +f <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a><span class="k">echo</span> G .2 <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a><span class="k">echo</span> S .5 kHURRICANE .5 232/178/14 .5 1 Typhoon Track <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a><span class="k">echo</span> P <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a><span class="k">echo</span> G .2 <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a><span class="k">echo</span> S .5 kHURRICANE .7 218/41/28 .5 1 Eye at 2009/08/08 0:00:00 <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a><span class="k">echo</span> G .2 <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a><span class="k">echo</span> S .8 v.3+ea+a45 1 36/64/254 1,36/64/254 1.5 Wind 1 m/s <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a>gmt pslegend tmp -R -JM -C.1/.1 -Dx9.4/.1+w5.5 -F+g245+p1+s4p/-4p/gray50 <span class="se">^</span>
+<a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a><span class="se">-</span>-FONT_ANNOT_PRIMARY=10p --FONT_LABEL=14p -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-1-40" name="__codelineno-1-40" href="#__codelineno-1-40"></a>
+<a id="__codelineno-1-41" name="__codelineno-1-41" href="#__codelineno-1-41"></a>gmt psxy -R -J -T -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-1-42" name="__codelineno-1-42" href="#__codelineno-1-42"></a>gmt psconvert <span class="nv">%ps%</span> -Tg -A -P
+<a id="__codelineno-1-43" name="__codelineno-1-43" href="#__codelineno-1-43"></a><span class="k">del</span> tmp*
+</code></pre></div></p>
 <p>學習到的指令:</p>
 <ul>
 <li><code>Surface</code>將xyz三欄的表格資料，
@@ -847,44 +847,44 @@ del tmp*
   <img src="/fig/10_5_grid_vector_1.png"/>
 </p>
 
-<p>批次檔</p>
-<pre><code class="language-bat">set ps=10_5_grid_vector.ps
-set data=D:\GMT_data\
-set cpt=sealand.cpt
-
-# 1. surface .xyz to .grd &amp; makecpt
-awk &quot;{print $1,$2,$3}&quot; morakot_wind.gmt | ^
-gmt surface -R119.9/122.1/21.8/25.4 -I.1 -Gmorakot_wind_e.grd
-awk &quot;{print $1,$2,$4}&quot; morakot_wind.gmt | ^
-gmt surface -R -I.1 -Gmorakot_wind_n.grd
-gmt surface morakot_wind_scalar.gmt -R -I.1 -T.25 -Gmorakot_wind_scalar.grd
-gmt makecpt -C%cpt% -T0/10/.5 -D &gt; tmp.cpt
-
-# 2. bathymetry &amp; grdvector
-gmt psbasemap -R119.8/122.1/21.8/25.4 -JM15 -BWeSn -Bxa ^
--Bya -P -K --MAP_FRAME_TYPE=PLAIN &gt; %ps%
-gmt grdimage %data%tw_500_119.grd -R -JM -C%cpt% ^
--I%data%tw_500shad_119.grd -M -K -O &gt;&gt; %ps%
-gmt pscoast -R -JM -Df -Gc -K -O &gt;&gt; %ps%
-gmt grdimage morakot_wind_scalar.grd -R -JM -Ctmp.cpt -K -O &gt;&gt; %ps%
-gmt grdvector morakot_wind_e.grd morakot_wind_n.grd -R -JM -Q+ea -W1 ^
--G0 -S.4 -I.1 -K -O &gt;&gt; %ps%
-gmt pscoast -R -JM -Q -K -O &gt;&gt; %ps%
-gmt pscoast -R -JM -Df -W1 -K -O &gt;&gt; %ps%
-
-# 3. typhoon track &amp; psscale
-awk &quot;{print $3,$2}&quot; morakot_track.dat | gmt psxy -R -JM -W2,255/205/0,- -K -O &gt;&gt; %ps%
-awk &quot;$1 != 082009080800 {print $3,$2}&quot; morakot_track.dat | ^
-gmt psxy -R -JM -SkHURRICANE/.5 -G232/178/14 -W.5 -K -O &gt;&gt; %ps%
-awk &quot;$1 == 082009080800 {print $3,$2}&quot; morakot_track.dat | ^
-gmt psxy -R -JM -SkHURRICANE/.7 -G218/41/28 -W.5 -K -O &gt;&gt; %ps%
-gmt psscale -Ctmp.cpt -Dx2/19.2+w5/.5+e+ml -Bxa2+l&quot;Wind (m/s)&quot; ^
--F+g240+r.4+c.3 -K -O &gt;&gt; %ps%
-
-gmt psxy -R -J -T -O &gt;&gt; %ps%
-gmt psconvert %ps% -Tg -A -P
-del tmp*
-</code></pre>
+<p>批次檔
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">set</span> <span class="nv">ps</span><span class="p">=</span>10_5_grid_vector.ps
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">set</span> <span class="nv">data</span><span class="p">=</span>D:\GMT_data\
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="k">set</span> <span class="nv">cpt</span><span class="p">=</span>sealand.cpt
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a># 1. surface .xyz to .grd <span class="p">&amp;</span> makecpt
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>awk <span class="s2">&quot;{print $1,$2,$3}&quot;</span> morakot_wind.gmt <span class="p">|</span> <span class="se">^</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="se">g</span>mt surface -R119.9/122.1/21.8/25.4 -I.1 -Gmorakot_wind_e.grd
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>awk <span class="s2">&quot;{print $1,$2,$4}&quot;</span> morakot_wind.gmt <span class="p">|</span> <span class="se">^</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="se">g</span>mt surface -R -I.1 -Gmorakot_wind_n.grd
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>gmt surface morakot_wind_scalar.gmt -R -I.1 -T.25 -Gmorakot_wind_scalar.grd
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>gmt makecpt -C<span class="nv">%cpt%</span> -T0/10/.5 -D <span class="p">&gt;</span> tmp.cpt
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a># 2. bathymetry <span class="p">&amp;</span> grdvector
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>gmt psbasemap -R119.8/122.1/21.8/25.4 -JM15 -BWeSn -Bxa <span class="se">^</span>
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="se">-</span>Bya -P -K --MAP_FRAME_TYPE=PLAIN <span class="p">&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>gmt grdimage <span class="nv">%data%</span>tw_500_119.grd -R -JM -C<span class="nv">%cpt%</span> <span class="se">^</span>
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="se">-</span>I<span class="nv">%data%</span>tw_500shad_119.grd -M -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>gmt pscoast -R -JM -Df -Gc -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>gmt grdimage morakot_wind_scalar.grd -R -JM -Ctmp.cpt -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>gmt grdvector morakot_wind_e.grd morakot_wind_n.grd -R -JM -Q+ea -W1 <span class="se">^</span>
+<a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a><span class="se">-</span>G0 -S.4 -I.1 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a>gmt pscoast -R -JM -Q -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a>gmt pscoast -R -JM -Df -W1 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a>
+<a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a># 3. typhoon track <span class="p">&amp;</span> psscale
+<a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a>awk <span class="s2">&quot;{print $3,$2}&quot;</span> morakot_track.dat <span class="p">|</span> gmt psxy -R -JM -W2,255/205/0,- -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a>awk <span class="s2">&quot;$1 != 082009080800 {print $3,$2}&quot;</span> morakot_track.dat <span class="p">|</span> <span class="se">^</span>
+<a id="__codelineno-2-28" name="__codelineno-2-28" href="#__codelineno-2-28"></a><span class="se">g</span>mt psxy -R -JM -SkHURRICANE/.5 -G232/178/14 -W.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-29" name="__codelineno-2-29" href="#__codelineno-2-29"></a>awk <span class="s2">&quot;$1 == 082009080800 {print $3,$2}&quot;</span> morakot_track.dat <span class="p">|</span> <span class="se">^</span>
+<a id="__codelineno-2-30" name="__codelineno-2-30" href="#__codelineno-2-30"></a><span class="se">g</span>mt psxy -R -JM -SkHURRICANE/.7 -G218/41/28 -W.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-31" name="__codelineno-2-31" href="#__codelineno-2-31"></a>gmt psscale -Ctmp.cpt -Dx2/19.2+w5/.5+e+ml -Bxa2+l<span class="s2">&quot;Wind (m/s)&quot;</span> <span class="se">^</span>
+<a id="__codelineno-2-32" name="__codelineno-2-32" href="#__codelineno-2-32"></a><span class="se">-</span>F+g240+r.4+c.3 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-33" name="__codelineno-2-33" href="#__codelineno-2-33"></a>
+<a id="__codelineno-2-34" name="__codelineno-2-34" href="#__codelineno-2-34"></a>gmt psxy -R -J -T -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-35" name="__codelineno-2-35" href="#__codelineno-2-35"></a>gmt psconvert <span class="nv">%ps%</span> -Tg -A -P
+<a id="__codelineno-2-36" name="__codelineno-2-36" href="#__codelineno-2-36"></a><span class="k">del</span> tmp*
+</code></pre></div></p>
 <p>學習到的指令:</p>
 <ul>
 <li><mark>1</mark>將風速檔透過<code>surface</code>轉成網格資料</li>
