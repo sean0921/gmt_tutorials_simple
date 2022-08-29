@@ -7,10 +7,11 @@
 
 ## 6.1 目的
 本章將學習如何繪製
-  1. 線性軸(Linear)
-  2. 指數、對數軸(Power, Logarithmic)
-  3. 時間序列(Time)
-  4. 極軸(Polar)
+
+1. 線性軸(Linear)
+2. 指數、對數軸(Power, Logarithmic)
+3. 時間序列(Time)
+4. 極軸(Polar)
 
 ## 6.2 學習的指令與概念
 
@@ -27,6 +28,7 @@
 以及與性別的關係，首先先來看成果圖及批次檔。
 
 使用的資料檔:
+
 - [2016年意外死亡人數](https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/data/dead105.dat)
 
 成果圖
@@ -34,49 +36,90 @@
   <img src="/fig/6_3_accidentalDeath_1.png"/>
 </p>
 
-批次檔
-```bat
-set ps=6_3_accidentalDeath.ps
+=== "Windows 批次檔"
 
-# 製作底圖框架
-gmt psbasemap -R0/100/0/450 -JX20/15 -Bxa5+l"Age" -Bya50+l"Deaths (count)" ^
--BWeSn+t"2016 Taiwan Accidental Deaths" -K > %ps%
+    ```bat
+    set ps=6_3_accidentalDeath.ps
 
-# 繪製垂直虛線
-echo 15 0 > area
-echo 15 450 >> area
-gmt psxy area -R -JX -W1.5,180/180/255,- -K -O >> %ps%
-echo 75 0 > area
-echo 75 450 >> area
-gmt psxy area -R -JX -W1.5,255/180/180,- -K -O >> %ps%
+    :: 製作底圖框架
+    gmt psbasemap -R0/100/0/450 -JX20/15 -Bxa5+l"Age" -Bya50+l"Deaths (count)" ^
+    -BWeSn+t"2016 Taiwan Accidental Deaths" -K > %ps%
 
-# 繪製死亡人數資料點
-awk "$3==1 {print $1, $2}" dead105.dat | gmt psxy -R -JX -Sd.4 ^
--G30/34/170 -W1 -K -O >> %ps%
-awk "$3==2 {print $1, $2}" dead105.dat | gmt psxy -R -JX -Sc.4 ^
--G208/0/111 -W1 -K -O >> %ps%
+    :: 繪製垂直虛線
+    echo 15 0 > area
+    echo 15 450 >> area
+    gmt psxy area -R -JX -W1.5,180/180/255,- -K -O >> %ps%
+    echo 75 0 > area
+    echo 75 450 >> area
+    gmt psxy area -R -JX -W1.5,255/180/180,- -K -O >> %ps%
 
-# 圖例框與圖例說明
-echo 1 385 > area
-echo 15.5 385 >> area
-echo 15.5 445 >> area
-echo 1 445 >> area
-gmt psxy area -R -JX -W1 -G255 -L -K -O >> %ps%
-echo 3 430 | gmt psxy -R -JX -Sd.4 -G30/34/170 -W1 -K -O >> %ps%
-echo 6 430 Male | gmt pstext -R -JX -F+f14+jML -K -O >> %ps%
-echo 3 400 | gmt psxy -R -JX -Sc.4 -G208/0/111 -W1 -K -O >> %ps%
-echo 6 400 Female | gmt pstext -R -JX -F+f14+jML -O >> %ps%
+    :: 繪製死亡人數資料點
+    awk "$3==1 {print $1, $2}" dead105.dat | gmt psxy -R -JX -Sd.4 ^
+    -G30/34/170 -W1 -K -O >> %ps%
+    awk "$3==2 {print $1, $2}" dead105.dat | gmt psxy -R -JX -Sc.4 ^
+    -G208/0/111 -W1 -K -O >> %ps%
 
-# 轉成.png檔，刪除暫存資料
-gmt psconvert %ps% -Tg -A -P
-del area
-```
+    :: 圖例框與圖例說明
+    echo 1 385 > area
+    echo 15.5 385 >> area
+    echo 15.5 445 >> area
+    echo 1 445 >> area
+    gmt psxy area -R -JX -W1 -G255 -L -K -O >> %ps%
+    echo 3 430 | gmt psxy -R -JX -Sd.4 -G30/34/170 -W1 -K -O >> %ps%
+    echo 6 430 Male | gmt pstext -R -JX -F+f14+jML -K -O >> %ps%
+    echo 3 400 | gmt psxy -R -JX -Sc.4 -G208/0/111 -W1 -K -O >> %ps%
+    echo 6 400 Female | gmt pstext -R -JX -F+f14+jML -O >> %ps%
+
+    :: 轉成.png檔，刪除暫存資料
+    gmt psconvert %ps% -Tg -A -P
+    del area
+    ```
+
+=== "Bash 腳本"
+
+    ```bash
+    ps=6_3_accidentalDeath.ps
+
+    # 製作底圖框架
+    gmt psbasemap -R0/100/0/450 -JX20/15 -Bxa5+l"Age" -Bya50+l"Deaths (count)" \
+    -BWeSn+t"2016 Taiwan Accidental Deaths" -K > "${ps}"
+
+    # 繪製垂直虛線
+    echo 15 0 > area
+    echo 15 450 >> area
+    gmt psxy area -R -JX -W1.5,180/180/255,- -K -O >> "${ps}"
+    echo 75 0 > area
+    echo 75 450 >> area
+    gmt psxy area -R -JX -W1.5,255/180/180,- -K -O >> "${ps}"
+
+    # 繪製死亡人數資料點
+    awk '$3==1 {print $1, $2}' dead105.dat | gmt psxy -R -JX -Sd.4 \
+    -G30/34/170 -W1 -K -O >> "${ps}"
+    awk '$3==2 {print $1, $2}' dead105.dat | gmt psxy -R -JX -Sc.4 \
+    -G208/0/111 -W1 -K -O >> "${ps}"
+
+    # 圖例框與圖例說明
+    echo 1 385 > area
+    echo 15.5 385 >> area
+    echo 15.5 445 >> area
+    echo 1 445 >> area
+    gmt psxy area -R -JX -W1 -G255 -L -K -O >> "${ps}"
+    echo 3 430 | gmt psxy -R -JX -Sd.4 -G30/34/170 -W1 -K -O >> "${ps}"
+    echo 6 430 Male | gmt pstext -R -JX -F+f14+jML -K -O >> "${ps}"
+    echo 3 400 | gmt psxy -R -JX -Sc.4 -G208/0/111 -W1 -K -O >> "${ps}"
+    echo 6 400 Female | gmt pstext -R -JX -F+f14+jML -O >> "${ps}"
+
+    # 轉成.png檔，刪除暫存資料
+    gmt psconvert "${ps}" -Tg -A -P
+    del area
+    ```
+
+
 
 本節學習到的新指令:
+
 * 第3行: `#`符號代表這行後面的字為註記，執行時會略過這行，不同的環境下所使用的符號不太一樣，
 像是Linux、MAC是使用<mark>#</mark>(bash shell)，在Windows則是用<mark>rem</mark>。
-**特別說明：因為本網頁語法無支援batch檔的hightlight，所以才用<mark>#</mark>代替<mark>rem</mark>，
-如果複製後在Windows上執行會出錯，請自行修改，或是下載最後提供的參考批次檔。**
 * 第4行: `psbasemap`製作圖形外框，其中:
   * `-R`x軸最小值/x軸最大值/y軸最小值/y軸最大值。
   * `-JX`寬度/高度。
@@ -135,6 +178,7 @@ del area
 **M<font size="-2">w</font>**地震矩規模，來估算地震大小。讓我們來假設震央距為10度，不同大小的振幅所對應的芮氏規模吧！
 
 使用的資料檔:
+
 - [芮氏規模資料](https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/data/richter_magnitude.dat)
 - [取log後芮氏規模資料](https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/data/richter_magnitude_log.dat)
 
@@ -143,48 +187,98 @@ del area
   <img src="/fig/6_4_richter_magnitude_1.png"/>
 </p>
 
-批次檔
-```bat
-set ps=6_4_richter_magnitude.ps
+=== "Windows 批次檔"
+    ```bat
+    set ps=6_4_richter_magnitude.ps
 
-# 製作左側圖
-gmt psbasemap -R0/9.99/1e0/9.99e9 -JX9/15l -BWeSn -Bxa1+l"Richter Mag." ^
--Bya1pf3+l"Maximum Amp. (Microns)" -K > %ps%
-gmt psxy richter_magnitude.dat -R -JX -W1 -K -O >> %ps%
-echo 7.3 7.3e6 1999 Chi-Chi > tmp
-echo 6.6 6.6e5 2016 Meinong >> tmp
-gmt psxy tmp -R -JX -Sc.6 -G0 -K -O >> %ps%
-gmt pstext tmp -R -JX -F+f14p+jMR -D-.6/0 -K -O >> %ps%
+    :: 製作左側圖
+    gmt psbasemap -R0/9.99/1e0/9.99e9 -JX9/15l -BWeSn -Bxa1+l"Richter Mag." ^
+    -Bya1pf3+l"Maximum Amp. (Microns)" -K > %ps%
+    gmt psxy richter_magnitude.dat -R -JX -W1 -K -O >> %ps%
+    echo 7.3 7.3e6 1999 Chi-Chi > tmp
+    echo 6.6 6.6e5 2016 Meinong >> tmp
+    gmt psxy tmp -R -JX -Sc.6 -G0 -K -O >> %ps%
+    gmt pstext tmp -R -JX -F+f14p+jMR -D-.6/0 -K -O >> %ps%
 
-# 製作右側圖
-gmt psbasemap -R0/9.99/1e-2/9.99 -JX9/15p2 -BWeSn -Bxa1+l"Magnitude" ^
--Bya1f.2g1+l"Log of Maximum Amp. (Microns)" -X12 -K -O >> %ps%
-gmt psxy richter_magnitude_log.dat -R -JX -W1 -K -O >> %ps%
-for /l %%x in (1, 1, 9) do (
-awk "$2==%%x {print $1, $2}" richter_magnitude_log.dat | ^
-gmt psxy -R -JX -Sc.5 -G255 -K -O >> %ps%)
-for /l %%x in (1, 1, 9) do (
-awk "$2==%%x {print $1, $2, %%x}" richter_magnitude_log.dat | ^
-gmt pstext -R -JX -F+f14p -K -O >> %ps%)
-echo 2.7 1.7 NOT FELT > tmp
-echo 4.2 3.4 MINOR >> tmp
-echo 5.2 4.5 SMALL >> tmp
-echo 6 5.5 MODERATE >> tmp
-echo 7 6.5 STRONG >> tmp
-echo 8 7.5 MAJOR >> tmp
-echo 8.2 8.5 GREAT >> tmp
-gmt pstext tmp -R -JX -F+f12p+jML -K -O >> %ps%
-echo 7.7 9.2 RICHTER SCALE | gmt pstext -R -JX -F+f22p,1+jMR -K -O >> %ps%
-echo 7.5 8.9 A | gmt pstext -R -JX -F+f18p,2+jMR -K -O >> %ps%
-echo 7.4 8.7 GRAPHIC | gmt pstext -R -JX -F+f18p,2+jMR -K -O >> %ps%
-echo 7.3 8.5 REPRESENTATION | gmt pstext -R -JX -F+f18p,2+jMR -K -O >> %ps%
+    :: 製作右側圖
+    gmt psbasemap -R0/9.99/1e-2/9.99 -JX9/15p2 -BWeSn -Bxa1+l"Magnitude" ^
+    -Bya1f.2g1+l"Log of Maximum Amp. (Microns)" -X12 -K -O >> %ps%
+    gmt psxy richter_magnitude_log.dat -R -JX -W1 -K -O >> %ps%
+    for /l %%x in (1, 1, 9) do (
+    awk "$2==%%x {print $1, $2}" richter_magnitude_log.dat | ^
+    gmt psxy -R -JX -Sc.5 -G255 -K -O >> %ps%)
+    for /l %%x in (1, 1, 9) do (
+    awk "$2==%%x {print $1, $2, %%x}" richter_magnitude_log.dat | ^
+    gmt pstext -R -JX -F+f14p -K -O >> %ps%)
+    echo 2.7 1.7 NOT FELT > tmp
+    echo 4.2 3.4 MINOR >> tmp
+    echo 5.2 4.5 SMALL >> tmp
+    echo 6 5.5 MODERATE >> tmp
+    echo 7 6.5 STRONG >> tmp
+    echo 8 7.5 MAJOR >> tmp
+    echo 8.2 8.5 GREAT >> tmp
+    gmt pstext tmp -R -JX -F+f12p+jML -K -O >> %ps%
+    echo 7.7 9.2 RICHTER SCALE | gmt pstext -R -JX -F+f22p,1+jMR -K -O >> %ps%
+    echo 7.5 8.9 A | gmt pstext -R -JX -F+f18p,2+jMR -K -O >> %ps%
+    echo 7.4 8.7 GRAPHIC | gmt pstext -R -JX -F+f18p,2+jMR -K -O >> %ps%
+    echo 7.3 8.5 REPRESENTATION | gmt pstext -R -JX -F+f18p,2+jMR -K -O >> %ps%
 
-gmt psxy -R -JX -T -O >> %ps%
-gmt psconvert %ps% -Tg -A -P
-del tmp
-```
+    gmt psxy -R -JX -T -O >> %ps%
+    gmt psconvert %ps% -Tg -A -P
+    del tmp
+    ```
 
-成果圖右側參考<mark>Ansfield_1992</mark>[^1]。本節學習的新指令:
+=== "Bash 腳本"
+
+    ```bash
+    #!/usr/bin/env bash
+
+    ps=6_4_richter_magnitude.ps
+
+    # 製作左側圖
+    gmt psbasemap -R0/9.99/1e0/9.99e9 -JX9/15l -BWeSn -Bxa1+l"Richter Mag." \
+    -Bya1pf3+l"Maximum Amp. (Microns)" -K > "${ps}"
+    gmt psxy richter_magnitude.dat -R -JX -W1 -K -O >> "${ps}"
+    echo 7.3 7.3e6 1999 Chi-Chi > tmp
+    echo 6.6 6.6e5 2016 Meinong >> tmp
+    gmt psxy tmp -R -JX -Sc.6 -G0 -K -O >> "${ps}"
+    gmt pstext tmp -R -JX -F+f14p+jMR -D-.6/0 -K -O >> "${ps}"
+
+    # 製作右側圖
+    gmt psbasemap -R0/9.99/1e-2/9.99 -JX9/15p2 -BWeSn -Bxa1+l"Magnitude" \
+    -Bya1f.2g1+l"Log of Maximum Amp. (Microns)" -X12 -K -O >> "${ps}"
+    gmt psxy richter_magnitude_log.dat -R -JX -W1 -K -O >> "${ps}"
+    for x in {1..9}
+    do
+        awk "$2==$x {print \$1, \$2}" richter_magnitude_log.dat | \
+        gmt psxy -R -JX -Sc.5 -G255 -K -O >> "${ps}"
+    done
+    for x in {1..9}
+    do
+        awk "$2==$x {print \$1, \$2, $x}" richter_magnitude_log.dat | \
+        gmt pstext -R -JX -F+f14p -K -O >> "${ps}"
+    done
+    echo 2.7 1.7 NOT FELT > tmp
+    echo 4.2 3.4 MINOR >> tmp
+    echo 5.2 4.5 SMALL >> tmp
+    echo 6 5.5 MODERATE >> tmp
+    echo 7 6.5 STRONG >> tmp
+    echo 8 7.5 MAJOR >> tmp
+    echo 8.2 8.5 GREAT >> tmp
+    gmt pstext tmp -R -JX -F+f12p+jML -K -O >> "${ps}"
+    echo 7.7 9.2 RICHTER SCALE | gmt pstext -R -JX -F+f22p,1+jMR -K -O >> "${ps}"
+    echo 7.5 8.9 A | gmt pstext -R -JX -F+f18p,2+jMR -K -O >> "${ps}"
+    echo 7.4 8.7 GRAPHIC | gmt pstext -R -JX -F+f18p,2+jMR -K -O >> "${ps}"
+    echo 7.3 8.5 REPRESENTATION | gmt pstext -R -JX -F+f18p,2+jMR -K -O >> "${ps}"
+
+    gmt psxy -R -JX -T -O >> "${ps}"
+    gmt psconvert "${ps}" -Tg -A -P
+    rm -f tmp
+    ```
+
+
+成果圖右側參考 <mark>Ansfield (1992)</mark>[^1]。本節學習的新指令:
+
 * 第4~5行: `-JX9/15l`會將y軸設定以10次方倍為一個區間的線性軸，
 `-By`之中<mark>a1p</mark>是將y軸的註解(tick markes or annotation)變成10次方表示；
 <mark>f3</mark>當-JX設定為l時，次要刻度有兩種選項，2以線性畫刻度，3以次方倍畫刻度。
@@ -208,6 +302,7 @@ del tmp
 中央氣象局自動測站C0V250(甲仙)在莫拉克颱風期間的雨量資料，來學習如何繪製時間序列圖。
 
 使用的資料檔:
+
 - [甲仙站雨量資料](https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/data/C0V250_rain.dat)
 
 成果圖
@@ -215,36 +310,70 @@ del tmp
   <img src="/fig/6_5_C0V250_morakot_1.png"/>
 </p>
 
-批次檔
-```bat
-set ps=6_5_C0V250_morakot.ps
+=== "Windows 批次檔"
 
-# 設定圖框、刻度、標題等等
-gmt gmtset ^
-FORMAT_DATE_MAP = yyyy/mm/dd ^
-MAP_FRAME_PEN = 3p ^
-MAP_TICK_PEN_PRIMARY = 3p ^
-FONT_ANNOT_PRIMARY = 16p,4,black ^
-FONT_LABEL = 20p,4,black ^
-FONT_TITLE = 26p,4,black
+    ```bat
+    set ps=6_5_C0V250_morakot.ps
 
-# 繪製雨量長條圖
-gmt psbasemap -R2009-08-06T/2009-08-15T/0/150 -JX20/12 ^
--BW+t"Station: C0V250"+g225 -Bxa2D -Bya30+l"Rainfall (mm)" -K > %ps%
-awk "{print $1,$2}" C0V250_rain.dat | gmt psxy -R -JX -Sb.1 -G0/14/203 -K -O >> %ps%
+    # 設定圖框、刻度、標題等等
+    gmt gmtset ^
+    FORMAT_DATE_MAP = yyyy/mm/dd ^
+    MAP_FRAME_PEN = 3p ^
+    MAP_TICK_PEN_PRIMARY = 3p ^
+    FONT_ANNOT_PRIMARY = 16p,4,black ^
+    FONT_LABEL = 20p,4,black ^
+    FONT_TITLE = 26p,4,black
 
-# 繪製累積雨量折線圖
-awk "{print $1,$3}" C0V250_rain.dat | gmt psxy -R2009-08-06T/2009-08-15T/0/2200 ^
--JX -W3.5,242/51/51 -K -O >> %ps%
-gmt psbasemap -R -JX -BESn -Bxa2D+l"Time (Year/Mon/Day)" ^
--Bya400f200+l"Accumulated Rainfall (mm)" -K -O >> %ps%
+    # 繪製雨量長條圖
+    gmt psbasemap -R2009-08-06T/2009-08-15T/0/150 -JX20/12 ^
+    -BW+t"Station: C0V250"+g225 -Bxa2D -Bya30+l"Rainfall (mm)" -K > %ps%
+    awk "{print $1,$2}" C0V250_rain.dat | gmt psxy -R -JX -Sb.1 -G0/14/203 -K -O >> %ps%
 
-gmt psxy -R -JX -T -O >> %ps%
-gmt psconvert %ps% -Tg -A -P
-del gmt.conf
-```
+    # 繪製累積雨量折線圖
+    awk "{print $1,$3}" C0V250_rain.dat | gmt psxy -R2009-08-06T/2009-08-15T/0/2200 ^
+    -JX -W3.5,242/51/51 -K -O >> %ps%
+    gmt psbasemap -R -JX -BESn -Bxa2D+l"Time (Year/Mon/Day)" ^
+    -Bya400f200+l"Accumulated Rainfall (mm)" -K -O >> %ps%
+
+    gmt psxy -R -JX -T -O >> %ps%
+    gmt psconvert %ps% -Tg -A -P
+    del gmt.conf
+    ```
+
+=== "bash 腳本"
+
+    ```bash
+    #!/usr/bin/env bash
+
+    ps=6_5_C0V250_morakot.ps
+
+    # 設定圖框、刻度、標題等等
+    gmt gmtset \
+    FORMAT_DATE_MAP = yyyy/mm/dd \
+    MAP_FRAME_PEN = 3p \
+    MAP_TICK_PEN_PRIMARY = 3p \
+    FONT_ANNOT_PRIMARY = 16p,4,black \
+    FONT_LABEL = 20p,4,black \
+    FONT_TITLE = 26p,4,black
+
+    # 繪製雨量長條圖
+    gmt psbasemap -R2009-08-06T/2009-08-15T/0/150 -JX20/12 \
+    -BW+t"Station: C0V250"+g225 -Bxa2D -Bya30+l"Rainfall (mm)" -K > "${ps}"
+    awk "{print $1,$2}" C0V250_rain.dat | gmt psxy -R -JX -Sb.1 -G0/14/203 -K -O >> "${ps}"
+
+    # 繪製累積雨量折線圖
+    awk '{print $1,$3}' C0V250_rain.dat | gmt psxy -R2009-08-06T/2009-08-15T/0/2200 \
+    -JX -W3.5,242/51/51 -K -O >> "${ps}"
+    gmt psbasemap -R -JX -BESn -Bxa2D+l"Time (Year/Mon/Day)" \
+    -Bya400f200+l"Accumulated Rainfall (mm)" -K -O >> "${ps}"
+
+    gmt psxy -R -JX -T -O >> "${ps}"
+    gmt psconvert "${ps}" -Tg -A -P
+    rm -f gmt.conf
+    ```
 
 本節學習的新指令:
+
 * 第4~10行: `gmtset`預設值設定，在章節4-3有提到如何修改預設值，這裡採用第二種方式，
 透過查詢[4-4地圖框的設定](basic_defaults.md#m4.4m)，修改了
   * `FORMAT_DATE_MAP`地圖的時間格式，**yyyy**四碼年份、**mm**兩碼月份、**dd**兩碼日子。
@@ -277,6 +406,7 @@ del gmt.conf
 來展示台灣夏季及冬季的風向與風速的差異，並示範`pslegend`的用法。
 
 使用的資料檔:
+
 - [夏季風資料](https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/data/summer_wind.dat)
 - [冬季風資料](https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/data/winter_wind.dat)
 
@@ -285,55 +415,109 @@ del gmt.conf
   <img src="/fig/6_6_season_wind_1.png"/>
 </p>
 
-批次檔
-```bat
-set ps=6_6_season_wind.ps
+=== "Windows 批次檔"
 
-gmt psbasemap -R0/360/0/5 -JPa17 -BN+g230 -Bxa20 -Byg1 -K > %ps%
-# 466920, Taipei
-awk "$4==466920 {print $3, $2}" summer_wind.dat | gmt psxy -R -JP -Sc.3 -G161/216/132 -K -O >> %ps%
-awk "$4==466920 {print $3, $2}" winter_wind.dat | gmt psxy -R -JP -Sc.3 -G42/99/246 -K -O >> %ps%
-# 467490, Taichung
-awk "$4==467490 {print $3, $2}" summer_wind.dat | gmt psxy -R -JP -Ss.3 -G161/216/132 -K -O >> %ps%
-awk "$4==467490 {print $3, $2}" winter_wind.dat | gmt psxy -R -JP -Ss.3 -G42/99/246 -K -O >> %ps%
-# 467410, Tainan
-awk "$4==467410 {print $3, $2}" summer_wind.dat | gmt psxy -R -JP -St.3 -G161/216/132 -K -O >> %ps%
-awk "$4==467410 {print $3, $2}" winter_wind.dat | gmt psxy -R -JP -St.3 -G42/99/246 -K -O >> %ps%
-# 467660, Taitung
-awk "$4==467660 {print $3, $2}" summer_wind.dat | gmt psxy -R -JP -Sn.3 -G161/216/132 -K -O >> %ps%
-awk "$4==467660 {print $3, $2}" winter_wind.dat | gmt psxy -R -JP -Sn.3 -G42/99/246 -K -O >> %ps%
-# wind speed label
-echo -90 1 1 m/s > tmp
-echo -90 2 2 m/s >> tmp
-echo -90 3 3 m/s >> tmp
-echo -90 4 4 m/s >> tmp
-gmt pstext tmp -R -JP -F+f14p -G230 -K -O >> %ps%
+    ```bat
+    set ps=6_6_season_wind.ps
 
-# legend set
-echo H 24 Times-Roman Legend > tmp
-echo D 0.4 1p >> tmp
-echo G .2 >> tmp
-echo N 2 >> tmp
-echo S .5 c .5 0 0 1 Taipei >> tmp
-echo S .5 s .5 0 0 1 Taichung >> tmp
-echo G .1 >> tmp
-echo S .5 t .5 0 0 1 Tainan >> tmp
-echo S .5 n .5 0 0 1 Taitung >> tmp
-echo D 0.8 1p,0,- >> tmp
-echo P >> tmp
-echo G .1 >> tmp
-echo T Each symbols indicate the different city. >> tmp
-echo T The green data are in the summer (Jun., Jul., Aug.), >> tmp
-echo T and the blue points are in the winter (Dec., Jan., Feb.). >> tmp
-gmt pslegend tmp -R -JP -C.1/.1 -Dx18.5/5+w8 -F+g240+p1+s4p/-4p/gray50 ^
---FONT_ANNOT_PRIMARY=16p -K -O >> %ps%
+    gmt psbasemap -R0/360/0/5 -JPa17 -BN+g230 -Bxa20 -Byg1 -K > %ps%
+    :: 466920, Taipei
+    awk "$4==466920 {print $3, $2}" summer_wind.dat | gmt psxy -R -JP -Sc.3 -G161/216/132 -K -O >> %ps%
+    awk "$4==466920 {print $3, $2}" winter_wind.dat | gmt psxy -R -JP -Sc.3 -G42/99/246 -K -O >> %ps%
+    :: 467490, Taichung
+    awk "$4==467490 {print $3, $2}" summer_wind.dat | gmt psxy -R -JP -Ss.3 -G161/216/132 -K -O >> %ps%
+    awk "$4==467490 {print $3, $2}" winter_wind.dat | gmt psxy -R -JP -Ss.3 -G42/99/246 -K -O >> %ps%
+    :: 467410, Tainan
+    awk "$4==467410 {print $3, $2}" summer_wind.dat | gmt psxy -R -JP -St.3 -G161/216/132 -K -O >> %ps%
+    awk "$4==467410 {print $3, $2}" winter_wind.dat | gmt psxy -R -JP -St.3 -G42/99/246 -K -O >> %ps%
+    :: 467660, Taitung
+    awk "$4==467660 {print $3, $2}" summer_wind.dat | gmt psxy -R -JP -Sn.3 -G161/216/132 -K -O >> %ps%
+    awk "$4==467660 {print $3, $2}" winter_wind.dat | gmt psxy -R -JP -Sn.3 -G42/99/246 -K -O >> %ps%
+    :: wind speed label
+    echo -90 1 1 m/s > tmp
+    echo -90 2 2 m/s >> tmp
+    echo -90 3 3 m/s >> tmp
+    echo -90 4 4 m/s >> tmp
+    gmt pstext tmp -R -JP -F+f14p -G230 -K -O >> %ps%
 
-gmt psxy -R -JX -T -O >> %ps%
-gmt psconvert %ps% -Tg -A -P
-del tmp
-```
+    :: legend set
+    echo H 24 Times-Roman Legend > tmp
+    echo D 0.4 1p >> tmp
+    echo G .2 >> tmp
+    echo N 2 >> tmp
+    echo S .5 c .5 0 0 1 Taipei >> tmp
+    echo S .5 s .5 0 0 1 Taichung >> tmp
+    echo G .1 >> tmp
+    echo S .5 t .5 0 0 1 Tainan >> tmp
+    echo S .5 n .5 0 0 1 Taitung >> tmp
+    echo D 0.8 1p,0,- >> tmp
+    echo P >> tmp
+    echo G .1 >> tmp
+    echo T Each symbols indicate the different city. >> tmp
+    echo T The green data are in the summer (Jun., Jul., Aug.), >> tmp
+    echo T and the blue points are in the winter (Dec., Jan., Feb.). >> tmp
+    gmt pslegend tmp -R -JP -C.1/.1 -Dx18.5/5+w8 -F+g240+p1+s4p/-4p/gray50 ^
+    --FONT_ANNOT_PRIMARY=16p -K -O >> %ps%
+
+    gmt psxy -R -JX -T -O >> %ps%
+    gmt psconvert %ps% -Tg -A -P
+    del tmp
+    ```
+
+=== "Bash 腳本"
+
+    ```bash
+    #!/usr/bin/env bash
+
+    set ps=6_6_season_wind.ps
+
+    gmt psbasemap -R0/360/0/5 -JPa17 -BN+g230 -Bxa20 -Byg1 -K > "${ps}"
+    # 466920, Taipei
+    awk '$4==466920 {print $3, $2}' summer_wind.dat | gmt psxy -R -JP -Sc.3 -G161/216/132 -K -O >> "${ps}"
+    awk '$4==466920 {print $3, $2}' winter_wind.dat | gmt psxy -R -JP -Sc.3 -G42/99/246 -K -O >> "${ps}"
+    # 467490, Taichung
+    awk '$4==467490 {print $3, $2}' summer_wind.dat | gmt psxy -R -JP -Ss.3 -G161/216/132 -K -O >> "${ps}"
+    awk '$4==467490 {print $3, $2}' winter_wind.dat | gmt psxy -R -JP -Ss.3 -G42/99/246 -K -O >> "${ps}"
+    # 467410, Tainan
+    awk '$4==467410 {print $3, $2}' summer_wind.dat | gmt psxy -R -JP -St.3 -G161/216/132 -K -O >> "${ps}"
+    awk '$4==467410 {print $3, $2}' winter_wind.dat | gmt psxy -R -JP -St.3 -G42/99/246 -K -O >> "${ps}"
+    # 467660, Taitung
+    awk '$4==467660 {print $3, $2}' summer_wind.dat | gmt psxy -R -JP -Sn.3 -G161/216/132 -K -O >> "${ps}"
+    awk '$4==467660 {print $3, $2}' winter_wind.dat | gmt psxy -R -JP -Sn.3 -G42/99/246 -K -O >> "${ps}"
+    # wind speed label
+    echo -90 1 1 m/s > tmp
+    echo -90 2 2 m/s >> tmp
+    echo -90 3 3 m/s >> tmp
+    echo -90 4 4 m/s >> tmp
+    gmt pstext tmp -R -JP -F+f14p -G230 -K -O >> "${ps}"
+
+    # legend set
+    echo H 24 Times-Roman Legend > tmp
+    echo D 0.4 1p >> tmp
+    echo G .2 >> tmp
+    echo N 2 >> tmp
+    echo S .5 c .5 0 0 1 Taipei >> tmp
+    echo S .5 s .5 0 0 1 Taichung >> tmp
+    echo G .1 >> tmp
+    echo S .5 t .5 0 0 1 Tainan >> tmp
+    echo S .5 n .5 0 0 1 Taitung >> tmp
+    echo D 0.8 1p,0,- >> tmp
+    echo P >> tmp
+    echo G .1 >> tmp
+    echo T Each symbols indicate the different city. >> tmp
+    echo T The green data are in the summer (Jun., Jul., Aug.), >> tmp
+    echo T and the blue points are in the winter (Dec., Jan., Feb.). >> tmp
+    gmt pslegend tmp -R -JP -C.1/.1 -Dx18.5/5+w8 -F+g240+p1+s4p/-4p/gray50 \
+    --FONT_ANNOT_PRIMARY=16p -K -O >> "${ps}"
+
+    gmt psxy -R -JX -T -O >> "${ps}"
+    gmt psconvert "${ps}" -Tg -A -P
+    rm -f tmp
+    ```
+
 
 本節學習的新指令:
+
 * 第3行: `-JPa17`其中**a**表示由北開始，如果沒有則是從東開始；**17**設定圖寬度。
 `-R0/360/0/5`前兩個數字設定圓的角度範圍，也可以用-180/180表示，只能給整圓和半圓(0/180)；
 後面則是距離範圍。`-BN`只用給定N，大寫顯示註解、小寫則無。
