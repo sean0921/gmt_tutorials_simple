@@ -5,6 +5,8 @@ repo_url: https://github.com/sean0921/gmt_tutorials_simple
 theme:
   name: material
   language: zh-TW
+  features:
+    - content.tabs.link
 nav:
   - '總覽': index.md
   - 'GMT介紹及安裝': intro_install.md
@@ -26,3 +28,5 @@ markdown_extensions:
   - pymdownx.highlight:
       anchor_linenums: true
   - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
