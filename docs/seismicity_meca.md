@@ -179,9 +179,9 @@ C代表東北部地震帶，包含了琉球隱沒帶及沖繩海溝，許多規�
 |20 to 70             |reverse left-lateral oblique |
 |70 to 110            |reverse                      |
 |110 to 160           |reverse right-lateral oblique|
-|-160 to 160          |right-lateral strike-slip    |   
+|-160 to 160          |right-lateral strike-slip    |
 |-110 to -160         |normal right-lateral oblique |
-|-70 to -110          |normal                       |      
+|-70 to -110          |normal                       |
 |-20 to -70           |normal left-lateral oblique  |
 
 [^2]: A draft primer on focal mechanism solutions for geologists (V. Cronin, 2004)

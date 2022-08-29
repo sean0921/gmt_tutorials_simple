@@ -140,7 +140,7 @@ ogr2ogr -f "CSV" geo3bl.csv geo3bl.shp
 
 ```bat
 # @VGMT1.0 @GPOLYGON
-# @R-2843593.21876/4218174.81256/-1324372.95632/2600390.64774             
+# @R-2843593.21876/4218174.81256/-1324372.95632/2600390.64774
 # @Jp"+proj=lcc +lat_1=31 +lat_2=-29 +lat_0=0 +lon_0=120 +x_0=0 +y_0=0 +datum=WGS84 +units=m +no_defs "
 # @Jw"PROJCS[\"WGS_1984_Lambert_Conformal_Conic\",GEOGCS[\"GCS_WGS_1984\",DATUM[\"WGS_1984\",SPHEROID[\"WGS_84\",6378137.0,298.257223563]],PRIMEM[\"Greenwich\",0.0],UNIT[\"Degree\",0.0174532925199433]],PROJECTION[\"Lambert_Conformal_Conic_2SP\"],PARAMETER[\"False_Easting\",0.0],PARAMETER[\"False_Northing\",0.0],PARAMETER[\"Central_Meridian\",120.0],PARAMETER[\"Standard_Parallel_1\",31.0],PARAMETER[\"Standard_Parallel_2\",-29.0],PARAMETER[\"Latitude_Of_Origin\",0.0],UNIT[\"Meter\",1.0]]"
 # @NAREA|PERIMETER|TYPE|GLG|GEN_GLG
