@@ -7,9 +7,10 @@
 從不同的測站得到地震波的方位角、入射角及初動的類型，把這些紀錄投影在大圓上，匯集資料得出震源機制解。
 
 ## 9.1 目的
-  1. 地震活動性(Seismicity)
-  2. 震源機制解(Focal Mechanism)
-  3. 地震剖面(Seismicity Profile)
+
+1. 地震活動性(Seismicity)
+2. 震源機制解(Focal Mechanism)
+3. 地震剖面(Seismicity Profile)
 
 ## 9.2 學習的指令與概念
 
@@ -27,6 +28,7 @@
 來更加了解台灣的地震分佈與地體構造活動。
 
 使用的資料檔:
+
 - [2017地震活動性](https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/data/2017_catalog.gmt)
 
 成果圖
@@ -34,86 +36,88 @@
   <img src="https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/fig/9_3_seismicity_1.png"/>
 </p>
 
-批次檔
-```bat
-set ps=9_3_seismicity.ps
-set data=D:\GMT_data\
-set cpt=seis.cpt
+=== "Windows 批次檔"
 
-# 1. seismicity basemap
-gmt gmtinfo 2017_catalog.gmt -i2 -T20 > tmp
-set /p cr=<tmp
-gmt makecpt -C%cpt% %cr% > tmp.cpt
-gmt psbasemap -R119/123/21/26 -JM15 -BwESn -Bxa -Bya -P -K > %ps%
-gmt pscoast -R -JM -Df -W1 -S203/211/235 -G230 -K -O >> %ps%
-awk "{print $1,$2,$3,exp($4)*0.002}" 2017_catalog.gmt | ^
-gmt psxy -R -JM -Ctmp.cpt -Sc -K -O >> %ps%
+    ```bat
+    set ps=9_3_seismicity.ps
+    set data=D:\GMT_data\
+    set cpt=seis.cpt
 
-# 2. magnitude calculation
-echo 1 > tmp
-for /l %%i in (2, 1, 6) do (echo %%i >> tmp)
-setlocal ENABLEDELAYEDEXPANSION
-set vidx=0
-for /f %%i in ('awk "{print exp($1)*0.002}" tmp') do (
-    set /A vidx=!vidx! + 1
-    set var!vidx!=%%i
-)
-set var
+    :: 1. seismicity basemap
+    gmt gmtinfo 2017_catalog.gmt -i2 -T20 > tmp
+    set /p cr=<tmp
+    gmt makecpt -C%cpt% %cr% > tmp.cpt
+    gmt psbasemap -R119/123/21/26 -JM15 -BwESn -Bxa -Bya -P -K > %ps%
+    gmt pscoast -R -JM -Df -W1 -S203/211/235 -G230 -K -O >> %ps%
+    awk "{print $1,$2,$3,exp($4)*0.002}" 2017_catalog.gmt | ^
+    gmt psxy -R -JM -Ctmp.cpt -Sc -K -O >> %ps%
 
-# 3. boundary of four seismic zones
-echo 119.0 22.8 > tmp
-echo 120.8 22.8 >> tmp
-echo ^> >> tmp
-echo 120.8 21.0 >> tmp
-echo 120.8 22.8 >> tmp
-echo ^> >> tmp
-echo 120.8 22.8 >> tmp
-echo 121.5 24.2 >> tmp
-echo ^> >> tmp
-echo 121.5 26.0 >> tmp
-echo 121.5 24.2 >> tmp
-echo ^> >> tmp
-echo 123.0 23.3 >> tmp
-echo 121.5 24.2 >> tmp
-echo ^> >> tmp
-gmt psxy tmp -R -JM -W1 -K -O >> %ps%
-echo 119.8 23.8 A | gmt pstext -R -JM -F+f40p,2 -K -O >> %ps%
-echo 119.8 22.1 B | gmt pstext -R -JM -F+f40p,2 -K -O >> %ps%
-echo 122.3 25.3 C | gmt pstext -R -JM -F+f40p,2 -K -O >> %ps%
-echo 122.3 22.1 D | gmt pstext -R -JM -F+f40p,2 -K -O >> %ps%
+    :: 2. magnitude calculation
+    echo 1 > tmp
+    for /l %%i in (2, 1, 6) do (echo %%i >> tmp)
+    setlocal ENABLEDELAYEDEXPANSION
+    set vidx=0
+    for /f %%i in ('awk "{print exp($1)*0.002}" tmp') do (
+        set /A vidx=!vidx! + 1
+        set var!vidx!=%%i
+    )
+    set var
 
-# 4. legend set
-echo H 18 1 Legend > tmp
-echo D 0.4 1p >> tmp
-echo G .7 >> tmp
-echo B tmp.cpt 0.2 0.3+ml -Ba40f20+l"Depth (km)" >> tmp
-echo G .3 >> tmp
-echo M 121 23.5 100+u +f >> tmp
-echo G .1 >> tmp
-echo D 0.6 1p,0,- >> tmp
-echo G .2 >> tmp
-echo L 14 0 C Magnitude >> tmp
-echo N 3 >> tmp
-echo G .2 >> tmp
-echo S .5 c %var1% 0 0 1 1 >> tmp
-echo S .5 c %var2% 0 0 1 2 >> tmp
-echo S .5 c %var3% 0 0 1 3 >> tmp
-echo G .4 >> tmp
-echo S .5 c %var4% 0 0 1 4 >> tmp
-echo S .5 c %var5% 0 0 1 5 >> tmp
-echo S .5 c %var6% 0 0 1 6 >> tmp
-echo G .3 >> tmp
-gmt pslegend tmp -R -JM -C.1/.1 -Dx.1/14+w5 -F+g245+p1+s4p/-4p/gray50 ^
---FONT_ANNOT_PRIMARY=10p --FONT_LABEL=14p -K -O >> %ps%
+    :: 3. boundary of four seismic zones
+    echo 119.0 22.8 > tmp
+    echo 120.8 22.8 >> tmp
+    echo ^> >> tmp
+    echo 120.8 21.0 >> tmp
+    echo 120.8 22.8 >> tmp
+    echo ^> >> tmp
+    echo 120.8 22.8 >> tmp
+    echo 121.5 24.2 >> tmp
+    echo ^> >> tmp
+    echo 121.5 26.0 >> tmp
+    echo 121.5 24.2 >> tmp
+    echo ^> >> tmp
+    echo 123.0 23.3 >> tmp
+    echo 121.5 24.2 >> tmp
+    echo ^> >> tmp
+    gmt psxy tmp -R -JM -W1 -K -O >> %ps%
+    echo 119.8 23.8 A | gmt pstext -R -JM -F+f40p,2 -K -O >> %ps%
+    echo 119.8 22.1 B | gmt pstext -R -JM -F+f40p,2 -K -O >> %ps%
+    echo 122.3 25.3 C | gmt pstext -R -JM -F+f40p,2 -K -O >> %ps%
+    echo 122.3 22.1 D | gmt pstext -R -JM -F+f40p,2 -K -O >> %ps%
 
-gmt psxy -R -JM -T -O >> %ps%
-gmt psconvert %ps% -Tg -A -P
-del tmp*
-```
+    :: 4. legend set
+    echo H 18 1 Legend > tmp
+    echo D 0.4 1p >> tmp
+    echo G .7 >> tmp
+    echo B tmp.cpt 0.2 0.3+ml -Ba40f20+l"Depth (km)" >> tmp
+    echo G .3 >> tmp
+    echo M 121 23.5 100+u +f >> tmp
+    echo G .1 >> tmp
+    echo D 0.6 1p,0,- >> tmp
+    echo G .2 >> tmp
+    echo L 14 0 C Magnitude >> tmp
+    echo N 3 >> tmp
+    echo G .2 >> tmp
+    echo S .5 c %var1% 0 0 1 1 >> tmp
+    echo S .5 c %var2% 0 0 1 2 >> tmp
+    echo S .5 c %var3% 0 0 1 3 >> tmp
+    echo G .4 >> tmp
+    echo S .5 c %var4% 0 0 1 4 >> tmp
+    echo S .5 c %var5% 0 0 1 5 >> tmp
+    echo S .5 c %var6% 0 0 1 6 >> tmp
+    echo G .3 >> tmp
+    gmt pslegend tmp -R -JM -C.1/.1 -Dx.1/14+w5 -F+g245+p1+s4p/-4p/gray50 ^
+    --FONT_ANNOT_PRIMARY=10p --FONT_LABEL=14p -K -O >> %ps%
+
+    gmt psxy -R -JM -T -O >> %ps%
+    gmt psconvert %ps% -Tg -A -P
+    del tmp*
+    ```
 
 學習到的指令:
 
 <mark>1</mark>繪製地震活動性底圖
+
 * `gmtinfo`讀取第三欄(深度)做色階的範圍。
   * `-T`間隔，輸出成<mark>-Tz軸最小/z軸最大/z間隔<mark>。
 * `awk`將第四欄(規模)透過exp()做指數函數運算。
@@ -121,15 +125,18 @@ del tmp*
 `-Sc`在不給數值的情況下，將會讀取第四欄(規模)做圖形大小的變化。
 
 <mark>2</mark>利用迴圈設定1~7規模轉換數值後的變數
+
 * `echo 1 > tmp`及`for /l..`製造1~7的tmp暫存檔。
 * `awk`tmp暫存檔做規模數值轉換。
 * `set var!vidx!=%%i`迴圈設定變數。
 
 <mark>3</mark>繪製地震分區邊界
+
 * `echo ^> >> tmp`要把<mark>></mark>加入暫存檔中，需要多加上<mark>^</mark>符號，
 將<mark>></mark>從特殊字元轉為一般字元。
 
 <mark>4</mark>製作圖例說明
+
 * `pslegend`
   * `B`繪製色彩條。格式為`B cpt檔 兩邊間隔 色彩條高度`。
     * 可在高度後增加`[+e][+h][+m]`等等，也可增加`-B`、`-I`等等參數，可參考`psscale`模組。
@@ -154,6 +161,7 @@ C代表東北部地震帶，包含了琉球隱沒帶及沖繩海溝，許多規�
 ## 9.4 震源機制解
 本節將示範如何將震源機制解運用海灘球(beach ball)圖示，來表示不同的斷層形態，
 並將台灣幾個較著名的災害性地震的機制解繪製出來，首先提供可以下載機制解的網頁，如下:
+
 - [BATS](http://tecws.earth.sinica.edu.tw/BATS/cmtbyform.php)，由中研院管理，
 提供台灣地震的震源機制解。
 - [Global CMT](http://www.globalcmt.org/CMTsearch.html)，
@@ -191,6 +199,7 @@ C代表東北部地震帶，包含了琉球隱沒帶及沖繩海溝，許多規�
 1996~2017台灣地區規模大於5的震源機制解，並將幾個著名災害性地震標示出來。
 
 使用的資料檔:
+
 - [台灣震源機制解](https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/data/focal_mechanism.gmt)
 
 成果圖
@@ -198,59 +207,61 @@ C代表東北部地震帶，包含了琉球隱沒帶及沖繩海溝，許多規�
   <img src="https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/fig/9_4_taiwan_focal_1.png"/>
 </p>
 
-批次檔
-```bat
-set ps=9_4_taiwan_focal.ps
-set data=D:\GMT_data\
+=== "Windows 批次檔"
 
-# 1. focal meca basemap
-gmt psbasemap -R119/123/21/26 -JM15 -BWeSn -Bxa -Bya -P -K > %ps%
-gmt grdimage %data%ETOPO1_Bed_g_gmt5.grd -R -JM -Cgebco.cpt ^
--I%data%ETOPO1_Bed_g_gmt5_shad.grd -K -O >> %ps%
-gmt pscoast -R -JM -Df -W1 -G230 -K -O >> %ps%
-# left-lateral strike-slip
-awk "{if ($6>=-20 && $6<20) print $1,$2,$3,$4,$5,$6,$7,$8,$9}" focal_mechanism.gmt | ^
-gmt psmeca -R -JM -Sa.5 -Gyellow -K -O >> %ps%
-# right-lateral strike-slip
-awk "{if ($$6>=160 || 6<-160) print $1,$2,$3,$4,$5,$6,$7,$8,$9}" focal_mechanism.gmt | ^
-gmt psmeca -R -JM -Sa.5 -Gyellow -K -O >> %ps%
-# reverse fault
-awk "{if ($6>=20 && $6<160) print $1,$2,$3,$4,$5,$6,$7,$8,$9}" focal_mechanism.gmt | ^
-gmt psmeca -R -JM -Sa.5 -Gred -K -O >> %ps%
-# normal fault
-awk "{if ($6>=-160 && $6<-20) print $1,$2,$3,$4,$5,$6,$7,$8,$9}" focal_mechanism.gmt | ^
-gmt psmeca -R -JM -Sa.5 -Gblue -K -O >> %ps%
+    ```bat
+    set ps=9_4_taiwan_focal.ps
+    set data=D:\GMT_data\
 
-# 2. earthquake event
-echo 120.54 22.93 16 288.36 51.02 19.79 6.11 119.2 26.5 Meinong > tmp
-echo 120.56 21.89 41 118.64 50.07 -128.06 6.7 119.9 26.5 Hengchun >> tmp
-echo 120.73 23 18 318.05 41.39 67.64 5.66 120.6 26.5 Jiashian >> tmp
-echo 121.75 23.78 41 237.95 37.03 120.73 6.26 121.3 26.5 Hualien >> tmp
-echo 120.797500 23.861667 8.140 320.06 57.39 66.04 7.30 122.0 26.5 Chi-Chi >> tmp
-echo 121.3982 23.0667 18 8.82 42.16 72.8 6.58 122.7 26.5 Chengkung >> tmp
-gmt psmeca tmp -R -JM -Sa1/14p/6 -Gblack -C1 -N -K -O >> %ps%
+    :: 1. focal meca basemap
+    gmt psbasemap -R119/123/21/26 -JM15 -BWeSn -Bxa -Bya -P -K > %ps%
+    gmt grdimage %data%ETOPO1_Bed_g_gmt5.grd -R -JM -Cgebco.cpt ^
+    -I%data%ETOPO1_Bed_g_gmt5_shad.grd -K -O >> %ps%
+    gmt pscoast -R -JM -Df -W1 -G230 -K -O >> %ps%
+    :: left-lateral strike-slip
+    awk "{if ($6>=-20 && $6<20) print $1,$2,$3,$4,$5,$6,$7,$8,$9}" focal_mechanism.gmt | ^
+    gmt psmeca -R -JM -Sa.5 -Gyellow -K -O >> %ps%
+    :: right-lateral strike-slip
+    awk "{if ($$6>=160 || 6<-160) print $1,$2,$3,$4,$5,$6,$7,$8,$9}" focal_mechanism.gmt | ^
+    gmt psmeca -R -JM -Sa.5 -Gyellow -K -O >> %ps%
+    :: reverse fault
+    awk "{if ($6>=20 && $6<160) print $1,$2,$3,$4,$5,$6,$7,$8,$9}" focal_mechanism.gmt | ^
+    gmt psmeca -R -JM -Sa.5 -Gred -K -O >> %ps%
+    :: normal fault
+    awk "{if ($6>=-160 && $6<-20) print $1,$2,$3,$4,$5,$6,$7,$8,$9}" focal_mechanism.gmt | ^
+    gmt psmeca -R -JM -Sa.5 -Gblue -K -O >> %ps%
 
-# 3. legend set
-echo 119 26 > tmp
-echo 119 25.05 >> tmp
-echo 120.5 25.05 >> tmp
-echo 120.5 26 >> tmp
-gmt psxy tmp -R -JM -G255 -W.5 -D.1/-.1 -K -O >> %ps%
-echo 119.2 25.8 0 0 90 0 5 | gmt psmeca -JM -R -Sa1 -Gyellow -K -O >> %ps%
-echo 119.4 25.8 Strike-Slip Fault | gmt pstext -JM -R -F+f14p+jML -K -O >> %ps%
-echo 119.2 25.5 0 0 45 90 5 | gmt psmeca -JM -R -Sa1 -Gred -K -O >> %ps%
-echo 119.4 25.5 Thrust Fault | gmt pstext -JM -R -F+f14p+jML -K -O >> %ps%
-echo 119.2 25.2 0 0 45 -90 5 | gmt psmeca -JM -R -Sa1 -Gblue -K -O >> %ps%
-echo 119.4 25.2 Normal Fault | gmt pstext -JM -R -F+f14p+jML -K -O >> %ps%
+    :: 2. earthquake event
+    echo 120.54 22.93 16 288.36 51.02 19.79 6.11 119.2 26.5 Meinong > tmp
+    echo 120.56 21.89 41 118.64 50.07 -128.06 6.7 119.9 26.5 Hengchun >> tmp
+    echo 120.73 23 18 318.05 41.39 67.64 5.66 120.6 26.5 Jiashian >> tmp
+    echo 121.75 23.78 41 237.95 37.03 120.73 6.26 121.3 26.5 Hualien >> tmp
+    echo 120.797500 23.861667 8.140 320.06 57.39 66.04 7.30 122.0 26.5 Chi-Chi >> tmp
+    echo 121.3982 23.0667 18 8.82 42.16 72.8 6.58 122.7 26.5 Chengkung >> tmp
+    gmt psmeca tmp -R -JM -Sa1/14p/6 -Gblack -C1 -N -K -O >> %ps%
 
-gmt psxy -R -JM -T -O >> %ps%
-gmt psconvert %ps% -Tg -A -P
-del tmp*
-```
+    :: 3. legend set
+    echo 119 26 > tmp
+    echo 119 25.05 >> tmp
+    echo 120.5 25.05 >> tmp
+    echo 120.5 26 >> tmp
+    gmt psxy tmp -R -JM -G255 -W.5 -D.1/-.1 -K -O >> %ps%
+    echo 119.2 25.8 0 0 90 0 5 | gmt psmeca -JM -R -Sa1 -Gyellow -K -O >> %ps%
+    echo 119.4 25.8 Strike-Slip Fault | gmt pstext -JM -R -F+f14p+jML -K -O >> %ps%
+    echo 119.2 25.5 0 0 45 90 5 | gmt psmeca -JM -R -Sa1 -Gred -K -O >> %ps%
+    echo 119.4 25.5 Thrust Fault | gmt pstext -JM -R -F+f14p+jML -K -O >> %ps%
+    echo 119.2 25.2 0 0 45 -90 5 | gmt psmeca -JM -R -Sa1 -Gblue -K -O >> %ps%
+    echo 119.4 25.2 Normal Fault | gmt pstext -JM -R -F+f14p+jML -K -O >> %ps%
+
+    gmt psxy -R -JM -T -O >> %ps%
+    gmt psconvert %ps% -Tg -A -P
+    del tmp*
+    ```
 
 學習到的指令:
 
 <mark>1</mark>繪製機制解底圖
+
 * `psmeca`繪製震源機制解。
   * `-S`指定機制解的格式。用法為`-S資料格式尺寸/字大小/字與海灘球的間距`。
     * `-Sa`Aki and Richards制訂的格式，輸入的資料格式為
@@ -296,96 +307,97 @@ del tmp*
   <img src="https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/fig/9_5_focal_profile_1.png"/>
 </p>
 
-批次檔
-```bat
-set ps=9_5_focal_profile.ps
-set data=D:\GMT_data\
-set cpt=seis.cpt
-set lon1=122.3
-set lat1=25.3
-set lon2=121.1
-set lat2=21.6
-set width=20
-set depth=100
-set /a wid=%width%*2
+=== "Windows 批次檔"
 
-# 1. focal meca and seismicity basemap
-gmt psbasemap -R119/123/21/26 -JM10 -BWeSN -Bxa -Bya -K > %ps%
-gmt grdimage %data%ETOPO1_Bed_g_gmt5.grd -R -JM -Cetopo1.cpt ^
--I%data%ETOPO1_Bed_g_gmt5_shad.grd -M -K -O >> %ps%
-gmt pscoast -R -JM -Df -W1 -K -O >> %ps%
-gmt pscoast -R -JM -Df -Gc -K -O >> %ps%
-gmt grdimage %data%tw_40.grd -R -JM -Cetopo1.cpt ^
--I%data%tw_40shad.grd -M -K -O >> %ps%
-gmt pscoast -R -JM -Df -Q -K -O >> %ps%
-gmt gmtinfo 2017_catalog.gmt -i2 -T20 > tmp
-set /p cr=<tmp
-gmt makecpt -C%cpt% %cr% -Z > tmp.cpt
-awk "{print $1,$2,$3,exp($4)*0.002}" 2017_catalog.gmt | ^
-gmt psxy -R -JM -Ctmp.cpt -Sc -K -O >> %ps%
-awk "{print $1,$2,$3,$4,$5,$6,$7,$8,$9}" focal_mechanism.gmt | ^
-gmt psmeca -R -JM -Sa.5 -Ggray -K -O >> %ps%
+    ```bat
+    set ps=9_5_focal_profile.ps
+    set data=D:\GMT_data\
+    set cpt=seis.cpt
+    set lon1=122.3
+    set lat1=25.3
+    set lon2=121.1
+    set lat2=21.6
+    set width=20
+    set depth=100
+    set /a wid=%width%*2
 
-# 2. cross area
-gmt project 2017_catalog.gmt -C%lon1%/%lat1% -E%lon2%/%lat2% ^
--W-%width%/%width% -Q > catalog_profile.gmt
-gmt project focal_mechanism.gmt -C%lon1%/%lat1% -E%lon2%/%lat2% ^
--W-%width%/%width% -Q > focal_profile.gmt
-# left-lateral strike-slip
-awk "{if ($6>=-20 && $6<20) print $1,$2,$3,$4,$5,$6,$7,$8,$9}" focal_profile.gmt > tmp.ls
-gmt psmeca tmp.ls -R -JM -Sa.5 -Gyellow -K -O >> %ps%
-# right-lateral strike-slip
-awk "{if ($6>=160 || $6<-160) print $1,$2,$3,$4,$5,$6,$7,$8,$9}" focal_profile.gmt > tmp.rs
-gmt psmeca tmp.rs -R -JM -Sa.5 -Gyellow -K -O >> %ps%
-# reverse fault
-awk "{if ($6>=20 && $6<160) print $1,$2,$3,$4,$5,$6,$7,$8,$9}" focal_profile.gmt > tmp.rf
-gmt psmeca tmp.rf -R -JM -Sa.5 -Gred -K -O >> %ps%
-# normal fault
-awk "{if ($6>=-160 && $6<-20) print $1,$2,$3,$4,$5,$6,$7,$8,$9}" focal_profile.gmt > tmp.nf
-gmt psmeca tmp.nf -R -JM -Sa.5 -Gblue -K -O >> %ps%
-echo %lon1% %lat1% > tmp
-echo %lon2% %lat2% >> tmp
-gmt psxy tmp -R -JM -W3 -K -O >> %ps%
-echo %lon1% %lat1% A | gmt pstext -R -JM -F+f16p,1,darkgreen -G230 -K -O >> %ps%
-echo %lon2% %lat2% A'| gmt pstext -R -JM -F+f16p,1,darkgreen -G230 -K -O >> %ps%
+    :: 1. focal meca and seismicity basemap
+    gmt psbasemap -R119/123/21/26 -JM10 -BWeSN -Bxa -Bya -K > %ps%
+    gmt grdimage %data%ETOPO1_Bed_g_gmt5.grd -R -JM -Cetopo1.cpt ^
+    -I%data%ETOPO1_Bed_g_gmt5_shad.grd -M -K -O >> %ps%
+    gmt pscoast -R -JM -Df -W1 -K -O >> %ps%
+    gmt pscoast -R -JM -Df -Gc -K -O >> %ps%
+    gmt grdimage %data%tw_40.grd -R -JM -Cetopo1.cpt ^
+    -I%data%tw_40shad.grd -M -K -O >> %ps%
+    gmt pscoast -R -JM -Df -Q -K -O >> %ps%
+    gmt gmtinfo 2017_catalog.gmt -i2 -T20 > tmp
+    set /p cr=<tmp
+    gmt makecpt -C%cpt% %cr% -Z > tmp.cpt
+    awk "{print $1,$2,$3,exp($4)*0.002}" 2017_catalog.gmt | ^
+    gmt psxy -R -JM -Ctmp.cpt -Sc -K -O >> %ps%
+    awk "{print $1,$2,$3,$4,$5,$6,$7,$8,$9}" focal_mechanism.gmt | ^
+    gmt psmeca -R -JM -Sa.5 -Ggray -K -O >> %ps%
 
-echo 120.4 25.6 Profile Width: %width%/%width% km | ^
-gmt pstext -R -JM -F+f14p,1+jML -K -O >> %ps%
+    :: 2. cross area
+    gmt project 2017_catalog.gmt -C%lon1%/%lat1% -E%lon2%/%lat2% ^
+    -W-%width%/%width% -Q > catalog_profile.gmt
+    gmt project focal_mechanism.gmt -C%lon1%/%lat1% -E%lon2%/%lat2% ^
+    -W-%width%/%width% -Q > focal_profile.gmt
+    # left-lateral strike-slip
+    awk "{if ($6>=-20 && $6<20) print $1,$2,$3,$4,$5,$6,$7,$8,$9}" focal_profile.gmt > tmp.ls
+    gmt psmeca tmp.ls -R -JM -Sa.5 -Gyellow -K -O >> %ps%
+    # right-lateral strike-slip
+    awk "{if ($6>=160 || $6<-160) print $1,$2,$3,$4,$5,$6,$7,$8,$9}" focal_profile.gmt > tmp.rs
+    gmt psmeca tmp.rs -R -JM -Sa.5 -Gyellow -K -O >> %ps%
+    # reverse fault
+    awk "{if ($6>=20 && $6<160) print $1,$2,$3,$4,$5,$6,$7,$8,$9}" focal_profile.gmt > tmp.rf
+    gmt psmeca tmp.rf -R -JM -Sa.5 -Gred -K -O >> %ps%
+    # normal fault
+    awk "{if ($6>=-160 && $6<-20) print $1,$2,$3,$4,$5,$6,$7,$8,$9}" focal_profile.gmt > tmp.nf
+    gmt psmeca tmp.nf -R -JM -Sa.5 -Gblue -K -O >> %ps%
+    echo %lon1% %lat1% > tmp
+    echo %lon2% %lat2% >> tmp
+    gmt psxy tmp -R -JM -W3 -K -O >> %ps%
+    echo %lon1% %lat1% A | gmt pstext -R -JM -F+f16p,1,darkgreen -G230 -K -O >> %ps%
+    echo %lon2% %lat2% A'| gmt pstext -R -JM -F+f16p,1,darkgreen -G230 -K -O >> %ps%
 
-# 3. seismicity profile
-gmt gmtinfo catalog_profile.gmt -i4 -C -o1 > tmp1
-set /p mdis=<tmp1
-gmt psbasemap -R0/%mdis%/0/%depth% -JX13.56/-8 -BwESn -Bxa+l"Distance (km)" ^
--Bya+l"Depth (km)" -X11 -K -O >> %ps%
-awk "{print $5,$3,$3,exp($4)*0.002}" catalog_profile.gmt | ^
-gmt psxy -R -JX -Ctmp.cpt -Sc -K -O >> %ps%
-awk "{print $1,$2,$3,$4,$5,$6,$7,$8,$9}" tmp.ls | ^
-gmt pscoupe -R -JX -Sa.5 -Gyellow -Aa%lon1%/%lat1%/%lon2%/%lat2%/90/%wid%/0/%depth% -K -O >> %ps%
-awk "{print $1,$2,$3,$4,$5,$6,$7,$8,$9}" tmp.rs | ^
-gmt pscoupe -R -JX -Sa.5 -Gyellow -Aa%lon1%/%lat1%/%lon2%/%lat2%/90/%wid%/0/%depth% -K -O >> %ps%
-awk "{print $1,$2,$3,$4,$5,$6,$7,$8,$9}" tmp.rf | ^
-gmt pscoupe -R -JX -Sa.5 -Gred -Aa%lon1%/%lat1%/%lon2%/%lat2%/90/%wid%/0/%depth% -K -O >> %ps%
-awk "{print $1,$2,$3,$4,$5,$6,$7,$8,$9}" tmp.nf | ^
-gmt pscoupe -R -JX -Sa.5 -Gblue -Aa%lon1%/%lat1%/%lon2%/%lat2%/90/%wid%/0/%depth% -K -O >> %ps%
+    echo 120.4 25.6 Profile Width: %width%/%width% km | ^
+    gmt pstext -R -JM -F+f14p,1+jML -K -O >> %ps%
 
-# 4. legend set
-echo 5 -5 AA' Profile | gmt pstext -R -JX -F+f16p,1+jML -N -K -O >> %ps%
-gmt psscale -R -JX -Ctmp.cpt -Dx3.5/9+w10/.5+ml+h -Bxa+l"Depth (km)" -K -O >> %ps%
-echo 1 2 2 > tmp.m
-echo 2 2 3 >> tmp.m
-echo 3 2 4 >> tmp.m
-echo 4 2 5 >> tmp.m
-echo 5 2 6 >> tmp.m
-echo 6.5 2 7 >> tmp.m
-awk "{print $1,$2,exp($3)*0.002}" tmp.m | ^
-gmt psxy -R0/8/0/10 -JX -Sc -W2 -Y5 -K -O >> %ps%
-gmt pstext tmp.m -R -JX -F+f14p -D0/.7 -K -O >> %ps%
-echo 0 0 Magnitude: | gmt pstext -R -JX -F+f16p,1+jML -N -K -O >> %ps%
+    :: 3. seismicity profile
+    gmt gmtinfo catalog_profile.gmt -i4 -C -o1 > tmp1
+    set /p mdis=<tmp1
+    gmt psbasemap -R0/%mdis%/0/%depth% -JX13.56/-8 -BwESn -Bxa+l"Distance (km)" ^
+    -Bya+l"Depth (km)" -X11 -K -O >> %ps%
+    awk "{print $5,$3,$3,exp($4)*0.002}" catalog_profile.gmt | ^
+    gmt psxy -R -JX -Ctmp.cpt -Sc -K -O >> %ps%
+    awk "{print $1,$2,$3,$4,$5,$6,$7,$8,$9}" tmp.ls | ^
+    gmt pscoupe -R -JX -Sa.5 -Gyellow -Aa%lon1%/%lat1%/%lon2%/%lat2%/90/%wid%/0/%depth% -K -O >> %ps%
+    awk "{print $1,$2,$3,$4,$5,$6,$7,$8,$9}" tmp.rs | ^
+    gmt pscoupe -R -JX -Sa.5 -Gyellow -Aa%lon1%/%lat1%/%lon2%/%lat2%/90/%wid%/0/%depth% -K -O >> %ps%
+    awk "{print $1,$2,$3,$4,$5,$6,$7,$8,$9}" tmp.rf | ^
+    gmt pscoupe -R -JX -Sa.5 -Gred -Aa%lon1%/%lat1%/%lon2%/%lat2%/90/%wid%/0/%depth% -K -O >> %ps%
+    awk "{print $1,$2,$3,$4,$5,$6,$7,$8,$9}" tmp.nf | ^
+    gmt pscoupe -R -JX -Sa.5 -Gblue -Aa%lon1%/%lat1%/%lon2%/%lat2%/90/%wid%/0/%depth% -K -O >> %ps%
 
-gmt psxy -R -J -T -O >> %ps%
-gmt psconvert %ps% -Tg -A -P
-del tmp*
-```
+    :: 4. legend set
+    echo 5 -5 AA' Profile | gmt pstext -R -JX -F+f16p,1+jML -N -K -O >> %ps%
+    gmt psscale -R -JX -Ctmp.cpt -Dx3.5/9+w10/.5+ml+h -Bxa+l"Depth (km)" -K -O >> %ps%
+    echo 1 2 2 > tmp.m
+    echo 2 2 3 >> tmp.m
+    echo 3 2 4 >> tmp.m
+    echo 4 2 5 >> tmp.m
+    echo 5 2 6 >> tmp.m
+    echo 6.5 2 7 >> tmp.m
+    awk "{print $1,$2,exp($3)*0.002}" tmp.m | ^
+    gmt psxy -R0/8/0/10 -JX -Sc -W2 -Y5 -K -O >> %ps%
+    gmt pstext tmp.m -R -JX -F+f14p -D0/.7 -K -O >> %ps%
+    echo 0 0 Magnitude: | gmt pstext -R -JX -F+f16p,1+jML -N -K -O >> %ps%
+
+    gmt psxy -R -J -T -O >> %ps%
+    gmt psconvert %ps% -Tg -A -P
+    del tmp*
+    ```
 
 學習到的指令:
 
@@ -393,6 +405,7 @@ del tmp*
 製作底圖。
 
 <mark>2</mark>假設起始點、結束點及寬度，繪製橫截面區域。
+
 * `project`將地震點及海灘球投影至剖面線上，部份選項以在第三章中介紹，故不重覆說明。
   * `-L`長度最小值/長度最大值，從起點開始算起的長度，
   限制多少長度之間的數據，會被投影到線上。
@@ -400,11 +413,12 @@ del tmp*
   * `-W`寬度最小值/寬度最大值，限制多少寬度內的數據會被投影至線上。
 * 利用`project`模組，將<mark>2017_catalog.gmt</mark>中的數據篩選後，投影至線上，
 並新增檔案<mark>catalog_profile.gmt</mark>來儲存，
-同理<mark>focal_mechanism.gmt</mark>。
+同理 <mark>focal\_mechanism.gmt</mark>。
 * 由於在執行`pscoupe`後，震源機制解的參數因旋轉而改寫，故先將各種斷層型態分類先行輸出，
 以利在接下來繪製機制解剖面時，能使用一樣的顏色。
 
 <mark>3</mark>深度剖面。製作距離/深度的底圖，利用`awk`讀取篩選後的數據，繪製在剖面圖上。
+
 * `pscoupe`繪製震源機制解剖面圖，可將震源機制解投影到某一平面上。
   * `-A`選用的剖面參數。
     * `-Aa剖面起點經度/剖面起點緯度/剖面終點經度/剖面終點緯度/剖面傾角(0為水平；90為垂直)/剖面寬度/剖面最淺深度/剖面最深深度`
@@ -431,6 +445,7 @@ del tmp*
 寬度往北30km，往南20km。
 
 使用的資料檔:
+
 - [美濃地震後6個月地震目錄](https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/data/after6m_meinong_catalog.gmt)
 
 完成圖如下:
