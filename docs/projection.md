@@ -5,7 +5,7 @@
 GMT在投影法方面，分成兩部份，如下圖，一部份是地理投影法，另一部分是其他投影法，
 
 <p align="center">
-  <img src="/fig/5_GMT_-J.png"/>
+  <img src="https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/fig/5_GMT_-J.png"/>
 </p>
 
 本章節將主要介紹地理投影法，其中又分成四個子部份，分別是:
@@ -114,7 +114,7 @@ gmt pscoast -R119.0/122.5/21.5/26.0 -JM18 -S0/0/255 -W1 > 5_3_taiwan.ps
 
 來看看結果的圖長什麼樣。
 <p align="center">
-  <img src="/fig/5_3_taiwan_1.png" width="702" height="496"/>
+  <img src="https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/fig/5_3_taiwan_1.png" width="702" height="496"/>
 </p>
 在預設紙張大小為A4的情況下，看到台灣北部並沒有被涵蓋在A4的紙張上，是什麼原因呢？
 原來是因為GMT預設紙張方向是橫向(Landscape)，如果要改成縱向(Portrait)，需要加上`-P`這個選項。
@@ -130,7 +130,7 @@ gmt pscoast -R119.0/122.5/21.5/26.0 -JM18 -S0/0/255 -Gspringgreen2 -W1 -Df -P > 
 ```
 
 <p align="center">
-  <img src="/fig/5_3_taiwan_2.png" width="496" height="702"/>
+  <img src="https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/fig/5_3_taiwan_2.png" width="496" height="702"/>
 </p>
 
 看起來，這圖已經有點起色了，但好像還缺少點什麼，例如地圖比例尺(map scale)、
@@ -149,7 +149,7 @@ gmt pscoast -R-130/-66/24/52 -JL-98/35/33/45/25 -S0/0/255 -Gspringgreen2 -W1 -Df
 
 其結果為
 <p align="center">
-  <img src="/fig/5_4_unitedstate_1.png" width="702" height="496"/>
+  <img src="https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/fig/5_4_unitedstate_1.png" width="702" height="496"/>
 </p>
 
 中心點的經度，表示該經度線為垂直線，而中心點緯度則不影響，兩條固定緯度線則請想像用圓錐去罩住一顆球，
@@ -196,7 +196,7 @@ gmt pscoast -R-130/-66/24/52 -JL-98/35/33/45/25 -S0/0/255 -Gspringgreen2 -W1 -Df
     ```
 
 <p align="center">
-  <img src="/fig/5_4_unitedstate_2.png" width="702" height="496"/>
+  <img src="https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/fig/5_4_unitedstate_2.png" width="702" height="496"/>
 </p>
 
 應該注意到上面的指令，多出現了一種符號<mark>^</mark>。因為使用的選項很多，造成指令過長，
@@ -231,7 +231,7 @@ Linux及MAC則使用<mark>\</mark>。
 
 成果圖
 <p align="center">
-  <img src="/fig/5_5_TPEairline_1.png"/>
+  <img src="https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/fig/5_5_TPEairline_1.png"/>
 </p>
 
 === "Windows 批次檔"
@@ -324,7 +324,7 @@ Linux及MAC則使用<mark>\</mark>。
 
 成果圖
 <p align="center">
-  <img src="/fig/5_6_globalNationalBoundary_1.png"/>
+  <img src="https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/fig/5_6_globalNationalBoundary_1.png"/>
 </p>
 
 === "Windows 批次檔"
@@ -415,12 +415,12 @@ Linux及MAC則使用<mark>\</mark>。
 經緯度範圍可用<mark>121.263/122.077/24.671/25.343</mark>，
 另外提供[縣市邊界的資料](https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/data/city_twd97.gmt)(未來會教導如何製作)，試著畫一張新北市YouBike的點位圖。
 <p align="center">
-  <img src="/fig/5_7_youBike_1.png"/>
+  <img src="https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/fig/5_7_youBike_1.png"/>
 </p>
 * 2.透過羅賓森投影法，繪製全球地圖，將你最喜歡的國家，設為中心點經度，並用一個特別的顏色標示出來。
 編者使用紐西蘭當作範例。
 <p align="center">
-  <img src="/fig/5_7_favoriteCountry_1.png"/>
+  <img src="https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/fig/5_7_favoriteCountry_1.png"/>
 </p>
 
 ## 5.8 參考批次檔

@@ -37,7 +37,7 @@
 其中的不分幅\_全台及澎湖的資料，下載下來的<mark>.tif</mark>檔，透過一般的編譯器打開，如下圖:
 
 <p align="center">
-  <img src="/fig/7_3_binaryView.png"/>
+  <img src="https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/fig/7_3_binaryView.png"/>
 </p>
 
 顯示出一推看不懂的亂碼，但如何想簡單的得知這個檔案理面的資料資訊，可以使用
@@ -144,7 +144,7 @@ gmt grdcut input.grd -Goutput.grd -R範圍
 
 成果圖
 <p align="center">
-  <img src="/fig/7_4_east_rift_valley_1.png"/>
+  <img src="https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/fig/7_4_east_rift_valley_1.png"/>
 </p>
 
 批次檔
@@ -206,7 +206,7 @@ gmt psconvert %ps% -Tg -A -P
 
 成果圖
 <p align="center">
-  <img src="/fig/7_5_elevation_profile_1.png"/>
+  <img src="https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/fig/7_5_elevation_profile_1.png"/>
 </p>
 
 批次檔
@@ -372,7 +372,7 @@ del tmp*
 
 完成圖如下:
 <p align="center">
-  <img src="/fig/7_6_yuShan_1.png"/>
+  <img src="https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/fig/7_6_yuShan_1.png"/>
 </p>
 
 ## 7.7 參考批次檔

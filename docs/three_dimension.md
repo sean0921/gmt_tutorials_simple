@@ -37,7 +37,7 @@
 成果圖
 
 <p align="center">
-  <img src="/fig/13_3_3d_polyhedron_1.png"/>
+  <img src="https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/fig/13_3_3d_polyhedron_1.png"/>
 </p>
 
 
@@ -306,7 +306,7 @@
 成果圖
 
 <p align="center">
-  <img src="/fig/13_4_3d_bar_1.png"/>
+  <img src="https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/fig/13_4_3d_bar_1.png"/>
 </p>
 
 批次檔
@@ -449,7 +449,7 @@ del tmp*
 成果圖
 
 <p align="center">
-  <img src="/fig/13_5_3d_perspective_1.png"/>
+  <img src="https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/fig/13_5_3d_perspective_1.png"/>
 </p>
 
 批次檔
@@ -524,7 +524,7 @@ del tmp*
 
 完成圖如下:
 <p align="center">
-  <img src="/fig/13_6_3d_east_coast_1.png"/>
+  <img src="https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/fig/13_6_3d_east_coast_1.png"/>
 </p>
 
 ## 13.7 參考批次檔

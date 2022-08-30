@@ -28,7 +28,7 @@
 
 成果圖
 <p align="center">
-  <img src="/fig/10_3_vector_1.png"/>
+  <img src="https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/fig/10_3_vector_1.png"/>
 </p>
 
 批次檔
@@ -147,7 +147,7 @@ del tmp*
 
 成果圖
 <p align="center">
-  <img src="/fig/10_4_morakot_wind_1.png"/>
+  <img src="https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/fig/10_4_morakot_wind_1.png"/>
 </p>
 
 批次檔
@@ -257,7 +257,7 @@ del tmp*
 
 成果圖
 <p align="center">
-  <img src="/fig/10_5_grid_vector_1.png"/>
+  <img src="https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/fig/10_5_grid_vector_1.png"/>
 </p>
 
 批次檔
@@ -351,7 +351,7 @@ del tmp*
 
 完成圖如下:
 <p align="center">
-  <img src="/fig/10_6_ocean_current_1.png"/>
+  <img src="https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/fig/10_6_ocean_current_1.png"/>
 </p>
 
 ## 10.7 參考批次檔

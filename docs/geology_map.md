@@ -35,7 +35,7 @@
 成果圖
 
 <p align="center">
-  <img src="/fig/14_3_bit_harchure_patterns_1.png"/>
+  <img src="https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/fig/14_3_bit_harchure_patterns_1.png"/>
 </p>
 
 批次檔
@@ -175,7 +175,7 @@ lon, lat = p(float(x), float(y), inverse=True)
 成果圖
 
 <p align="center">
-  <img src="/fig/14_4_se_geo_1.png"/>
+  <img src="https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/fig/14_4_se_geo_1.png"/>
 </p>
 
 批次檔
@@ -252,7 +252,7 @@ del tmp*
 成果圖
 
 <p align="center">
-  <img src="/fig/14_5_se_geo_grd_1.png"/>
+  <img src="https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/fig/14_5_se_geo_grd_1.png"/>
 </p>
 
 批次檔

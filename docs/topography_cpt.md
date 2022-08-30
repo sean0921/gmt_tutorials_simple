@@ -53,7 +53,7 @@ N gray
 來看GMT有提供的色階檔畫出來的樣子:
 
 <p align="center">
-  <img src="/fig/8_3_cpt_1.png"/>
+  <img src="https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/fig/8_3_cpt_1.png"/>
 </p>
 
 圖中列出44個GMT預設提供的色階檔(GMT version 5.4.2)，將每個色階做正規化的步驟，上方色階代表顏色連續的色階檔，
@@ -113,7 +113,7 @@ N	127.5
 
 成果圖
 <p align="center">
-  <img src="/fig/8_4_yangmingShan_1.png"/>
+  <img src="https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/fig/8_4_yangmingShan_1.png"/>
 </p>
 
 批次檔
@@ -220,7 +220,7 @@ Hillshading暈渲法(或稱陰影法)，是一種地形圖的表示方式，應�
 
 成果圖
 <p align="center">
-  <img src="/fig/8_5_ryukyu_trench_n_1.png"/>
+  <img src="https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/fig/8_5_ryukyu_trench_n_1.png"/>
 </p>
 
 批次檔
@@ -309,7 +309,7 @@ grdgradient ETOPO1_Bed_g_gmt5.grd -Nt1 -A300 -GETOPO1_Bed_g_gmt5_shad.grd
 
 成果圖
 <p align="center">
-  <img src="/fig/8_5_ryukyu_trench_1.png"/>
+  <img src="https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/fig/8_5_ryukyu_trench_1.png"/>
 </p>
 
 ## 8.6 習題
@@ -321,7 +321,7 @@ grdgradient ETOPO1_Bed_g_gmt5.grd -Nt1 -A300 -GETOPO1_Bed_g_gmt5_shad.grd
 
 完成圖如下:
 <p align="center">
-  <img src="/fig/8_6_mid-atlantic_ridge_1.png"/>
+  <img src="https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/fig/8_6_mid-atlantic_ridge_1.png"/>
 </p>
 
 ## 8.7 參考批次檔

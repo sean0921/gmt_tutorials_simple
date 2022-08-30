@@ -32,7 +32,7 @@
 成果圖
 
 <p align="center">
-  <img src="/fig/12_3_population_histo_1.png"/>
+  <img src="https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/fig/12_3_population_histo_1.png"/>
 </p>
 
 批次檔
@@ -103,7 +103,7 @@ del tmp*
 成果圖
 
 <p align="center">
-  <img src="/fig/12_4_visitor_residence_1.png"/>
+  <img src="https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/fig/12_4_visitor_residence_1.png"/>
 </p>
 
 批次檔
@@ -159,7 +159,7 @@ GMT在圓餅圖上的功能甚少，但還是製作示範供大家參考。
 成果圖
 
 <p align="center">
-  <img src="/fig/12_5_volcano_compo_1.png"/>
+  <img src="https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/fig/12_5_volcano_compo_1.png"/>
 </p>
 
 批次檔
@@ -242,7 +242,7 @@ del tmp*
 在數理、工程等領域都時常用到的機率分佈，其機率密度函數(Probability Density Function, PDF)為
 
 <p align="center">
-  <img src="/fig/eq_ProbabilityDensityFunction.png"/>
+  <img src="https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/fig/eq_ProbabilityDensityFunction.png"/>
 </p>
 
 分佈的情形由平均數及標準差來決定，通常標準常態分佈是指平均數為0，標準差為1。
@@ -258,7 +258,7 @@ del tmp*
 完成圖如下:
 
 <p align="center">
-  <img src="/fig/12_6_normal_distribution_1.png"/>
+  <img src="https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/fig/12_6_normal_distribution_1.png"/>
 </p>
 
 ## 12.7 參考批次檔

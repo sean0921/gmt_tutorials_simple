@@ -31,7 +31,7 @@
 
 成果圖
 <p align="center">
-  <img src="/fig/9_3_seismicity_1.png"/>
+  <img src="https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/fig/9_3_seismicity_1.png"/>
 </p>
 
 批次檔
@@ -162,7 +162,7 @@ C代表東北部地震帶，包含了琉球隱沒帶及沖繩海溝，許多規�
 
 成果圖
 <p align="center">
-  <img src="/fig/9_4_focal_mechanism_1.png"/>
+  <img src="https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/fig/9_4_focal_mechanism_1.png"/>
 </p>
 
 在繪製震源機制解時，有幾種檔案格式會被提到，`-Sa`用Aki and Richards制訂的震源機制格式，
@@ -195,7 +195,7 @@ C代表東北部地震帶，包含了琉球隱沒帶及沖繩海溝，許多規�
 
 成果圖
 <p align="center">
-  <img src="/fig/9_4_taiwan_focal_1.png"/>
+  <img src="https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/fig/9_4_taiwan_focal_1.png"/>
 </p>
 
 批次檔
@@ -293,7 +293,7 @@ del tmp*
 
 成果圖
 <p align="center">
-  <img src="/fig/9_5_focal_profile_1.png"/>
+  <img src="https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/fig/9_5_focal_profile_1.png"/>
 </p>
 
 批次檔
@@ -435,7 +435,7 @@ del tmp*
 
 完成圖如下:
 <p align="center">
-  <img src="/fig/9_6_after6m_meinong_1.png"/>
+  <img src="https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/fig/9_6_after6m_meinong_1.png"/>
 </p>
 
 ## 9.7 參考批次檔

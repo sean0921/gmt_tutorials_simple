@@ -4,7 +4,7 @@
 ## 概述
 
 <p align="center">
-  <img src="/fig/1_logo-gmt5.png"/>
+  <img src="https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/fig/1_logo-gmt5.png"/>
 </p>
 
 GMT(Generic Mapping Tools)，是一款開放原始碼的製圖軟體，透過指令的方式，

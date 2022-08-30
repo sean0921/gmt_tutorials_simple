@@ -15,7 +15,7 @@ GMT 建立於 1988 年，由 Paul Wessel 和 Walter H.F. Smith 共同開發，
 - [詳細的版本資訊](https://docs.generic-mapping-tools.org/latest/changes.html)。
 
 <p align="center">
-  <img src="/fig/2_GMT5_Summit_2016.jpg"/>
+  <img src="https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/fig/2_GMT5_Summit_2016.jpg"/>
 </p>
 
 目前 (2016 年) 由圖中五位共同維護。由左自右分別是，Joaquim Luis、Walter H.F. Smith、
@@ -31,7 +31,7 @@ GMT作為免費、開源的製圖軟體，將大幅底減少這些花費。
 但其快速的資料處理、批次處理、開源免費(可自由修改)的特點，使其擁有一群死忠的使用者。
 
 <p align="center">
-  <img src="/fig/2_map_geoip_all.png"/>
+  <img src="https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/fig/2_map_geoip_all.png"/>
 </p>
 
 圖為截至 2017 年 7 月 GMT 全球的下載量。

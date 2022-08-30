@@ -33,7 +33,7 @@
 
 成果圖
 <p align="center">
-  <img src="/fig/6_3_accidentalDeath_1.png"/>
+  <img src="https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/fig/6_3_accidentalDeath_1.png"/>
 </p>
 
 === "Windows 批次檔"
@@ -184,7 +184,7 @@
 
 成果圖
 <p align="center">
-  <img src="/fig/6_4_richter_magnitude_1.png"/>
+  <img src="https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/fig/6_4_richter_magnitude_1.png"/>
 </p>
 
 === "Windows 批次檔"
@@ -307,7 +307,7 @@
 
 成果圖
 <p align="center">
-  <img src="/fig/6_5_C0V250_morakot_1.png"/>
+  <img src="https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/fig/6_5_C0V250_morakot_1.png"/>
 </p>
 
 === "Windows 批次檔"
@@ -412,7 +412,7 @@
 
 成果圖
 <p align="center">
-  <img src="/fig/6_6_season_wind_1.png"/>
+  <img src="https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/fig/6_6_season_wind_1.png"/>
 </p>
 
 === "Windows 批次檔"
@@ -566,14 +566,14 @@
 請用雙軸的方式呈現，並嘗試更改其外框顏色，另外練習在2008-01-01畫一條垂直虛線，
 以及如何製作圖例`pslegend`，完成圖如下:
 <p align="center">
-  <img src="/fig/6_7_THSRC_timeseries_1.png"/>
+  <img src="https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/fig/6_7_THSRC_timeseries_1.png"/>
 </p>
 * 2.繪製**旅客人數**及**列車次數**的XY點散佈圖，從上題完成圖中可以看到2007年(第一年)，
 較之後有很大的不同，試著將2007年的點用不同的顏色表示出來。另外GMT有提供一些資料運算的功能，
 在將來將會依序用到，此題將會使用到`gmt regress`，將**旅客人數**及**列車次數**做線性回歸，
 並繪製回歸線及方程式，請試著去[GMT官網](http://gmt.soest.hawaii.edu/doc/5.4.2/index.html)找到該模組，並練習如何使用。
 <p align="center">
-  <img src="/fig/6_7_THSRC_xyFigure_1.png"/>
+  <img src="https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/fig/6_7_THSRC_xyFigure_1.png"/>
 </p>
 
 ## 6.8 參考批次檔

@@ -37,7 +37,7 @@
 
 成果圖
 <p align="center">
-  <img src="/fig/11_3_taiwan_road_1.png"/>
+  <img src="https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/fig/11_3_taiwan_road_1.png"/>
 </p>
 
 批次檔
@@ -104,7 +104,7 @@ del tmp*
 
 成果圖
 <p align="center">
-  <img src="/fig/11_4_region_border_1.png"/>
+  <img src="https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/fig/11_4_region_border_1.png"/>
 </p>
 
 批次檔
@@ -196,7 +196,7 @@ del tmp*
 
 成果圖
 <p align="center">
-  <img src="/fig/11_5_drainage_area_1.png"/>
+  <img src="https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/fig/11_5_drainage_area_1.png"/>
 </p>
 
 批次檔
@@ -246,7 +246,7 @@ del tmp* gmt.conf
 
 完成圖如下:
 <p align="center">
-  <img src="/fig/11_6_cgs_fault_1.png"/>
+  <img src="https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/fig/11_6_cgs_fault_1.png"/>
 </p>
 
 批次檔
@@ -333,7 +333,7 @@ del tmp*
 
 完成圖如下:
 <p align="center">
-  <img src="/fig/11_6_fault_type_1.png"/>
+  <img src="https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/fig/11_6_fault_type_1.png"/>
 </p>
 
 批次檔
@@ -404,7 +404,7 @@ del tmp*
 
 完成圖如下:
 <p align="center">
-  <img src="/fig/11_7_population_density_1.png"/>
+  <img src="https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/fig/11_7_population_density_1.png"/>
 </p>
 
 批次檔
