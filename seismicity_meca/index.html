@@ -622,19 +622,23 @@
 <p>從<a href="http://gdms.cwb.gov.tw/index.php">地球物理資料庫</a>下載2017台灣地區的地震目錄(catalog)，資料共4欄，
 分別是震央經度、震央緯度、深度、芮氏規模，透過GMT繪製地震活動性的地圖，
 來更加了解台灣的地震分佈與地體構造活動。</p>
-<p>使用的資料檔:
-- <a href="https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/data/2017_catalog.gmt">2017地震活動性</a></p>
+<p>使用的資料檔:</p>
+<ul>
+<li><a href="https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/data/2017_catalog.gmt">2017地震活動性</a></li>
+</ul>
 <p>成果圖</p>
 <p align="center">
   <img src="https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/fig/9_3_seismicity_1.png"/>
 </p>
 
-<p>批次檔
+<div class="tabbed-set tabbed-alternate" data-tabs="1:1"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Windows 批次檔</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">set</span> <span class="nv">ps</span><span class="p">=</span>9_3_seismicity.ps
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="k">set</span> <span class="nv">data</span><span class="p">=</span>D:\GMT_data\
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="k">set</span> <span class="nv">cpt</span><span class="p">=</span>seis.cpt
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a># 1. seismicity basemap
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="p">:</span><span class="c1">: 1. seismicity basemap</span>
 <a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>gmt gmtinfo 2017_catalog.gmt -i2 -T20 <span class="p">&gt;</span> tmp
 <a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="k">set</span> <span class="k">/p</span> <span class="nv">cr</span><span class="p">=&lt;</span>tmp
 <a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>gmt makecpt -C<span class="nv">%cpt%</span> <span class="nv">%cr%</span> <span class="p">&gt;</span> tmp.cpt
@@ -643,7 +647,7 @@
 <a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>awk <span class="s2">&quot;{print $1,$2,$3,exp($4)*0.002}&quot;</span> 2017_catalog.gmt <span class="p">|</span> <span class="se">^</span>
 <a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="se">g</span>mt psxy -R -JM -Ctmp.cpt -Sc -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
 <a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>
-<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a># 2. magnitude calculation
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="p">:</span><span class="c1">: 2. magnitude calculation</span>
 <a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="k">echo</span> 1 <span class="p">&gt;</span> tmp
 <a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="k">for</span> <span class="k">/l</span> <span class="se">%%</span>i <span class="k">in</span> <span class="p">(</span><span class="mi">2</span>, <span class="mi">1</span>, <span class="mi">6</span><span class="p">)</span> <span class="k">do</span> <span class="p">(</span><span class="k">echo</span> <span class="se">%%</span>i <span class="p">&gt;&gt;</span> tmp<span class="p">)</span>
 <a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="k">setlocal</span> ENABLEDELAYEDEXPANSION
@@ -654,7 +658,7 @@
 <a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="p">)</span>
 <a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="k">set</span> <span class="nv">var</span>
 <a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>
-<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a># 3. boundary of four seismic zones
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="p">:</span><span class="c1">: 3. boundary of four seismic zones</span>
 <a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="k">echo</span> 119.0 22.8 <span class="p">&gt;</span> tmp
 <a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="k">echo</span> 120.8 22.8 <span class="p">&gt;&gt;</span> tmp
 <a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="k">echo</span> <span class="se">^&gt;</span> <span class="p">&gt;&gt;</span> tmp
@@ -676,7 +680,7 @@
 <a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a><span class="k">echo</span> 122.3 25.3 C <span class="p">|</span> gmt pstext -R -JM -F+f40p,2 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
 <a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a><span class="k">echo</span> 122.3 22.1 D <span class="p">|</span> gmt pstext -R -JM -F+f40p,2 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
 <a id="__codelineno-0-46" name="__codelineno-0-46" href="#__codelineno-0-46"></a>
-<a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a># 4. legend set
+<a id="__codelineno-0-47" name="__codelineno-0-47" href="#__codelineno-0-47"></a><span class="p">:</span><span class="c1">: 4. legend set</span>
 <a id="__codelineno-0-48" name="__codelineno-0-48" href="#__codelineno-0-48"></a><span class="k">echo</span> H 18 1 Legend <span class="p">&gt;</span> tmp
 <a id="__codelineno-0-49" name="__codelineno-0-49" href="#__codelineno-0-49"></a><span class="k">echo</span> D 0.4 1p <span class="p">&gt;&gt;</span> tmp
 <a id="__codelineno-0-50" name="__codelineno-0-50" href="#__codelineno-0-50"></a><span class="k">echo</span> G .7 <span class="p">&gt;&gt;</span> tmp
@@ -703,28 +707,43 @@
 <a id="__codelineno-0-71" name="__codelineno-0-71" href="#__codelineno-0-71"></a>gmt psxy -R -JM -T -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
 <a id="__codelineno-0-72" name="__codelineno-0-72" href="#__codelineno-0-72"></a>gmt psconvert <span class="nv">%ps%</span> -Tg -A -P
 <a id="__codelineno-0-73" name="__codelineno-0-73" href="#__codelineno-0-73"></a><span class="k">del</span> tmp*
-</code></pre></div></p>
+</code></pre></div>
+</div>
+</div>
+</div>
 <p>學習到的指令:</p>
-<p><mark>1</mark>繪製地震活動性底圖
-* <code>gmtinfo</code>讀取第三欄(深度)做色階的範圍。
-  * <code>-T</code>間隔，輸出成<mark>-Tz軸最小/z軸最大/z間隔<mark>。
-* <code>awk</code>將第四欄(規模)透過exp()做指數函數運算。
-* <code>psxy</code>利用<code>-C</code>色階檔，將依照第三欄(深度)做顏色的變化；
-<code>-Sc</code>在不給數值的情況下，將會讀取第四欄(規模)做圖形大小的變化。</p>
-<p><mark>2</mark>利用迴圈設定1~7規模轉換數值後的變數
-* <code>echo 1 &gt; tmp</code>及<code>for /l..</code>製造1~7的tmp暫存檔。
-* <code>awk</code>tmp暫存檔做規模數值轉換。
-* <code>set var!vidx!=%%i</code>迴圈設定變數。</p>
-<p><mark>3</mark>繪製地震分區邊界
-* <code>echo ^&gt; &gt;&gt; tmp</code>要把<mark>&gt;</mark>加入暫存檔中，需要多加上<mark>^</mark>符號，
-將<mark>&gt;</mark>從特殊字元轉為一般字元。</p>
-<p><mark>4</mark>製作圖例說明
-* <code>pslegend</code>
-  * <code>B</code>繪製色彩條。格式為<code>B cpt檔 兩邊間隔 色彩條高度</code>。
-    * 可在高度後增加<code>[+e][+h][+m]</code>等等，也可增加<code>-B</code>、<code>-I</code>等等參數，可參考<code>psscale</code>模組。
-  * <code>M</code>繪製比例尺。格式為<code>M 經度 緯度 長度</code>。
-    * 可在長度後增加<code>[+f][+l][+u]</code>等等，也可增加<code>-F</code>、<code>-R</code>等等參數，可參考<code>psbasemap</code>模組。
-  * <code>L</code>增加指令的文字。格式為<code>L 字體大小 字體 對齊方式 文字</code></p>
+<p><mark>1</mark>繪製地震活動性底圖</p>
+<ul>
+<li><code>gmtinfo</code>讀取第三欄(深度)做色階的範圍。</li>
+<li><code>-T</code>間隔，輸出成<mark>-Tz軸最小/z軸最大/z間隔<mark>。</li>
+<li><code>awk</code>將第四欄(規模)透過exp()做指數函數運算。</li>
+<li><code>psxy</code>利用<code>-C</code>色階檔，將依照第三欄(深度)做顏色的變化；
+<code>-Sc</code>在不給數值的情況下，將會讀取第四欄(規模)做圖形大小的變化。</li>
+</ul>
+<p><mark>2</mark>利用迴圈設定1~7規模轉換數值後的變數</p>
+<ul>
+<li><code>echo 1 &gt; tmp</code>及<code>for /l..</code>製造1~7的tmp暫存檔。</li>
+<li><code>awk</code>tmp暫存檔做規模數值轉換。</li>
+<li><code>set var!vidx!=%%i</code>迴圈設定變數。</li>
+</ul>
+<p><mark>3</mark>繪製地震分區邊界</p>
+<ul>
+<li><code>echo ^&gt; &gt;&gt; tmp</code>要把<mark>&gt;</mark>加入暫存檔中，需要多加上<mark>^</mark>符號，
+將<mark>&gt;</mark>從特殊字元轉為一般字元。</li>
+</ul>
+<p><mark>4</mark>製作圖例說明</p>
+<ul>
+<li><code>pslegend</code></li>
+<li><code>B</code>繪製色彩條。格式為<code>B cpt檔 兩邊間隔 色彩條高度</code>。<ul>
+<li>可在高度後增加<code>[+e][+h][+m]</code>等等，也可增加<code>-B</code>、<code>-I</code>等等參數，可參考<code>psscale</code>模組。</li>
+</ul>
+</li>
+<li><code>M</code>繪製比例尺。格式為<code>M 經度 緯度 長度</code>。<ul>
+<li>可在長度後增加<code>[+f][+l][+u]</code>等等，也可增加<code>-F</code>、<code>-R</code>等等參數，可參考<code>psbasemap</code>模組。</li>
+</ul>
+</li>
+<li><code>L</code>增加指令的文字。格式為<code>L 字體大小 字體 對齊方式 文字</code></li>
+</ul>
 <p>之前在畫地形圖的時後有提到如何在二維的平面上表現三維的資料，
 有提到顏色可以做為第三維度的呈現方式，這邊示範了利用圖案的大小，來呈現第四維度的變化，
 所以當<code>psxy</code>在給定<code>-C</code>及<code>-S</code>時後，會分別對應到資料檔的第三及第四欄，
@@ -737,12 +756,14 @@ C代表東北部地震帶，包含了琉球隱沒帶及沖繩海溝，許多規�
 受到歐亞板塊與菲律賓海板塊碰撞，造成大量的地震發生，不乏一些規模大於5的地震。</p>
 <h2 id="94">9.4 震源機制解</h2>
 <p>本節將示範如何將震源機制解運用海灘球(beach ball)圖示，來表示不同的斷層形態，
-並將台灣幾個較著名的災害性地震的機制解繪製出來，首先提供可以下載機制解的網頁，如下:
-- <a href="http://tecws.earth.sinica.edu.tw/BATS/cmtbyform.php">BATS</a>，由中研院管理，
-提供台灣地震的震源機制解。
-- <a href="http://www.globalcmt.org/CMTsearch.html">Global CMT</a>，
+並將台灣幾個較著名的災害性地震的機制解繪製出來，首先提供可以下載機制解的網頁，如下:</p>
+<ul>
+<li><a href="http://tecws.earth.sinica.edu.tw/BATS/cmtbyform.php">BATS</a>，由中研院管理，
+提供台灣地震的震源機制解。</li>
+<li><a href="http://www.globalcmt.org/CMTsearch.html">Global CMT</a>，
 由Lamont-Doherty Earth Observatory (LDEO) of Columbia University開發，
-提供全球的震源機制解。</p>
+提供全球的震源機制解。</li>
+</ul>
 <p>成果圖</p>
 <p align="center">
   <img src="https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/fig/9_4_focal_mechanism_1.png"/>
@@ -809,36 +830,40 @@ C代表東北部地震帶，包含了琉球隱沒帶及沖繩海溝，許多規�
 <p>接下來，將利用上述分類模式，將走向滑移斷層(圖中第一列)用黃色表示；
 逆斷層(圖中第二列)用紅色表示；正斷層(圖中第三列)用藍色表示，繪製由<mark>BATS</mark>提供
 1996~2017台灣地區規模大於5的震源機制解，並將幾個著名災害性地震標示出來。</p>
-<p>使用的資料檔:
-- <a href="https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/data/focal_mechanism.gmt">台灣震源機制解</a></p>
+<p>使用的資料檔:</p>
+<ul>
+<li><a href="https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/data/focal_mechanism.gmt">台灣震源機制解</a></li>
+</ul>
 <p>成果圖</p>
 <p align="center">
   <img src="https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/fig/9_4_taiwan_focal_1.png"/>
 </p>
 
-<p>批次檔
+<div class="tabbed-set tabbed-alternate" data-tabs="2:1"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Windows 批次檔</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">set</span> <span class="nv">ps</span><span class="p">=</span>9_4_taiwan_focal.ps
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">set</span> <span class="nv">data</span><span class="p">=</span>D:\GMT_data\
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a># 1. focal meca basemap
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="p">:</span><span class="c1">: 1. focal meca basemap</span>
 <a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>gmt psbasemap -R119/123/21/26 -JM15 -BWeSn -Bxa -Bya -P -K <span class="p">&gt;</span> <span class="nv">%ps%</span>
 <a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>gmt grdimage <span class="nv">%data%</span>ETOPO1_Bed_g_gmt5.grd -R -JM -Cgebco.cpt <span class="se">^</span>
 <a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="se">-</span>I<span class="nv">%data%</span>ETOPO1_Bed_g_gmt5_shad.grd -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
 <a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>gmt pscoast -R -JM -Df -W1 -G230 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
-<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a># left-lateral strike-slip
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="p">:</span><span class="c1">: left-lateral strike-slip</span>
 <a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>awk <span class="s2">&quot;{if ($6&gt;=-20 &amp;&amp; $6&lt;20) print $1,$2,$3,$4,$5,$6,$7,$8,$9}&quot;</span> focal_mechanism.gmt <span class="p">|</span> <span class="se">^</span>
 <a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="se">g</span>mt psmeca -R -JM -Sa.5 -Gyellow -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
-<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a># right-lateral strike-slip
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="p">:</span><span class="c1">: right-lateral strike-slip</span>
 <a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>awk <span class="s2">&quot;{if ($$6&gt;=160 || 6&lt;-160) print $1,$2,$3,$4,$5,$6,$7,$8,$9}&quot;</span> focal_mechanism.gmt <span class="p">|</span> <span class="se">^</span>
 <a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="se">g</span>mt psmeca -R -JM -Sa.5 -Gyellow -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
-<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a># reverse fault
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="p">:</span><span class="c1">: reverse fault</span>
 <a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>awk <span class="s2">&quot;{if ($6&gt;=20 &amp;&amp; $6&lt;160) print $1,$2,$3,$4,$5,$6,$7,$8,$9}&quot;</span> focal_mechanism.gmt <span class="p">|</span> <span class="se">^</span>
 <a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="se">g</span>mt psmeca -R -JM -Sa.5 -Gred -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
-<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a># normal fault
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="p">:</span><span class="c1">: normal fault</span>
 <a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>awk <span class="s2">&quot;{if ($6&gt;=-160 &amp;&amp; $6&lt;-20) print $1,$2,$3,$4,$5,$6,$7,$8,$9}&quot;</span> focal_mechanism.gmt <span class="p">|</span> <span class="se">^</span>
 <a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="se">g</span>mt psmeca -R -JM -Sa.5 -Gblue -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
 <a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>
-<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a># 2. earthquake event
+<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="p">:</span><span class="c1">: 2. earthquake event</span>
 <a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="k">echo</span> 120.54 22.93 16 288.36 51.02 19.79 6.11 119.2 26.5 Meinong <span class="p">&gt;</span> tmp
 <a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a><span class="k">echo</span> 120.56 21.89 41 118.64 50.07 -128.06 6.7 119.9 26.5 Hengchun <span class="p">&gt;&gt;</span> tmp
 <a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a><span class="k">echo</span> 120.73 23 18 318.05 41.39 67.64 5.66 120.6 26.5 Jiashian <span class="p">&gt;&gt;</span> tmp
@@ -847,7 +872,7 @@ C代表東北部地震帶，包含了琉球隱沒帶及沖繩海溝，許多規�
 <a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a><span class="k">echo</span> 121.3982 23.0667 18 8.82 42.16 72.8 6.58 122.7 26.5 Chengkung <span class="p">&gt;&gt;</span> tmp
 <a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a>gmt psmeca tmp -R -JM -Sa1/14p/6 -Gblack -C1 -N -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
 <a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a>
-<a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a># 3. legend set
+<a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a><span class="p">:</span><span class="c1">: 3. legend set</span>
 <a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a><span class="k">echo</span> 119 26 <span class="p">&gt;</span> tmp
 <a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a><span class="k">echo</span> 119 25.05 <span class="p">&gt;&gt;</span> tmp
 <a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a><span class="k">echo</span> 120.5 25.05 <span class="p">&gt;&gt;</span> tmp
@@ -863,36 +888,43 @@ C代表東北部地震帶，包含了琉球隱沒帶及沖繩海溝，許多規�
 <a id="__codelineno-1-44" name="__codelineno-1-44" href="#__codelineno-1-44"></a>gmt psxy -R -JM -T -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
 <a id="__codelineno-1-45" name="__codelineno-1-45" href="#__codelineno-1-45"></a>gmt psconvert <span class="nv">%ps%</span> -Tg -A -P
 <a id="__codelineno-1-46" name="__codelineno-1-46" href="#__codelineno-1-46"></a><span class="k">del</span> tmp*
-</code></pre></div></p>
+</code></pre></div>
+</div>
+</div>
+</div>
 <p>學習到的指令:</p>
-<p><mark>1</mark>繪製機制解底圖
-* <code>psmeca</code>繪製震源機制解。
-  * <code>-S</code>指定機制解的格式。用法為<code>-S資料格式尺寸/字大小/字與海灘球的間距</code>。
-    * <code>-Sa</code>Aki and Richards制訂的格式，輸入的資料格式為
-    <mark>震央經度 震央緯度 深度 走向 傾角 滑移角 規模 圖案經度 圖案緯度 標題</mark>，
-    圖案經度及緯度表示海灘球放置的位置。
-    * <code>-Sc</code>Harvard CMT定義的格式，輸入的資料格式為
-    <mark>震央經度 震央緯度 深度 走向1 傾角1 滑移角1 走向2 傾角2 滑移角2 地震矩張量尾數
-    地震矩張量指數 圖案經度 圖案緯度 標題</mark>，假設地震矩張量9.21e26 dyne-cm，
-    則尾數為9.21、指數為26。
-    * <code>-Sm|d|z</code>跡數為0的地震矩張量(Seismic moment tensor with zero trace)，
-    輸入的資料格式為，<mark>震央經度 震央緯度 深度 mrr mtt mff mrt mrf mtf
-    地震矩張量指數 圖案經度 圖案緯度 標題</mark>，<strong>m</strong>只繪製跡數，<strong>d</strong>只繪製雙力偶的部份，
-    <strong>z</strong>只繪製異相性部份。
-    * <code>-Sp</code>由兩組斷層面所組成，輸入的資料格式為
-    <mark>震央經度 震央緯度 深度 走向1 傾角1 走向2 傾角2 斷層種類 規模 圖案經度 圖案緯度 標題</mark>，
-    斷層種類分成正斷層(-1)及逆斷層(1)。
-    * <code>-Sx</code>由座標軸來定義，即使用T, N, P軸，輸入的資料格式為
-    <mark>震央經度 震央緯度 深度 T軸大小 T軸角度(azimuth) T軸傾沒角(plunge) N軸大小 N軸角度 N軸傾沒角 P軸大小 P軸角度 P軸傾沒角 地震矩張量指數 圖案經度 圖案緯度 標題</mark>。
-  * <code>-C</code>線的屬性P圓的大小，繪製震央經緯度及圖案經緯度的連線及震央圓點。
-  * <code>-D</code>深度最小值/深度最大值，限制震源深度的範圍。
-  * <code>-E</code>顏色，海灘球伸張部份的顏色，預設值是白色。
-  * <code>-G</code>顏色，海灘球壓縮部份的顏色，預設值是黑色。
-  * <code>-L</code>線的屬性，海灘球外部輪廓線。
-  * <code>-M</code>統一海灘球的大小，由<code>-S</code>中尺寸來決定。
-  * <code>-N</code>可以繪製超出<code>-R</code>的範圍外。
-  * <code>-W</code>線的屬性，設定所有線條及標題的顏色。
-  * <code>-Z</code>色階檔，指定深度變化的色階檔，繪製在壓縮部份。</p>
+<p><mark>1</mark>繪製機制解底圖</p>
+<ul>
+<li><code>psmeca</code>繪製震源機制解。</li>
+<li><code>-S</code>指定機制解的格式。用法為<code>-S資料格式尺寸/字大小/字與海灘球的間距</code>。<ul>
+<li><code>-Sa</code>Aki and Richards制訂的格式，輸入的資料格式為
+<mark>震央經度 震央緯度 深度 走向 傾角 滑移角 規模 圖案經度 圖案緯度 標題</mark>，
+圖案經度及緯度表示海灘球放置的位置。</li>
+<li><code>-Sc</code>Harvard CMT定義的格式，輸入的資料格式為
+<mark>震央經度 震央緯度 深度 走向1 傾角1 滑移角1 走向2 傾角2 滑移角2 地震矩張量尾數
+地震矩張量指數 圖案經度 圖案緯度 標題</mark>，假設地震矩張量9.21e26 dyne-cm，
+則尾數為9.21、指數為26。</li>
+<li><code>-Sm|d|z</code>跡數為0的地震矩張量(Seismic moment tensor with zero trace)，
+輸入的資料格式為，<mark>震央經度 震央緯度 深度 mrr mtt mff mrt mrf mtf
+地震矩張量指數 圖案經度 圖案緯度 標題</mark>，<strong>m</strong>只繪製跡數，<strong>d</strong>只繪製雙力偶的部份，
+<strong>z</strong>只繪製異相性部份。</li>
+<li><code>-Sp</code>由兩組斷層面所組成，輸入的資料格式為
+<mark>震央經度 震央緯度 深度 走向1 傾角1 走向2 傾角2 斷層種類 規模 圖案經度 圖案緯度 標題</mark>，
+斷層種類分成正斷層(-1)及逆斷層(1)。</li>
+<li><code>-Sx</code>由座標軸來定義，即使用T, N, P軸，輸入的資料格式為
+<mark>震央經度 震央緯度 深度 T軸大小 T軸角度(azimuth) T軸傾沒角(plunge) N軸大小 N軸角度 N軸傾沒角 P軸大小 P軸角度 P軸傾沒角 地震矩張量指數 圖案經度 圖案緯度 標題</mark>。</li>
+</ul>
+</li>
+<li><code>-C</code>線的屬性P圓的大小，繪製震央經緯度及圖案經緯度的連線及震央圓點。</li>
+<li><code>-D</code>深度最小值/深度最大值，限制震源深度的範圍。</li>
+<li><code>-E</code>顏色，海灘球伸張部份的顏色，預設值是白色。</li>
+<li><code>-G</code>顏色，海灘球壓縮部份的顏色，預設值是黑色。</li>
+<li><code>-L</code>線的屬性，海灘球外部輪廓線。</li>
+<li><code>-M</code>統一海灘球的大小，由<code>-S</code>中尺寸來決定。</li>
+<li><code>-N</code>可以繪製超出<code>-R</code>的範圍外。</li>
+<li><code>-W</code>線的屬性，設定所有線條及標題的顏色。</li>
+<li><code>-Z</code>色階檔，指定深度變化的色階檔，繪製在壓縮部份。</li>
+</ul>
 <p><mark>2</mark>將幾個災害性地震的機制解放大後，放置在最上方。</p>
 <p><mark>3</mark>繪製三種斷層形態的圖例。</p>
 <p>一般來說上，聚合型版塊邊界，以逆斷層地震為主，所以在菲律賓海板塊隱沒至歐亞大陸板塊的地區，
@@ -906,7 +938,9 @@ C代表東北部地震帶，包含了琉球隱沒帶及沖繩海溝，許多規�
   <img src="https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/fig/9_5_focal_profile_1.png"/>
 </p>
 
-<p>批次檔
+<div class="tabbed-set tabbed-alternate" data-tabs="3:1"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Windows 批次檔</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">set</span> <span class="nv">ps</span><span class="p">=</span>9_5_focal_profile.ps
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">set</span> <span class="nv">data</span><span class="p">=</span>D:\GMT_data\
 <a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="k">set</span> <span class="nv">cpt</span><span class="p">=</span>seis.cpt
@@ -918,7 +952,7 @@ C代表東北部地震帶，包含了琉球隱沒帶及沖繩海溝，許多規�
 <a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="k">set</span> <span class="nv">depth</span><span class="p">=</span>100
 <a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="k">set</span> <span class="k">/a</span> <span class="nv">wid</span><span class="o">=%</span><span class="nv">width%*2</span>
 <a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>
-<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a># 1. focal meca and seismicity basemap
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="p">:</span><span class="c1">: 1. focal meca and seismicity basemap</span>
 <a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>gmt psbasemap -R119/123/21/26 -JM10 -BWeSN -Bxa -Bya -K <span class="p">&gt;</span> <span class="nv">%ps%</span>
 <a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>gmt grdimage <span class="nv">%data%</span>ETOPO1_Bed_g_gmt5.grd -R -JM -Cetopo1.cpt <span class="se">^</span>
 <a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="se">-</span>I<span class="nv">%data%</span>ETOPO1_Bed_g_gmt5_shad.grd -M -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
@@ -935,7 +969,7 @@ C代表東北部地震帶，包含了琉球隱沒帶及沖繩海溝，許多規�
 <a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a>awk <span class="s2">&quot;{print $1,$2,$3,$4,$5,$6,$7,$8,$9}&quot;</span> focal_mechanism.gmt <span class="p">|</span> <span class="se">^</span>
 <a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a><span class="se">g</span>mt psmeca -R -JM -Sa.5 -Ggray -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
 <a id="__codelineno-2-28" name="__codelineno-2-28" href="#__codelineno-2-28"></a>
-<a id="__codelineno-2-29" name="__codelineno-2-29" href="#__codelineno-2-29"></a># 2. cross area
+<a id="__codelineno-2-29" name="__codelineno-2-29" href="#__codelineno-2-29"></a><span class="p">:</span><span class="c1">: 2. cross area</span>
 <a id="__codelineno-2-30" name="__codelineno-2-30" href="#__codelineno-2-30"></a>gmt project 2017_catalog.gmt -C<span class="nv">%lon1%</span>/<span class="nv">%lat1%</span> -E<span class="nv">%lon2%</span>/<span class="nv">%lat2%</span> <span class="se">^</span>
 <a id="__codelineno-2-31" name="__codelineno-2-31" href="#__codelineno-2-31"></a><span class="se">-</span>W-<span class="nv">%width%</span>/<span class="nv">%width%</span> -Q <span class="p">&gt;</span> catalog_profile.gmt
 <a id="__codelineno-2-32" name="__codelineno-2-32" href="#__codelineno-2-32"></a>gmt project focal_mechanism.gmt -C<span class="nv">%lon1%</span>/<span class="nv">%lat1%</span> -E<span class="nv">%lon2%</span>/<span class="nv">%lat2%</span> <span class="se">^</span>
@@ -961,7 +995,7 @@ C代表東北部地震帶，包含了琉球隱沒帶及沖繩海溝，許多規�
 <a id="__codelineno-2-52" name="__codelineno-2-52" href="#__codelineno-2-52"></a><span class="k">echo</span> 120.4 25.6 Profile Width: <span class="nv">%width%</span>/<span class="nv">%width%</span> km <span class="p">|</span> <span class="se">^</span>
 <a id="__codelineno-2-53" name="__codelineno-2-53" href="#__codelineno-2-53"></a><span class="se">g</span>mt pstext -R -JM -F+f14p,1+jML -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
 <a id="__codelineno-2-54" name="__codelineno-2-54" href="#__codelineno-2-54"></a>
-<a id="__codelineno-2-55" name="__codelineno-2-55" href="#__codelineno-2-55"></a># 3. seismicity profile
+<a id="__codelineno-2-55" name="__codelineno-2-55" href="#__codelineno-2-55"></a><span class="p">:</span><span class="c1">: 3. seismicity profile</span>
 <a id="__codelineno-2-56" name="__codelineno-2-56" href="#__codelineno-2-56"></a>gmt gmtinfo catalog_profile.gmt -i4 -C -o1 <span class="p">&gt;</span> tmp1
 <a id="__codelineno-2-57" name="__codelineno-2-57" href="#__codelineno-2-57"></a><span class="k">set</span> <span class="k">/p</span> <span class="nv">mdis</span><span class="p">=&lt;</span>tmp1
 <a id="__codelineno-2-58" name="__codelineno-2-58" href="#__codelineno-2-58"></a>gmt psbasemap -R0/<span class="nv">%mdis%</span>/0/<span class="nv">%depth%</span> -JX13.56/-8 -BwESn -Bxa+l<span class="s2">&quot;Distance (km)&quot;</span> <span class="se">^</span>
@@ -977,7 +1011,7 @@ C代表東北部地震帶，包含了琉球隱沒帶及沖繩海溝，許多規�
 <a id="__codelineno-2-68" name="__codelineno-2-68" href="#__codelineno-2-68"></a>awk <span class="s2">&quot;{print $1,$2,$3,$4,$5,$6,$7,$8,$9}&quot;</span> tmp.nf <span class="p">|</span> <span class="se">^</span>
 <a id="__codelineno-2-69" name="__codelineno-2-69" href="#__codelineno-2-69"></a><span class="se">g</span>mt pscoupe -R -JX -Sa.5 -Gblue -Aa<span class="nv">%lon1%</span>/<span class="nv">%lat1%</span>/<span class="nv">%lon2%</span>/<span class="nv">%lat2%</span>/90/<span class="nv">%wid%</span>/0/<span class="nv">%depth%</span> -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
 <a id="__codelineno-2-70" name="__codelineno-2-70" href="#__codelineno-2-70"></a>
-<a id="__codelineno-2-71" name="__codelineno-2-71" href="#__codelineno-2-71"></a># 4. legend set
+<a id="__codelineno-2-71" name="__codelineno-2-71" href="#__codelineno-2-71"></a><span class="p">:</span><span class="c1">: 4. legend set</span>
 <a id="__codelineno-2-72" name="__codelineno-2-72" href="#__codelineno-2-72"></a><span class="k">echo</span> 5 -5 AA&#39; Profile <span class="p">|</span> gmt pstext -R -JX -F+f16p,1+jML -N -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
 <a id="__codelineno-2-73" name="__codelineno-2-73" href="#__codelineno-2-73"></a>gmt psscale -R -JX -Ctmp.cpt -Dx3.5/9+w10/.5+ml+h -Bxa+l<span class="s2">&quot;Depth (km)&quot;</span> -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
 <a id="__codelineno-2-74" name="__codelineno-2-74" href="#__codelineno-2-74"></a><span class="k">echo</span> 1 2 2 <span class="p">&gt;</span> tmp.m
@@ -994,29 +1028,38 @@ C代表東北部地震帶，包含了琉球隱沒帶及沖繩海溝，許多規�
 <a id="__codelineno-2-85" name="__codelineno-2-85" href="#__codelineno-2-85"></a>gmt psxy -R -J -T -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
 <a id="__codelineno-2-86" name="__codelineno-2-86" href="#__codelineno-2-86"></a>gmt psconvert <span class="nv">%ps%</span> -Tg -A -P
 <a id="__codelineno-2-87" name="__codelineno-2-87" href="#__codelineno-2-87"></a><span class="k">del</span> tmp*
-</code></pre></div></p>
+</code></pre></div>
+</div>
+</div>
+</div>
 <p>學習到的指令:</p>
 <p><mark>1</mark>繪製地震活動性及機制解底圖，利用前兩節與地形圖學到的方法，
 製作底圖。</p>
-<p><mark>2</mark>假設起始點、結束點及寬度，繪製橫截面區域。
-* <code>project</code>將地震點及海灘球投影至剖面線上，部份選項以在第三章中介紹，故不重覆說明。
-  * <code>-L</code>長度最小值/長度最大值，從起點開始算起的長度，
-  限制多少長度之間的數據，會被投影到線上。
-  * <code>-S</code>按照投影後的點位增序排序。
-  * <code>-W</code>寬度最小值/寬度最大值，限制多少寬度內的數據會被投影至線上。
-* 利用<code>project</code>模組，將<mark>2017_catalog.gmt</mark>中的數據篩選後，投影至線上，
+<p><mark>2</mark>假設起始點、結束點及寬度，繪製橫截面區域。</p>
+<ul>
+<li><code>project</code>將地震點及海灘球投影至剖面線上，部份選項以在第三章中介紹，故不重覆說明。</li>
+<li><code>-L</code>長度最小值/長度最大值，從起點開始算起的長度，
+  限制多少長度之間的數據，會被投影到線上。</li>
+<li><code>-S</code>按照投影後的點位增序排序。</li>
+<li><code>-W</code>寬度最小值/寬度最大值，限制多少寬度內的數據會被投影至線上。</li>
+<li>利用<code>project</code>模組，將<mark>2017_catalog.gmt</mark>中的數據篩選後，投影至線上，
 並新增檔案<mark>catalog_profile.gmt</mark>來儲存，
-同理<mark>focal_mechanism.gmt</mark>。
-* 由於在執行<code>pscoupe</code>後，震源機制解的參數因旋轉而改寫，故先將各種斷層型態分類先行輸出，
-以利在接下來繪製機制解剖面時，能使用一樣的顏色。</p>
-<p><mark>3</mark>深度剖面。製作距離/深度的底圖，利用<code>awk</code>讀取篩選後的數據，繪製在剖面圖上。
-* <code>pscoupe</code>繪製震源機制解剖面圖，可將震源機制解投影到某一平面上。
-  * <code>-A</code>選用的剖面參數。
-    * <code>-Aa剖面起點經度/剖面起點緯度/剖面終點經度/剖面終點緯度/剖面傾角(0為水平；90為垂直)/剖面寬度/剖面最淺深度/剖面最深深度</code>
-    * <code>-Ab剖面起點經度/剖面起點緯度/走向/長度/傾角/寬度/剖面最淺深度/剖面最深深度</code>
-    * <code>-Ac</code>與<code>-Aa</code>選項相同，只是座標系統轉為笛卡爾座標系統而不是地理座標系統
-    * <code>-Ad</code>與<code>-Ab</code>選項相同，只是座標系統轉為笛卡爾座標系統而不是地理座標系統
-    * 其餘選項與<code>psmeca</code>用法相似，可參考前一節。</p>
+同理 <mark>focal_mechanism.gmt</mark>。</li>
+<li>由於在執行<code>pscoupe</code>後，震源機制解的參數因旋轉而改寫，故先將各種斷層型態分類先行輸出，
+以利在接下來繪製機制解剖面時，能使用一樣的顏色。</li>
+</ul>
+<p><mark>3</mark>深度剖面。製作距離/深度的底圖，利用<code>awk</code>讀取篩選後的數據，繪製在剖面圖上。</p>
+<ul>
+<li><code>pscoupe</code>繪製震源機制解剖面圖，可將震源機制解投影到某一平面上。</li>
+<li><code>-A</code>選用的剖面參數。<ul>
+<li><code>-Aa剖面起點經度/剖面起點緯度/剖面終點經度/剖面終點緯度/剖面傾角(0為水平；90為垂直)/剖面寬度/剖面最淺深度/剖面最深深度</code></li>
+<li><code>-Ab剖面起點經度/剖面起點緯度/走向/長度/傾角/寬度/剖面最淺深度/剖面最深深度</code></li>
+<li><code>-Ac</code>與<code>-Aa</code>選項相同，只是座標系統轉為笛卡爾座標系統而不是地理座標系統</li>
+<li><code>-Ad</code>與<code>-Ab</code>選項相同，只是座標系統轉為笛卡爾座標系統而不是地理座標系統</li>
+<li>其餘選項與<code>psmeca</code>用法相似，可參考前一節。</li>
+</ul>
+</li>
+</ul>
 <p><mark>4</mark>設置圖例說明。</p>
 <p>從剖面圖中可以清楚地觀察到，菲律賓海板塊隱沒至歐亞大陸板塊所造成的一系列地震，
 以及弧後張裂作用所發生的深度及正斷層型態的地震。<code>psmeca</code>繪製震源機制解是透過下半球投影到
@@ -1030,8 +1073,10 @@ C代表東北部地震帶，包含了琉球隱沒帶及沖繩海溝，許多規�
 三個不同的資料庫所提供的震源機制解。另外複習一下如何繪製高度剖面。</p>
 <p>範圍在<mark>119.8/121.1/22.3/23.6</mark>，剖面線經度為120.0至121.05，緯度定在22.93，
 寬度往北30km，往南20km。</p>
-<p>使用的資料檔:
-- <a href="https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/data/after6m_meinong_catalog.gmt">美濃地震後6個月地震目錄</a></p>
+<p>使用的資料檔:</p>
+<ul>
+<li><a href="https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/data/after6m_meinong_catalog.gmt">美濃地震後6個月地震目錄</a></li>
+</ul>
 <p>完成圖如下:</p>
 <p align="center">
   <img src="https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/fig/9_6_after6m_meinong_1.png"/>
