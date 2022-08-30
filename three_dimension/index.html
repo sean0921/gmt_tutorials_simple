@@ -623,16 +623,20 @@
 <p>本節將在三維的座標系統中，去繪製幾種不同的多面體，讓讀者能熟習三維的語法。其中<code>psxyz</code>與
 <code>psxy</code>最大的差別，在輸入的表格中，多了要輸入z軸的位置，而透過<a href="http://www.rwgrayprojects.com/Lynn/Coordinates/coord01.html">多面體的各端點座標</a>，
 將此網站的資料整理成GMT的區塊文件(segment file)，利用點與點連接，來完成多種多面體。</p>
-<p>使用的資料檔:
-- <a href="https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/data/polyhedron_vertex.gmt">多面體_點</a>
-- <a href="https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/data/polyhedron_edge.gmt">多面體_線</a>
-- <a href="https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/data/polyhedron_face.gmt">多面體_面</a></p>
+<p>使用的資料檔:</p>
+<ul>
+<li><a href="https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/data/polyhedron_vertex.gmt">多面體_點</a></li>
+<li><a href="https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/data/polyhedron_edge.gmt">多面體_線</a></li>
+<li><a href="https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/data/polyhedron_face.gmt">多面體_面</a></li>
+</ul>
 <p>成果圖</p>
 <p align="center">
   <img src="/fig/13_3_3d_polyhedron_1.png"/>
 </p>
 
-<p>批次檔</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Windows 批次檔</label><label for="__tabbed_1_2">Bash 腳本</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">set</span> <span class="nv">ps</span><span class="p">=</span>13_3_3d_polyhedron.ps
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>gmt psbasemap -R-15/15/-15/15/-12/12 -JX15 -JZ12 -p220/25 <span class="se">^</span>
@@ -742,6 +746,127 @@
 <a id="__codelineno-0-107" name="__codelineno-0-107" href="#__codelineno-0-107"></a>gmt psconvert <span class="nv">%ps%</span> -Tg -A -P
 <a id="__codelineno-0-108" name="__codelineno-0-108" href="#__codelineno-0-108"></a><span class="k">del</span> tmp*
 </code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="ch">#!/usr/bin/env bash</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="nb">set</span> -ex
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="nv">ps</span><span class="o">=</span>13_3_3d_polyhedron.ps
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>gmt psbasemap -R-15/15/-15/15/-12/12 -JX15 -JZ12 -p220/25 <span class="se">\</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>-BWeSnZ -Bxa5f2.5 -By5f2.5 -Bz2 -K &gt; <span class="s2">&quot;</span><span class="si">${</span><span class="nv">ps</span><span class="si">}</span><span class="s2">&quot;</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="c1"># Tetrahedron 8</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>gmt gmtconvert polyhedron_face.gmt -S<span class="s2">&quot;Tetrahedron 8 |&quot;</span> &gt; tmp
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>awk <span class="s1">&#39;NR % 4 != 1 {print $1-10, $2-10, $3-7.5}&#39;</span> tmp &gt; tmp1
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>awk <span class="s1">&#39;{print $0} NR %3 == 0 {print &quot;&gt;&quot;}&#39;</span> tmp1 &gt; tmp2
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>gmt psxyz tmp2 -R -J -JZ -p -G244/77/137 -K -O &gt;&gt; <span class="s2">&quot;</span><span class="si">${</span><span class="nv">ps</span><span class="si">}</span><span class="s2">&quot;</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>gmt gmtconvert polyhedron_edge.gmt -S<span class="s2">&quot;Tetrahedron 8 |&quot;</span> &gt; tmp
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>awk <span class="s1">&#39;NR % 3 != 1 {print $1-10, $2-10, $3-7.5}&#39;</span> tmp &gt; tmp1
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>awk <span class="s1">&#39;{print $0} NR %2 == 0 {print &quot;&gt;&quot;}&#39;</span> tmp1 &gt; tmp2
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>gmt psxyz tmp2 -R -J -JZ -p -W1,187/55/55 -K -O &gt;&gt; <span class="s2">&quot;</span><span class="si">${</span><span class="nv">ps</span><span class="si">}</span><span class="s2">&quot;</span>
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>gmt gmtconvert polyhedron_vertex.gmt -S<span class="s2">&quot;Tetrahedron 8 |&quot;</span> &gt; tmp
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>awk <span class="s1">&#39;NR != 1 {print $1-10, $2-10, $3-7.5}&#39;</span> tmp &gt; tmp1
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>gmt psxyz tmp1 -R -J -JZ -p -Sc.3 -G173/0/0 -K -O &gt;&gt; <span class="s2">&quot;</span><span class="si">${</span><span class="nv">ps</span><span class="si">}</span><span class="s2">&quot;</span>
+<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>
+<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="c1"># Cube 3</span>
+<a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>gmt gmtconvert polyhedron_face.gmt -S<span class="s2">&quot;Cube 3 |&quot;</span> &gt; tmp
+<a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>awk <span class="s1">&#39;NR % 4 != 1 {print $1+5, $2-10, $3-7.5}&#39;</span> tmp &gt; tmp1
+<a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>awk <span class="s1">&#39;{print $0} NR %3 == 0 {print &quot;&gt;&quot;}&#39;</span> tmp1 &gt; tmp2
+<a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a>gmt psxyz tmp2 -R -J -JZ -p -G0/216/230 -K -O &gt;&gt; <span class="s2">&quot;</span><span class="si">${</span><span class="nv">ps</span><span class="si">}</span><span class="s2">&quot;</span>
+<a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a>gmt gmtconvert polyhedron_edge.gmt -S<span class="s2">&quot;Cube 3 |&quot;</span> &gt; tmp
+<a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a>awk <span class="s1">&#39;NR % 3 != 1 {print $1+5, $2-10, $3-7.5}&#39;</span> tmp &gt; tmp1
+<a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a>awk <span class="s1">&#39;{print $0} NR %2 == 0 {print &quot;&gt;&quot;}&#39;</span> tmp1 &gt; tmp2
+<a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a>gmt psxyz tmp2 -R -J -JZ -p -W1,14/145/218 -K -O &gt;&gt; <span class="s2">&quot;</span><span class="si">${</span><span class="nv">ps</span><span class="si">}</span><span class="s2">&quot;</span>
+<a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a>gmt gmtconvert polyhedron_vertex.gmt -S<span class="s2">&quot;Cube 3 |&quot;</span> &gt; tmp
+<a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a>awk <span class="s1">&#39;NR != 1 {print $1+5, $2-10, $3-7.5}&#39;</span> tmp &gt; tmp1
+<a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a>gmt psxyz tmp1 -R -J -JZ -p -Sc.3 -G0/1/138 -K -O &gt;&gt; <span class="s2">&quot;</span><span class="si">${</span><span class="nv">ps</span><span class="si">}</span><span class="s2">&quot;</span>
+<a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a>
+<a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a><span class="c1"># Octahedron 3</span>
+<a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a>gmt gmtconvert polyhedron_face.gmt -S<span class="s2">&quot;Octahedron 3 |&quot;</span> &gt; tmp
+<a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a>awk <span class="s1">&#39;NR % 4 != 1 {print $1-10, $2+5, $3-5}&#39;</span> tmp &gt; tmp1
+<a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a>awk <span class="s1">&#39;{print $0} NR %3 == 0 {print &quot;&gt;&quot;}&#39;</span> tmp1 &gt; tmp2
+<a id="__codelineno-1-40" name="__codelineno-1-40" href="#__codelineno-1-40"></a>gmt psxyz tmp2 -R -J -JZ -p -G48/203/184 -K -O &gt;&gt; <span class="s2">&quot;</span><span class="si">${</span><span class="nv">ps</span><span class="si">}</span><span class="s2">&quot;</span>
+<a id="__codelineno-1-41" name="__codelineno-1-41" href="#__codelineno-1-41"></a>gmt gmtconvert polyhedron_edge.gmt -S<span class="s2">&quot;Octahedron 3 |&quot;</span> &gt; tmp
+<a id="__codelineno-1-42" name="__codelineno-1-42" href="#__codelineno-1-42"></a>awk <span class="s1">&#39;NR % 3 != 1 {print $1-10, $2+5, $3-5}&#39;</span> tmp &gt; tmp1
+<a id="__codelineno-1-43" name="__codelineno-1-43" href="#__codelineno-1-43"></a>awk <span class="s1">&#39;{print $0} NR %2 == 0 {print &quot;&gt;&quot;}&#39;</span> tmp1 &gt; tmp2
+<a id="__codelineno-1-44" name="__codelineno-1-44" href="#__codelineno-1-44"></a>gmt psxyz tmp2 -R -J -JZ -p -W1,30/153/157 -K -O &gt;&gt; <span class="s2">&quot;</span><span class="si">${</span><span class="nv">ps</span><span class="si">}</span><span class="s2">&quot;</span>
+<a id="__codelineno-1-45" name="__codelineno-1-45" href="#__codelineno-1-45"></a>gmt gmtconvert polyhedron_vertex.gmt -S<span class="s2">&quot;Octahedron 3 |&quot;</span> &gt; tmp
+<a id="__codelineno-1-46" name="__codelineno-1-46" href="#__codelineno-1-46"></a>awk <span class="s1">&#39;NR != 1 {print $1-10, $2+5, $3-5}&#39;</span> tmp &gt; tmp1
+<a id="__codelineno-1-47" name="__codelineno-1-47" href="#__codelineno-1-47"></a>gmt psxyz tmp1 -R -J -JZ -p -Sc.3 -G0/93/79 -K -O &gt;&gt; <span class="s2">&quot;</span><span class="si">${</span><span class="nv">ps</span><span class="si">}</span><span class="s2">&quot;</span>
+<a id="__codelineno-1-48" name="__codelineno-1-48" href="#__codelineno-1-48"></a>
+<a id="__codelineno-1-49" name="__codelineno-1-49" href="#__codelineno-1-49"></a><span class="c1"># Rhombic Dodecahedron 3</span>
+<a id="__codelineno-1-50" name="__codelineno-1-50" href="#__codelineno-1-50"></a>gmt gmtconvert polyhedron_face.gmt -S<span class="s2">&quot;Rhombic Dodecahedron 3 |&quot;</span> &gt; tmp
+<a id="__codelineno-1-51" name="__codelineno-1-51" href="#__codelineno-1-51"></a>awk <span class="s1">&#39;NR % 4 != 1 {print $1+4, $2+5, $3-5}&#39;</span> tmp &gt; tmp1
+<a id="__codelineno-1-52" name="__codelineno-1-52" href="#__codelineno-1-52"></a>awk <span class="s1">&#39;{print $0} NR % 3 == 0 {print &quot;&gt;&quot;}&#39;</span> tmp1 &gt; tmp2
+<a id="__codelineno-1-53" name="__codelineno-1-53" href="#__codelineno-1-53"></a>gmt psxyz tmp2 -R -J -JZ -p -G222/241/105 -K -O &gt;&gt; <span class="s2">&quot;</span><span class="si">${</span><span class="nv">ps</span><span class="si">}</span><span class="s2">&quot;</span>
+<a id="__codelineno-1-54" name="__codelineno-1-54" href="#__codelineno-1-54"></a>gmt gmtconvert polyhedron_edge.gmt -S<span class="s2">&quot;Rhombic Dodecahedron 3 |&quot;</span> &gt; tmp
+<a id="__codelineno-1-55" name="__codelineno-1-55" href="#__codelineno-1-55"></a>awk <span class="s1">&#39;NR % 3 != 1 {print $1+4, $2+5, $3-5}&#39;</span> tmp &gt; tmp1
+<a id="__codelineno-1-56" name="__codelineno-1-56" href="#__codelineno-1-56"></a>awk <span class="s1">&#39;{print $0} NR %2 == 0 {print &quot;&gt;&quot;}&#39;</span> tmp1 &gt; tmp2
+<a id="__codelineno-1-57" name="__codelineno-1-57" href="#__codelineno-1-57"></a>gmt psxyz tmp2 -R -J -JZ -p -W1,184/227/10 -K -O &gt;&gt; <span class="s2">&quot;</span><span class="si">${</span><span class="nv">ps</span><span class="si">}</span><span class="s2">&quot;</span>
+<a id="__codelineno-1-58" name="__codelineno-1-58" href="#__codelineno-1-58"></a>gmt gmtconvert polyhedron_vertex.gmt -S<span class="s2">&quot;Rhombic Dodecahedron 3 |&quot;</span> &gt; tmp
+<a id="__codelineno-1-59" name="__codelineno-1-59" href="#__codelineno-1-59"></a>awk <span class="s1">&#39;NR != 1 {print $1+4, $2+5, $3-5}&#39;</span> tmp &gt; tmp1
+<a id="__codelineno-1-60" name="__codelineno-1-60" href="#__codelineno-1-60"></a>gmt psxyz tmp1 -R -J -JZ -p -Sc.3 -G173/201/0 -K -O &gt;&gt; <span class="s2">&quot;</span><span class="si">${</span><span class="nv">ps</span><span class="si">}</span><span class="s2">&quot;</span>
+<a id="__codelineno-1-61" name="__codelineno-1-61" href="#__codelineno-1-61"></a>
+<a id="__codelineno-1-62" name="__codelineno-1-62" href="#__codelineno-1-62"></a><span class="c1"># Icosahedron</span>
+<a id="__codelineno-1-63" name="__codelineno-1-63" href="#__codelineno-1-63"></a>gmt gmtconvert polyhedron_face.gmt -S<span class="s2">&quot;Icosahedron |&quot;</span> &gt; tmp
+<a id="__codelineno-1-64" name="__codelineno-1-64" href="#__codelineno-1-64"></a>awk <span class="s1">&#39;NR % 4 != 1 {print $1-10, $2+10, $3+5}&#39;</span> tmp &gt; tmp1
+<a id="__codelineno-1-65" name="__codelineno-1-65" href="#__codelineno-1-65"></a>awk <span class="s1">&#39;{print $0} NR %3 == 0 {print &quot;&gt;&quot;}&#39;</span> tmp1 &gt; tmp2
+<a id="__codelineno-1-66" name="__codelineno-1-66" href="#__codelineno-1-66"></a>gmt psxyz tmp2 -R -J -JZ -p -G226/133/211 -K -O &gt;&gt; <span class="s2">&quot;</span><span class="si">${</span><span class="nv">ps</span><span class="si">}</span><span class="s2">&quot;</span>
+<a id="__codelineno-1-67" name="__codelineno-1-67" href="#__codelineno-1-67"></a>gmt gmtconvert polyhedron_edge.gmt -S<span class="s2">&quot;Icosahedron |&quot;</span> &gt; tmp
+<a id="__codelineno-1-68" name="__codelineno-1-68" href="#__codelineno-1-68"></a>awk <span class="s1">&#39;NR % 3 != 1 {print $1-10, $2+10, $3+5}&#39;</span> tmp &gt; tmp1
+<a id="__codelineno-1-69" name="__codelineno-1-69" href="#__codelineno-1-69"></a>awk <span class="s1">&#39;{print $0} NR %2 == 0 {print &quot;&gt;&quot;}&#39;</span> tmp1 &gt; tmp2
+<a id="__codelineno-1-70" name="__codelineno-1-70" href="#__codelineno-1-70"></a>gmt psxyz tmp2 -R -J -JZ -p -W1,205/70/217 -K -O &gt;&gt; <span class="s2">&quot;</span><span class="si">${</span><span class="nv">ps</span><span class="si">}</span><span class="s2">&quot;</span>
+<a id="__codelineno-1-71" name="__codelineno-1-71" href="#__codelineno-1-71"></a>gmt gmtconvert polyhedron_vertex.gmt -S<span class="s2">&quot;Icosahedron |&quot;</span> &gt; tmp
+<a id="__codelineno-1-72" name="__codelineno-1-72" href="#__codelineno-1-72"></a>awk <span class="s1">&#39;NR != 1 {print $1-10, $2+10, $3+5}&#39;</span> tmp &gt; tmp1
+<a id="__codelineno-1-73" name="__codelineno-1-73" href="#__codelineno-1-73"></a>gmt psxyz tmp1 -R -J -JZ -p -Sc.3 -G189/0/219 -K -O &gt;&gt; <span class="s2">&quot;</span><span class="si">${</span><span class="nv">ps</span><span class="si">}</span><span class="s2">&quot;</span>
+<a id="__codelineno-1-74" name="__codelineno-1-74" href="#__codelineno-1-74"></a>
+<a id="__codelineno-1-75" name="__codelineno-1-75" href="#__codelineno-1-75"></a><span class="c1"># Rhombic Triacontahedron</span>
+<a id="__codelineno-1-76" name="__codelineno-1-76" href="#__codelineno-1-76"></a>gmt gmtconvert polyhedron_face.gmt -S<span class="s2">&quot;Rhombic Triacontahedron |&quot;</span> &gt; tmp
+<a id="__codelineno-1-77" name="__codelineno-1-77" href="#__codelineno-1-77"></a>awk <span class="s1">&#39;NR % 4 != 1 {print $1+6, $2+10, $3+5}&#39;</span> tmp &gt; tmp1
+<a id="__codelineno-1-78" name="__codelineno-1-78" href="#__codelineno-1-78"></a>awk <span class="s1">&#39;{print $0} NR % 3 == 0 {print &quot;&gt;&quot;}&#39;</span> tmp1 &gt; tmp2
+<a id="__codelineno-1-79" name="__codelineno-1-79" href="#__codelineno-1-79"></a>gmt psxyz tmp2 -R -J -JZ -p -G70/250/142 -K -O &gt;&gt; <span class="s2">&quot;</span><span class="si">${</span><span class="nv">ps</span><span class="si">}</span><span class="s2">&quot;</span>
+<a id="__codelineno-1-80" name="__codelineno-1-80" href="#__codelineno-1-80"></a>gmt gmtconvert polyhedron_edge.gmt -S<span class="s2">&quot;Rhombic Triacontahedron |&quot;</span> &gt; tmp
+<a id="__codelineno-1-81" name="__codelineno-1-81" href="#__codelineno-1-81"></a>awk <span class="s1">&#39;NR % 3 != 1 {print $1+6, $2+10, $3+5}&#39;</span> tmp &gt; tmp1
+<a id="__codelineno-1-82" name="__codelineno-1-82" href="#__codelineno-1-82"></a>awk <span class="s1">&#39;{print $0} NR % 2 == 0 {print &quot;&gt;&quot;}&#39;</span> tmp1 &gt; tmp2
+<a id="__codelineno-1-83" name="__codelineno-1-83" href="#__codelineno-1-83"></a>gmt psxyz tmp2 -R -J -JZ -p -W1,17/186/120 -K -O &gt;&gt; <span class="s2">&quot;</span><span class="si">${</span><span class="nv">ps</span><span class="si">}</span><span class="s2">&quot;</span>
+<a id="__codelineno-1-84" name="__codelineno-1-84" href="#__codelineno-1-84"></a>gmt gmtconvert polyhedron_vertex.gmt -S<span class="s2">&quot;Rhombic Triacontahedron |&quot;</span> &gt; tmp
+<a id="__codelineno-1-85" name="__codelineno-1-85" href="#__codelineno-1-85"></a>awk <span class="s1">&#39;NR != 1 {print $1+6, $2+10, $3+5}&#39;</span> tmp &gt; tmp1
+<a id="__codelineno-1-86" name="__codelineno-1-86" href="#__codelineno-1-86"></a>gmt psxyz tmp1 -R -J -JZ -p -Sc.3 -G0/147/72 -K -O &gt;&gt; <span class="s2">&quot;</span><span class="si">${</span><span class="nv">ps</span><span class="si">}</span><span class="s2">&quot;</span>
+<a id="__codelineno-1-87" name="__codelineno-1-87" href="#__codelineno-1-87"></a>
+<a id="__codelineno-1-88" name="__codelineno-1-88" href="#__codelineno-1-88"></a><span class="c1"># 120 Polyhedron</span>
+<a id="__codelineno-1-89" name="__codelineno-1-89" href="#__codelineno-1-89"></a>gmt gmtconvert polyhedron_face.gmt -S<span class="s2">&quot;120 Polyhedron |&quot;</span> &gt; tmp
+<a id="__codelineno-1-90" name="__codelineno-1-90" href="#__codelineno-1-90"></a>awk <span class="s1">&#39;NR % 4 != 1 {print $1+20, $2+8, $3-4}&#39;</span> tmp &gt; tmp1
+<a id="__codelineno-1-91" name="__codelineno-1-91" href="#__codelineno-1-91"></a>awk <span class="s1">&#39;{print $0} NR % 3 == 0 {print &quot;&gt;&quot;}&#39;</span> tmp1 &gt; tmp2
+<a id="__codelineno-1-92" name="__codelineno-1-92" href="#__codelineno-1-92"></a>gmt psxyz tmp2 -R -J -JZ -p -G205 -N -K -O &gt;&gt; <span class="s2">&quot;</span><span class="si">${</span><span class="nv">ps</span><span class="si">}</span><span class="s2">&quot;</span>
+<a id="__codelineno-1-93" name="__codelineno-1-93" href="#__codelineno-1-93"></a>cp tmp2 <span class="s2">&quot;120_face_</span><span class="k">$(</span>gmt --version<span class="k">)</span><span class="s2">.gmt&quot;</span>
+<a id="__codelineno-1-94" name="__codelineno-1-94" href="#__codelineno-1-94"></a>gmt gmtconvert polyhedron_edge.gmt -S<span class="s2">&quot;120 Polyhedron |&quot;</span> &gt; tmp
+<a id="__codelineno-1-95" name="__codelineno-1-95" href="#__codelineno-1-95"></a>awk <span class="s1">&#39;NR % 3 != 1 {print $1+20, $2+8, $3-4}&#39;</span> tmp &gt; tmp1
+<a id="__codelineno-1-96" name="__codelineno-1-96" href="#__codelineno-1-96"></a>awk <span class="s1">&#39;{print $0} NR %2 == 0 {print &quot;&gt;&quot;}&#39;</span> tmp1 &gt; tmp2
+<a id="__codelineno-1-97" name="__codelineno-1-97" href="#__codelineno-1-97"></a>gmt psxyz tmp2 -R -J -JZ -p -W1,105 -N -K -O &gt;&gt; <span class="s2">&quot;</span><span class="si">${</span><span class="nv">ps</span><span class="si">}</span><span class="s2">&quot;</span>
+<a id="__codelineno-1-98" name="__codelineno-1-98" href="#__codelineno-1-98"></a>cp tmp2 <span class="s2">&quot;120_edge_</span><span class="k">$(</span>gmt --version<span class="k">)</span><span class="s2">.gmt&quot;</span>
+<a id="__codelineno-1-99" name="__codelineno-1-99" href="#__codelineno-1-99"></a>gmt gmtconvert polyhedron_vertex.gmt -S<span class="s2">&quot;120 Polyhedron |&quot;</span> &gt; tmp
+<a id="__codelineno-1-100" name="__codelineno-1-100" href="#__codelineno-1-100"></a>awk <span class="s1">&#39;NR != 1 {print $1+20, $2+8, $3-4}&#39;</span> tmp &gt; tmp1
+<a id="__codelineno-1-101" name="__codelineno-1-101" href="#__codelineno-1-101"></a>gmt psxyz tmp1 -R -J -JZ -p -Sc.3 -G5 -N -K -O &gt;&gt; <span class="s2">&quot;</span><span class="si">${</span><span class="nv">ps</span><span class="si">}</span><span class="s2">&quot;</span>
+<a id="__codelineno-1-102" name="__codelineno-1-102" href="#__codelineno-1-102"></a>cp tmp2 <span class="s2">&quot;120_vertex_</span><span class="k">$(</span>gmt --version<span class="k">)</span><span class="s2">.gmt&quot;</span>
+<a id="__codelineno-1-103" name="__codelineno-1-103" href="#__codelineno-1-103"></a>
+<a id="__codelineno-1-104" name="__codelineno-1-104" href="#__codelineno-1-104"></a><span class="c1"># text</span>
+<a id="__codelineno-1-105" name="__codelineno-1-105" href="#__codelineno-1-105"></a><span class="nb">echo</span> <span class="m">7</span> -11 Tetrahedron <span class="p">|</span> gmt pstext -R -J -JZ -p180/90 -F+f14p+a28 -K -O &gt;&gt; <span class="s2">&quot;</span><span class="si">${</span><span class="nv">ps</span><span class="si">}</span><span class="s2">&quot;</span>
+<a id="__codelineno-1-106" name="__codelineno-1-106" href="#__codelineno-1-106"></a><span class="nb">echo</span> <span class="m">18</span> -7.5 Cube <span class="p">|</span> gmt pstext -R -J -JZ -p -F+f14p+a10 -N -K -O &gt;&gt; <span class="s2">&quot;</span><span class="si">${</span><span class="nv">ps</span><span class="si">}</span><span class="s2">&quot;</span>
+<a id="__codelineno-1-107" name="__codelineno-1-107" href="#__codelineno-1-107"></a><span class="nb">echo</span> -1.5 -3.5 Octahedron <span class="p">|</span> gmt pstext -R -J -JZ -p -F+f14p+a55 -N -K -O &gt;&gt; <span class="s2">&quot;</span><span class="si">${</span><span class="nv">ps</span><span class="si">}</span><span class="s2">&quot;</span>
+<a id="__codelineno-1-108" name="__codelineno-1-108" href="#__codelineno-1-108"></a><span class="nb">echo</span> <span class="m">9</span>.5 -1 Rhombic Dodecahedron <span class="p">|</span> gmt pstext -R -J -JZ -p -F+f12p+a39 -N -K -O &gt;&gt; <span class="s2">&quot;</span><span class="si">${</span><span class="nv">ps</span><span class="si">}</span><span class="s2">&quot;</span>
+<a id="__codelineno-1-109" name="__codelineno-1-109" href="#__codelineno-1-109"></a><span class="nb">echo</span> -7.5 <span class="m">5</span> Icosahedron <span class="p">|</span> gmt pstext -R -J -JZ -p -F+f14p+a10 -N -K -O &gt;&gt; <span class="s2">&quot;</span><span class="si">${</span><span class="nv">ps</span><span class="si">}</span><span class="s2">&quot;</span>
+<a id="__codelineno-1-110" name="__codelineno-1-110" href="#__codelineno-1-110"></a><span class="nb">echo</span> <span class="m">4</span>.5 <span class="m">9</span> Rhombic Triacontahedron <span class="p">|</span> gmt pstext -R -J -JZ -p -F+f12p+a4 -N -K -O &gt;&gt; <span class="s2">&quot;</span><span class="si">${</span><span class="nv">ps</span><span class="si">}</span><span class="s2">&quot;</span>
+<a id="__codelineno-1-111" name="__codelineno-1-111" href="#__codelineno-1-111"></a><span class="nb">echo</span> <span class="m">18</span> <span class="m">3</span>.5 <span class="m">120</span> Polyhedron <span class="p">|</span> gmt pstext -R -J -JZ -p -F+f14p+a10 -N -K -O &gt;&gt; <span class="s2">&quot;</span><span class="si">${</span><span class="nv">ps</span><span class="si">}</span><span class="s2">&quot;</span>
+<a id="__codelineno-1-112" name="__codelineno-1-112" href="#__codelineno-1-112"></a>
+<a id="__codelineno-1-113" name="__codelineno-1-113" href="#__codelineno-1-113"></a>gmt psxy -R -J -JZ -T -O &gt;&gt; <span class="s2">&quot;</span><span class="si">${</span><span class="nv">ps</span><span class="si">}</span><span class="s2">&quot;</span>
+<a id="__codelineno-1-114" name="__codelineno-1-114" href="#__codelineno-1-114"></a>gmt psconvert <span class="s2">&quot;</span><span class="si">${</span><span class="nv">ps</span><span class="si">}</span><span class="s2">&quot;</span> -Tg -A -P
+<a id="__codelineno-1-115" name="__codelineno-1-115" href="#__codelineno-1-115"></a>rm -f tmp*
+</code></pre></div>
+</div>
+</div>
+</div>
 <p>學習到的指令:</p>
 <ul>
 <li><code>psbasemap</code>繪製座標系的軸。</li>
@@ -752,6 +877,8 @@
 <li><code>pstext</code>透過<code>-p180/90</code>讓文字變成在xz平面書寫(原本是在xy平面)，
 以及用<code>-F+a</code>來調整文字的角度。</li>
 </ul>
+<p><strong>已知問題：在 GMT 6.1.0 版本後，經典模式下 <code>psxyz</code> 的 <code>-N</code> (取消邊界裁剪)
+ 在未指定 <code>-S</code> (描點模式) 的情況下無法啟用，若有相關需求，請暫時切換至 GMT 5.x</strong></p>
 <p><a href="http://www.rwgrayprojects.com/Lynn/Coordinates/coord01.html">多面體的各端點座標</a>
 網站中提到的字母p為黃金比例(Golden Ratio)，一般而言為1.618，編者以這個數值來製作
 多面體的端點座標，接著分別繪製多面體的點(vertice)、線(edges)、平面(faces)。
@@ -762,122 +889,124 @@
 <p>此節將透過政府資料開放平臺所提供的<a href="https://data.gov.tw/dataset/32584">104年水文地質鑽探岩心紀錄</a>，
 將示範如何把五個鑽井的岩性資料，透過立體柱狀的方式，展現在地圖上，這種方式，
 將能同時間展現出井口位置以及岩性隨深度的變化。</p>
-<p>使用的資料檔:
-- <a href="https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/data/core.gmt">鑽井岩心資料</a></p>
+<p>使用的資料檔:</p>
+<ul>
+<li><a href="https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/data/core.gmt">鑽井岩心資料</a></li>
+</ul>
 <p>成果圖</p>
 <p align="center">
   <img src="/fig/13_4_3d_bar_1.png"/>
 </p>
 
 <p>批次檔</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">set</span> <span class="nv">ps</span><span class="p">=</span>13_4_3d_bar.ps
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">set</span> <span class="nv">data</span><span class="p">=</span>D:\GMT_data\
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="k">set</span> <span class="nv">C</span><span class="p">=</span>gray
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="k">set</span> <span class="nv">FS</span><span class="p">=</span>green
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="k">set</span> <span class="nv">CS</span><span class="p">=</span>cyan
-<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="k">set</span> <span class="nv">G</span><span class="p">=</span>red
-<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>
-<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>gmt grdimage <span class="nv">%data%</span>tw_20.grd -R120.62/120.69/24.03/24.13/0/100 -JM12 -JZ10 -p205/35 <span class="se">^</span>
-<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="se">-</span>BWeSnZ -Bxa.03 -Bya.04 -Bz10+l<span class="s2">&quot;Depth (m)&quot;</span> -Cdem1.cpt -I<span class="nv">%data%</span>tw_20shad.grd -K <span class="p">&gt;</span> <span class="nv">%ps%</span>
-<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>gmt psxy <span class="nv">%data%</span>taiwan_river_tributary.gmt -R -JM -JZ -p -W1,72/92/199 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
-<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>gmt psxy <span class="nv">%data%</span>taiwan_river_mainstream.gmt -R -JM -JZ -p -W1,30/34/170 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
-<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>
-<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a># 061851G1
-<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>awk <span class="s2">&quot;{if ($3==&quot;&quot;061851G1&quot;&quot;&quot;&quot;) print $0}&quot;</span> core.gmt <span class="p">&gt;</span> tmp
-<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>awk <span class="s2">&quot;{print $1,$2,$4,0}&quot;</span> tmp <span class="p">|</span> gmt psxyz -R -JM -JZ -p -So.3 -G<span class="nv">%C%</span> -W.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
-<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>awk <span class="s2">&quot;{print $1,$2,$4+$6,$4}&quot;</span> tmp <span class="p">|</span> gmt psxyz -R -JM -JZ -p -So.3b -G<span class="nv">%CS%</span> -W.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
-<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>awk <span class="s2">&quot;{print $1,$2,$4+$6+$8,$4+$6}&quot;</span> tmp <span class="p">|</span> gmt psxyz -R -JM -JZ -p -So.3b -G<span class="nv">%C%</span> -W.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
-<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>awk <span class="s2">&quot;{print $1,$2,$4+$6+$8+$10,$4+$6+$8}&quot;</span> tmp <span class="p">|</span> <span class="se">^</span>
-<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="se">g</span>mt psxyz -R -JM -JZ -p -So.3b -G<span class="nv">%CS%</span> -W.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
-<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>awk <span class="s2">&quot;{print $1,$2,$4+$6+$8+$10+$12,$4+$6+$8+$10}&quot;</span> tmp <span class="p">|</span> <span class="se">^</span>
-<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="se">g</span>mt psxyz -R -JM -JZ -p -So.3b -G<span class="nv">%C%</span> -W.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
-<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>awk <span class="s2">&quot;{print $1,$2,$4+$6+$8+$10+$12+$14,$4+$6+$8+$10+$12}&quot;</span> tmp <span class="p">|</span> <span class="se">^</span>
-<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="se">g</span>mt psxyz -R -JM -JZ -p -So.3b -G<span class="nv">%G%</span> -W.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
-<a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>awk <span class="s2">&quot;{print $1,$2,$4+$6+$8+$10+$12+$14+$16,$4+$6+$8+$10+$12+$14}&quot;</span> tmp <span class="p">|</span> <span class="se">^</span>
-<a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a><span class="se">g</span>mt psxyz -R -JM -JZ -p -So.3b -G<span class="nv">%CS%</span> -W.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
-<a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>awk <span class="s2">&quot;{print $1,$2,$3}&quot;</span> tmp <span class="p">|</span> gmt pstext -R -JM -JZ -p -F+f12p=2p,white -D0/-.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
-<a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a>awk <span class="s2">&quot;{print $1,$2,$3}&quot;</span> tmp <span class="p">|</span> gmt pstext -R -JM -JZ -p -F+f12p -D0/-.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
-<a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a>
-<a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a># 062051G1
-<a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a>awk <span class="s2">&quot;{if ($3==&quot;&quot;062051G1&quot;&quot;&quot;&quot;) print $0}&quot;</span> core.gmt <span class="p">&gt;</span> tmp
-<a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a>awk <span class="s2">&quot;{print $1,$2,$4,0}&quot;</span> tmp <span class="p">|</span> gmt psxyz -R -JM -JZ -p -So.3 -G<span class="nv">%G%</span> -W.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
-<a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a>awk <span class="s2">&quot;{print $1,$2,$4+$6,$4}&quot;</span> tmp <span class="p">|</span> gmt psxyz -R -JM -JZ -p -So.3b -G<span class="nv">%FS%</span> -W.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
-<a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a>awk <span class="s2">&quot;{print $1,$2,$4+$6+$8,$4+$6}&quot;</span> tmp <span class="p">|</span> gmt psxyz -R -JM -JZ -p -So.3b -G<span class="nv">%C%</span> -W.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
-<a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a>awk <span class="s2">&quot;{print $1,$2,$4+$6+$8+$10,$4+$6+$8}&quot;</span> tmp <span class="p">|</span> <span class="se">^</span>
-<a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a><span class="se">g</span>mt psxyz -R -JM -JZ -p -So.3b -G<span class="nv">%G%</span> -W.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
-<a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a>awk <span class="s2">&quot;{print $1,$2,$4+$6+$8+$10+$12,$4+$6+$8+$10}&quot;</span> tmp <span class="p">|</span> <span class="se">^</span>
-<a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a><span class="se">g</span>mt psxyz -R -JM -JZ -p -So.3b -G<span class="nv">%C%</span> -W.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
-<a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a>awk <span class="s2">&quot;{print $1,$2,$3}&quot;</span> tmp <span class="p">|</span> gmt pstext -R -JM -JZ -p -F+f12p=2p,white -D0/-.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
-<a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a>awk <span class="s2">&quot;{print $1,$2,$3}&quot;</span> tmp <span class="p">|</span> gmt pstext -R -JM -JZ -p -F+f12p -D0/-.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
-<a id="__codelineno-1-40" name="__codelineno-1-40" href="#__codelineno-1-40"></a>
-<a id="__codelineno-1-41" name="__codelineno-1-41" href="#__codelineno-1-41"></a># 061552G1
-<a id="__codelineno-1-42" name="__codelineno-1-42" href="#__codelineno-1-42"></a>awk <span class="s2">&quot;{if ($3==&quot;&quot;061552G1&quot;&quot;&quot;&quot;) print $0}&quot;</span> core.gmt <span class="p">&gt;</span> tmp
-<a id="__codelineno-1-43" name="__codelineno-1-43" href="#__codelineno-1-43"></a>awk <span class="s2">&quot;{print $1,$2,$4,0}&quot;</span> tmp <span class="p">|</span> gmt psxyz -R -JM -JZ -p -So.3 -G<span class="nv">%CS%</span> -W.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
-<a id="__codelineno-1-44" name="__codelineno-1-44" href="#__codelineno-1-44"></a>awk <span class="s2">&quot;{print $1,$2,$4+$6,$4}&quot;</span> tmp <span class="p">|</span> gmt psxyz -R -JM -JZ -p -So.3b -G<span class="nv">%C%</span> -W.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
-<a id="__codelineno-1-45" name="__codelineno-1-45" href="#__codelineno-1-45"></a>awk <span class="s2">&quot;{print $1,$2,$4+$6+$8,$4+$6}&quot;</span> tmp <span class="p">|</span> gmt psxyz -R -JM -JZ -p -So.3b -G<span class="nv">%G%</span> -W.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
-<a id="__codelineno-1-46" name="__codelineno-1-46" href="#__codelineno-1-46"></a>awk <span class="s2">&quot;{print $1,$2,$4+$6+$8+$10,$4+$6+$8}&quot;</span> tmp <span class="p">|</span> <span class="se">^</span>
-<a id="__codelineno-1-47" name="__codelineno-1-47" href="#__codelineno-1-47"></a><span class="se">g</span>mt psxyz -R -JM -JZ -p -So.3b -G<span class="nv">%CS%</span> -W.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
-<a id="__codelineno-1-48" name="__codelineno-1-48" href="#__codelineno-1-48"></a>awk <span class="s2">&quot;{print $1,$2,$4+$6+$8+$10+$12,$4+$6+$8+$10}&quot;</span> tmp <span class="p">|</span> <span class="se">^</span>
-<a id="__codelineno-1-49" name="__codelineno-1-49" href="#__codelineno-1-49"></a><span class="se">g</span>mt psxyz -R -JM -JZ -p -So.3b -G<span class="nv">%G%</span> -W.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
-<a id="__codelineno-1-50" name="__codelineno-1-50" href="#__codelineno-1-50"></a>awk <span class="s2">&quot;{print $1,$2,$4+$6+$8+$10+$12+$14,$4+$6+$8+$10+$12}&quot;</span> tmp <span class="p">|</span> <span class="se">^</span>
-<a id="__codelineno-1-51" name="__codelineno-1-51" href="#__codelineno-1-51"></a><span class="se">g</span>mt psxyz -R -JM -JZ -p -So.3b -G<span class="nv">%CS%</span> -W.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
-<a id="__codelineno-1-52" name="__codelineno-1-52" href="#__codelineno-1-52"></a>awk <span class="s2">&quot;{print $1,$2,$4+$6+$8+$10+$12+$14+$16,$4+$6+$8+$10+$12+$14}&quot;</span> tmp <span class="p">|</span> <span class="se">^</span>
-<a id="__codelineno-1-53" name="__codelineno-1-53" href="#__codelineno-1-53"></a><span class="se">g</span>mt psxyz -R -JM -JZ -p -So.3b -G<span class="nv">%G%</span> -W.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
-<a id="__codelineno-1-54" name="__codelineno-1-54" href="#__codelineno-1-54"></a>awk <span class="s2">&quot;{print $1,$2,$4+$6+$8+$10+$12+$14+$16+$18,$4+$6+$8+$10+$12+$14+$16}&quot;</span> tmp <span class="p">|</span> <span class="se">^</span>
-<a id="__codelineno-1-55" name="__codelineno-1-55" href="#__codelineno-1-55"></a><span class="se">g</span>mt psxyz -R -JM -JZ -p -So.3b -G<span class="nv">%FS%</span> -W.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
-<a id="__codelineno-1-56" name="__codelineno-1-56" href="#__codelineno-1-56"></a>awk <span class="s2">&quot;{print $1,$2,$3}&quot;</span> tmp <span class="p">|</span> gmt pstext -R -JM -JZ -p -F+f12p=2p,white -D0/-.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
-<a id="__codelineno-1-57" name="__codelineno-1-57" href="#__codelineno-1-57"></a>awk <span class="s2">&quot;{print $1,$2,$3}&quot;</span> tmp <span class="p">|</span> gmt pstext -R -JM -JZ -p -F+f12p -D0/-.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
-<a id="__codelineno-1-58" name="__codelineno-1-58" href="#__codelineno-1-58"></a>
-<a id="__codelineno-1-59" name="__codelineno-1-59" href="#__codelineno-1-59"></a># 061553G1
-<a id="__codelineno-1-60" name="__codelineno-1-60" href="#__codelineno-1-60"></a>awk <span class="s2">&quot;{if ($3==&quot;&quot;061553G1&quot;&quot;&quot;&quot;) print $0}&quot;</span> core.gmt <span class="p">&gt;</span> tmp
-<a id="__codelineno-1-61" name="__codelineno-1-61" href="#__codelineno-1-61"></a>awk <span class="s2">&quot;{print $1,$2,$4,0}&quot;</span> tmp <span class="p">|</span> gmt psxyz -R -JM -JZ -p -So.3 -G<span class="nv">%G%</span> -W.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
-<a id="__codelineno-1-62" name="__codelineno-1-62" href="#__codelineno-1-62"></a>awk <span class="s2">&quot;{print $1,$2,$4+$6,$4}&quot;</span> tmp <span class="p">|</span> gmt psxyz -R -JM -JZ -p -So.3b -G<span class="nv">%CS%</span> -W.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
-<a id="__codelineno-1-63" name="__codelineno-1-63" href="#__codelineno-1-63"></a>awk <span class="s2">&quot;{print $1,$2,$4+$6+$8,$4+$6}&quot;</span> tmp <span class="p">|</span> gmt psxyz -R -JM -JZ -p -So.3b -G<span class="nv">%G%</span> -W.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
-<a id="__codelineno-1-64" name="__codelineno-1-64" href="#__codelineno-1-64"></a>awk <span class="s2">&quot;{print $1,$2,$4+$6+$8+$10,$4+$6+$8}&quot;</span> tmp <span class="p">|</span> <span class="se">^</span>
-<a id="__codelineno-1-65" name="__codelineno-1-65" href="#__codelineno-1-65"></a><span class="se">g</span>mt psxyz -R -JM -JZ -p -So.3b -G<span class="nv">%FS%</span> -W.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
-<a id="__codelineno-1-66" name="__codelineno-1-66" href="#__codelineno-1-66"></a>awk <span class="s2">&quot;{print $1,$2,$4+$6+$8+$10+$12,$4+$6+$8+$10}&quot;</span> tmp <span class="p">|</span> <span class="se">^</span>
-<a id="__codelineno-1-67" name="__codelineno-1-67" href="#__codelineno-1-67"></a><span class="se">g</span>mt psxyz -R -JM -JZ -p -So.3b -G<span class="nv">%G%</span> -W.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
-<a id="__codelineno-1-68" name="__codelineno-1-68" href="#__codelineno-1-68"></a>awk <span class="s2">&quot;{print $1,$2,$4+$6+$8+$10+$12+$14,$4+$6+$8+$10+$12}&quot;</span> tmp <span class="p">|</span> <span class="se">^</span>
-<a id="__codelineno-1-69" name="__codelineno-1-69" href="#__codelineno-1-69"></a><span class="se">g</span>mt psxyz -R -JM -JZ -p -So.3b -G<span class="nv">%C%</span> -W.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
-<a id="__codelineno-1-70" name="__codelineno-1-70" href="#__codelineno-1-70"></a>awk <span class="s2">&quot;{print $1,$2,$4+$6+$8+$10+$12+$14+$16,$4+$6+$8+$10+$12+$14}&quot;</span> tmp <span class="p">|</span> <span class="se">^</span>
-<a id="__codelineno-1-71" name="__codelineno-1-71" href="#__codelineno-1-71"></a><span class="se">g</span>mt psxyz -R -JM -JZ -p -So.3b -G<span class="nv">%CS%</span> -W.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
-<a id="__codelineno-1-72" name="__codelineno-1-72" href="#__codelineno-1-72"></a>awk <span class="s2">&quot;{print $1,$2,$4+$6+$8+$10+$12+$14+$16+$18,$4+$6+$8+$10+$12+$14+$16}&quot;</span> tmp <span class="p">|</span> <span class="se">^</span>
-<a id="__codelineno-1-73" name="__codelineno-1-73" href="#__codelineno-1-73"></a><span class="se">g</span>mt psxyz -R -JM -JZ -p -So.3b -G<span class="nv">%G%</span> -W.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
-<a id="__codelineno-1-74" name="__codelineno-1-74" href="#__codelineno-1-74"></a>awk <span class="s2">&quot;{print $1,$2,$4+$6+$8+$10+$12+$14+$16+$18+$20,$4+$6+$8+$10+$12+$14+$16+$18}&quot;</span> tmp <span class="p">|</span> <span class="se">^</span>
-<a id="__codelineno-1-75" name="__codelineno-1-75" href="#__codelineno-1-75"></a><span class="se">g</span>mt psxyz -R -JM -JZ -p -So.3b -G<span class="nv">%FS%</span> -W.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
-<a id="__codelineno-1-76" name="__codelineno-1-76" href="#__codelineno-1-76"></a>awk <span class="s2">&quot;{print $1,$2,$3}&quot;</span> tmp <span class="p">|</span> gmt pstext -R -JM -JZ -p -F+f12p=2p,white -D0/-.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
-<a id="__codelineno-1-77" name="__codelineno-1-77" href="#__codelineno-1-77"></a>awk <span class="s2">&quot;{print $1,$2,$3}&quot;</span> tmp <span class="p">|</span> gmt pstext -R -JM -JZ -p -F+f12p -D0/-.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
-<a id="__codelineno-1-78" name="__codelineno-1-78" href="#__codelineno-1-78"></a>
-<a id="__codelineno-1-79" name="__codelineno-1-79" href="#__codelineno-1-79"></a># 061551G1
-<a id="__codelineno-1-80" name="__codelineno-1-80" href="#__codelineno-1-80"></a>awk <span class="s2">&quot;{if ($3==&quot;&quot;061551G1&quot;&quot;&quot;&quot;) print $0}&quot;</span> core.gmt <span class="p">&gt;</span> tmp
-<a id="__codelineno-1-81" name="__codelineno-1-81" href="#__codelineno-1-81"></a>awk <span class="s2">&quot;{print $1,$2,$4,0}&quot;</span> tmp <span class="p">|</span> gmt psxyz -R -JM -JZ -p -So.3 -G<span class="nv">%G%</span> -W.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
-<a id="__codelineno-1-82" name="__codelineno-1-82" href="#__codelineno-1-82"></a>awk <span class="s2">&quot;{print $1,$2,$4+$6,$4}&quot;</span> tmp <span class="p">|</span> gmt psxyz -R -JM -JZ -p -So.3b -G<span class="nv">%C%</span> -W.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
-<a id="__codelineno-1-83" name="__codelineno-1-83" href="#__codelineno-1-83"></a>awk <span class="s2">&quot;{print $1,$2,$4+$6+$8,$4+$6}&quot;</span> tmp <span class="p">|</span> gmt psxyz -R -JM -JZ -p -So.3b -G<span class="nv">%FS%</span> -W.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
-<a id="__codelineno-1-84" name="__codelineno-1-84" href="#__codelineno-1-84"></a>awk <span class="s2">&quot;{print $1,$2,$4+$6+$8+$10,$4+$6+$8}&quot;</span> tmp <span class="p">|</span> <span class="se">^</span>
-<a id="__codelineno-1-85" name="__codelineno-1-85" href="#__codelineno-1-85"></a><span class="se">g</span>mt psxyz -R -JM -JZ -p -So.3b -G<span class="nv">%C%</span> -W.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
-<a id="__codelineno-1-86" name="__codelineno-1-86" href="#__codelineno-1-86"></a>awk <span class="s2">&quot;{print $1,$2,$4+$6+$8+$10+$12,$4+$6+$8+$10}&quot;</span> tmp <span class="p">|</span> <span class="se">^</span>
-<a id="__codelineno-1-87" name="__codelineno-1-87" href="#__codelineno-1-87"></a><span class="se">g</span>mt psxyz -R -JM -JZ -p -So.3b -G<span class="nv">%CS%</span> -W.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
-<a id="__codelineno-1-88" name="__codelineno-1-88" href="#__codelineno-1-88"></a>awk <span class="s2">&quot;{print $1,$2,$4+$6+$8+$10+$12+$14,$4+$6+$8+$10+$12}&quot;</span> tmp <span class="p">|</span> <span class="se">^</span>
-<a id="__codelineno-1-89" name="__codelineno-1-89" href="#__codelineno-1-89"></a><span class="se">g</span>mt psxyz -R -JM -JZ -p -So.3b -G<span class="nv">%G%</span> -W.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
-<a id="__codelineno-1-90" name="__codelineno-1-90" href="#__codelineno-1-90"></a>awk <span class="s2">&quot;{print $1,$2,$4+$6+$8+$10+$12+$14+$16,$4+$6+$8+$10+$12+$14}&quot;</span> tmp <span class="p">|</span> <span class="se">^</span>
-<a id="__codelineno-1-91" name="__codelineno-1-91" href="#__codelineno-1-91"></a><span class="se">g</span>mt psxyz -R -JM -JZ -p -So.3b -G<span class="nv">%FS%</span> -W.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
-<a id="__codelineno-1-92" name="__codelineno-1-92" href="#__codelineno-1-92"></a>awk <span class="s2">&quot;{print $1,$2,$3}&quot;</span> tmp <span class="p">|</span> gmt pstext -R -JM -JZ -p -F+f12p=2p,white -D0/-.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
-<a id="__codelineno-1-93" name="__codelineno-1-93" href="#__codelineno-1-93"></a>awk <span class="s2">&quot;{print $1,$2,$3}&quot;</span> tmp <span class="p">|</span> gmt pstext -R -JM -JZ -p -F+f12p -D0/-.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
-<a id="__codelineno-1-94" name="__codelineno-1-94" href="#__codelineno-1-94"></a>
-<a id="__codelineno-1-95" name="__codelineno-1-95" href="#__codelineno-1-95"></a># legend
-<a id="__codelineno-1-96" name="__codelineno-1-96" href="#__codelineno-1-96"></a><span class="k">echo</span> C <span class="nv">%C%</span> <span class="p">&gt;</span> tmp
-<a id="__codelineno-1-97" name="__codelineno-1-97" href="#__codelineno-1-97"></a><span class="k">echo</span> L - - L Clay <span class="p">&gt;&gt;</span> tmp
-<a id="__codelineno-1-98" name="__codelineno-1-98" href="#__codelineno-1-98"></a><span class="k">echo</span> C <span class="nv">%FS%</span> <span class="p">&gt;&gt;</span> tmp
-<a id="__codelineno-1-99" name="__codelineno-1-99" href="#__codelineno-1-99"></a><span class="k">echo</span> L - - L Fine Sand <span class="p">&gt;&gt;</span> tmp
-<a id="__codelineno-1-100" name="__codelineno-1-100" href="#__codelineno-1-100"></a><span class="k">echo</span> C <span class="nv">%CS%</span> <span class="p">&gt;&gt;</span> tmp
-<a id="__codelineno-1-101" name="__codelineno-1-101" href="#__codelineno-1-101"></a><span class="k">echo</span> L - - L Coarse Sand <span class="p">&gt;&gt;</span> tmp
-<a id="__codelineno-1-102" name="__codelineno-1-102" href="#__codelineno-1-102"></a><span class="k">echo</span> C <span class="nv">%G%</span> <span class="p">&gt;&gt;</span> tmp
-<a id="__codelineno-1-103" name="__codelineno-1-103" href="#__codelineno-1-103"></a><span class="k">echo</span> L - - L Gravel <span class="p">&gt;&gt;</span> tmp
-<a id="__codelineno-1-104" name="__codelineno-1-104" href="#__codelineno-1-104"></a>gmt pslegend tmp -R -JM -JZ -p -Dx7.7/.5+w4 -F+g0+p1+s-6p/-4p/gray20@40 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
-<a id="__codelineno-1-105" name="__codelineno-1-105" href="#__codelineno-1-105"></a>
-<a id="__codelineno-1-106" name="__codelineno-1-106" href="#__codelineno-1-106"></a>gmt psxy -R -J -JZ -T -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
-<a id="__codelineno-1-107" name="__codelineno-1-107" href="#__codelineno-1-107"></a>gmt psconvert <span class="nv">%ps%</span> -Tg -A -P
-<a id="__codelineno-1-108" name="__codelineno-1-108" href="#__codelineno-1-108"></a><span class="k">del</span> tmp*
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">set</span> <span class="nv">ps</span><span class="p">=</span>13_4_3d_bar.ps
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">set</span> <span class="nv">data</span><span class="p">=</span>D:\GMT_data\
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="k">set</span> <span class="nv">C</span><span class="p">=</span>gray
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="k">set</span> <span class="nv">FS</span><span class="p">=</span>green
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="k">set</span> <span class="nv">CS</span><span class="p">=</span>cyan
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="k">set</span> <span class="nv">G</span><span class="p">=</span>red
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>gmt grdimage <span class="nv">%data%</span>tw_20.grd -R120.62/120.69/24.03/24.13/0/100 -JM12 -JZ10 -p205/35 <span class="se">^</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="se">-</span>BWeSnZ -Bxa.03 -Bya.04 -Bz10+l<span class="s2">&quot;Depth (m)&quot;</span> -Cdem1.cpt -I<span class="nv">%data%</span>tw_20shad.grd -K <span class="p">&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>gmt psxy <span class="nv">%data%</span>taiwan_river_tributary.gmt -R -JM -JZ -p -W1,72/92/199 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>gmt psxy <span class="nv">%data%</span>taiwan_river_mainstream.gmt -R -JM -JZ -p -W1,30/34/170 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a># 061851G1
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>awk <span class="s2">&quot;{if ($3==&quot;&quot;061851G1&quot;&quot;&quot;&quot;) print $0}&quot;</span> core.gmt <span class="p">&gt;</span> tmp
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>awk <span class="s2">&quot;{print $1,$2,$4,0}&quot;</span> tmp <span class="p">|</span> gmt psxyz -R -JM -JZ -p -So.3 -G<span class="nv">%C%</span> -W.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>awk <span class="s2">&quot;{print $1,$2,$4+$6,$4}&quot;</span> tmp <span class="p">|</span> gmt psxyz -R -JM -JZ -p -So.3b -G<span class="nv">%CS%</span> -W.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>awk <span class="s2">&quot;{print $1,$2,$4+$6+$8,$4+$6}&quot;</span> tmp <span class="p">|</span> gmt psxyz -R -JM -JZ -p -So.3b -G<span class="nv">%C%</span> -W.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>awk <span class="s2">&quot;{print $1,$2,$4+$6+$8+$10,$4+$6+$8}&quot;</span> tmp <span class="p">|</span> <span class="se">^</span>
+<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a><span class="se">g</span>mt psxyz -R -JM -JZ -p -So.3b -G<span class="nv">%CS%</span> -W.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>awk <span class="s2">&quot;{print $1,$2,$4+$6+$8+$10+$12,$4+$6+$8+$10}&quot;</span> tmp <span class="p">|</span> <span class="se">^</span>
+<a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a><span class="se">g</span>mt psxyz -R -JM -JZ -p -So.3b -G<span class="nv">%C%</span> -W.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a>awk <span class="s2">&quot;{print $1,$2,$4+$6+$8+$10+$12+$14,$4+$6+$8+$10+$12}&quot;</span> tmp <span class="p">|</span> <span class="se">^</span>
+<a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a><span class="se">g</span>mt psxyz -R -JM -JZ -p -So.3b -G<span class="nv">%G%</span> -W.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a>awk <span class="s2">&quot;{print $1,$2,$4+$6+$8+$10+$12+$14+$16,$4+$6+$8+$10+$12+$14}&quot;</span> tmp <span class="p">|</span> <span class="se">^</span>
+<a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a><span class="se">g</span>mt psxyz -R -JM -JZ -p -So.3b -G<span class="nv">%CS%</span> -W.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a>awk <span class="s2">&quot;{print $1,$2,$3}&quot;</span> tmp <span class="p">|</span> gmt pstext -R -JM -JZ -p -F+f12p=2p,white -D0/-.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a>awk <span class="s2">&quot;{print $1,$2,$3}&quot;</span> tmp <span class="p">|</span> gmt pstext -R -JM -JZ -p -F+f12p -D0/-.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-28" name="__codelineno-2-28" href="#__codelineno-2-28"></a>
+<a id="__codelineno-2-29" name="__codelineno-2-29" href="#__codelineno-2-29"></a># 062051G1
+<a id="__codelineno-2-30" name="__codelineno-2-30" href="#__codelineno-2-30"></a>awk <span class="s2">&quot;{if ($3==&quot;&quot;062051G1&quot;&quot;&quot;&quot;) print $0}&quot;</span> core.gmt <span class="p">&gt;</span> tmp
+<a id="__codelineno-2-31" name="__codelineno-2-31" href="#__codelineno-2-31"></a>awk <span class="s2">&quot;{print $1,$2,$4,0}&quot;</span> tmp <span class="p">|</span> gmt psxyz -R -JM -JZ -p -So.3 -G<span class="nv">%G%</span> -W.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-32" name="__codelineno-2-32" href="#__codelineno-2-32"></a>awk <span class="s2">&quot;{print $1,$2,$4+$6,$4}&quot;</span> tmp <span class="p">|</span> gmt psxyz -R -JM -JZ -p -So.3b -G<span class="nv">%FS%</span> -W.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-33" name="__codelineno-2-33" href="#__codelineno-2-33"></a>awk <span class="s2">&quot;{print $1,$2,$4+$6+$8,$4+$6}&quot;</span> tmp <span class="p">|</span> gmt psxyz -R -JM -JZ -p -So.3b -G<span class="nv">%C%</span> -W.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-34" name="__codelineno-2-34" href="#__codelineno-2-34"></a>awk <span class="s2">&quot;{print $1,$2,$4+$6+$8+$10,$4+$6+$8}&quot;</span> tmp <span class="p">|</span> <span class="se">^</span>
+<a id="__codelineno-2-35" name="__codelineno-2-35" href="#__codelineno-2-35"></a><span class="se">g</span>mt psxyz -R -JM -JZ -p -So.3b -G<span class="nv">%G%</span> -W.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-36" name="__codelineno-2-36" href="#__codelineno-2-36"></a>awk <span class="s2">&quot;{print $1,$2,$4+$6+$8+$10+$12,$4+$6+$8+$10}&quot;</span> tmp <span class="p">|</span> <span class="se">^</span>
+<a id="__codelineno-2-37" name="__codelineno-2-37" href="#__codelineno-2-37"></a><span class="se">g</span>mt psxyz -R -JM -JZ -p -So.3b -G<span class="nv">%C%</span> -W.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-38" name="__codelineno-2-38" href="#__codelineno-2-38"></a>awk <span class="s2">&quot;{print $1,$2,$3}&quot;</span> tmp <span class="p">|</span> gmt pstext -R -JM -JZ -p -F+f12p=2p,white -D0/-.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-39" name="__codelineno-2-39" href="#__codelineno-2-39"></a>awk <span class="s2">&quot;{print $1,$2,$3}&quot;</span> tmp <span class="p">|</span> gmt pstext -R -JM -JZ -p -F+f12p -D0/-.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-40" name="__codelineno-2-40" href="#__codelineno-2-40"></a>
+<a id="__codelineno-2-41" name="__codelineno-2-41" href="#__codelineno-2-41"></a># 061552G1
+<a id="__codelineno-2-42" name="__codelineno-2-42" href="#__codelineno-2-42"></a>awk <span class="s2">&quot;{if ($3==&quot;&quot;061552G1&quot;&quot;&quot;&quot;) print $0}&quot;</span> core.gmt <span class="p">&gt;</span> tmp
+<a id="__codelineno-2-43" name="__codelineno-2-43" href="#__codelineno-2-43"></a>awk <span class="s2">&quot;{print $1,$2,$4,0}&quot;</span> tmp <span class="p">|</span> gmt psxyz -R -JM -JZ -p -So.3 -G<span class="nv">%CS%</span> -W.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-44" name="__codelineno-2-44" href="#__codelineno-2-44"></a>awk <span class="s2">&quot;{print $1,$2,$4+$6,$4}&quot;</span> tmp <span class="p">|</span> gmt psxyz -R -JM -JZ -p -So.3b -G<span class="nv">%C%</span> -W.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-45" name="__codelineno-2-45" href="#__codelineno-2-45"></a>awk <span class="s2">&quot;{print $1,$2,$4+$6+$8,$4+$6}&quot;</span> tmp <span class="p">|</span> gmt psxyz -R -JM -JZ -p -So.3b -G<span class="nv">%G%</span> -W.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-46" name="__codelineno-2-46" href="#__codelineno-2-46"></a>awk <span class="s2">&quot;{print $1,$2,$4+$6+$8+$10,$4+$6+$8}&quot;</span> tmp <span class="p">|</span> <span class="se">^</span>
+<a id="__codelineno-2-47" name="__codelineno-2-47" href="#__codelineno-2-47"></a><span class="se">g</span>mt psxyz -R -JM -JZ -p -So.3b -G<span class="nv">%CS%</span> -W.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-48" name="__codelineno-2-48" href="#__codelineno-2-48"></a>awk <span class="s2">&quot;{print $1,$2,$4+$6+$8+$10+$12,$4+$6+$8+$10}&quot;</span> tmp <span class="p">|</span> <span class="se">^</span>
+<a id="__codelineno-2-49" name="__codelineno-2-49" href="#__codelineno-2-49"></a><span class="se">g</span>mt psxyz -R -JM -JZ -p -So.3b -G<span class="nv">%G%</span> -W.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-50" name="__codelineno-2-50" href="#__codelineno-2-50"></a>awk <span class="s2">&quot;{print $1,$2,$4+$6+$8+$10+$12+$14,$4+$6+$8+$10+$12}&quot;</span> tmp <span class="p">|</span> <span class="se">^</span>
+<a id="__codelineno-2-51" name="__codelineno-2-51" href="#__codelineno-2-51"></a><span class="se">g</span>mt psxyz -R -JM -JZ -p -So.3b -G<span class="nv">%CS%</span> -W.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-52" name="__codelineno-2-52" href="#__codelineno-2-52"></a>awk <span class="s2">&quot;{print $1,$2,$4+$6+$8+$10+$12+$14+$16,$4+$6+$8+$10+$12+$14}&quot;</span> tmp <span class="p">|</span> <span class="se">^</span>
+<a id="__codelineno-2-53" name="__codelineno-2-53" href="#__codelineno-2-53"></a><span class="se">g</span>mt psxyz -R -JM -JZ -p -So.3b -G<span class="nv">%G%</span> -W.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-54" name="__codelineno-2-54" href="#__codelineno-2-54"></a>awk <span class="s2">&quot;{print $1,$2,$4+$6+$8+$10+$12+$14+$16+$18,$4+$6+$8+$10+$12+$14+$16}&quot;</span> tmp <span class="p">|</span> <span class="se">^</span>
+<a id="__codelineno-2-55" name="__codelineno-2-55" href="#__codelineno-2-55"></a><span class="se">g</span>mt psxyz -R -JM -JZ -p -So.3b -G<span class="nv">%FS%</span> -W.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-56" name="__codelineno-2-56" href="#__codelineno-2-56"></a>awk <span class="s2">&quot;{print $1,$2,$3}&quot;</span> tmp <span class="p">|</span> gmt pstext -R -JM -JZ -p -F+f12p=2p,white -D0/-.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-57" name="__codelineno-2-57" href="#__codelineno-2-57"></a>awk <span class="s2">&quot;{print $1,$2,$3}&quot;</span> tmp <span class="p">|</span> gmt pstext -R -JM -JZ -p -F+f12p -D0/-.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-58" name="__codelineno-2-58" href="#__codelineno-2-58"></a>
+<a id="__codelineno-2-59" name="__codelineno-2-59" href="#__codelineno-2-59"></a># 061553G1
+<a id="__codelineno-2-60" name="__codelineno-2-60" href="#__codelineno-2-60"></a>awk <span class="s2">&quot;{if ($3==&quot;&quot;061553G1&quot;&quot;&quot;&quot;) print $0}&quot;</span> core.gmt <span class="p">&gt;</span> tmp
+<a id="__codelineno-2-61" name="__codelineno-2-61" href="#__codelineno-2-61"></a>awk <span class="s2">&quot;{print $1,$2,$4,0}&quot;</span> tmp <span class="p">|</span> gmt psxyz -R -JM -JZ -p -So.3 -G<span class="nv">%G%</span> -W.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-62" name="__codelineno-2-62" href="#__codelineno-2-62"></a>awk <span class="s2">&quot;{print $1,$2,$4+$6,$4}&quot;</span> tmp <span class="p">|</span> gmt psxyz -R -JM -JZ -p -So.3b -G<span class="nv">%CS%</span> -W.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-63" name="__codelineno-2-63" href="#__codelineno-2-63"></a>awk <span class="s2">&quot;{print $1,$2,$4+$6+$8,$4+$6}&quot;</span> tmp <span class="p">|</span> gmt psxyz -R -JM -JZ -p -So.3b -G<span class="nv">%G%</span> -W.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-64" name="__codelineno-2-64" href="#__codelineno-2-64"></a>awk <span class="s2">&quot;{print $1,$2,$4+$6+$8+$10,$4+$6+$8}&quot;</span> tmp <span class="p">|</span> <span class="se">^</span>
+<a id="__codelineno-2-65" name="__codelineno-2-65" href="#__codelineno-2-65"></a><span class="se">g</span>mt psxyz -R -JM -JZ -p -So.3b -G<span class="nv">%FS%</span> -W.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-66" name="__codelineno-2-66" href="#__codelineno-2-66"></a>awk <span class="s2">&quot;{print $1,$2,$4+$6+$8+$10+$12,$4+$6+$8+$10}&quot;</span> tmp <span class="p">|</span> <span class="se">^</span>
+<a id="__codelineno-2-67" name="__codelineno-2-67" href="#__codelineno-2-67"></a><span class="se">g</span>mt psxyz -R -JM -JZ -p -So.3b -G<span class="nv">%G%</span> -W.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-68" name="__codelineno-2-68" href="#__codelineno-2-68"></a>awk <span class="s2">&quot;{print $1,$2,$4+$6+$8+$10+$12+$14,$4+$6+$8+$10+$12}&quot;</span> tmp <span class="p">|</span> <span class="se">^</span>
+<a id="__codelineno-2-69" name="__codelineno-2-69" href="#__codelineno-2-69"></a><span class="se">g</span>mt psxyz -R -JM -JZ -p -So.3b -G<span class="nv">%C%</span> -W.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-70" name="__codelineno-2-70" href="#__codelineno-2-70"></a>awk <span class="s2">&quot;{print $1,$2,$4+$6+$8+$10+$12+$14+$16,$4+$6+$8+$10+$12+$14}&quot;</span> tmp <span class="p">|</span> <span class="se">^</span>
+<a id="__codelineno-2-71" name="__codelineno-2-71" href="#__codelineno-2-71"></a><span class="se">g</span>mt psxyz -R -JM -JZ -p -So.3b -G<span class="nv">%CS%</span> -W.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-72" name="__codelineno-2-72" href="#__codelineno-2-72"></a>awk <span class="s2">&quot;{print $1,$2,$4+$6+$8+$10+$12+$14+$16+$18,$4+$6+$8+$10+$12+$14+$16}&quot;</span> tmp <span class="p">|</span> <span class="se">^</span>
+<a id="__codelineno-2-73" name="__codelineno-2-73" href="#__codelineno-2-73"></a><span class="se">g</span>mt psxyz -R -JM -JZ -p -So.3b -G<span class="nv">%G%</span> -W.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-74" name="__codelineno-2-74" href="#__codelineno-2-74"></a>awk <span class="s2">&quot;{print $1,$2,$4+$6+$8+$10+$12+$14+$16+$18+$20,$4+$6+$8+$10+$12+$14+$16+$18}&quot;</span> tmp <span class="p">|</span> <span class="se">^</span>
+<a id="__codelineno-2-75" name="__codelineno-2-75" href="#__codelineno-2-75"></a><span class="se">g</span>mt psxyz -R -JM -JZ -p -So.3b -G<span class="nv">%FS%</span> -W.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-76" name="__codelineno-2-76" href="#__codelineno-2-76"></a>awk <span class="s2">&quot;{print $1,$2,$3}&quot;</span> tmp <span class="p">|</span> gmt pstext -R -JM -JZ -p -F+f12p=2p,white -D0/-.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-77" name="__codelineno-2-77" href="#__codelineno-2-77"></a>awk <span class="s2">&quot;{print $1,$2,$3}&quot;</span> tmp <span class="p">|</span> gmt pstext -R -JM -JZ -p -F+f12p -D0/-.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-78" name="__codelineno-2-78" href="#__codelineno-2-78"></a>
+<a id="__codelineno-2-79" name="__codelineno-2-79" href="#__codelineno-2-79"></a># 061551G1
+<a id="__codelineno-2-80" name="__codelineno-2-80" href="#__codelineno-2-80"></a>awk <span class="s2">&quot;{if ($3==&quot;&quot;061551G1&quot;&quot;&quot;&quot;) print $0}&quot;</span> core.gmt <span class="p">&gt;</span> tmp
+<a id="__codelineno-2-81" name="__codelineno-2-81" href="#__codelineno-2-81"></a>awk <span class="s2">&quot;{print $1,$2,$4,0}&quot;</span> tmp <span class="p">|</span> gmt psxyz -R -JM -JZ -p -So.3 -G<span class="nv">%G%</span> -W.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-82" name="__codelineno-2-82" href="#__codelineno-2-82"></a>awk <span class="s2">&quot;{print $1,$2,$4+$6,$4}&quot;</span> tmp <span class="p">|</span> gmt psxyz -R -JM -JZ -p -So.3b -G<span class="nv">%C%</span> -W.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-83" name="__codelineno-2-83" href="#__codelineno-2-83"></a>awk <span class="s2">&quot;{print $1,$2,$4+$6+$8,$4+$6}&quot;</span> tmp <span class="p">|</span> gmt psxyz -R -JM -JZ -p -So.3b -G<span class="nv">%FS%</span> -W.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-84" name="__codelineno-2-84" href="#__codelineno-2-84"></a>awk <span class="s2">&quot;{print $1,$2,$4+$6+$8+$10,$4+$6+$8}&quot;</span> tmp <span class="p">|</span> <span class="se">^</span>
+<a id="__codelineno-2-85" name="__codelineno-2-85" href="#__codelineno-2-85"></a><span class="se">g</span>mt psxyz -R -JM -JZ -p -So.3b -G<span class="nv">%C%</span> -W.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-86" name="__codelineno-2-86" href="#__codelineno-2-86"></a>awk <span class="s2">&quot;{print $1,$2,$4+$6+$8+$10+$12,$4+$6+$8+$10}&quot;</span> tmp <span class="p">|</span> <span class="se">^</span>
+<a id="__codelineno-2-87" name="__codelineno-2-87" href="#__codelineno-2-87"></a><span class="se">g</span>mt psxyz -R -JM -JZ -p -So.3b -G<span class="nv">%CS%</span> -W.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-88" name="__codelineno-2-88" href="#__codelineno-2-88"></a>awk <span class="s2">&quot;{print $1,$2,$4+$6+$8+$10+$12+$14,$4+$6+$8+$10+$12}&quot;</span> tmp <span class="p">|</span> <span class="se">^</span>
+<a id="__codelineno-2-89" name="__codelineno-2-89" href="#__codelineno-2-89"></a><span class="se">g</span>mt psxyz -R -JM -JZ -p -So.3b -G<span class="nv">%G%</span> -W.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-90" name="__codelineno-2-90" href="#__codelineno-2-90"></a>awk <span class="s2">&quot;{print $1,$2,$4+$6+$8+$10+$12+$14+$16,$4+$6+$8+$10+$12+$14}&quot;</span> tmp <span class="p">|</span> <span class="se">^</span>
+<a id="__codelineno-2-91" name="__codelineno-2-91" href="#__codelineno-2-91"></a><span class="se">g</span>mt psxyz -R -JM -JZ -p -So.3b -G<span class="nv">%FS%</span> -W.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-92" name="__codelineno-2-92" href="#__codelineno-2-92"></a>awk <span class="s2">&quot;{print $1,$2,$3}&quot;</span> tmp <span class="p">|</span> gmt pstext -R -JM -JZ -p -F+f12p=2p,white -D0/-.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-93" name="__codelineno-2-93" href="#__codelineno-2-93"></a>awk <span class="s2">&quot;{print $1,$2,$3}&quot;</span> tmp <span class="p">|</span> gmt pstext -R -JM -JZ -p -F+f12p -D0/-.5 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-94" name="__codelineno-2-94" href="#__codelineno-2-94"></a>
+<a id="__codelineno-2-95" name="__codelineno-2-95" href="#__codelineno-2-95"></a># legend
+<a id="__codelineno-2-96" name="__codelineno-2-96" href="#__codelineno-2-96"></a><span class="k">echo</span> C <span class="nv">%C%</span> <span class="p">&gt;</span> tmp
+<a id="__codelineno-2-97" name="__codelineno-2-97" href="#__codelineno-2-97"></a><span class="k">echo</span> L - - L Clay <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-2-98" name="__codelineno-2-98" href="#__codelineno-2-98"></a><span class="k">echo</span> C <span class="nv">%FS%</span> <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-2-99" name="__codelineno-2-99" href="#__codelineno-2-99"></a><span class="k">echo</span> L - - L Fine Sand <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-2-100" name="__codelineno-2-100" href="#__codelineno-2-100"></a><span class="k">echo</span> C <span class="nv">%CS%</span> <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-2-101" name="__codelineno-2-101" href="#__codelineno-2-101"></a><span class="k">echo</span> L - - L Coarse Sand <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-2-102" name="__codelineno-2-102" href="#__codelineno-2-102"></a><span class="k">echo</span> C <span class="nv">%G%</span> <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-2-103" name="__codelineno-2-103" href="#__codelineno-2-103"></a><span class="k">echo</span> L - - L Gravel <span class="p">&gt;&gt;</span> tmp
+<a id="__codelineno-2-104" name="__codelineno-2-104" href="#__codelineno-2-104"></a>gmt pslegend tmp -R -JM -JZ -p -Dx7.7/.5+w4 -F+g0+p1+s-6p/-4p/gray20@40 -K -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-105" name="__codelineno-2-105" href="#__codelineno-2-105"></a>
+<a id="__codelineno-2-106" name="__codelineno-2-106" href="#__codelineno-2-106"></a>gmt psxy -R -J -JZ -T -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-2-107" name="__codelineno-2-107" href="#__codelineno-2-107"></a>gmt psconvert <span class="nv">%ps%</span> -Tg -A -P
+<a id="__codelineno-2-108" name="__codelineno-2-108" href="#__codelineno-2-108"></a><span class="k">del</span> tmp*
 </code></pre></div>
 <p>學習到的指令:</p>
 <ul>
@@ -896,47 +1025,49 @@
 來繪製三維的地形圖。百內國家公園(Parque Nacional Torres del Paine)，
 為智利南部的一座國家公園，以湛藍的冰河峽灣及湖泊景觀聞名，而透過三維透視圖，
 將可以把高聳的山脈依傍在海洋的景色，完美地展現出來。</p>
-<p>使用的資料檔:
-- 請參考<a href="../topography_cpt/#m8.5">8-5地形暈眩圖</a>，下載全球一角分的數值地形圖。
-- <a href="https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/data/ibcao.cpt">ibcao色階檔</a></p>
+<p>使用的資料檔:</p>
+<ul>
+<li>請參考<a href="../topography_cpt/#m8.5">8-5地形暈眩圖</a>，下載全球一角分的數值地形圖。</li>
+<li><a href="https://raw.githubusercontent.com/sean0921/gmt_tutorials_simple/data/ibcao.cpt">ibcao色階檔</a></li>
+</ul>
 <p>成果圖</p>
 <p align="center">
   <img src="/fig/13_5_3d_perspective_1.png"/>
 </p>
 
 <p>批次檔
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">set</span> <span class="nv">data</span><span class="p">=</span>D:\GMT_data\
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">set</span> <span class="nv">ps</span><span class="p">=</span>13_5_3d_perspective.ps
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="k">set</span> <span class="nv">R</span><span class="p">=</span>-80/-70/-56/-48
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
-<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>gmt gmtset MAP_FRAME_TYPE plain FONT_ANNOT_PRIMARY 8p FONT_LABEL 10p PS_MEDIA A3
-<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
-<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>gmt grdcut <span class="nv">%data%</span>ETOPO1_Bed_g_gmt5.grd -R<span class="nv">%R%</span> -Gtmp.grd
-<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>gmt grdcut <span class="nv">%data%</span>ETOPO1_Bed_g_gmt5_shad.grd -R<span class="nv">%R%</span> -Gtmp_shad.grd
-<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>
-<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a># -Qi -N
-<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>gmt grdview tmp.grd -Itmp_shad.grd -R<span class="nv">%R%</span>/-6000/2000 -JL-75/-52.5/-59/-45/7.5 -JZ2 -p210/40 <span class="se">^</span>
-<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="se">-</span>Cibcao.cpt -N-6000+glightgray -Qi500 -Ba -Bza4000f2000+l<span class="s2">&quot;Topo (m)&quot;</span> -BWeSnZ+t<span class="s2">&quot;-Qi -N&quot;</span> -K <span class="p">&gt;</span> <span class="nv">%ps%</span>
-<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>
-<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a># -Qi <span class="p">&amp;</span> grdcontour
-<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>gmt grdcontour tmp.grd -R -J -JZ -p -C500 -A1000 -Ba -BWeSn -K -O -Y11 <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
-<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>gmt grdview tmp.grd -Itmp_shad.grd -R<span class="nv">%R%</span>/-6000/2000 -J -JZ -p -Cibcao.cpt <span class="se">^</span>
-<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="se">-</span>Qi500+m -Ba -Bza4000f2000+l<span class="s2">&quot;Topo (m)&quot;</span> -BwesnZ+t<span class="s2">&quot;-Qi &amp; grdcontour&quot;</span> -K -O -Y3 <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
-<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>
-<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a># -Qs -Wc
-<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>gmt grdview tmp.grd -Itmp_shad.grd -R<span class="nv">%R%</span>/-6000/2000 -J -JZ -p -Cibcao.cpt <span class="se">^</span>
-<a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a><span class="se">-</span>Qs -Ba -Bza4000f2000+l<span class="s2">&quot;Topo (m)&quot;</span> -BWeSnZ+t<span class="s2">&quot;-Qs -Wc&quot;</span> -Wc.5 -K -O -X13 -Y-3 <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
-<a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a>
-<a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a># -Qm -N -Wm -Wf
-<a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a>gmt grdsample tmp.grd -I10k -Gtmp10.grd
-<a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a>gmt grdsample tmp_shad.grd -I10k -Gtmp10_shad.grd
-<a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a>gmt grdview tmp10.grd -Itmp10_shad.grd -R<span class="nv">%R%</span>/-6000/2000 -JL -JZ -p -Cibcao.cpt <span class="se">^</span>
-<a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a><span class="se">-</span>N-6000+glightgray -Qm -Ba -Bza4000f2000+l<span class="s2">&quot;Topo (m)&quot;</span> -BWeSnZ+t<span class="s2">&quot;-Qm -N -Wm -Wf&quot;</span> <span class="se">^</span>
-<a id="__codelineno-2-28" name="__codelineno-2-28" href="#__codelineno-2-28"></a><span class="se">-</span>Wm.5 -Wf.75,red -K -O -Y-11 <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
-<a id="__codelineno-2-29" name="__codelineno-2-29" href="#__codelineno-2-29"></a>
-<a id="__codelineno-2-30" name="__codelineno-2-30" href="#__codelineno-2-30"></a>gmt psxy -R -J -Jz -T -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
-<a id="__codelineno-2-31" name="__codelineno-2-31" href="#__codelineno-2-31"></a>gmt psconvert <span class="nv">%ps%</span> -Tg -A -P
-<a id="__codelineno-2-32" name="__codelineno-2-32" href="#__codelineno-2-32"></a><span class="k">del</span> tmp*
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">set</span> <span class="nv">data</span><span class="p">=</span>D:\GMT_data\
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="k">set</span> <span class="nv">ps</span><span class="p">=</span>13_5_3d_perspective.ps
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="k">set</span> <span class="nv">R</span><span class="p">=</span>-80/-70/-56/-48
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>gmt gmtset MAP_FRAME_TYPE plain FONT_ANNOT_PRIMARY 8p FONT_LABEL 10p PS_MEDIA A3
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>gmt grdcut <span class="nv">%data%</span>ETOPO1_Bed_g_gmt5.grd -R<span class="nv">%R%</span> -Gtmp.grd
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>gmt grdcut <span class="nv">%data%</span>ETOPO1_Bed_g_gmt5_shad.grd -R<span class="nv">%R%</span> -Gtmp_shad.grd
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a># -Qi -N
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>gmt grdview tmp.grd -Itmp_shad.grd -R<span class="nv">%R%</span>/-6000/2000 -JL-75/-52.5/-59/-45/7.5 -JZ2 -p210/40 <span class="se">^</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="se">-</span>Cibcao.cpt -N-6000+glightgray -Qi500 -Ba -Bza4000f2000+l<span class="s2">&quot;Topo (m)&quot;</span> -BWeSnZ+t<span class="s2">&quot;-Qi -N&quot;</span> -K <span class="p">&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a># -Qi <span class="p">&amp;</span> grdcontour
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>gmt grdcontour tmp.grd -R -J -JZ -p -C500 -A1000 -Ba -BWeSn -K -O -Y11 <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>gmt grdview tmp.grd -Itmp_shad.grd -R<span class="nv">%R%</span>/-6000/2000 -J -JZ -p -Cibcao.cpt <span class="se">^</span>
+<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="se">-</span>Qi500+m -Ba -Bza4000f2000+l<span class="s2">&quot;Topo (m)&quot;</span> -BwesnZ+t<span class="s2">&quot;-Qi &amp; grdcontour&quot;</span> -K -O -Y3 <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>
+<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a># -Qs -Wc
+<a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a>gmt grdview tmp.grd -Itmp_shad.grd -R<span class="nv">%R%</span>/-6000/2000 -J -JZ -p -Cibcao.cpt <span class="se">^</span>
+<a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a><span class="se">-</span>Qs -Ba -Bza4000f2000+l<span class="s2">&quot;Topo (m)&quot;</span> -BWeSnZ+t<span class="s2">&quot;-Qs -Wc&quot;</span> -Wc.5 -K -O -X13 -Y-3 <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a>
+<a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a># -Qm -N -Wm -Wf
+<a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a>gmt grdsample tmp.grd -I10k -Gtmp10.grd
+<a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a>gmt grdsample tmp_shad.grd -I10k -Gtmp10_shad.grd
+<a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a>gmt grdview tmp10.grd -Itmp10_shad.grd -R<span class="nv">%R%</span>/-6000/2000 -JL -JZ -p -Cibcao.cpt <span class="se">^</span>
+<a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a><span class="se">-</span>N-6000+glightgray -Qm -Ba -Bza4000f2000+l<span class="s2">&quot;Topo (m)&quot;</span> -BWeSnZ+t<span class="s2">&quot;-Qm -N -Wm -Wf&quot;</span> <span class="se">^</span>
+<a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a><span class="se">-</span>Wm.5 -Wf.75,red -K -O -Y-11 <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a>
+<a id="__codelineno-3-30" name="__codelineno-3-30" href="#__codelineno-3-30"></a>gmt psxy -R -J -Jz -T -O <span class="p">&gt;&gt;</span> <span class="nv">%ps%</span>
+<a id="__codelineno-3-31" name="__codelineno-3-31" href="#__codelineno-3-31"></a>gmt psconvert <span class="nv">%ps%</span> -Tg -A -P
+<a id="__codelineno-3-32" name="__codelineno-3-32" href="#__codelineno-3-32"></a><span class="k">del</span> tmp*
 </code></pre></div></p>
 <p>學習到的指令:</p>
 <ul>
@@ -968,8 +1099,10 @@
 將世界上的海岸分為八種類型中，其中峽灣屬於沉水侵蝕退夷，而這次練習繪製的區域是台灣東部海岸，
 屬於斷層海岸，在海岸分類中為離水堆積進夷，將3D的地形繪製出來，與前一節的峽灣比較，
 來看看兩種海岸的差異吧!</p>
-<p>使用的資料檔:
-- 請參考<a href="../topography_cpt/#m8.5">8-5地形暈眩圖</a>，下載全球一角分的數值地形圖。</p>
+<p>使用的資料檔:</p>
+<ul>
+<li>請參考<a href="../topography_cpt/#m8.5">8-5地形暈眩圖</a>，下載全球一角分的數值地形圖。</li>
+</ul>
 <p>完成圖如下:</p>
 <p align="center">
   <img src="/fig/13_6_3d_east_coast_1.png"/>
